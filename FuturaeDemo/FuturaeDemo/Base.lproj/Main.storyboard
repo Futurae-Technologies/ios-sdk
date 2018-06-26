@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController id="BYZ-38-t0r" customClass="ViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="M0a-WQ-c6y">
+                                <rect key="frame" x="159" y="167" width="58" height="41"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                                <state key="normal" title="Enroll"/>
+                                <connections>
+                                    <action selector="enrollTouchedUpInside:" destination="BYZ-38-t0r" eventType="touchUpInside" id="7vx-ss-4Pa"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Fu1-ck-yQS">
+                                <rect key="frame" x="151" y="265" width="73" height="41"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                                <state key="normal" title="Logout"/>
+                                <connections>
+                                    <action selector="logoutTouchedUpInside:" destination="BYZ-38-t0r" eventType="touchUpInside" id="HOH-jv-nQB"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="v4j-GO-GWb">
+                                <rect key="frame" x="113" y="360" width="149" height="41"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                                <state key="normal" title="QR Code Auth"/>
+                                <connections>
+                                    <action selector="qrCodeTouchedUpInside:" destination="BYZ-38-t0r" eventType="touchUpInside" id="9Jf-ug-79f"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NUG-QO-Bxf">
+                                <rect key="frame" x="131" y="445" width="113" height="41"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                                <state key="normal" title="TOTP Auth"/>
+                                <connections>
+                                    <action selector="totpTouchedUpInside:" destination="BYZ-38-t0r" eventType="touchUpInside" id="TBh-r6-VHr"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="Fu1-ck-yQS" firstAttribute="top" secondItem="M0a-WQ-c6y" secondAttribute="bottom" constant="57" id="3KB-sa-pFK"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="NUG-QO-Bxf" secondAttribute="trailing" constant="131" id="5FQ-Je-vZj"/>
+                            <constraint firstItem="v4j-GO-GWb" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="113" id="Agp-5d-anR"/>
+                            <constraint firstItem="M0a-WQ-c6y" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="147" id="DSj-6Z-H1H"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="v4j-GO-GWb" secondAttribute="trailing" constant="113" id="G7g-Ri-03a"/>
+                            <constraint firstItem="v4j-GO-GWb" firstAttribute="top" secondItem="Fu1-ck-yQS" secondAttribute="bottom" constant="54" id="Irs-CG-EAw"/>
+                            <constraint firstItem="M0a-WQ-c6y" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="Izs-w7-kw8"/>
+                            <constraint firstItem="NUG-QO-Bxf" firstAttribute="top" secondItem="v4j-GO-GWb" secondAttribute="bottom" constant="44" id="K2b-fZ-X7c"/>
+                            <constraint firstItem="NUG-QO-Bxf" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="131" id="NZo-lU-2BI"/>
+                            <constraint firstItem="M0a-WQ-c6y" firstAttribute="centerX" secondItem="Fu1-ck-yQS" secondAttribute="centerX" id="aPn-as-eIF"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="NUG-QO-Bxf" secondAttribute="bottom" constant="181" id="d5T-Pa-zlG"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="140" y="133.5832083958021"/>
+        </scene>
+    </scenes>
+</document>
