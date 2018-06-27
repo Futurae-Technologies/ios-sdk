@@ -56,11 +56,12 @@ In the Project Navigator, open the source file of your application delegate. Add
 #import <FuturaeKit/FuturaeKit.h>
 
 // ...
-FTRConfig *ftrConfig = [FTRConfig configWithApiKey:@"{FuturaeApiKey}"];
+FTRConfig *ftrConfig = [FTRConfig configWithApiKey:@"{FuturaeApiKey}" withBaseUrl:@"https://api.futurae.com:443"];
 [FuturaeClient launchWithConfig:ftrConfig inApplication:application];
 ```
 
 **Note**: Initializing the FuturaeKit SDK like this is `very important`. Replace `{FuturaeApiKey}` with your Futurae SDK API key. In case you do not have an SDK API key yet, use the following placeholder key: `0000000000000000000000000000000000000000`.
+If needed, you can also change the base host of the Futurae API.
 
 ### <a id="build-your-app" />Build your app
 

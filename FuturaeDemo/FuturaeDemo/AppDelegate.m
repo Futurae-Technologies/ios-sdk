@@ -25,7 +25,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    FTRConfig *ftrConfig = [FTRConfig configWithApiKey:@"YOUR_API_KEY"];
+    FTRConfig *ftrConfig = [FTRConfig configWithApiKey:@"YOUR_API_KEY" withBaseUrl:@"https://api.futurae.com:443"];
     [FuturaeClient launchWithConfig:ftrConfig inApplication:application];
     
     

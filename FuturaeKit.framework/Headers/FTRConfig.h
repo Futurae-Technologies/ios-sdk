@@ -21,6 +21,7 @@
 @property(nonatomic, strong, readonly, nonnull) NSArray *sampleRates;
 
 + (nonnull instancetype)configWithApiKey:(NSString * _Nonnull)apiKey;
++ (nonnull instancetype)configWithApiKey:(NSString * _Nonnull)apiKey withBaseUrl:(NSString * _Nonnull)baseUrl;
 
 - (BOOL)isValid;
 
