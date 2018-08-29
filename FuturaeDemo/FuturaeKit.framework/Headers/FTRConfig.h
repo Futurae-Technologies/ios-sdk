@@ -17,11 +17,15 @@
 @property(nonatomic, copy, readonly, nonnull) NSString *apiKey;
 @property(nonatomic, copy, readonly, nonnull) NSString *baseUrl;
 @property(nonatomic, copy, readonly, nonnull) NSString *locale;
+@property(nonatomic, readonly) BOOL pinCerts;
 @property(nonatomic, strong, readonly, nonnull) NSArray *capabilities;
 @property(nonatomic, strong, readonly, nonnull) NSArray *sampleRates;
 
 + (nonnull instancetype)configWithApiKey:(NSString * _Nonnull)apiKey;
 + (nonnull instancetype)configWithApiKey:(NSString * _Nonnull)apiKey withBaseUrl:(NSString * _Nonnull)baseUrl;
+
++ (nonnull instancetype)configWithApiKey:(NSString * _Nonnull)apiKey pinCerts:(BOOL)pinCerts;
++ (nonnull instancetype)configWithApiKey:(NSString * _Nonnull)apiKey withBaseUrl:(NSString * _Nonnull)baseUrl pinCerts:(BOOL)pinCerts;
 
 - (BOOL)isValid;
 
