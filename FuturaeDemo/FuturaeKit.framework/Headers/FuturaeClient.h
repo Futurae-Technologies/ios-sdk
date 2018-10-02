@@ -68,7 +68,7 @@ typedef void (^FTRRequestDataHandler)(id _Nullable data);
 // Accounts status
 - (void)getAccountsStatus:(NSArray * _Nonnull)accounts
                   success:(nullable FTRRequestDataHandler)success
-                failure:(nullable FTRRequestHandler)failure;
+                  failure:(nullable FTRRequestHandler)failure;
 
 // User authentication
 - (void)getSessionInfo:(NSString * _Nonnull)userId
@@ -76,14 +76,14 @@ typedef void (^FTRRequestDataHandler)(id _Nullable data);
                success:(nullable FTRRequestDataHandler)success
                failure:(nullable FTRRequestHandler)failure;
 - (void)getSessionInfo:(NSString * _Nonnull)userId
-             sessionToken:(NSString * _Nonnull)sessionToken
+          sessionToken:(NSString * _Nonnull)sessionToken
                success:(nullable FTRRequestDataHandler)success
                failure:(nullable FTRRequestHandler)failure;
 - (void)approveAuthWithQrCode:(NSString * _Nonnull)qrCode
                      callback:(nullable FTRRequestHandler)callback;
 - (void)approveAuthWithUserId:(NSString * _Nonnull)userId
                     sessionId:(NSString * _Nonnull)sessionId
-                    callback:(nullable FTRRequestHandler)callback;
+                     callback:(nullable FTRRequestHandler)callback;
 - (void)rejectAuthWithUserId:(NSString * _Nonnull)userId
                    sessionId:(NSString * _Nonnull)sessionId
                      isFraud:(Boolean)isFraud
@@ -91,4 +91,5 @@ typedef void (^FTRRequestDataHandler)(id _Nullable data);
 
 // User offline authentication
 - (NSDictionary * _Nonnull)nextTotpForUser:(NSString * _Nonnull)userId;
+
 @end
