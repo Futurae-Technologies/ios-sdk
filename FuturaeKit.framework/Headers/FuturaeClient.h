@@ -19,22 +19,27 @@
 // The domain for all errors originating in FTRClient.
 FOUNDATION_EXPORT NSString * _Nonnull const FTRClientErrorDomain;
 
+// error codes
 FOUNDATION_EXTERN const NSUInteger FTRClientErrorGeneric;
 FOUNDATION_EXTERN const NSUInteger FTRClientErrorInvalidEnrollmentCode;
 FOUNDATION_EXTERN const NSUInteger FTRClientErrorInvalidAuthorizationCode;
 FOUNDATION_EXTERN const NSUInteger FTRClientErrorAccountAlreadyActive;
 FOUNDATION_EXTERN const NSUInteger FTRClientErrorOutdatedApp;
 
+// notifications
+FOUNDATION_EXTERN _Nonnull NSNotificationName const FTRNotificationError;
+FOUNDATION_EXTERN _Nonnull NSNotificationName const FTRNotificationUnEnroll;
+FOUNDATION_EXTERN _Nonnull NSNotificationName const FTRNotificationApprove;
+
 @class FTRConfig;
-@class FTRSession;
-@class AFHTTPSessionManager;
+@class FTRHTTPSessionManager;
 
 typedef void (^FTRRequestHandler)(NSError * _Nullable error);
 typedef void (^FTRRequestDataHandler)(id _Nullable data);
 
 @interface FuturaeClient : NSObject
 {
-    AFHTTPSessionManager *_sessionManager;
+    FTRHTTPSessionManager *_sessionManager;
     NSDateFormatter *_rfc2882DateFormatter;
 }
 
@@ -60,9 +65,11 @@ typedef void (^FTRRequestDataHandler)(id _Nullable data);
                   delegate:(nullable id<FTRNotificationDelegate>)delegate;
 
 // User enrollment/logout
-- (void)enroll:(NSString * _Nonnull)code
+- (void)enroll:(NSString * _Nonnull)qrCode
       callback:(nullable FTRRequestHandler)callback;
-- (void)logoutForUser:(NSString * _Nonnull)userId
+- (void)logoutUser:(NSString * _Nonnull)userId
+          callback:(nullable FTRRequestHandler)callback;
+- (void)logoutAccount:(nonnull NSDictionary *)account
              callback:(nullable FTRRequestHandler)callback;
 
 // Accounts status
@@ -79,6 +86,7 @@ typedef void (^FTRRequestDataHandler)(id _Nullable data);
           sessionToken:(NSString * _Nonnull)sessionToken
                success:(nullable FTRRequestDataHandler)success
                failure:(nullable FTRRequestHandler)failure;
+
 - (void)approveAuthWithQrCode:(NSString * _Nonnull)qrCode
                      callback:(nullable FTRRequestHandler)callback;
 - (void)approveAuthWithUserId:(NSString * _Nonnull)userId

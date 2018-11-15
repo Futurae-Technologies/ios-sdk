@@ -10,7 +10,7 @@
 		</data>
 		<key>Headers/FTRNotificationDelegate.h</key>
 		<data>
-		/jPfLicxfYGQGSnJwpeq0Kai+UE=
+		2h+I3RD7qkfzyoRCaQrnLQc0ELg=
 		</data>
 		<key>Headers/FTROpenURLDelegate.h</key>
 		<data>
@@ -18,11 +18,11 @@
 		</data>
 		<key>Headers/FTRQRCodeReader.h</key>
 		<data>
-		7NMsxVo2LXgWYqHEz7AZ8qUTEko=
+		Isw6B+MeAKRWFXSHOdZbL/pYBu8=
 		</data>
 		<key>Headers/FuturaeClient.h</key>
 		<data>
-		I34HRNwNY7Nx8q1+Tlj3QBro3Cg=
+		1aAeRro/KhZVeTDU8WBrr7LukGc=
 		</data>
 		<key>Headers/FuturaeKit.h</key>
 		<data>
@@ -30,7 +30,7 @@
 		</data>
 		<key>Info.plist</key>
 		<data>
-		1/fJ7AAm/TmGNhuYKerjU/JQ7YY=
+		wJUZt2dytosJVHkIVj+bYt5ODEA=
 		</data>
 		<key>Modules/module.modulemap</key>
 		<data>
@@ -54,11 +54,11 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			/jPfLicxfYGQGSnJwpeq0Kai+UE=
+			2h+I3RD7qkfzyoRCaQrnLQc0ELg=
 			</data>
 			<key>hash2</key>
 			<data>
-			rmZUeGfAU38ifu99EYWaVzY6YF1OrW3rh2E7fAazr2Y=
+			ve7oxl85Z5SV45ai6dpfCxHcXeU95y4Mde1FaTt69kI=
 			</data>
 		</dict>
 		<key>Headers/FTROpenURLDelegate.h</key>
@@ -76,22 +76,22 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			7NMsxVo2LXgWYqHEz7AZ8qUTEko=
+			Isw6B+MeAKRWFXSHOdZbL/pYBu8=
 			</data>
 			<key>hash2</key>
 			<data>
-			zXlWNgDuuvbtBRmjg4WVvE5fZPdSJO+lHGq3chliy9Q=
+			AOtGRGf5KOayrKzNfuVVyKr+VuKoJZw5qGQLnPuSYoA=
 			</data>
 		</dict>
 		<key>Headers/FuturaeClient.h</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			I34HRNwNY7Nx8q1+Tlj3QBro3Cg=
+			1aAeRro/KhZVeTDU8WBrr7LukGc=
 			</data>
 			<key>hash2</key>
 			<data>
-			a233XoOV2y9HAdOC1xAxiuEeLekSQOXx4Oi9ReM0jfk=
+			ClNUGfufi2sofkuWF/ZqwC6vybNSwbpV30UOK+pC5GY=
 			</data>
 		</dict>
 		<key>Headers/FuturaeKit.h</key>

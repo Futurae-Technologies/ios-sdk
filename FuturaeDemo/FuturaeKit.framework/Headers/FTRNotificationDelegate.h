@@ -13,7 +13,7 @@
 #import <Foundation/Foundation.h>
 
 /**
- * The `FTRNotificationDelegate`'s methods allow the delegate to be informed when
+ * The `FTRNotificationDelegate`'s methods allow the delegate to be informed when SoundProof and
  * approve authentication attempts or user unenrolled actions are received via Push Notifications.
  */
 @protocol FTRNotificationDelegate <NSObject>

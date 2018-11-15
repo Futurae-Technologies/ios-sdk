@@ -16,11 +16,11 @@
 
 @interface FTRQRCodeReader : NSObject
 
-@property(strong, nonatomic, readonly) NSArray * _Nonnull metadataObjectTypes;
-@property(strong, nonatomic, readonly) AVCaptureVideoPreviewLayer * _Nonnull previewLayer;
-@property(readonly) AVCaptureDeviceInput * _Nonnull defaultDeviceInput;
-@property(readonly) AVCaptureDeviceInput * _Nullable frontDeviceInput;
-@property(readonly) AVCaptureMetadataOutput * _Nonnull metadataOutput;
+@property(nonatomic, strong, readonly) NSArray * _Nonnull metadataObjectTypes;
+@property(nonatomic, strong, readonly) AVCaptureVideoPreviewLayer * _Nonnull previewLayer;
+@property(nonatomic, readonly) AVCaptureDeviceInput * _Nonnull defaultDeviceInput;
+@property(nonatomic, readonly) AVCaptureDeviceInput * _Nullable frontDeviceInput;
+@property(nonatomic, readonly) AVCaptureMetadataOutput * _Nonnull metadataOutput;
 
 + (nonnull instancetype)reader;
 + (nonnull instancetype)readerWithMetadataObjectTypes:(nonnull NSArray *)metadataObjectTypes;
