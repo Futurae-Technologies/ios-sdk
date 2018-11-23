@@ -55,8 +55,7 @@ typedef void (^FTRRequestDataHandler)(id _Nullable data);
 - (NSDictionary * _Nonnull)getAccountByUserId:(NSString * _Nonnull)userId;
 
 // URI Scheme handling
-- (BOOL)openURL:(nullable NSURL *)url sourceApplication:(nullable NSString *)sourceApplication
-     annotation:(nullable id)annotation
+- (BOOL)openURL:(nullable NSURL *)url options:(NSDictionary<UIApplicationOpenURLOptionsKey, id> *)options
        delegate:(nullable id<FTROpenURLDelegate>)delegate;
 
 // Push Notifications
@@ -86,6 +85,19 @@ typedef void (^FTRRequestDataHandler)(id _Nullable data);
           sessionToken:(NSString * _Nonnull)sessionToken
                success:(nullable FTRRequestDataHandler)success
                failure:(nullable FTRRequestHandler)failure;
+
+- (void)approveAuthWithQrCode:(NSString *)qrCode
+                    extraInfo:(NSArray *)extraInfo
+                     callback:(nullable FTRRequestHandler)callback;
+- (void)approveAuthWithUserId:(NSString *)userId
+                    sessionId:(NSString *)sessionId
+                    extraInfo:(NSArray *)extraInfo
+                     callback:(nullable FTRRequestHandler)callback;
+- (void)rejectAuthWithUserId:(NSString * _Nonnull)userId
+                   sessionId:(NSString * _Nonnull)sessionId
+                     isFraud:(Boolean)isFraud
+                   extraInfo:(NSArray *)extraInfo
+                    callback:(nullable FTRRequestHandler)callback;
 
 - (void)approveAuthWithQrCode:(NSString * _Nonnull)qrCode
                      callback:(nullable FTRRequestHandler)callback;
