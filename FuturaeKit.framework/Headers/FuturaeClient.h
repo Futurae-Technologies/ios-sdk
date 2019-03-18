@@ -32,14 +32,14 @@ FOUNDATION_EXTERN _Nonnull NSNotificationName const FTRNotificationUnEnroll;
 FOUNDATION_EXTERN _Nonnull NSNotificationName const FTRNotificationApprove;
 
 @class FTRConfig;
-@class FTRHTTPSessionManager;
+@class FTRKitHTTPSessionManager;
 
 typedef void (^FTRRequestHandler)(NSError * _Nullable error);
 typedef void (^FTRRequestDataHandler)(id _Nullable data);
 
 @interface FuturaeClient : NSObject
 {
-    FTRHTTPSessionManager *_sessionManager;
+    FTRKitHTTPSessionManager *_sessionManager;
     NSDateFormatter *_rfc2882DateFormatter;
 }
 

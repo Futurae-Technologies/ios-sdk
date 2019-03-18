@@ -25,9 +25,8 @@
 ////////////////////////////////////////////////////////////////////////////////
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    FTRConfig *ftrConfig = [FTRConfig configWithApiKey:@"YOUR_API_KEY" withBaseUrl:@"https://api.futurae.com:443"];
+    FTRConfig *ftrConfig = [FTRConfig configWithSdkId:@"SDK_ID" sdkKey:@"SKD_KEY" baseUrl:@"https://api.futurae.com:443"];
     [FuturaeClient launchWithConfig:ftrConfig inApplication:application];
-    
     
     // push notifications
     if (floor(NSFoundationVersionNumber) > NSFoundationVersionNumber_iOS_9_x_Max) { // iOS 10+

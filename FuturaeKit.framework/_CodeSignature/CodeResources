@@ -6,7 +6,7 @@
 	<dict>
 		<key>Headers/FTRConfig.h</key>
 		<data>
-		Pims+9/G9afuT1U1rJGw/1ug114=
+		RnJ59x1XE1cP9kYyuhhPNxOtC8g=
 		</data>
 		<key>Headers/FTRNotificationDelegate.h</key>
 		<data>
@@ -22,7 +22,7 @@
 		</data>
 		<key>Headers/FuturaeClient.h</key>
 		<data>
-		R6AbhtXpyD7MiDjTnhMEzj7xcYo=
+		T0N3Cv6palChn1CBNv4WR0Gz2kc=
 		</data>
 		<key>Headers/FuturaeKit.h</key>
 		<data>
@@ -30,7 +30,7 @@
 		</data>
 		<key>Info.plist</key>
 		<data>
-		9g5FJ/BTp0rWqryOb3rssEBHHUY=
+		HkaCt0UVd1fknUAhF0BfYshWJ6c=
 		</data>
 		<key>Modules/module.modulemap</key>
 		<data>
@@ -43,11 +43,11 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			Pims+9/G9afuT1U1rJGw/1ug114=
+			RnJ59x1XE1cP9kYyuhhPNxOtC8g=
 			</data>
 			<key>hash2</key>
 			<data>
-			yq2arglGPWC795JdD6O9vdciOO2ahKN+9P+RtLex3Dc=
+			kzGkTI9ad89V24D21c5EEri/NSyHGrZZSXD8fzPNthE=
 			</data>
 		</dict>
 		<key>Headers/FTRNotificationDelegate.h</key>
@@ -87,11 +87,11 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			R6AbhtXpyD7MiDjTnhMEzj7xcYo=
+			T0N3Cv6palChn1CBNv4WR0Gz2kc=
 			</data>
 			<key>hash2</key>
 			<data>
-			whDUIhKpdpLxS+pAafYzsbn1mku3Uu4V2BtRTL2AHmY=
+			tSoe5uapyKG3y711qfqNg4e4iEyh+usZrVEudK3MhIw=
 			</data>
 		</dict>
 		<key>Headers/FuturaeKit.h</key>
