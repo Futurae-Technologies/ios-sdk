@@ -66,8 +66,8 @@
         [self _showAlertWithTitle:@"Error" message:@"No user enrolled"];
         return;
     }
-    
-    [[FuturaeClient sharedClient] logoutForUser:account[@"user_id"] callback:^(NSError * _Nullable error) {
+
+    [[FuturaeClient sharedClient] logoutUser:account[@"user_id"] callback:^(NSError * _Nullable error) {
         if (error) {
             [self _showAlertWithTitle:@"Error" message:error.userInfo[@"msg"]];
             return;

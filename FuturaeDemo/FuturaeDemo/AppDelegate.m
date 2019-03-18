@@ -86,13 +86,12 @@
 
 #pragma mark - Handle URL Scheme calls
 ////////////////////////////////////////////////////////////////////////////////
-- (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation
+- (BOOL)application:(UIApplication *)app openURL:(NSURL *)url options:(NSDictionary<UIApplicationOpenURLOptionsKey,id> *)options
 {
-    NSLog(@"Received URL Scheme call from %@: %@", sourceApplication, url);
-    
+    NSLog(@"Received URL Scheme call from %@: %@", options[UIApplicationOpenURLOptionsSourceApplicationKey], url);
+
     // TODO: Check if you want to open this URL and then pass it to the FuturaeClient as shown below
-    [[FuturaeClient sharedClient] openURL:url sourceApplication:sourceApplication annotation:annotation delegate:self];
-    
+    [[FuturaeClient sharedClient] openURL:url options:@{} delegate:self];
     return YES;
 }
 
