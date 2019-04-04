@@ -47,6 +47,9 @@ typedef void (^FTRRequestDataHandler)(id _Nullable data);
 + (nullable instancetype)sharedClient;
 + (void)launchWithConfig:(FTRConfig * _Nonnull)config
            inApplication:(UIApplication * _Nonnull)application;
++ (void)launchWith:(NSArray *)kitClasses
+            config:(FTRConfig * _Nonnull)config
+     inApplication:(UIApplication * _Nonnull)application;
 
 // public
 

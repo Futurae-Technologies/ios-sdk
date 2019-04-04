@@ -12,6 +12,16 @@
 
 #import "AppDelegate.h"
 #import <FuturaeKit/FuturaeKit.h>
+// In order to successfully use the SoundProofKit you need the following:
+//   * setup the "Privacy - Microphone Usage Description" key in your Info.plist
+//   * get microphone persmission from the user, for instance:
+//      [[AVAudioSession sharedInstance] requestRecordPermission:^(BOOL granted) {
+//          NSLog(@"Mic permission%@granted", granted ? @" " : @" NOT ");
+//      }];
+//   * uncomment the following import statement
+//   * launch the FuturaeClient of the FuturaeKit to include the SoundProofKit:
+//      [FuturaeClient launchWith:@[[SoundProof class]] config:ftrConfig inApplication:application];
+//#import <SoundProofKit/SoundProofKit.h>
 
 #import <UserNotifications/UserNotifications.h>
 
@@ -27,7 +37,7 @@
 {
     FTRConfig *ftrConfig = [FTRConfig configWithSdkId:@"SDK_ID" sdkKey:@"SKD_KEY" baseUrl:@"https://api.futurae.com:443"];
     [FuturaeClient launchWithConfig:ftrConfig inApplication:application];
-    
+
     // push notifications
     if (floor(NSFoundationVersionNumber) > NSFoundationVersionNumber_iOS_9_x_Max) { // iOS 10+
         UNUserNotificationCenter *center = [UNUserNotificationCenter currentNotificationCenter];

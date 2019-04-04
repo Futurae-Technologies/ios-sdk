@@ -34,7 +34,11 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
+
+    [[AVAudioSession sharedInstance] requestRecordPermission:^(BOOL granted) {
+        NSLog(@"Mic permission%@granted", granted ? @" " : @" NOT ");
+    }];
+
     NSArray *accounts = [[FuturaeClient sharedClient] getAccounts];
     if (accounts != nil && accounts.count > 0) {
         [[FuturaeClient sharedClient] getAccountsStatus:accounts

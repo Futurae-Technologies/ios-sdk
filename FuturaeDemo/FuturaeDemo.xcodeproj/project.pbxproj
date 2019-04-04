@@ -9,6 +9,9 @@
 /* Begin PBXBuildFile section */
 		05A82D0820E2A81E00C34AD4 /* FuturaeKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 05A82D0720E2A81E00C34AD4 /* FuturaeKit.framework */; };
 		05A82D0920E2A81E00C34AD4 /* FuturaeKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 05A82D0720E2A81E00C34AD4 /* FuturaeKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		27F635CF22561B2E00B41BD7 /* SoundProofKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 27F635CE22561B2E00B41BD7 /* SoundProofKit.framework */; };
+		27F635D022561E8600B41BD7 /* SoundProofKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 27F635CE22561B2E00B41BD7 /* SoundProofKit.framework */; };
+		27F635D122561E8600B41BD7 /* SoundProofKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 27F635CE22561B2E00B41BD7 /* SoundProofKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		5E587B1D1FF41B0C0024ACFA /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E587B1C1FF41B0C0024ACFA /* AppDelegate.m */; };
 		5E587B201FF41B0C0024ACFA /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E587B1F1FF41B0C0024ACFA /* ViewController.m */; };
 		5E587B231FF41B0C0024ACFA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5E587B211FF41B0C0024ACFA /* Main.storyboard */; };
@@ -31,6 +34,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
+				27F635D122561E8600B41BD7 /* SoundProofKit.framework in Embed Frameworks */,
 				05A82D0920E2A81E00C34AD4 /* FuturaeKit.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
@@ -41,6 +45,7 @@
 /* Begin PBXFileReference section */
 		05A82D0720E2A81E00C34AD4 /* FuturaeKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FuturaeKit.framework; sourceTree = "<group>"; };
 		27EC427C20343EB20078E457 /* FuturaeDemo.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = FuturaeDemo.entitlements; sourceTree = "<group>"; };
+		27F635CE22561B2E00B41BD7 /* SoundProofKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SoundProofKit.framework; sourceTree = "<group>"; };
 		5E587B181FF41B0C0024ACFA /* FuturaeDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FuturaeDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5E587B1B1FF41B0C0024ACFA /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		5E587B1C1FF41B0C0024ACFA /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -68,6 +73,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				05A82D0820E2A81E00C34AD4 /* FuturaeKit.framework in Frameworks */,
+				27F635CF22561B2E00B41BD7 /* SoundProofKit.framework in Frameworks */,
+				27F635D022561E8600B41BD7 /* SoundProofKit.framework in Frameworks */,
 				5E837AF92021D0E000DA4FCC /* UserNotifications.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -117,6 +124,7 @@
 		5E587B311FF41BBD0024ACFA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				27F635CE22561B2E00B41BD7 /* SoundProofKit.framework */,
 				05A82D0720E2A81E00C34AD4 /* FuturaeKit.framework */,
 				5E837AF82021D0DF00DA4FCC /* UserNotifications.framework */,
 			);
