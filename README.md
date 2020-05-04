@@ -4,28 +4,27 @@ This is the iOS SDK of Futurae. You can read more about Futurae™ at [futurae.c
 
 ## Table of contents
 
-- [Summary](#summary)
-- [Table of contents](#table-of-contents)
-- [<a id="basic-ntegration" />Basic integration](#a-id%22basic-ntegration%22-basic-integration)
-  - [<a id="get-futuraekit-sdk-for-ios" />Get FuturaeKit SDK for iOS](#a-id%22get-futuraekit-sdk-for-ios%22-get-futuraekit-sdk-for-ios)
-  - [<a id="add-sdk-to-project" />Add SDK to Project](#a-id%22add-sdk-to-project%22-add-sdk-to-project)
-  - [<a id="integrate-sdk-into-your-app" />Integrate SDK into your app](#a-id%22integrate-sdk-into-your-app%22-integrate-sdk-into-your-app)
-  - [<a id="basic-setup" />Basic setup](#a-id%22basic-setup%22-basic-setup)
-  - [<a id="build-your-app" />Build your app](#a-id%22build-your-app%22-build-your-app)
-  - [<a id="clear-sdk-data" />Clear SDK data](#a-id%22clear-sdk-data%22-clear-sdk-data)
-- [<a id="features" />Features](#a-id%22features%22-features)
-  - [<a id="uri-schemes" />URI Schemes](#a-id%22uri-schemes%22-uri-schemes)
-  - [<a id="push-notifications" />Push Notifications](#a-id%22push-notifications%22-push-notifications)
-  - [<a id="enroll-user" />Enroll User](#a-id%22enroll-user%22-enroll-user)
-  - [<a id="logout-user" />Logout User](#a-id%22logout-user%22-logout-user)
-  - [<a id="account-status" />Account Status](#a-id%22account-status%22-account-status)
-  - [<a id="authenticate-user" />Authenticate User](#a-id%22authenticate-user%22-authenticate-user)
-    - [<a id="qr-code-factor" />QR Code Factor](#a-id%22qr-code-factor%22-qr-code-factor)
-    - [<a id="push-notification-factor" />Push Notification Factor](#a-id%22push-notification-factor%22-push-notification-factor)
-      - [<a id="pn-factor-approve" />Approve Authentication](#a-id%22pn-factor-approve%22-approve-authentication)
-      - [<a id="pn-factor-reject" />Reject Authentication](#a-id%22pn-factor-reject%22-reject-authentication)
-    - [<a id="totp-factor" />TOTP Factor](#a-id%22totp-factor%22-totp-factor)
-    - [<a id="session-information" />Session Information](#a-id%22session-information%22-session-information)
+* [Basic integration](#basic-integration)
+   * [Get FuturaeKit SDK for iOS](#get-futuraekit-sdk-for-ios)
+   * [Add SDK to Project](#add-sdk-to-project)
+   * [Integrate SDK into your app](#integrate-sdk-into-your-app)
+   * [Basic setup](#basic-setup)
+   * [Build your app](#build-your-app)
+   * [Clear SDK data](#clear-sdk-data)
+* [Features](#features)
+   * [URI Schemes](#uri-schemes)
+   * [Push Notifications](#push-notifications)
+   * [Enroll User](#enroll-user)
+   * [Logout User](#logout-user)
+   * [Account Status](#account-status)
+   * [Authenticate User](#authenticate-user)
+      * [QR Code Factor](#qr-code-factor)
+      * [Push Notification Factor](#push-notification-factor)
+	       * [Approve Authentication](#approve-authentication)
+	       * [Reject Authentication](#reject-authentication)
+      * [TOTP Factor](#totp-factor)
+      * [Session Information](#session-information)
+
 
 ## <a id="basic-ntegration" />Basic integration
 
@@ -80,11 +79,13 @@ Futurae iOS SDK provides a convenient method to clear all SDK internal data:
 [[FuturaeClient sharedClient] clearData];
 ```
 
-SDK method removes the following data:
+This method removes the following data:
 
 - Internal DB
 - Encryption keys
 - Device info
+
+Clearing the SDK data brings it to a fresh-start state. Hence, you can enroll new users and make use of it as per usual.
 
 ## <a id="features" />Features
 
@@ -236,7 +237,7 @@ Get the result of the QR Code scan with `extraInfo` field and feed it to the fol
 
 Get the `user ID` and `session ID` from the Push Notification handler and feed them to one of the following methods:
 
-##### <a id="pn-factor-approve" />Approve Authentication
+##### <a id="approve-authentication" />Approve Authentication
 
 To approve a user authentication:
 
@@ -259,7 +260,7 @@ To approve a user authentication when `extraInfo` field has a `non-null` value:
 }];
 ```
 
-##### <a id="pn-factor-reject" />Reject Authentication
+##### <a id="reject-authentication" />Reject Authentication
 
 To reject a user authentication (and optionally define it as `fraud`):
 
