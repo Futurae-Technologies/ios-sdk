@@ -31,6 +31,7 @@ FOUNDATION_EXTERN _Nonnull NSNotificationName const FTRNotificationError;
 FOUNDATION_EXTERN _Nonnull NSNotificationName const FTRNotificationUnEnroll;
 FOUNDATION_EXTERN _Nonnull NSNotificationName const FTRNotificationApprove;
 
+@class FTRTotp;
 @class FTRConfig;
 @class FTRKitHTTPSessionManager;
 
@@ -47,18 +48,22 @@ typedef void (^FTRRequestDataHandler)(id _Nullable data);
 + (nullable instancetype)sharedClient;
 + (void)launchWithConfig:(FTRConfig * _Nonnull)config
            inApplication:(UIApplication * _Nonnull)application;
-+ (void)launchWith:(NSArray *)kitClasses
++ (void)launchWith:(NSArray * _Nullable)kitClasses
             config:(FTRConfig * _Nonnull)config
      inApplication:(UIApplication * _Nonnull)application;
 
 // public
+
+// Lifecycle
+
+- (void)clearData;
 
 // Database
 - (NSArray * _Nonnull)getAccounts;
 - (NSDictionary * _Nonnull)getAccountByUserId:(NSString * _Nonnull)userId;
 
 // URI Scheme handling
-- (BOOL)openURL:(nullable NSURL *)url options:(NSDictionary<UIApplicationOpenURLOptionsKey, id> *)options
+- (BOOL)openURL:(nullable NSURL *)url options:(NSDictionary<UIApplicationOpenURLOptionsKey, id> * _Nonnull)options
        delegate:(nullable id<FTROpenURLDelegate>)delegate;
 
 // Push Notifications
@@ -89,17 +94,17 @@ typedef void (^FTRRequestDataHandler)(id _Nullable data);
                success:(nullable FTRRequestDataHandler)success
                failure:(nullable FTRRequestHandler)failure;
 
-- (void)approveAuthWithQrCode:(NSString *)qrCode
-                    extraInfo:(NSArray *)extraInfo
+- (void)approveAuthWithQrCode:(NSString * _Nonnull)qrCode
+                    extraInfo:(NSArray * _Nullable)extraInfo
                      callback:(nullable FTRRequestHandler)callback;
-- (void)approveAuthWithUserId:(NSString *)userId
-                    sessionId:(NSString *)sessionId
-                    extraInfo:(NSArray *)extraInfo
+- (void)approveAuthWithUserId:(NSString * _Nonnull)userId
+                    sessionId:(NSString * _Nonnull)sessionId
+                    extraInfo:(NSArray * _Nullable)extraInfo
                      callback:(nullable FTRRequestHandler)callback;
 - (void)rejectAuthWithUserId:(NSString * _Nonnull)userId
                    sessionId:(NSString * _Nonnull)sessionId
                      isFraud:(Boolean)isFraud
-                   extraInfo:(NSArray *)extraInfo
+                   extraInfo:(NSArray * _Nullable)extraInfo
                     callback:(nullable FTRRequestHandler)callback;
 
 - (void)approveAuthWithQrCode:(NSString * _Nonnull)qrCode
@@ -113,6 +118,6 @@ typedef void (^FTRRequestDataHandler)(id _Nullable data);
                     callback:(nullable FTRRequestHandler)callback;
 
 // User offline authentication
-- (NSDictionary * _Nonnull)nextTotpForUser:(NSString * _Nonnull)userId;
+- (FTRTotp * _Nonnull)nextTotpForUser:(NSString * _Nonnull)userId;
 
 @end

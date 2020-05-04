@@ -4,27 +4,30 @@ This is the iOS SDK of Futurae. You can read more about Futurae™ at [futurae.c
 
 ## Table of contents
 
-* [Basic integration](#basic-integration)
-   * [Get FuturaeKit SDK for iOS](#get-futuraekit-sdk-for-ios)
-   * [Add SDK to Project](#add-sdk-to-project)
-   * [Integrate SDK into your app](#integrate-sdk-into-your-app)
-   * [Basic setup](#basic-setup)
-   * [Build your app](#build-your-app)
-* [Features](#features)
-   * [URI Schemes](#uri-schemes)
-   * [Push Notifications](#push-notifications)
-   * [Enroll User](#enroll-user)
-   * [Logout User](#logout-user)
-   * [Account Status](#account-status)
-   * [Authenticate User](#authenticate-user)
-      * [QR Code Factor](#qr-code-factor)
-      * [Push Notification Factor](#push-notification-factor)
-	       * [Approve Authentication](#pn-factor-approve)
-	       * [Reject Authentication](#pn-factor-reject)
-      * [TOTP Factor](#totp-factor)
-      * [Session Information](#session-information)
+- [Summary](#summary)
+- [Table of contents](#table-of-contents)
+- [<a id="basic-ntegration" />Basic integration](#a-id%22basic-ntegration%22-basic-integration)
+  - [<a id="get-futuraekit-sdk-for-ios" />Get FuturaeKit SDK for iOS](#a-id%22get-futuraekit-sdk-for-ios%22-get-futuraekit-sdk-for-ios)
+  - [<a id="add-sdk-to-project" />Add SDK to Project](#a-id%22add-sdk-to-project%22-add-sdk-to-project)
+  - [<a id="integrate-sdk-into-your-app" />Integrate SDK into your app](#a-id%22integrate-sdk-into-your-app%22-integrate-sdk-into-your-app)
+  - [<a id="basic-setup" />Basic setup](#a-id%22basic-setup%22-basic-setup)
+  - [<a id="build-your-app" />Build your app](#a-id%22build-your-app%22-build-your-app)
+  - [<a id="clear-sdk-data" />Clear SDK data](#a-id%22clear-sdk-data%22-clear-sdk-data)
+- [<a id="features" />Features](#a-id%22features%22-features)
+  - [<a id="uri-schemes" />URI Schemes](#a-id%22uri-schemes%22-uri-schemes)
+  - [<a id="push-notifications" />Push Notifications](#a-id%22push-notifications%22-push-notifications)
+  - [<a id="enroll-user" />Enroll User](#a-id%22enroll-user%22-enroll-user)
+  - [<a id="logout-user" />Logout User](#a-id%22logout-user%22-logout-user)
+  - [<a id="account-status" />Account Status](#a-id%22account-status%22-account-status)
+  - [<a id="authenticate-user" />Authenticate User](#a-id%22authenticate-user%22-authenticate-user)
+    - [<a id="qr-code-factor" />QR Code Factor](#a-id%22qr-code-factor%22-qr-code-factor)
+    - [<a id="push-notification-factor" />Push Notification Factor](#a-id%22push-notification-factor%22-push-notification-factor)
+      - [<a id="pn-factor-approve" />Approve Authentication](#a-id%22pn-factor-approve%22-approve-authentication)
+      - [<a id="pn-factor-reject" />Reject Authentication](#a-id%22pn-factor-reject%22-reject-authentication)
+    - [<a id="totp-factor" />TOTP Factor](#a-id%22totp-factor%22-totp-factor)
+    - [<a id="session-information" />Session Information](#a-id%22session-information%22-session-information)
 
-## <a id="basic-integration" />Basic integration
+## <a id="basic-ntegration" />Basic integration
 
 We will describe the steps to integrate the FuturaeKit SDK into your iOS project. We are going to assume that you are using Xcode for your iOS development.
 
@@ -67,6 +70,22 @@ If needed, you can also change the base host of the Futurae API.
 
 Build and run your app. If the build succeeds, you should carefully read the SDK logs in the console.
 
+### <a id="clear-sdk-data" />Clear SDK data
+
+Futurae iOS SDK provides a convenient method to clear all SDK internal data:
+
+```objc
+#import <FuturaeKit/FuturaeKit.h>
+
+[[FuturaeClient sharedClient] clearData];
+```
+
+SDK method removes the following data:
+
+- Internal DB
+- Encryption keys
+- Device info
+
 ## <a id="features" />Features
 
 ### <a id="uri-schemes" />URI Schemes
@@ -77,7 +96,7 @@ To handle the Futurae URI scheme calls, implement the `FTROpenURLDelegate` and a
 - (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation
 {
 		[[FuturaeClient sharedClient] openURL:url sourceApplication:sourceApplication annotation:annotation delegate:self];
-		
+
 		return YES;
 }
 ```
@@ -197,7 +216,18 @@ To authenticate (or reject) a user session, depending on the authentication fact
 Get the result of the QR Code scan and feed it to the following method:
 
 ```objc
-[[FuturaeClient sharedClient] approveAuthWithQrCode:qrCodeScanResult callback:^(NSError * _Nullable error) {
+[[FuturaeClient sharedClient] approveAuthWithQrCode:qrCodeScanResult
+                                           callback:^(NSError * _Nullable error) {
+
+}];
+```
+
+Get the result of the QR Code scan with `extraInfo` field and feed it to the following method:
+
+```objc
+[[FuturaeClient sharedClient] approveAuthWithQrCode:qrCodeScanResult
+                                          extraInfo:extraInfo
+                                           callback:^(NSError * _Nullable error) {
 
 }];
 ```
@@ -211,7 +241,20 @@ Get the `user ID` and `session ID` from the Push Notification handler and feed t
 To approve a user authentication:
 
 ```objc
-[[FuturaeClient sharedClient] approveAuthWithUserId:userId sessionId:sessionId callback:^(NSError * _Nullable error) {
+[[FuturaeClient sharedClient] approveAuthWithUserId:userId
+                                          sessionId:sessionId
+                                           callback:^(NSError * _Nullable error) {
+
+}];
+```
+
+To approve a user authentication when `extraInfo` field has a `non-null` value:
+
+```objc
+[[FuturaeClient sharedClient] approveAuthWithUserId:userId
+                                          sessionId:sessionId
+                                          extraInfo:extraInfo
+                                           callback:^(NSError * _Nullable error) {
 
 }];
 ```
@@ -221,7 +264,20 @@ To approve a user authentication:
 To reject a user authentication (and optionally define it as `fraud`):
 
 ```objc
-[[FuturaeClient sharedClient] rejectAuthWithUserId:userId sessionId:sessionId isFraud:@NO callback:^(NSError * _Nullable error) {
+[[FuturaeClient sharedClient] rejectAuthWithUserId:userId sessionId:sessionId
+                                                            isFraud:@(NO)
+                                                           callback:^(NSError * _Nullable error) {
+
+}];
+```
+
+To reject a user authentication when `extraInfo` field has a `non-null` value (and optionally define it as `fraud`):
+
+```objc
+[[FuturaeClient sharedClient] rejectAuthWithUserId:userId sessionId:sessionId
+                                                            isFraud:@(NO)
+                                                          extraInfo:extraInfo
+                                                           callback:^(NSError * _Nullable error) {
 
 }];
 ```
@@ -252,7 +308,7 @@ For a given session, either identified via a `session ID` (e.g. received by a pu
 
 // if you have a session Token
 - (void)getSessionInfo:(NSString * _Nonnull)userId
-             sessionToken:(NSString * _Nonnull)sessionToken
+          sessionToken:(NSString * _Nonnull)sessionToken
                success:(nullable FTRRequestDataHandler)success
                failure:(nullable FTRRequestHandler)failure;
 ```
