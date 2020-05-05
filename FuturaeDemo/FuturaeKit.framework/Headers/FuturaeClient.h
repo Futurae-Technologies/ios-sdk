@@ -56,7 +56,8 @@ typedef void (^FTRRequestDataHandler)(id _Nullable data);
 
 // Lifecycle
 
-- (void)clearData;
+- (void)clearDataFromDB:(BOOL)fromDB
+           fromKeychain:(BOOL)fromKeychain;
 
 // Database
 - (NSArray * _Nonnull)getAccounts;

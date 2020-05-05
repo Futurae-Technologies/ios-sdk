@@ -76,14 +76,13 @@ Futurae iOS SDK provides a convenient method to clear all SDK internal data:
 ```objc
 #import <FuturaeKit/FuturaeKit.h>
 
-[[FuturaeClient sharedClient] clearData];
+[[FuturaeClient sharedClient] clearDataFromDB:YES fromKeychain:NO];
 ```
 
 This method removes the following data:
 
-- Internal DB
-- Encryption keys
-- Device info
+- Internal DB (`fromDB` must be set to `YES`)
+- Internal SDK keychain material, including cryptographic keys and identifiers (`fromKeychain` must be set to `YES`)
 
 Clearing the SDK data brings it to a fresh-start state. Hence, you can enroll new users and make use of it as per usual.
 
