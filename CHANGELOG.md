@@ -1,3 +1,8 @@
+# Version `1.0.1`
+2020-05-06
+
++ [Changed] API Update: Separate cleaning DB and keychain data
+
 # Version `1.0.0`
 2020-05-04
 
