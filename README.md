@@ -1,13 +1,15 @@
 ## Summary
 
-This is the iOS SDK of Futurae. You can read more about Futurae™ at [futurae.com].
+This is the iOS SDK of Futurae. You can read more about Futurae at [futurae.com].
 
 ## Table of contents
 
 * [Basic integration](#basic-integration)
    * [Get FuturaeKit SDK for iOS](#get-futuraekit-sdk-for-ios)
-   * [Add SDK to Project](#add-sdk-to-project)
-   * [Integrate SDK into your app](#integrate-sdk-into-your-app)
+     * [Using Carthage](#using-carthage)
+     * [Manually](#manually)
+   * [The new FTRClient and the deprecated FuturaeClient](#the-new-ftrclient-and-the-deprecated-futuraeclient)
+   * [Integrate the SDK into your app](#integrate-the-sdk-into-your-app)
    * [Basic setup](#basic-setup)
    * [Build your app](#build-your-app)
    * [Clear SDK data](#clear-sdk-data)
@@ -25,22 +27,53 @@ This is the iOS SDK of Futurae. You can read more about Futurae™ at [futurae.c
       * [TOTP Factor](#totp-factor)
       * [Session Information](#session-information)
 
-
 ## <a id="basic-ntegration" />Basic integration
 
 We will describe the steps to integrate the FuturaeKit SDK into your iOS project. We are going to assume that you are using Xcode for your iOS development.
 
 ### <a id="get-futuraekit-sdk-for-ios" />Get FuturaeKit SDK for iOS
 
+First, install FuturaeKit via [Carthage](https://github.com/Carthage/Carthage) or manually.
+
+#### <a id="using-carthage" />Using Carthage
+
+Carthage is a lightweight dependency manager for Swift and Objective-C. It leverages CocoaTouch modules and is less invasive than CocoaPods.
+
+To install with Carthage, follow the instruction on [Carthage](https://github.com/Carthage/Carthage). We support integration using Carthage binary frameworks. You can add FuturaeKit by adding the following line to your Cartfile
+
+```
+binary https://git.futurae.com/futurae-public/futurae-ios-sdk/-/raw/master/CarthageJson/FuturaeKit.json
+```
+
+Then run `carthage bootstrap` (or `carthage update` is you're updating your SDKs).
+
+On your application targets' "Build Phases" settings tab, click the "+" icon and choose "New Run Script Phase". Create  a Run Script in which you specify your shell (e.g., `/bin/sh`), add the following contents to the script area below the shell:
+
+```
+/usr/local/bin/carthage copy-frameworks
+```
+
+Add the paths to the framerworks you want to use under "Input Files", e.g.:
+
+```
+$(SRCROOT)/Carthage/Build/iOS/FuturaeKit.framework
+```
+
+#### <a id="manually" />Manually
+
 You can download the latest SDK from the [releases](https://git.futurae.com/futurae-public/futurae-ios-sdk/tags) page, or clone this repository directly. This repository also contains a simple demo app to show how the SDK can be integrated.
 
-### <a id="add-sdk-to-project" />Add SDK to Project
+##### Add SDK to Project
 
 You can include the FuturaeKit SDK by adding the `FuturaeKit.framework` manually to your targets *Embedded Binaries* (in the General tab). Afterwards, drag the `FuturaeKit.framework` into the `Frameworks` group of your project.
 
 ![][sdk]
 
-### <a id="integrate-sdk-into-your-app" />Integrate SDK into your app
+### <a id="the-new-ftrclient-and-the-deprecated-futuraeclient" />The new FTRClient and the deprecated FuturaeClient
+
+As of Version 1.1.0 of the FuturaeKit library, a new "Futurae Client" object has been introduced: `FTRClient`. Compared to the now *deprecated* `FuturaeClient`, the new client introduces the concept of types (notably, `FTRAccount` and `FTRTotp` being used instead of `NSDictionary`). The documentation as well as the Demo Application have been updated to use `FTRClient`. While `FuturaeClient` is still available for backwards compatibility, it is marked as deprecated and will be removed in a future version of the SDK. New implementors should use `FTRClient`, and existing applications should consider switching to `FTRClient` as soon as possible.
+
+### <a id="integrate-the-sdk-into-your-app" />Integrate the SDK into your app
 
 FuturaeKit SDK is a dynamic framework, so you should use the following import statement:
 
@@ -59,7 +92,7 @@ In the Project Navigator, open the source file of your application delegate. Add
 
 // ...
 FTRConfig *ftrConfig = [FTRConfig configWithSdkId:@"{FuturaeSdkId}" sdkKey:@"{FuturaeSdkKey}" baseUrl:@"https://api.futurae.com:443"];
-[FuturaeClient launchWithConfig:ftrConfig inApplication:application];
+[FTRClient launchWithConfig:ftrConfig inApplication:application];
 ```
 
 **Note**: Initializing the FuturaeKit SDK like this is `very important`. Replace `{FuturaeSdkId}` and `{FuturaeSdkKey}` with your SDK ID and key.
@@ -76,7 +109,7 @@ Futurae iOS SDK provides a convenient method to clear all SDK internal data:
 ```objc
 #import <FuturaeKit/FuturaeKit.h>
 
-[[FuturaeClient sharedClient] clearDataFromDB:YES fromKeychain:NO];
+[[FTRClient sharedClient] clearDataFromDB:YES fromKeychain:NO];
 ```
 
 This method removes the following data:
@@ -95,7 +128,7 @@ To handle the Futurae URI scheme calls, implement the `FTROpenURLDelegate` and a
 ```objc
 - (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation
 {
-		[[FuturaeClient sharedClient] openURL:url sourceApplication:sourceApplication annotation:annotation delegate:self];
+		[[FTRClient sharedClient] openURL:url sourceApplication:sourceApplication annotation:annotation delegate:self];
 
 		return YES;
 }
@@ -127,7 +160,7 @@ To send the push notification token, add the following call in the `didRegisterF
 ```objc
 - (void)application:(UIApplication *)app didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
 
-    [[FuturaeClient sharedClient] registerPushToken:deviceToken];
+    [[FTRClient sharedClient] registerPushToken:deviceToken];
 }
 ```
 
@@ -136,7 +169,7 @@ To handle the Futurae push notifications, implement the `FTRNotificationDelegate
 ```objc
 - (void)pushRegistry:(PKPushRegistry *)registry didUpdatePushCredentials:(PKPushCredentials *)credentials forType:(NSString *)type
 {
-    [[FuturaeClient sharedClient] handleNotification:payload delegate:self];
+    [[FTRClient sharedClient] handleNotification:payload delegate:self];
 }
 ```
 
@@ -144,7 +177,7 @@ To handle the Futurae push notifications, implement the `FTRNotificationDelegate
 
 To enroll a user, you must call the following method, using a valid code:
 ```objc
-[[FuturaeClient sharedClient] enroll:code callback:^(NSError *error) {
+[[FTRClient sharedClient] enroll:code callback:^(NSError *error) {
 
 }];
 ```
@@ -169,7 +202,7 @@ If a QR-Code is successfully scanned then the following delegate method with be 
 
 Please make sure to call enroll, inside the delegate method to complete the user enrollment:
 ```objc
-[[FuturaeClient sharedClient] enroll:result callback:^(NSError *error) {
+[[FTRClient sharedClient] enroll:result callback:^(NSError *error) {
 
 }];
 ```
@@ -179,7 +212,7 @@ Please make sure to call enroll, inside the delegate method to complete the user
 To logout a user, you must call the following method:
 
 ```objc
-[[FuturaeClient sharedClient] logoutForUser:userId callback:^(NSError *error) {
+[[FTRClient sharedClient] logoutForUser:userId callback:^(NSError *error) {
 
 }];
 ```
@@ -189,19 +222,19 @@ To logout a user, you must call the following method:
 To get a list of all enrolled accounts, call the following method:
 
 ```objc
-NSArray *accounts = [[FuturaeClient sharedClient] getAccounts];
+NSArray *accounts = [[FTRClient sharedClient] getAccounts];
 ```
 
 To fetch the status and current sessions for these accounts, you can use the following method:
 
 ```objc
-[[FuturaeClient sharedClient] getAccountsStatus:accounts
-                                        success:^(id _Nullable data) {
-                                            // Handle the pending sessions
-                                        }
-                                        failure:^(NSError * _Nullable error) {
-                                            // Handle the error
-                                        }];
+[[FTRClient sharedClient] getAccountsStatus:accounts
+                                    success:^(id _Nullable data) {
+                                        // Handle the pending sessions
+                                    }
+                                    failure:^(NSError * _Nullable error) {
+                                        // Handle the error
+                                    }];
 ```
 
 **Hint:** You can use this method if you want to check if there are any pending sessions, e.g. when the app wakes up or the user refreshes the view.
@@ -216,8 +249,8 @@ To authenticate (or reject) a user session, depending on the authentication fact
 Get the result of the QR Code scan and feed it to the following method:
 
 ```objc
-[[FuturaeClient sharedClient] approveAuthWithQrCode:qrCodeScanResult
-                                           callback:^(NSError * _Nullable error) {
+[[FTRClient sharedClient] approveAuthWithQrCode:qrCodeScanResult
+                                       callback:^(NSError * _Nullable error) {
 
 }];
 ```
@@ -225,9 +258,9 @@ Get the result of the QR Code scan and feed it to the following method:
 Get the result of the QR Code scan with `extraInfo` field and feed it to the following method:
 
 ```objc
-[[FuturaeClient sharedClient] approveAuthWithQrCode:qrCodeScanResult
-                                          extraInfo:extraInfo
-                                           callback:^(NSError * _Nullable error) {
+[[FTRClient sharedClient] approveAuthWithQrCode:qrCodeScanResult
+                                      extraInfo:extraInfo
+                                       callback:^(NSError * _Nullable error) {
 
 }];
 ```
@@ -241,9 +274,9 @@ Get the `user ID` and `session ID` from the Push Notification handler and feed t
 To approve a user authentication:
 
 ```objc
-[[FuturaeClient sharedClient] approveAuthWithUserId:userId
-                                          sessionId:sessionId
-                                           callback:^(NSError * _Nullable error) {
+[[FTRClient sharedClient] approveAuthWithUserId:userId
+                                      sessionId:sessionId
+                                       callback:^(NSError * _Nullable error) {
 
 }];
 ```
@@ -251,10 +284,10 @@ To approve a user authentication:
 To approve a user authentication when `extraInfo` field has a `non-null` value:
 
 ```objc
-[[FuturaeClient sharedClient] approveAuthWithUserId:userId
-                                          sessionId:sessionId
-                                          extraInfo:extraInfo
-                                           callback:^(NSError * _Nullable error) {
+[[FTRClient sharedClient] approveAuthWithUserId:userId
+                                      sessionId:sessionId
+                                      extraInfo:extraInfo
+                                       callback:^(NSError * _Nullable error) {
 
 }];
 ```
@@ -264,9 +297,9 @@ To approve a user authentication when `extraInfo` field has a `non-null` value:
 To reject a user authentication (and optionally define it as `fraud`):
 
 ```objc
-[[FuturaeClient sharedClient] rejectAuthWithUserId:userId sessionId:sessionId
-                                                            isFraud:@(NO)
-                                                           callback:^(NSError * _Nullable error) {
+[[FTRClient sharedClient] rejectAuthWithUserId:userId sessionId:sessionId
+                                                        isFraud:@(NO)
+                                                       callback:^(NSError * _Nullable error) {
 
 }];
 ```
@@ -274,10 +307,10 @@ To reject a user authentication (and optionally define it as `fraud`):
 To reject a user authentication when `extraInfo` field has a `non-null` value (and optionally define it as `fraud`):
 
 ```objc
-[[FuturaeClient sharedClient] rejectAuthWithUserId:userId sessionId:sessionId
-                                                            isFraud:@(NO)
-                                                          extraInfo:extraInfo
-                                                           callback:^(NSError * _Nullable error) {
+[[FTRClient sharedClient] rejectAuthWithUserId:userId sessionId:sessionId
+                                                        isFraud:@(NO)
+                                                      extraInfo:extraInfo
+                                                       callback:^(NSError * _Nullable error) {
 
 }];
 ```
@@ -287,13 +320,14 @@ To reject a user authentication when `extraInfo` field has a `non-null` value (a
 In order for the user to authenticate using the offline TOTP factor, you need to show the current TOTP to the user. You can get the later by calling:
 
 ```objc
-NSDictionary *result = [[FuturaeClient sharedClient] nextTotpForUser:userId];
+FTRTotp *result = [[FTRClient sharedClient] nextTotpForUser:user_id];
 ```
 
-The `result` dictionary contains the current 6-digit TOTP and the remaining seconds that it will be valid for:
+The `result` object contains the current 6-digit TOTP and the remaining seconds (as `NSString`) that it will be valid for:
 
 ```objc
-@{@"totp": @"444123", @"remaining_secs":@(26)}
+NSString *totp = result.totp;
+NSString *remaining_secs = result.remaining_secs;
 ```
 
 #### <a id="session-information" />Session Information

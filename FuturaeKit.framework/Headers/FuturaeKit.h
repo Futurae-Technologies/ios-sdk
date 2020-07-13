@@ -15,6 +15,7 @@ FOUNDATION_EXPORT double FuturaeKitVersionNumber;
 FOUNDATION_EXPORT const unsigned char FuturaeKitVersionString[];
 
 // In this header, you should import all the public headers of your framework using statements like #import <FuturaeKit/PublicHeader.h>
+#import <FuturaeKit/FTRClient.h>
 #import <FuturaeKit/FuturaeClient.h>
 #import <FuturaeKit/FTRTotp.h>
 #import <FuturaeKit/FTRConfig.h>

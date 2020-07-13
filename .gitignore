@@ -37,3 +37,6 @@ xcuserdata/
 
 *.moved-aside
 
+Carthage/
+
+Cartfile.resolved

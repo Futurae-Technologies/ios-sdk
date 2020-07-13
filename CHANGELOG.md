@@ -1,3 +1,15 @@
+# Version `1.1.0`
+2020-08-19
+
++ [Added] Carthage Support and relevant Documentation
++ [Added] Models for `FTRAccount` and `FTRTop` replacing untyped `NSDictionary`
++ [Added] New Futurae Client (`FTRClient`) using typed classes
++ [Changed] Deprecated `FuturaeClient`, will be removed in next major release
++ [Changed] Update (`getAccounts`) method to return detailed information about account
++ [Changed] Update FuturaeDemo to use Carthage
++ [Changed] Update FuturaeDemo to use FTRClient and the new typed classes (FTRAccount, FTRTotp)
++ [Deleted] SoundProofKit.framework from project and FuturaeDemo App
+
 # Version `1.0.1`
 2020-05-06
 

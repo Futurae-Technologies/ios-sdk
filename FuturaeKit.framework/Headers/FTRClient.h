@@ -1,12 +1,12 @@
 //
-//  FuturaeClient.h
+//  FTRClient.h
 //  FuturaeKit
 //
-//  Created by Dimitris Togias on 27/12/2017.
+//  Created by Claudio Marforio on 08/07/2020.
 //  Unauthorized copying of this file, via any medium is strictly prohibited.
 //  Proprietary and Confidential.
 //
-//  Copyright (C) 2018 Futurae Technologies AG - All rights reserved.
+//  Copyright (C) 2020 Futurae Technologies AG - All rights reserved.
 //  For any inquiry, contact: legal@futurae.com
 //
 
@@ -15,21 +15,22 @@
 
 #import "FTRNotificationDelegate.h"
 #import "FTROpenURLDelegate.h"
+#import "FTRAccount.h"
 
-// The domain for all errors originating in FuturaeClient.
-FOUNDATION_EXPORT NSString * _Nonnull const FuturaeClientErrorDomain;
+// The domain for all errors originating in FTRClient.
+FOUNDATION_EXPORT NSString * _Nonnull const FTRClientErrorDomain;
 
 // error codes
-FOUNDATION_EXTERN const NSUInteger FuturaeClientErrorGeneric;
-FOUNDATION_EXTERN const NSUInteger FuturaeClientErrorInvalidEnrollmentCode;
-FOUNDATION_EXTERN const NSUInteger FuturaeClientErrorInvalidAuthorizationCode;
-FOUNDATION_EXTERN const NSUInteger FuturaeClientErrorAccountAlreadyActive;
-FOUNDATION_EXTERN const NSUInteger FuturaeClientErrorOutdatedApp;
+FOUNDATION_EXTERN const NSUInteger FTRClientErrorGeneric;
+FOUNDATION_EXTERN const NSUInteger FTRClientErrorInvalidEnrollmentCode;
+FOUNDATION_EXTERN const NSUInteger FTRClientErrorInvalidAuthorizationCode;
+FOUNDATION_EXTERN const NSUInteger FTRClientErrorAccountAlreadyActive;
+FOUNDATION_EXTERN const NSUInteger FTRClientErrorOutdatedApp;
 
 // notifications
-FOUNDATION_EXTERN _Nonnull NSNotificationName const FuturaeNotificationError;
-FOUNDATION_EXTERN _Nonnull NSNotificationName const FuturaeNotificationUnEnroll;
-FOUNDATION_EXTERN _Nonnull NSNotificationName const FuturaeNotificationApprove;
+FOUNDATION_EXTERN _Nonnull NSNotificationName const FTRNotificationError;
+FOUNDATION_EXTERN _Nonnull NSNotificationName const FTRNotificationUnEnroll;
+FOUNDATION_EXTERN _Nonnull NSNotificationName const FTRNotificationApprove;
 
 @class FTRTotp;
 @class FTRConfig;
@@ -38,8 +39,7 @@ FOUNDATION_EXTERN _Nonnull NSNotificationName const FuturaeNotificationApprove;
 typedef void (^FTRRequestHandler)(NSError * _Nullable error);
 typedef void (^FTRRequestDataHandler)(id _Nullable data);
 
-__attribute__((deprecated(("Use FTRClient instead."))))
-@interface FuturaeClient : NSObject
+@interface FTRClient : NSObject
 {
     FTRKitHTTPSessionManager *_sessionManager;
     NSDateFormatter *_rfc2882DateFormatter;
@@ -61,8 +61,8 @@ __attribute__((deprecated(("Use FTRClient instead."))))
            fromKeychain:(BOOL)fromKeychain;
 
 // Database
-- (NSArray * _Nonnull)getAccounts;
-- (NSDictionary * _Nonnull)getAccountByUserId:(NSString * _Nonnull)userId;
+- (NSArray<FTRAccount*> * _Nonnull)getAccounts;
+- (FTRAccount * _Nonnull)getAccountByUserId:(NSString * _Nonnull)userId;
 
 // URI Scheme handling
 - (BOOL)openURL:(nullable NSURL *)url options:(NSDictionary<UIApplicationOpenURLOptionsKey, id> * _Nonnull)options
@@ -78,11 +78,11 @@ __attribute__((deprecated(("Use FTRClient instead."))))
       callback:(nullable FTRRequestHandler)callback;
 - (void)logoutUser:(NSString * _Nonnull)userId
           callback:(nullable FTRRequestHandler)callback;
-- (void)logoutAccount:(nonnull NSDictionary *)account
+- (void)logoutAccount:(nonnull FTRAccount *)account
              callback:(nullable FTRRequestHandler)callback;
 
 // Accounts status
-- (void)getAccountsStatus:(NSArray * _Nonnull)accounts
+- (void)getAccountsStatus:(NSArray<FTRAccount*> * _Nonnull)accounts
                   success:(nullable FTRRequestDataHandler)success
                   failure:(nullable FTRRequestHandler)failure;
 

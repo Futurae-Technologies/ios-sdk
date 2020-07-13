@@ -1,6 +1,0 @@
-framework module SoundProofKit {
-  umbrella header "SoundProofKit.h"
-
-  export *
-  module * { export * }
-}
