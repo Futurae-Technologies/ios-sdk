@@ -1,3 +1,8 @@
+# Version `1.1.1`
+2020-08-28
+
++ [Fixed] Fix bug in request payload signature generation that was causing the SDK to crash in some not common cases
+
 # Version `1.1.0`
 2020-08-19
 
