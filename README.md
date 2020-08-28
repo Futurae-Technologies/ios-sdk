@@ -42,7 +42,7 @@ Carthage is a lightweight dependency manager for Swift and Objective-C. It lever
 To install with Carthage, follow the instruction on [Carthage](https://github.com/Carthage/Carthage). We support integration using Carthage binary frameworks. You can add FuturaeKit by adding the following line to your Cartfile
 
 ```
-binary https://git.futurae.com/futurae-public/futurae-ios-sdk/-/raw/master/CarthageJson/FuturaeKit.json
+binary "https://git.futurae.com/futurae-public/futurae-ios-sdk/-/raw/master/CarthageJson/FuturaeKit.json"
 ```
 
 Then run `carthage bootstrap` (or `carthage update` is you're updating your SDKs).
