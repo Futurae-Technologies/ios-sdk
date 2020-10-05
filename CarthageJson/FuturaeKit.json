@@ -1,4 +1,5 @@
 {
-  "1.1.0": "https://git.futurae.com/futurae-public/futurae-ios-sdk/-/archive/v1.1.0-framework/futurae-ios-sdk-v1.1.0-framework.zip",
-  "1.1.1": "https://git.futurae.com/futurae-public/futurae-ios-sdk/-/archive/v1.1.1-framework/futurae-ios-sdk-v1.1.1-framework.zip"
+  "1.1.0": "https://artifactory.futurae.com/artifactory/futurae-ios/FuturaeKit-v1.1.0-framework.zip",
+  "1.1.1": "https://artifactory.futurae.com/artifactory/futurae-ios/FuturaeKit-v1.1.1-framework.zip",
+  "1.1.2": "https://artifactory.futurae.com/artifactory/futurae-ios/FuturaeKit-v1.1.2-framework.zip"
 }

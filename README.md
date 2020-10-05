@@ -6,6 +6,7 @@ This is the iOS SDK of Futurae. You can read more about Futurae at [futurae.com]
 
 * [Basic integration](#basic-integration)
    * [Get FuturaeKit SDK for iOS](#get-futuraekit-sdk-for-ios)
+     * [Using SwiftPM](#using-swiftpm)
      * [Using Carthage](#using-carthage)
      * [Manually](#manually)
    * [The new FTRClient and the deprecated FuturaeClient](#the-new-ftrclient-and-the-deprecated-futuraeclient)
@@ -33,7 +34,19 @@ We will describe the steps to integrate the FuturaeKit SDK into your iOS project
 
 ### <a id="get-futuraekit-sdk-for-ios" />Get FuturaeKit SDK for iOS
 
-First, install FuturaeKit via [Carthage](https://github.com/Carthage/Carthage) or manually.
+First, install FuturaeKit via SwiftPM, [Carthage](https://github.com/Carthage/Carthage), or manually.
+
+#### <a id="using-swiftpm" />Using SwiftPM
+
+As of XCode 12.0 (and Swift Tools 5.3) it is possible to integrate FuturaeKit directly within XCode.
+
+To add FuturaeKit follow the usual way of adding a package dependency:
+
+`File -> Swift Packages -> Add Package Dependency`
+
+In the window that pops up simply enter: `https://git.futurae.com/futurae-public/futurae-ios-sdk/` as the package repository URL.
+
+The FuturaeKit framework should automatically be added to your project: you're good to go!
 
 #### <a id="using-carthage" />Using Carthage
 
