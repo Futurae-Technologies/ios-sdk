@@ -20,16 +20,18 @@
 		5E84AC4720224A8B007A0191 /* futurae.com_tertiary.cer in Resources */ = {isa = PBXBuildFile; fileRef = 5E84AC4320224A8B007A0191 /* futurae.com_tertiary.cer */; };
 		5E84AC4820224A8B007A0191 /* futurae.com_primary.cer in Resources */ = {isa = PBXBuildFile; fileRef = 5E84AC4420224A8B007A0191 /* futurae.com_primary.cer */; };
 		5E84AC4920224A8B007A0191 /* futurae.com_secondary.cer in Resources */ = {isa = PBXBuildFile; fileRef = 5E84AC4520224A8B007A0191 /* futurae.com_secondary.cer */; };
-		613EA788252B844C00D719A1 /* FuturaeKit in Frameworks */ = {isa = PBXBuildFile; productRef = 613EA787252B844C00D719A1 /* FuturaeKit */; };
+		6138000D2538A6FB00DAF784 /* FuturaeKit.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 6138000C2538A6F600DAF784 /* FuturaeKit.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		613800102538AA1A00DAF784 /* FuturaeKit in Frameworks */ = {isa = PBXBuildFile; productRef = 6138000F2538AA1A00DAF784 /* FuturaeKit */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
 		5E587B3B1FF41C730024ACFA /* Embed Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
+			buildActionMask = 12;
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
+				6138000D2538A6FB00DAF784 /* FuturaeKit.xcframework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -57,6 +59,7 @@
 		5E84AC4320224A8B007A0191 /* futurae.com_tertiary.cer */ = {isa = PBXFileReference; lastKnownFileType = file; name = futurae.com_tertiary.cer; path = FuturaeDemo/Resources/futurae.com_tertiary.cer; sourceTree = "<group>"; };
 		5E84AC4420224A8B007A0191 /* futurae.com_primary.cer */ = {isa = PBXFileReference; lastKnownFileType = file; name = futurae.com_primary.cer; path = FuturaeDemo/Resources/futurae.com_primary.cer; sourceTree = "<group>"; };
 		5E84AC4520224A8B007A0191 /* futurae.com_secondary.cer */ = {isa = PBXFileReference; lastKnownFileType = file; name = futurae.com_secondary.cer; path = FuturaeDemo/Resources/futurae.com_secondary.cer; sourceTree = "<group>"; };
+		6138000C2538A6F600DAF784 /* FuturaeKit.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = FuturaeKit.xcframework; path = "../../Library/Developer/Xcode/DerivedData/FuturaeDemo-fhnjzpfnnzqenjezcqwypvusqnwv/SourcePackages/artifacts/FuturaeKit/FuturaeKit.xcframework"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -64,8 +67,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				613800102538AA1A00DAF784 /* FuturaeKit in Frameworks */,
 				5E837AF92021D0E000DA4FCC /* UserNotifications.framework in Frameworks */,
-				613EA788252B844C00D719A1 /* FuturaeKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -114,6 +117,7 @@
 		5E587B311FF41BBD0024ACFA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				6138000C2538A6F600DAF784 /* FuturaeKit.xcframework */,
 				5E837AF82021D0DF00DA4FCC /* UserNotifications.framework */,
 			);
 			name = Frameworks;
@@ -141,7 +145,6 @@
 				5E587B151FF41B0C0024ACFA /* Frameworks */,
 				5E587B161FF41B0C0024ACFA /* Resources */,
 				5E587B3B1FF41C730024ACFA /* Embed Frameworks */,
-				61B68A5024D41A5F000DF0E4 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -149,7 +152,7 @@
 			);
 			name = FuturaeDemo;
 			packageProductDependencies = (
-				613EA787252B844C00D719A1 /* FuturaeKit */,
+				6138000F2538AA1A00DAF784 /* FuturaeKit */,
 			);
 			productName = FuturaeDemo;
 			productReference = 5E587B181FF41B0C0024ACFA /* FuturaeDemo.app */;
@@ -188,7 +191,7 @@
 			);
 			mainGroup = 5E587B0F1FF41B0C0024ACFA;
 			packageReferences = (
-				613EA786252B844C00D719A1 /* XCRemoteSwiftPackageReference "futurae-ios-sdk" */,
+				6138000E2538AA1A00DAF784 /* XCRemoteSwiftPackageReference "futurae-ios-sdk" */,
 			);
 			productRefGroup = 5E587B191FF41B0C0024ACFA /* Products */;
 			projectDirPath = "";
@@ -215,27 +218,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
-
-/* Begin PBXShellScriptBuildPhase section */
-		61B68A5024D41A5F000DF0E4 /* ShellScript */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"$(SRCROOT)/Carthage/Build/iOS/FuturaeKit.framework",
-			);
-			outputFileListPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\n/usr/local/bin/carthage copy-frameworks\n";
-		};
-/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		5E587B141FF41B0C0024ACFA /* Sources */ = {
@@ -390,6 +372,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = T82Z6CGNMT;
+				ENABLE_BITCODE = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -416,6 +399,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = T82Z6CGNMT;
+				ENABLE_BITCODE = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -458,9 +442,9 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		613EA786252B844C00D719A1 /* XCRemoteSwiftPackageReference "futurae-ios-sdk" */ = {
+		6138000E2538AA1A00DAF784 /* XCRemoteSwiftPackageReference "futurae-ios-sdk" */ = {
 			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://git.futurae.com/futurae-public/futurae-ios-sdk/";
+			repositoryURL = "https://git.futurae.com/futurae-public/futurae-ios-sdk.git";
 			requirement = {
 				kind = upToNextMajorVersion;
 				minimumVersion = 1.1.2;
@@ -469,9 +453,9 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		613EA787252B844C00D719A1 /* FuturaeKit */ = {
+		6138000F2538AA1A00DAF784 /* FuturaeKit */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 613EA786252B844C00D719A1 /* XCRemoteSwiftPackageReference "futurae-ios-sdk" */;
+			package = 6138000E2538AA1A00DAF784 /* XCRemoteSwiftPackageReference "futurae-ios-sdk" */;
 			productName = FuturaeKit;
 		};
 /* End XCSwiftPackageProductDependency section */

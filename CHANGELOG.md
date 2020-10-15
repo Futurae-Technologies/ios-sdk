@@ -1,3 +1,13 @@
+# Version `1.1.3`
+2020-10-15
+
++ [Added] bitcode Support
+
+# Version `1.1.2`
+2020-10-05
+
++ [Added] SwiftPM Support and relevant Documentation
+
 # Version `1.1.1`
 2020-08-28
 
