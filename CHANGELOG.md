@@ -1,3 +1,9 @@
+# Version `1.1.4`
+20201-01-28
+
++ [Added] arm64 support for iphonesimulator for new M1-chips in xcframework (available manually and through SwiftPM)
++ [Updated] Documentation update on carthage missing iphonesimulator arm64 slice due to existing limitations of carthage 
+
 # Version `1.1.3`
 2020-10-15
 

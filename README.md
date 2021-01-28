@@ -48,7 +48,7 @@ In the window that pops up simply enter: `https://git.futurae.com/futurae-public
 
 The FuturaeKit framework should automatically be added to your project: you're good to go!
 
-**NOTE**: The current version of XCode (12.1) has a [bug](https://bugs.swift.org/browse/SR-13343) that does not allow you to run your application due to missing codesigning for binary frameworks.
+**NOTE**: Recent versions of XCode (as of 12.1) have a [bug](https://bugs.swift.org/browse/SR-13343) that does not allow you to run your application due to missing codesigning for binary frameworks.
 
 To make sure that your application runs on a device, add the following "Run Script Phase" command to your App's target build phases, to force deep sign the frameworks with your own signing identity:
 ```
@@ -59,6 +59,8 @@ done
 ```
 
 #### <a id="using-carthage" />Using Carthage
+
+**NOTE**: Apple M1 chips require the `iphonesimulator` fat binary to include an `arm64` slice. This is achieved by using `xcframeorks` (which separate the fat binaries between `iphonesimulator` and `iphone`). At the time of this release carthage does not support binary xcframeworks, and therefore the carthage deployment model is broken for testing the SDK over the simulator. We are monitoring the situation and will update the carthage framework to fully support the simulator as soon as possible. Meanwhile, you should consider migrating to SwiftPM, or manually importing the xcframework.
 
 Carthage is a lightweight dependency manager for Swift and Objective-C. It leverages CocoaTouch modules and is less invasive than CocoaPods.
 
