@@ -44,9 +44,19 @@ To add FuturaeKit follow the usual way of adding a package dependency:
 
 `File -> Swift Packages -> Add Package Dependency`
 
-In the window that pops up simply enter: `https://git.futurae.com/futurae-public/futurae-ios-sdk/` as the package repository URL.
+In the window that pops up simply enter: `https://git.futurae.com/futurae-public/futurae-ios-sdk.git` as the package repository URL.
 
 The FuturaeKit framework should automatically be added to your project: you're good to go!
+
+**NOTE**: The current version of XCode (12.1) has a [bug](https://bugs.swift.org/browse/SR-13343) that does not allow you to run your application due to missing codesigning for binary frameworks.
+
+To make sure that your application runs on a device, add the following "Run Script Phase" command to your App's target build phases, to force deep sign the frameworks with your own signing identity:
+```
+find "${CODESIGNING_FOLDER_PATH}" -name '*.framework' -print0 | while read -d $'\0' framework 
+do 
+    codesign --force --deep --sign "${EXPANDED_CODE_SIGN_IDENTITY}" --preserve-metadata=identifier,entitlements --timestamp=none "${framework}" 
+done
+```
 
 #### <a id="using-carthage" />Using Carthage
 
@@ -55,7 +65,7 @@ Carthage is a lightweight dependency manager for Swift and Objective-C. It lever
 To install with Carthage, follow the instruction on [Carthage](https://github.com/Carthage/Carthage). We support integration using Carthage binary frameworks. You can add FuturaeKit by adding the following line to your Cartfile
 
 ```
-binary "https://git.futurae.com/futurae-public/futurae-ios-sdk/-/raw/master/CarthageJson/FuturaeKit.json"
+binary https://git.futurae.com/futurae-public/futurae-ios-sdk/-/raw/master/CarthageJson/FuturaeKit.json
 ```
 
 Then run `carthage bootstrap` (or `carthage update` is you're updating your SDKs).
