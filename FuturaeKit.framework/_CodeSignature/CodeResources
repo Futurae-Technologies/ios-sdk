@@ -42,7 +42,7 @@
 		</data>
 		<key>Info.plist</key>
 		<data>
-		T7q58uGV+ltYyf/osRqEHTLSPQE=
+		Tjul6CLip+tzL13/f9jVxU+Truo=
 		</data>
 		<key>Modules/module.modulemap</key>
 		<data>
@@ -53,10 +53,6 @@
 	<dict>
 		<key>Headers/FTRAccount.h</key>
 		<dict>
-			<key>hash</key>
-			<data>
-			yXLk1LIvrHetMNmtJMrkAZQC6DA=
-			</data>
 			<key>hash2</key>
 			<data>
 			si4W+1s55laHOWEkqbySh+Ar6tbgacQ3TJEoQGD9oAw=
@@ -64,10 +60,6 @@
 		</dict>
 		<key>Headers/FTRClient.h</key>
 		<dict>
-			<key>hash</key>
-			<data>
-			w+Uyc2bPqIF7lKoODgXzo19u8a8=
-			</data>
 			<key>hash2</key>
 			<data>
 			7wkqocYZtVBlHSObi+hbN1H+JOffqTcrq37ST71NASE=
@@ -75,10 +67,6 @@
 		</dict>
 		<key>Headers/FTRConfig.h</key>
 		<dict>
-			<key>hash</key>
-			<data>
-			RnJ59x1XE1cP9kYyuhhPNxOtC8g=
-			</data>
 			<key>hash2</key>
 			<data>
 			kzGkTI9ad89V24D21c5EEri/NSyHGrZZSXD8fzPNthE=
@@ -86,10 +74,6 @@
 		</dict>
 		<key>Headers/FTRNotificationDelegate.h</key>
 		<dict>
-			<key>hash</key>
-			<data>
-			YnBy/hbzUBtu1gYx9hj9KK+fwuc=
-			</data>
 			<key>hash2</key>
 			<data>
 			p4msYp9RDdqr+hVhN54F3D+sb+JT9J+CS9hfHu3AkN8=
@@ -97,10 +81,6 @@
 		</dict>
 		<key>Headers/FTROpenURLDelegate.h</key>
 		<dict>
-			<key>hash</key>
-			<data>
-			8jMdiR54RxdJf51wriccKalTOzI=
-			</data>
 			<key>hash2</key>
 			<data>
 			3HCZfoxyWgSqBehw7LJhy7JQTibGhA6audpHSdkCBOM=
@@ -108,10 +88,6 @@
 		</dict>
 		<key>Headers/FTRQRCodeReader.h</key>
 		<dict>
-			<key>hash</key>
-			<data>
-			Isw6B+MeAKRWFXSHOdZbL/pYBu8=
-			</data>
 			<key>hash2</key>
 			<data>
 			AOtGRGf5KOayrKzNfuVVyKr+VuKoJZw5qGQLnPuSYoA=
@@ -119,10 +95,6 @@
 		</dict>
 		<key>Headers/FTRTotp.h</key>
 		<dict>
-			<key>hash</key>
-			<data>
-			TvLE2zc6epFZUfJbpfo0NZr0Qz0=
-			</data>
 			<key>hash2</key>
 			<data>
 			AMq/47c1fd2fm57APvP8vzgy+4mJS8kGWuyXT9hdarI=
@@ -130,10 +102,6 @@
 		</dict>
 		<key>Headers/FuturaeClient.h</key>
 		<dict>
-			<key>hash</key>
-			<data>
-			lfbfS7purlKzelbtCNdrPK0ITts=
-			</data>
 			<key>hash2</key>
 			<data>
 			fXOVU+UvTIQUWd3MvQLqS2dBwZp5umly9d1EHXYr1nU=
@@ -141,10 +109,6 @@
 		</dict>
 		<key>Headers/FuturaeKit.h</key>
 		<dict>
-			<key>hash</key>
-			<data>
-			l5KXOdO6ivI/nKaRyqyHtX0893k=
-			</data>
 			<key>hash2</key>
 			<data>
 			amnaGwsFXg8+8pgqP3GAGD2vS0+IgGZ9WJ8qwQ90RBs=
@@ -152,10 +116,6 @@
 		</dict>
 		<key>Modules/module.modulemap</key>
 		<dict>
-			<key>hash</key>
-			<data>
-			xLgDbCkODMkSNVz+5IG5u4xV1Gc=
-			</data>
 			<key>hash2</key>
 			<data>
 			X8LD8Etd1hngsQZBLggRmsIl2nP+JZ8fPHPZDq2yV+Y=

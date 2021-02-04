@@ -1,5 +1,12 @@
+# Version `1.1.5`
+2021-02-04
+
++ [Added] Function to lookup accounts by both `user_id` and `device_id` simultaneously (useful for handling incoming PNs and ensuring that they were meant for the specific device)
++ [Fixed] Small bugs related to App deletion / backup
++ [Fixed] Bug that could lead to an App crash in rare occasions
+
 # Version `1.1.4`
-20201-01-28
+2021-01-28
 
 + [Added] arm64 support for iphonesimulator for new M1-chips in xcframework (available manually and through SwiftPM)
 + [Updated] Documentation update on carthage missing iphonesimulator arm64 slice due to existing limitations of carthage 
