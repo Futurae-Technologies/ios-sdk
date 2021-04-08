@@ -1,3 +1,8 @@
+# Version `1.2.0`
+2021-04-08
+
++ [Added] Offline QR Code functionality
+
 # Version `1.1.5`
 2021-02-04
 
