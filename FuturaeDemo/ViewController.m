@@ -48,10 +48,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 - (IBAction)enrollTouchedUpInside:(UIButton *)sender
 {
-    FTRQRCodeViewController *qrcodeVC = [[FTRQRCodeViewController alloc] init];
-    qrcodeVC.delegate = self;
-    UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:qrcodeVC];
-    [self presentViewController:navigationController animated:YES completion:nil];
+    [self presentQRCodeControllerWithQRCodeType:QRCodeTypeEnrollment sender:sender];
 }
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -74,15 +71,17 @@
 }
 
 ////////////////////////////////////////////////////////////////////////////////
-- (IBAction)qrCodeTouchedUpInside:(UIButton *)sender
+- (IBAction)onlineQRCodeTouchedUpInside:(UIButton *)sender
 {
-    FTRQRCodeViewController *qrcodeVC = [[FTRQRCodeViewController alloc] init];
-    qrcodeVC.delegate = self;
-    UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:qrcodeVC];
-    [self presentViewController:navigationController animated:YES completion:nil];
+    [self presentQRCodeControllerWithQRCodeType:QRCodeTypeOnlineAuth sender:sender];
 }
 
 ////////////////////////////////////////////////////////////////////////////////
+- (IBAction)offlineQRCodeTouchedUpInside:(UIButton *)sender
+{
+    [self presentQRCodeControllerWithQRCodeType:QRCodeTypeOfflineAuth sender:sender];
+}
+
 - (IBAction)totpTouchedUpInside:(UIButton *)sender
 {
     FTRAccount *account = [[FTRClient sharedClient] getAccounts].firstObject;
@@ -93,42 +92,138 @@
     [self _showAlertWithTitle:title message:body];
 }
 
+- (IBAction)scanQRCodeTouchedUpInside:(UIButton *)sender
+{
+    [self presentQRCodeControllerWithQRCodeType:QRCodeTypeGeneric sender:sender];
+}
+
 #pragma mark - FTRQRCodeReaderDelegate
 ////////////////////////////////////////////////////////////////////////////////
 - (void)reader:(FTRQRCodeViewController * _Nullable)reader didScanResult:(NSString *_Nullable)result
 {
     // TODO: Handle the QRCode result
     [reader stopScanning];
-    
-    NSArray *comps = [result componentsSeparatedByString:@":"];
-    if (comps.count == 1) {
-        // Handle enrollment
-        [[FTRClient sharedClient] enroll:result callback:^(NSError *error) {
-            
-            [self dismissViewControllerAnimated:YES completion:^{
-                
-                if (error) {
-                    [self _showAlertWithTitle:@"Error" message:error.userInfo[@"msg"]];
-                    return;
-                }
-                
-                [self _showAlertWithTitle:@"Success" message:@"User account enrolled successfully!"];
-            }];
+
+    switch (reader.QRCodeType) {
+        case QRCodeTypeEnrollment:
+            [self enrollWithQRCode:result];
+            break;
+        case QRCodeTypeOnlineAuth:
+            [self approveAuthWithQRCode:result];
+            break;
+        case QRCodeTypeOfflineAuth:
+            [self offlineAuthWithQRCode:result];
+            break;
+        case QRCodeTypeGeneric:
+            [self handleGeneric:result];
+            break;
+    }
+}
+
+- (void)enrollWithQRCode:(NSString *)QRCodeResult
+{
+    [FTRClient.sharedClient enroll:QRCodeResult callback:^(NSError *error) {
+        [self dismissViewControllerAnimated:YES completion:^{
+            if (error) {
+                [self _showAlertWithTitle:@"Error" message:error.userInfo[@"msg"]];
+                return;
+            }
+
+            [self _showAlertWithTitle:@"Success" message:@"User account enrolled successfully!"];
         }];
+    }];
+}
+
+- (void)approveAuthWithQRCode:(NSString *)QRCodeResult
+{
+    [FTRClient.sharedClient approveAuthWithQrCode:QRCodeResult callback:^(NSError * _Nullable error) {
+        [self dismissViewControllerAnimated:YES completion:^{
+            if (error) {
+                [self _showAlertWithTitle:@"Error" message:error.userInfo[@"msg"]];
+                return;
+            }
+            [self _showAlertWithTitle:@"Success" message:@"User authenticated successfully!"];
+        }];
+    }];
+}
+
+- (void)offlineAuthWithQRCode:(NSString *)QRCodeResult
+{
+    [self dismissViewControllerAnimated:YES completion:^{
+        if ([FTRClient QRCodeTypeFromQRCode:QRCodeResult] == FTRQRCodeTypeOfflineAuth) {
+            [self showApproveOfflineAlertQRCode: QRCodeResult];
+        } else {
+            [self _showAlertWithTitle:@"Error" message:@"QR Code type is not offline."];
+        }
+    }];
+}
+
+- (void)handleGeneric:(NSString *)QRCodeResult
+{
+    switch ([FTRClient QRCodeTypeFromQRCode:QRCodeResult]) {
+        case FTRQRCodeTypeEnrollment:
+            [self enrollWithQRCode:QRCodeResult];
+            break;
+        case FTRQRCodeTypeOnlineAuth:
+            [self approveAuthWithQRCode:QRCodeResult];
+            break;
+        case FTRQRCodeTypeOfflineAuth:
+            [self offlineAuthWithQRCode:QRCodeResult];
+            break;
+        case FTRQRCodeTypeInvalid:
+            [self _showAlertWithTitle:@"Error" message:@"QR Code is invalid."];
+            break;
     }
-    if (comps.count == 2) {
-        // Handle authentication
-        [[FTRClient sharedClient] approveAuthWithQrCode:result
-                                                   callback:^(NSError * _Nullable error) {
-                                                       [self dismissViewControllerAnimated:YES completion:^{
-                                                           if (error) {
-                                                               [self _showAlertWithTitle:@"Error" message:error.userInfo[@"msg"]];
-                                                               return;
-                                                           }
-                                                           [self _showAlertWithTitle:@"Success" message:@"User authenticated successfully!"];
-                                                            }];
-                                                        }];
+}
+
+- (void)showApproveOfflineAlertQRCode:(NSString *)QRCodeResult
+{
+    NSArray<FTRExtraInfo *> *extras = [FTRClient.sharedClient extraInfoFromOfflineQRCode:QRCodeResult];
+    NSMutableString *mutableFormattedExtraInfo = NSMutableString.new;
+    for (FTRExtraInfo *extraInfo in extras) {
+        [mutableFormattedExtraInfo appendString:extraInfo.key];
+        [mutableFormattedExtraInfo appendString:@": "];
+        [mutableFormattedExtraInfo appendString:extraInfo.value];
+        [mutableFormattedExtraInfo appendString:@"\n"];
     }
+
+    NSString *title = @"Approve";
+    NSString *message = [NSString stringWithFormat:@"Request Information\n%@", mutableFormattedExtraInfo.copy];
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:title
+                                                                   message:message
+                                                            preferredStyle:UIAlertControllerStyleAlert];
+    [alert addAction:[UIAlertAction actionWithTitle:@"Deny" style:UIAlertActionStyleDestructive handler:nil]];
+    [alert addAction:[UIAlertAction actionWithTitle:@"Approve" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        [self showOfflineQRCodeSignatureAlert:QRCodeResult];
+    }]];
+    [self presentViewController:alert animated:YES completion:nil];
+}
+
+- (void)showOfflineQRCodeSignatureAlert:(NSString *)QRCodeResult
+{
+    NSError *error;
+    NSString *signature = [FTRClient.sharedClient computeVerificationCodeFromQRCode:QRCodeResult error:&error];
+    NSString *title;
+    NSString *message;
+    if (error) {
+        title = @"Error";
+        message = error.userInfo[FTRClientErrorUserInfoKey];
+        [self _showAlertWithTitle:@"Error" message:message];
+    } else {
+        title = @"Confirm Transaction";
+        message = [NSString stringWithFormat:@"To Approve the transaction, enter: %@ in the browser", signature];
+    }
+
+    [self _showAlertWithTitle:title message:message];
+}
+
+- (void)presentQRCodeControllerWithQRCodeType:(QRCodeType)QRCodeType sender:(UIButton *)sender
+{
+    NSString *title = [sender titleForState:UIControlStateNormal];
+    FTRQRCodeViewController *qrcodeVC = [[FTRQRCodeViewController alloc] initWithTitle:title QRCodeType:QRCodeType];
+    qrcodeVC.delegate = self;
+    UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:qrcodeVC];
+    [self presentViewController:navigationController animated:YES completion:nil];
 }
 
 #pragma mark - Alerts

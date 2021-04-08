@@ -12,11 +12,22 @@
 
 #import <UIKit/UIKit.h>
 
+typedef NS_ENUM(NSUInteger, QRCodeType) {
+    QRCodeTypeEnrollment,
+    QRCodeTypeOnlineAuth,
+    QRCodeTypeOfflineAuth,
+    QRCodeTypeGeneric
+};
+
 @protocol FTRQRCodeReaderDelegate;
 
 @interface FTRQRCodeViewController : UIViewController
 
-@property(nonatomic, weak) id<FTRQRCodeReaderDelegate> __nullable delegate;
+@property (nonatomic, weak) id<FTRQRCodeReaderDelegate> __nullable delegate;
+@property (nonatomic, assign) QRCodeType QRCodeType;
+
+- (instancetype _Nonnull)init NS_UNAVAILABLE;
+- (instancetype _Nonnull)initWithTitle:(NSString *_Nonnull)title QRCodeType:(QRCodeType)QRCodeType;
 
 - (void)startScanning;
 - (void)stopScanning;

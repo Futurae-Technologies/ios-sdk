@@ -28,6 +28,18 @@
 @implementation FTRQRCodeViewController
 
 #pragma mark - Lifecycle
+
+- (instancetype)initWithTitle:(NSString *)title QRCodeType:(QRCodeType)QRCodeType
+{
+    self = [super initWithNibName:nil bundle:nil];
+    if (self) {
+        self.title = title;
+        self.QRCodeType = QRCodeType;
+    }
+
+    return self;
+}
+
 ////////////////////////////////////////////////////////////////////////////////
 - (void)viewDidLoad
 {
@@ -35,8 +47,7 @@
     self.view.backgroundColor = [UIColor blackColor];
     _codeReader = [FTRQRCodeReader reader];
     [self _setup];
-    
-    self.title = @"QR Code";
+
     self.navigationController.navigationBar.tintColor = [UIColor whiteColor];
     self.navigationController.navigationBar.barStyle = UIBarStyleBlack;
     self.navigationController.navigationBar.translucent = NO;

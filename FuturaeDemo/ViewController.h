@@ -16,8 +16,10 @@
 
 - (IBAction)enrollTouchedUpInside:(UIButton *)sender;
 - (IBAction)logoutTouchedUpInside:(UIButton *)sender;
-- (IBAction)qrCodeTouchedUpInside:(UIButton *)sender;
+- (IBAction)onlineQRCodeTouchedUpInside:(UIButton *)sender;
+- (IBAction)offlineQRCodeTouchedUpInside:(UIButton *)sender;
 - (IBAction)totpTouchedUpInside:(UIButton *)sender;
+- (IBAction)scanQRCodeTouchedUpInside:(UIButton *)sender;
 
 @end
 
