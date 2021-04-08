@@ -19,6 +19,12 @@
 
 // The domain for all errors originating in FTRClient.
 FOUNDATION_EXPORT NSString * _Nonnull const FTRClientErrorDomain;
+FOUNDATION_EXPORT NSString * _Nonnull const FTRClientErrorUserInfoKey;
+
+typedef NS_ENUM(NSUInteger, FTRClientOfflineQRCodeError) {
+    FTRClientOfflineQRCodeErrorParsingError = 0,
+    FTRClientOfflineQRCodeErrorMissingAccountError = 1,
+};
 
 // error codes
 FOUNDATION_EXTERN const NSUInteger FTRClientErrorGeneric;
@@ -35,6 +41,14 @@ FOUNDATION_EXTERN _Nonnull NSNotificationName const FTRNotificationApprove;
 @class FTRTotp;
 @class FTRConfig;
 @class FTRKitHTTPSessionManager;
+@class FTRExtraInfo;
+
+typedef NS_CLOSED_ENUM(NSUInteger, FTRQRCodeType) {
+    FTRQRCodeTypeEnrollment,
+    FTRQRCodeTypeOnlineAuth,
+    FTRQRCodeTypeOfflineAuth,
+    FTRQRCodeTypeInvalid
+};
 
 typedef void (^FTRRequestHandler)(NSError * _Nullable error);
 typedef void (^FTRRequestDataHandler)(id _Nullable data);
@@ -121,5 +135,38 @@ typedef void (^FTRRequestDataHandler)(id _Nullable data);
 
 // User offline authentication
 - (FTRTotp * _Nonnull)nextTotpForUser:(NSString * _Nonnull)userId;
+
+/**
+ *  This is the method for checking QR Code type based on QR code string.
+ *
+ *  @param QRCode Provide string directly from scanned QR code image.
+ *
+ *  @return Returns a QR Code type.
+ */
+
++ (FTRQRCodeType)QRCodeTypeFromQRCode:(NSString *_Nonnull)QRCode;
+
+/**
+ *  This is the method for computing offline six digit code based on QR code string.
+ *
+ *  @param QRCode Provide string directly from scanned QR code image.
+ *  @param error On input, a pointer to an error object. If an error occurs, this pointer is set to an actual error object containing the error information.
+ *  You may specify nil for this parameter if you do not want the error information.
+ *
+ *  @return Returns a six digit code in string format. In case of any error occurs method will return nil.
+ */
+
+- (NSString *_Nullable)computeVerificationCodeFromQRCode:(NSString *_Nonnull)QRCode
+                                                   error:(NSError *_Nullable*_Nullable)error;
+/**
+ *  This is the method for getting extra info (e.g. transaction details) from QR code string
+ *  - includes information that must be displayed to the user before they can approve/reject the request.
+ *
+ *  @param QRCode Provide string directly from scanned QR code image.
+ *
+ *  @return Returns an array of key value pairs. It will return empty array in case of any error occurs or when extra_info parameter is not provided.
+ */
+
+- (NSArray<FTRExtraInfo *> *_Nonnull)extraInfoFromOfflineQRCode:(NSString *_Nonnull)QRCode;
 
 @end
