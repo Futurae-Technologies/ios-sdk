@@ -20,7 +20,6 @@
 		5E84AC4720224A8B007A0191 /* futurae.com_tertiary.cer in Resources */ = {isa = PBXBuildFile; fileRef = 5E84AC4320224A8B007A0191 /* futurae.com_tertiary.cer */; };
 		5E84AC4820224A8B007A0191 /* futurae.com_primary.cer in Resources */ = {isa = PBXBuildFile; fileRef = 5E84AC4420224A8B007A0191 /* futurae.com_primary.cer */; };
 		5E84AC4920224A8B007A0191 /* futurae.com_secondary.cer in Resources */ = {isa = PBXBuildFile; fileRef = 5E84AC4520224A8B007A0191 /* futurae.com_secondary.cer */; };
-		6138000D2538A6FB00DAF784 /* FuturaeKit.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 6138000C2538A6F600DAF784 /* FuturaeKit.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		613800102538AA1A00DAF784 /* FuturaeKit in Frameworks */ = {isa = PBXBuildFile; productRef = 6138000F2538AA1A00DAF784 /* FuturaeKit */; };
 /* End PBXBuildFile section */
 
@@ -31,7 +30,6 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				6138000D2538A6FB00DAF784 /* FuturaeKit.xcframework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -59,7 +57,6 @@
 		5E84AC4320224A8B007A0191 /* futurae.com_tertiary.cer */ = {isa = PBXFileReference; lastKnownFileType = file; name = futurae.com_tertiary.cer; path = FuturaeDemo/Resources/futurae.com_tertiary.cer; sourceTree = "<group>"; };
 		5E84AC4420224A8B007A0191 /* futurae.com_primary.cer */ = {isa = PBXFileReference; lastKnownFileType = file; name = futurae.com_primary.cer; path = FuturaeDemo/Resources/futurae.com_primary.cer; sourceTree = "<group>"; };
 		5E84AC4520224A8B007A0191 /* futurae.com_secondary.cer */ = {isa = PBXFileReference; lastKnownFileType = file; name = futurae.com_secondary.cer; path = FuturaeDemo/Resources/futurae.com_secondary.cer; sourceTree = "<group>"; };
-		6138000C2538A6F600DAF784 /* FuturaeKit.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = FuturaeKit.xcframework; path = "../../Library/Developer/Xcode/DerivedData/FuturaeDemo-fhnjzpfnnzqenjezcqwypvusqnwv/SourcePackages/artifacts/FuturaeKit/FuturaeKit.xcframework"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -117,7 +114,6 @@
 		5E587B311FF41BBD0024ACFA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				6138000C2538A6F600DAF784 /* FuturaeKit.xcframework */,
 				5E837AF82021D0DF00DA4FCC /* UserNotifications.framework */,
 			);
 			name = Frameworks;
