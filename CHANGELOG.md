@@ -1,3 +1,8 @@
+# Version `1.3.0`
+2021-05-13
+
++ [Added] Account migration functionality
+
 # Version `1.2.0`
 2021-04-08
 

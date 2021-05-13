@@ -13,8 +13,8 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
-#import "FTRNotificationDelegate.h"
-#import "FTROpenURLDelegate.h"
+#import <FuturaeKit/FTRNotificationDelegate.h>
+#import <FuturaeKit/FTROpenURLDelegate.h>
 
 // The domain for all errors originating in FuturaeClient.
 FOUNDATION_EXPORT NSString * _Nonnull const FuturaeClientErrorDomain;

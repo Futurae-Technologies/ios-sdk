@@ -13,9 +13,9 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
-#import "FTRNotificationDelegate.h"
-#import "FTROpenURLDelegate.h"
-#import "FTRAccount.h"
+#import <FuturaeKit/FTRNotificationDelegate.h>
+#import <FuturaeKit/FTROpenURLDelegate.h>
+#import <FuturaeKit/FTRAccount.h>
 
 // The domain for all errors originating in FTRClient.
 FOUNDATION_EXPORT NSString * _Nonnull const FTRClientErrorDomain;
@@ -24,6 +24,12 @@ FOUNDATION_EXPORT NSString * _Nonnull const FTRClientErrorUserInfoKey;
 typedef NS_ENUM(NSUInteger, FTRClientOfflineQRCodeError) {
     FTRClientOfflineQRCodeErrorParsingError = 0,
     FTRClientOfflineQRCodeErrorMissingAccountError = 1,
+};
+
+typedef NS_CLOSED_ENUM(NSUInteger, FTRAccountMigrationError) {
+    FTRAccountMigrationErrorNoMigrationInfo = 900,
+    FTRAccountMigrationErrorAccountsExistError = 901,
+    FTRAccountMigrationErrorAccountPreviouslyEnrolledError = 902
 };
 
 // error codes
@@ -169,5 +175,32 @@ typedef void (^FTRRequestDataHandler)(id _Nullable data);
  */
 
 - (NSArray<FTRExtraInfo *> *_Nonnull)extraInfoFromOfflineQRCode:(NSString *_Nonnull)QRCode;
+
+/**
+ *  This is the method for checking how many accounts are available to migrate.
+ *
+ *  @param success The success block to call when checking of account migration is completed successfully.
+ *  There is information included of how many accounts are available to migrate.
+ *  @param failure The failure block to call when checking of account migration failed.
+ *  You can access error's userInfo dictionary to see more readable description of an error.
+ *
+ */
+
+- (void)checkAccountMigrationPossibleSuccess:(void (^_Nonnull)(NSUInteger numberOfAccountsToMigrate))success
+                                     failure:(void (^_Nonnull)(NSError *_Nonnull error))failure;
+
+/**
+ *  This is the method for executing account migration. It will succeed if migration data exists on the device and
+ *  no accounts currently exist or were previously enrolled on the device.
+ *
+ *  @param success The success block to call when executing account migration is completed successfully.
+ *  There is an array of all accounts that are migrated successfully.
+ *  @param failure The failure block to call when executing account migration failed.
+ *  You can access error's userInfo dictionary to see more readable description of an error.
+ *
+ */
+
+- (void)executeAccountMigrationSuccess:(void (^_Nonnull)(NSArray<FTRAccount *> *_Nonnull accountsMigrated))success
+                               failure:(void (^_Nonnull)(NSError *_Nonnull error))failure;
 
 @end

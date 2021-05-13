@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4E7AB1DC264D310900490F82 /* NSArray+Map.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E7AB1DA264D310900490F82 /* NSArray+Map.m */; };
 		5E587B1D1FF41B0C0024ACFA /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E587B1C1FF41B0C0024ACFA /* AppDelegate.m */; };
 		5E587B201FF41B0C0024ACFA /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E587B1F1FF41B0C0024ACFA /* ViewController.m */; };
 		5E587B231FF41B0C0024ACFA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5E587B211FF41B0C0024ACFA /* Main.storyboard */; };
@@ -38,6 +39,8 @@
 
 /* Begin PBXFileReference section */
 		27EC427C20343EB20078E457 /* FuturaeDemo.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = FuturaeDemo.entitlements; sourceTree = "<group>"; };
+		4E7AB1DA264D310900490F82 /* NSArray+Map.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+Map.m"; sourceTree = "<group>"; };
+		4E7AB1DB264D310900490F82 /* NSArray+Map.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+Map.h"; sourceTree = "<group>"; };
 		5E587B181FF41B0C0024ACFA /* FuturaeDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FuturaeDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5E587B1B1FF41B0C0024ACFA /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		5E587B1C1FF41B0C0024ACFA /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -72,6 +75,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4E7AB1D9264D30D400490F82 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				4E7AB1DB264D310900490F82 /* NSArray+Map.h */,
+				4E7AB1DA264D310900490F82 /* NSArray+Map.m */,
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
 		5E587B0F1FF41B0C0024ACFA = {
 			isa = PBXGroup;
 			children = (
@@ -93,6 +105,7 @@
 		5E587B1A1FF41B0C0024ACFA /* FuturaeDemo */ = {
 			isa = PBXGroup;
 			children = (
+				4E7AB1D9264D30D400490F82 /* Helpers */,
 				27EC427C20343EB20078E457 /* FuturaeDemo.entitlements */,
 				5E587B1B1FF41B0C0024ACFA /* AppDelegate.h */,
 				5E587B1C1FF41B0C0024ACFA /* AppDelegate.m */,
@@ -223,6 +236,7 @@
 				5E7040E02016821D00E8B2BF /* FTRQRCodeReaderView.m in Sources */,
 				5E587B201FF41B0C0024ACFA /* ViewController.m in Sources */,
 				5E7040D42016774500E8B2BF /* FTRQRCodeViewController.m in Sources */,
+				4E7AB1DC264D310900490F82 /* NSArray+Map.m in Sources */,
 				5E587B2B1FF41B0C0024ACFA /* main.m in Sources */,
 				5E587B1D1FF41B0C0024ACFA /* AppDelegate.m in Sources */,
 			);
@@ -443,7 +457,7 @@
 			repositoryURL = "https://git.futurae.com/futurae-public/futurae-ios-sdk.git";
 			requirement = {
 				kind = upToNextMajorVersion;
-				minimumVersion = 1.2.0;
+				minimumVersion = 1.3.0;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */

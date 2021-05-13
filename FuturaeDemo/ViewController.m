@@ -14,6 +14,7 @@
 
 #import "FTRQRCodeViewController.h"
 #import <FuturaeKit/FuturaeKit.h>
+#import "NSArray+Map.h"
 
 ////////////////////////////////////////////////////////////////////////////////
 @interface ViewController () <FTRQRCodeReaderDelegate>
@@ -95,6 +96,41 @@
 - (IBAction)scanQRCodeTouchedUpInside:(UIButton *)sender
 {
     [self presentQRCodeControllerWithQRCodeType:QRCodeTypeGeneric sender:sender];
+}
+
+- (IBAction)checkAccountMigrationTouchedUpInside:(UIButton *)sender
+{
+    __weak __typeof(self) weakSelf = self;
+    [FTRClient.sharedClient checkAccountMigrationPossibleSuccess:^(NSUInteger numberOfAccountsToMigrate) {
+        NSString *title = @"Checking account migration succeeds";
+        NSString *message = [NSString stringWithFormat:@"Number of accounts to migrate: %lu",
+                             (unsigned long)numberOfAccountsToMigrate];
+        [weakSelf _showAlertWithTitle:title message:message];
+    } failure:^(NSError * _Nonnull error) {
+        NSString *title = @"Checking account migration failed";
+        NSString *message = [error.userInfo.allValues componentsJoinedByString:@", "];
+        [weakSelf _showAlertWithTitle:title message:message];
+    }];
+}
+
+- (IBAction)executeAccountMigrationTouchedUpInside:(UIButton *)sender
+{
+    __weak __typeof(self) weakSelf = self;
+    [FTRClient.sharedClient executeAccountMigrationSuccess:^(NSArray<FTRAccount *> * _Nonnull accountsMigrated) {
+        NSString *title = @"Executing account migration succeeds";
+        NSArray<NSString *> *usernames = [accountsMigrated map:^NSString *_Nonnull(FTRAccount *account) {
+            return account.username;
+        }];
+        NSString *joinedUsernames = [usernames componentsJoinedByString:@"\n"];
+        NSString *message = [NSString stringWithFormat:@"Migrated accounts [%lu]:\n\n%@",
+                             (unsigned long)accountsMigrated.count,
+                             joinedUsernames];
+        [weakSelf _showAlertWithTitle:title message:message];
+    } failure:^(NSError * _Nonnull error) {
+        NSString *title = @"Executing account migration failed";
+        NSString *message = [error.userInfo.allValues componentsJoinedByString:@", "];
+        [weakSelf _showAlertWithTitle:title message:message];
+    }];
 }
 
 #pragma mark - FTRQRCodeReaderDelegate

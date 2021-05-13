@@ -10,7 +10,7 @@
 		</data>
 		<key>Headers/FTRClient.h</key>
 		<data>
-		z0CXRJLATnMDITAE49WFt2oWbvM=
+		ZzlQkZ8szwyl/E1UAJZz7EGRL7k=
 		</data>
 		<key>Headers/FTRConfig.h</key>
 		<data>
@@ -38,7 +38,7 @@
 		</data>
 		<key>Headers/FuturaeClient.h</key>
 		<data>
-		lfbfS7purlKzelbtCNdrPK0ITts=
+		vMkt2f7JT9L53VUcPrv36MT3uZA=
 		</data>
 		<key>Headers/FuturaeKit.h</key>
 		<data>
@@ -46,7 +46,7 @@
 		</data>
 		<key>Info.plist</key>
 		<data>
-		XFePS18rmByNWCpJE3zXoWesguk=
+		65TKkAQWNiX1j3IoYmX6uSrKN68=
 		</data>
 		<key>Modules/module.modulemap</key>
 		<data>
@@ -70,11 +70,11 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			z0CXRJLATnMDITAE49WFt2oWbvM=
+			ZzlQkZ8szwyl/E1UAJZz7EGRL7k=
 			</data>
 			<key>hash2</key>
 			<data>
-			/CihIZuYquDAs8KBj8wfZCDzCiXeCZzAZ00C5QP2FKI=
+			JVtU/DW2H4mdYP2c2g4WO2OlF7guxsiPega+lMuOGXo=
 			</data>
 		</dict>
 		<key>Headers/FTRConfig.h</key>
@@ -147,11 +147,11 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			lfbfS7purlKzelbtCNdrPK0ITts=
+			vMkt2f7JT9L53VUcPrv36MT3uZA=
 			</data>
 			<key>hash2</key>
 			<data>
-			fXOVU+UvTIQUWd3MvQLqS2dBwZp5umly9d1EHXYr1nU=
+			DNnwQkm1sluhhU0Er5elRyNKgsHLz6X+gvxYFojpwDQ=
 			</data>
 		</dict>
 		<key>Headers/FuturaeKit.h</key>
