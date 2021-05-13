@@ -153,7 +153,8 @@ typedef void (^FTRRequestDataHandler)(id _Nullable data);
  *  @param error On input, a pointer to an error object. If an error occurs, this pointer is set to an actual error object containing the error information.
  *  You may specify nil for this parameter if you do not want the error information.
  *
- *  @return Returns a six digit code in string format. In case of any error occurs method will return nil.
+ *  @return Returns a six digit code in string format. In case any error occurs the method will return nil (objective-c).
+ *  In Swift, this method returns a nonoptional result and is marked with the throws keyword to indicate that it throws an error in case of failure.
  */
 
 - (NSString *_Nullable)computeVerificationCodeFromQRCode:(NSString *_Nonnull)QRCode
