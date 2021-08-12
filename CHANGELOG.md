@@ -1,3 +1,9 @@
+# Version `1.4.0`
+2021-08-12
+
++ [Added] New `launchWithConfig:` method that does not require `UIApplication` parameter
++ [Changed] Deprecated `launchWithConfig:inApplication:` & `launchWith:config:inApplication` methods, will be removed in next major release
+
 # Version `1.3.0`
 2021-05-13
 
