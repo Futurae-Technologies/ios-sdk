@@ -29,7 +29,7 @@
     FTRConfig *ftrConfig = [FTRConfig configWithSdkId:@"SDK_ID"
                                                sdkKey:@"SDK_KEY"
                                               baseUrl:@"https://api.futurae.com"];
-    [FTRClient launchWithConfig:ftrConfig inApplication:application];
+    [FTRClient launchWithConfig:ftrConfig];
 
     // push notifications
     if (@available(iOS 10.0, *)) { // iOS 10+
