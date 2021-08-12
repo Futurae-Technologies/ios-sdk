@@ -67,11 +67,12 @@ typedef void (^FTRRequestDataHandler)(id _Nullable data);
 
 + (NSString * _Nonnull)version;
 + (nullable instancetype)sharedClient;
++ (void)launchWithConfig:(FTRConfig * _Nonnull)config;
 + (void)launchWithConfig:(FTRConfig * _Nonnull)config
-           inApplication:(UIApplication * _Nonnull)application;
+           inApplication:(UIApplication * _Nonnull)application __attribute__((deprecated("Use launchWithConfig: method instead.")));
 + (void)launchWith:(NSArray * _Nullable)kitClasses
             config:(FTRConfig * _Nonnull)config
-     inApplication:(UIApplication * _Nonnull)application;
+     inApplication:(UIApplication * _Nonnull)application __attribute__((deprecated("Use launchWithConfig: method instead.")));
 
 // public
 
