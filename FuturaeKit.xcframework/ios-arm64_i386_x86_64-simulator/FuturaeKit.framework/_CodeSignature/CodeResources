@@ -14,11 +14,15 @@
 		</data>
 		<key>Headers/FTRConfig.h</key>
 		<data>
-		RnJ59x1XE1cP9kYyuhhPNxOtC8g=
+		JoDxxQq4nHr9ta6poj3x4bD+94M=
 		</data>
 		<key>Headers/FTRExtraInfo.h</key>
 		<data>
 		ZHMzomNjs3wAnYMv8u7RXFAG2ko=
+		</data>
+		<key>Headers/FTRKeychainConfig.h</key>
+		<data>
+		xEnfO5Z7bsuOlbeRvME9+NmPqI0=
 		</data>
 		<key>Headers/FTRNotificationDelegate.h</key>
 		<data>
@@ -42,11 +46,11 @@
 		</data>
 		<key>Headers/FuturaeKit.h</key>
 		<data>
-		Yx1B15dQ/JS2BFZ9PykMTeC86t8=
+		3Tbto+vbY1gJVSivuw0N10GagGw=
 		</data>
 		<key>Info.plist</key>
 		<data>
-		nThmELitzhtERfhCUFAvJxw8sbs=
+		61EI8pdmM/7eeGHRZ1OWXl381CU=
 		</data>
 		<key>Modules/module.modulemap</key>
 		<data>
@@ -81,11 +85,11 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			RnJ59x1XE1cP9kYyuhhPNxOtC8g=
+			JoDxxQq4nHr9ta6poj3x4bD+94M=
 			</data>
 			<key>hash2</key>
 			<data>
-			kzGkTI9ad89V24D21c5EEri/NSyHGrZZSXD8fzPNthE=
+			Bdkzx+yX3dknHOUt66/ee55X9E6al9aCiVKzQYdknms=
 			</data>
 		</dict>
 		<key>Headers/FTRExtraInfo.h</key>
@@ -97,6 +101,17 @@
 			<key>hash2</key>
 			<data>
 			PF5ZffKurxxveEKXw9TFJaCzdUPAHieaPcDPUHDu/YE=
+			</data>
+		</dict>
+		<key>Headers/FTRKeychainConfig.h</key>
+		<dict>
+			<key>hash</key>
+			<data>
+			xEnfO5Z7bsuOlbeRvME9+NmPqI0=
+			</data>
+			<key>hash2</key>
+			<data>
+			vzLOmJS3BpMrkI2HREBxaGXgHAb65lAEldlhW1vpeCQ=
 			</data>
 		</dict>
 		<key>Headers/FTRNotificationDelegate.h</key>
@@ -158,11 +173,11 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			Yx1B15dQ/JS2BFZ9PykMTeC86t8=
+			3Tbto+vbY1gJVSivuw0N10GagGw=
 			</data>
 			<key>hash2</key>
 			<data>
-			bzW8QML2v44PR9RvXk5Qk09vvuJgPy/0eraTdTQlI5k=
+			Fanz2QS1ycw85ENjvA6h7W7K9/nJylbjKkh5xQrdMNk=
 			</data>
 		</dict>
 		<key>Modules/module.modulemap</key>

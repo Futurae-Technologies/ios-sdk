@@ -19,5 +19,6 @@ FOUNDATION_EXPORT const unsigned char FuturaeKitVersionString[];
 #import <FuturaeKit/FuturaeClient.h>
 #import <FuturaeKit/FTRTotp.h>
 #import <FuturaeKit/FTRConfig.h>
+#import <FuturaeKit/FTRKeychainConfig.h>
 #import <FuturaeKit/FTRExtraInfo.h>
 #import <FuturaeKit/FTRQRCodeReader.h>

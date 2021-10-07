@@ -12,32 +12,58 @@
 
 #import <Foundation/Foundation.h>
 
+@class FTRKeychainConfig;
+
+NS_ASSUME_NONNULL_BEGIN
+
 @interface FTRConfig : NSObject
 
-@property(nonatomic, copy, readonly, nonnull) NSString *sdkId;
-@property(nonatomic, copy, readonly, nonnull) NSString *sdkKey;
-@property(nonatomic, copy, readonly, nonnull) NSString *baseUrl;
-@property(nonatomic, copy, readonly, nonnull) NSString *locale;
-@property(nonatomic, readonly) BOOL pinCerts;
-@property(nonatomic, strong, readonly, nonnull) NSArray *capabilities;
-@property(nonatomic, strong, readonly, nonnull) NSArray *sampleRates;
+@property (nonatomic, copy, readonly) NSString *sdkKey;
+@property (nonatomic, copy, readonly) NSString *sdkId;
+@property (nonatomic, copy, readonly) NSString *baseUrl;
+@property (nonatomic, copy, readonly) NSString *locale;
+@property (nonatomic, readonly) BOOL pinCerts;
+@property (nonatomic, strong, readonly) NSArray *capabilities;
+@property (nonatomic, strong, readonly) FTRKeychainConfig *keychain;
 
-+ (nonnull instancetype)configWithSdkId:(NSString * _Nonnull)sdkId
-                                 sdkKey:(NSString * _Nonnull)sdkKey;
++ (instancetype)configWithSdkId:(NSString *)sdkId
+                         sdkKey:(NSString *)sdkKey;
 
-+ (nonnull instancetype)configWithSdkId:(NSString * _Nonnull)sdkId
-                                 sdkKey:(NSString * _Nonnull)sdkKey
-                                baseUrl:(NSString * _Nonnull)baseUrl;
++ (instancetype)configWithSdkId:(NSString *)sdkId
+                         sdkKey:(NSString *)sdkKey
+                       keychain:(FTRKeychainConfig *)keychain;
 
-+ (nonnull instancetype)configWithSdkId:(NSString * _Nonnull)sdkId
-                                 sdkKey:(NSString * _Nonnull)sdkKey
-                               pinCerts:(BOOL)pinCerts;
++ (instancetype)configWithSdkId:(NSString *)sdkId
+                         sdkKey:(NSString *)sdkKey
+                        baseUrl:(NSString *)baseUrl;
 
-+ (nonnull instancetype)configWithSdkId:(NSString * _Nonnull)sdkId
-                                 sdkKey:(NSString * _Nonnull)sdkKey
-                                baseUrl:(NSString * _Nonnull)baseUrl
-                               pinCerts:(BOOL)pinCerts;
++ (instancetype)configWithSdkId:(NSString *)sdkId
+                         sdkKey:(NSString *)sdkKey
+                        baseUrl:(NSString *)baseUrl
+                       keychain:(FTRKeychainConfig *)keychain;
+
++ (instancetype)configWithSdkId:(NSString *)sdkId
+                         sdkKey:(NSString *)sdkKey
+                       pinCerts:(BOOL)pinCerts;
+
++ (instancetype)configWithSdkId:(NSString *)sdkId
+                         sdkKey:(NSString *)sdkKey
+                       pinCerts:(BOOL)pinCerts
+                       keychain:(FTRKeychainConfig *)keychain;
+
++ (instancetype)configWithSdkId:(NSString *)sdkId
+                         sdkKey:(NSString *)sdkKey
+                        baseUrl:(NSString *)baseUrl
+                       pinCerts:(BOOL)pinCerts;
+
++ (instancetype)configWithSdkId:(NSString *)sdkId
+                         sdkKey:(NSString *)sdkKey
+                        baseUrl:(NSString *)baseUrl
+                       pinCerts:(BOOL)pinCerts
+                       keychain:(FTRKeychainConfig *)keychain;
 
 - (BOOL)isValid;
 
 @end
+
+NS_ASSUME_NONNULL_END
