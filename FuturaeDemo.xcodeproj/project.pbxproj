@@ -457,7 +457,7 @@
 			repositoryURL = "https://git.futurae.com/futurae-public/futurae-ios-sdk.git";
 			requirement = {
 				kind = upToNextMajorVersion;
-				minimumVersion = 1.4.0;
+				minimumVersion = 1.5.0;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
