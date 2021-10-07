@@ -2,6 +2,7 @@
 2021-10-07
 
 + [Added] New `keychain` parameter [`FTRKeychainConfig`] in `FTRConfig` methods that allows you to specify Keychain Access Group and Accessibility for keychain items
++ [Removed] `sampleRates` unused property from `FTRConfig`
 
 # Version `1.4.0`
 2021-08-12
