@@ -173,7 +173,7 @@
 		5E587B101FF41B0C0024ACFA /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 1240;
+				LastUpgradeCheck = 1250;
 				ORGANIZATIONNAME = Futurae;
 				TargetAttributes = {
 					5E587B171FF41B0C0024ACFA = {
