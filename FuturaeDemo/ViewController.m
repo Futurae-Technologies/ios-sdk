@@ -14,6 +14,7 @@
 
 #import "FTRQRCodeViewController.h"
 #import <FuturaeKit/FuturaeKit.h>
+#import <FuturaeKit/FTRJSONUtils.h>
 #import "NSArray+Map.h"
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -128,7 +129,14 @@
         [weakSelf _showAlertWithTitle:title message:message];
     } failure:^(NSError * _Nonnull error) {
         NSString *title = @"Executing account migration failed";
-        NSString *message = [error.userInfo.allValues componentsJoinedByString:@", "];
+        NSDictionary *networkErrorDetails = [FTRJSONUtils dictionaryFromError:error];
+        NSString *errorDetails;
+        if (networkErrorDetails) {
+            errorDetails = [NSString stringWithFormat:@"%@", networkErrorDetails];
+        } else {
+            errorDetails = [error.userInfo.allValues componentsJoinedByString:@", "];
+        }
+        NSString *message = [NSString stringWithFormat:@"Code: %@\ndetails: %@", @(error.code), errorDetails];
         [weakSelf _showAlertWithTitle:title message:message];
     }];
 }
