@@ -61,7 +61,6 @@ typedef void (^FTRRequestDataHandler)(id _Nullable data);
 
 @interface FTRClient : NSObject
 {
-    FTRKitHTTPSessionManager *_sessionManager;
     NSDateFormatter *_rfc2882DateFormatter;
 }
 

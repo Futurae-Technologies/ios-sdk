@@ -12,6 +12,7 @@
 
 #import <Foundation/Foundation.h>
 
+@class FTRAdaptiveConfig;
 @class FTRKeychainConfig;
 
 NS_ASSUME_NONNULL_BEGIN
@@ -25,13 +26,23 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, readonly) BOOL pinCerts;
 @property (nonatomic, strong, readonly) NSArray *capabilities;
 @property (nonatomic, strong, readonly) FTRKeychainConfig *keychain;
+@property (nonatomic, strong, readonly) FTRAdaptiveConfig *adaptive;
 
 + (instancetype)configWithSdkId:(NSString *)sdkId
                          sdkKey:(NSString *)sdkKey;
 
 + (instancetype)configWithSdkId:(NSString *)sdkId
                          sdkKey:(NSString *)sdkKey
+                       adaptive:(FTRAdaptiveConfig *)adaptive;
+
++ (instancetype)configWithSdkId:(NSString *)sdkId
+                         sdkKey:(NSString *)sdkKey
                        keychain:(FTRKeychainConfig *)keychain;
+
++ (instancetype)configWithSdkId:(NSString *)sdkId
+                         sdkKey:(NSString *)sdkKey
+                       keychain:(FTRKeychainConfig *)keychain
+                       adaptive:(FTRAdaptiveConfig *)adaptive;
 
 + (instancetype)configWithSdkId:(NSString *)sdkId
                          sdkKey:(NSString *)sdkKey
@@ -40,7 +51,18 @@ NS_ASSUME_NONNULL_BEGIN
 + (instancetype)configWithSdkId:(NSString *)sdkId
                          sdkKey:(NSString *)sdkKey
                         baseUrl:(NSString *)baseUrl
+                       adaptive:(FTRAdaptiveConfig *)adaptive;
+
++ (instancetype)configWithSdkId:(NSString *)sdkId
+                         sdkKey:(NSString *)sdkKey
+                        baseUrl:(NSString *)baseUrl
                        keychain:(FTRKeychainConfig *)keychain;
+
++ (instancetype)configWithSdkId:(NSString *)sdkId
+                         sdkKey:(NSString *)sdkKey
+                        baseUrl:(NSString *)baseUrl
+                       keychain:(FTRKeychainConfig *)keychain
+                       adaptive:(FTRAdaptiveConfig *)adaptive;
 
 + (instancetype)configWithSdkId:(NSString *)sdkId
                          sdkKey:(NSString *)sdkKey
@@ -49,7 +71,18 @@ NS_ASSUME_NONNULL_BEGIN
 + (instancetype)configWithSdkId:(NSString *)sdkId
                          sdkKey:(NSString *)sdkKey
                        pinCerts:(BOOL)pinCerts
+                       adaptive:(FTRAdaptiveConfig *)adaptive;
+
++ (instancetype)configWithSdkId:(NSString *)sdkId
+                         sdkKey:(NSString *)sdkKey
+                       pinCerts:(BOOL)pinCerts
                        keychain:(FTRKeychainConfig *)keychain;
+
++ (instancetype)configWithSdkId:(NSString *)sdkId
+                         sdkKey:(NSString *)sdkKey
+                       pinCerts:(BOOL)pinCerts
+                       keychain:(FTRKeychainConfig *)keychain
+                       adaptive:(FTRAdaptiveConfig *)adaptive;
 
 + (instancetype)configWithSdkId:(NSString *)sdkId
                          sdkKey:(NSString *)sdkKey
@@ -60,7 +93,20 @@ NS_ASSUME_NONNULL_BEGIN
                          sdkKey:(NSString *)sdkKey
                         baseUrl:(NSString *)baseUrl
                        pinCerts:(BOOL)pinCerts
+                       adaptive:(FTRAdaptiveConfig *)adaptive;
+
++ (instancetype)configWithSdkId:(NSString *)sdkId
+                         sdkKey:(NSString *)sdkKey
+                        baseUrl:(NSString *)baseUrl
+                       pinCerts:(BOOL)pinCerts
                        keychain:(FTRKeychainConfig *)keychain;
+
++ (instancetype)configWithSdkId:(NSString *)sdkId
+                         sdkKey:(NSString *)sdkKey
+                        baseUrl:(NSString *)baseUrl
+                       pinCerts:(BOOL)pinCerts
+                       keychain:(FTRKeychainConfig *)keychain
+                       adaptive:(FTRAdaptiveConfig *)adaptive;
 
 - (BOOL)isValid;
 

@@ -8,17 +8,25 @@
 		<data>
 		yXLk1LIvrHetMNmtJMrkAZQC6DA=
 		</data>
+		<key>Headers/FTRAdaptiveConfig.h</key>
+		<data>
+		c1ltQ14KrzvXYUkptqQFRmPSqzA=
+		</data>
 		<key>Headers/FTRClient.h</key>
 		<data>
-		wSF1TgJZ1jLTKgLSvpPlOd3hA8E=
+		9SNDdKFGo9iTKWcAVwWA9J5anQI=
 		</data>
 		<key>Headers/FTRConfig.h</key>
 		<data>
-		JoDxxQq4nHr9ta6poj3x4bD+94M=
+		4VI0jl7sekENnFOAgYHD44tYb+A=
 		</data>
 		<key>Headers/FTRExtraInfo.h</key>
 		<data>
 		ZHMzomNjs3wAnYMv8u7RXFAG2ko=
+		</data>
+		<key>Headers/FTRJSONUtils.h</key>
+		<data>
+		oF6kjf+PR9gowDNrYRjoSF+MevU=
 		</data>
 		<key>Headers/FTRKeychainConfig.h</key>
 		<data>
@@ -46,11 +54,11 @@
 		</data>
 		<key>Headers/FuturaeKit.h</key>
 		<data>
-		3Tbto+vbY1gJVSivuw0N10GagGw=
+		F5NtmCyaVKxU+LBncRhsFQA8FBo=
 		</data>
 		<key>Info.plist</key>
 		<data>
-		61EI8pdmM/7eeGHRZ1OWXl381CU=
+		Z4CXeeGb50eEsi2ddK+zRelcyUw=
 		</data>
 		<key>Modules/module.modulemap</key>
 		<data>
@@ -70,26 +78,37 @@
 			si4W+1s55laHOWEkqbySh+Ar6tbgacQ3TJEoQGD9oAw=
 			</data>
 		</dict>
+		<key>Headers/FTRAdaptiveConfig.h</key>
+		<dict>
+			<key>hash</key>
+			<data>
+			c1ltQ14KrzvXYUkptqQFRmPSqzA=
+			</data>
+			<key>hash2</key>
+			<data>
+			TaQcGKQ5sJlLZQ9dwPnWo4BOgnUUuOmBoI2rwpwJ/AU=
+			</data>
+		</dict>
 		<key>Headers/FTRClient.h</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			wSF1TgJZ1jLTKgLSvpPlOd3hA8E=
+			9SNDdKFGo9iTKWcAVwWA9J5anQI=
 			</data>
 			<key>hash2</key>
 			<data>
-			jeCyOSSWTvtGAGJ1kPRT0TsqdmHlX4UgNr4v7YfuMK8=
+			u/j54Em7f6ESTLQgzI3+VLcoq1UcIKM+xvZyz3sh0js=
 			</data>
 		</dict>
 		<key>Headers/FTRConfig.h</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			JoDxxQq4nHr9ta6poj3x4bD+94M=
+			4VI0jl7sekENnFOAgYHD44tYb+A=
 			</data>
 			<key>hash2</key>
 			<data>
-			Bdkzx+yX3dknHOUt66/ee55X9E6al9aCiVKzQYdknms=
+			sqdxB5GF4X2uWBIvNIkJLmp7+3swn8v3FZF5Ou03vKM=
 			</data>
 		</dict>
 		<key>Headers/FTRExtraInfo.h</key>
@@ -101,6 +120,17 @@
 			<key>hash2</key>
 			<data>
 			PF5ZffKurxxveEKXw9TFJaCzdUPAHieaPcDPUHDu/YE=
+			</data>
+		</dict>
+		<key>Headers/FTRJSONUtils.h</key>
+		<dict>
+			<key>hash</key>
+			<data>
+			oF6kjf+PR9gowDNrYRjoSF+MevU=
+			</data>
+			<key>hash2</key>
+			<data>
+			ip/k+bbR2YlYrx56VKpwN9HWZykSbi2ZKk7fr/sKazM=
 			</data>
 		</dict>
 		<key>Headers/FTRKeychainConfig.h</key>
@@ -173,11 +203,11 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			3Tbto+vbY1gJVSivuw0N10GagGw=
+			F5NtmCyaVKxU+LBncRhsFQA8FBo=
 			</data>
 			<key>hash2</key>
 			<data>
-			Fanz2QS1ycw85ENjvA6h7W7K9/nJylbjKkh5xQrdMNk=
+			VsqhY8YKvZN6H1iF44tkNKcOmWvdTQKeqw36zW54no8=
 			</data>
 		</dict>
 		<key>Modules/module.modulemap</key>

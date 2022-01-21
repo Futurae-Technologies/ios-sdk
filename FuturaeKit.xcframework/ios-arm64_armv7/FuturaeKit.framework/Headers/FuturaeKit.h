@@ -3,7 +3,11 @@
 //  FuturaeKit
 //
 //  Created by Dimitris Togias on 27/12/2017.
-//  Copyright (C) 2018 Futurae Technologies AG - All rights reserved.
+//  Unauthorized copying of this file, via any medium is strictly prohibited.
+//  Proprietary and Confidential.
+//
+//  Copyright (C) 2022 Futurae Technologies AG - All rights reserved.
+//  For any inquiry, contact: legal@futurae.com
 //
 
 #import <UIKit/UIKit.h>
@@ -19,6 +23,8 @@ FOUNDATION_EXPORT const unsigned char FuturaeKitVersionString[];
 #import <FuturaeKit/FuturaeClient.h>
 #import <FuturaeKit/FTRTotp.h>
 #import <FuturaeKit/FTRConfig.h>
+#import <FuturaeKit/FTRAdaptiveConfig.h>
 #import <FuturaeKit/FTRKeychainConfig.h>
 #import <FuturaeKit/FTRExtraInfo.h>
 #import <FuturaeKit/FTRQRCodeReader.h>
+#import <FuturaeKit/FTRJSONUtils.h>
