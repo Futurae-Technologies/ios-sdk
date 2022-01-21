@@ -1,3 +1,9 @@
+# Version `1.6.0`
+2022-01-21
+
++ [Added] (Alpha) Added adaptive authentication library. Disabled by default. Can be enabled for use with automatic account recovery.
++ [Changed] Dropped support for iOS 9.0. Bumped deployment target version to iOS 10.0.
+
 # Version `1.5.0`
 2021-10-07
 
