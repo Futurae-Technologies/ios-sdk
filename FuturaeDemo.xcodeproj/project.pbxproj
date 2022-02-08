@@ -379,6 +379,7 @@
 		5E587B2F1FF41B0C0024ACFA /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = FuturaeDemo/FuturaeDemo.entitlements;
 				CODE_SIGN_STYLE = Automatic;
@@ -404,6 +405,7 @@
 		5E587B301FF41B0C0024ACFA /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = FuturaeDemo/FuturaeDemo.entitlements;
 				CODE_SIGN_STYLE = Automatic;
