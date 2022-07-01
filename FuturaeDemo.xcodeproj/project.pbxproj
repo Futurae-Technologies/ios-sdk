@@ -21,7 +21,6 @@
 		5E84AC4720224A8B007A0191 /* futurae.com_tertiary.cer in Resources */ = {isa = PBXBuildFile; fileRef = 5E84AC4320224A8B007A0191 /* futurae.com_tertiary.cer */; };
 		5E84AC4820224A8B007A0191 /* futurae.com_primary.cer in Resources */ = {isa = PBXBuildFile; fileRef = 5E84AC4420224A8B007A0191 /* futurae.com_primary.cer */; };
 		5E84AC4920224A8B007A0191 /* futurae.com_secondary.cer in Resources */ = {isa = PBXBuildFile; fileRef = 5E84AC4520224A8B007A0191 /* futurae.com_secondary.cer */; };
-		613800102538AA1A00DAF784 /* FuturaeKit in Frameworks */ = {isa = PBXBuildFile; productRef = 6138000F2538AA1A00DAF784 /* FuturaeKit */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -67,7 +66,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				613800102538AA1A00DAF784 /* FuturaeKit in Frameworks */,
 				5E837AF92021D0E000DA4FCC /* UserNotifications.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -161,7 +159,6 @@
 			);
 			name = FuturaeDemo;
 			packageProductDependencies = (
-				6138000F2538AA1A00DAF784 /* FuturaeKit */,
 			);
 			productName = FuturaeDemo;
 			productReference = 5E587B181FF41B0C0024ACFA /* FuturaeDemo.app */;
@@ -200,7 +197,7 @@
 			);
 			mainGroup = 5E587B0F1FF41B0C0024ACFA;
 			packageReferences = (
-				6138000E2538AA1A00DAF784 /* XCRemoteSwiftPackageReference "futurae-ios-sdk" */,
+				C6B80FAD286F3ADC00C2990A /* XCRemoteSwiftPackageReference "futurae-ios-sdk" */,
 			);
 			productRefGroup = 5E587B191FF41B0C0024ACFA /* Products */;
 			projectDirPath = "";
@@ -316,7 +313,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.5;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -369,7 +366,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.5;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
@@ -382,7 +379,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = FuturaeDemo/FuturaeDemo.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = T82Z6CGNMT;
 				ENABLE_BITCODE = YES;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -390,7 +387,7 @@
 					"$(PROJECT_DIR)",
 				);
 				INFOPLIST_FILE = FuturaeDemo/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -408,7 +405,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = FuturaeDemo/FuturaeDemo.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = T82Z6CGNMT;
 				ENABLE_BITCODE = YES;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -416,7 +413,7 @@
 					"$(PROJECT_DIR)",
 				);
 				INFOPLIST_FILE = FuturaeDemo/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -452,23 +449,15 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		6138000E2538AA1A00DAF784 /* XCRemoteSwiftPackageReference "futurae-ios-sdk" */ = {
+		C6B80FAD286F3ADC00C2990A /* XCRemoteSwiftPackageReference "futurae-ios-sdk" */ = {
 			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://git.futurae.com/futurae-public/futurae-ios-sdk.git";
+			repositoryURL = "https://git.futurae.com/futurae-public/futurae-ios-sdk";
 			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 1.5.0;
+				kind = exactVersion;
+				version = 1.5.1;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
-
-/* Begin XCSwiftPackageProductDependency section */
-		6138000F2538AA1A00DAF784 /* FuturaeKit */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 6138000E2538AA1A00DAF784 /* XCRemoteSwiftPackageReference "futurae-ios-sdk" */;
-			productName = FuturaeKit;
-		};
-/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 5E587B101FF41B0C0024ACFA /* Project object */;
 }
