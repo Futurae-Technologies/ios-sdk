@@ -26,20 +26,16 @@
 ////////////////////////////////////////////////////////////////////////////////
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    FTRConfig *ftrConfig = [FTRConfig configWithSdkId:@"SDK_ID"
-                                               sdkKey:@"SDK_KEY"
-                                              baseUrl:@"https://api.futurae.com"];
-    [FTRClient launchWithConfig:ftrConfig];
-
+    // push notifications
     UNUserNotificationCenter *center = [UNUserNotificationCenter currentNotificationCenter];
     center.delegate = self;
     [center requestAuthorizationWithOptions:(UNAuthorizationOptionAlert | UNAuthorizationOptionSound | UNAuthorizationOptionBadge)
                           completionHandler:^(BOOL granted, NSError * _Nullable error) {
-                              // NOTE: To be completed
-                          }];
-
+        // NOTE: To be completed
+    }];
+    
     [[UIApplication sharedApplication] registerForRemoteNotifications];
-
+    
     return YES;
 }
 
@@ -47,7 +43,13 @@
 ////////////////////////////////////////////////////////////////////////////////
 - (void)application:(UIApplication *)app didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken
 {
-    [[FTRClient sharedClient] registerPushToken:deviceToken];
+    //TODO: handle this when client not initialized yet
+    if(FTRClient.sdkIsLaunched){
+        [[FTRClient sharedClient] registerPushToken:deviceToken];
+    } else {
+        [[NSUserDefaults standardUserDefaults]
+         setObject:deviceToken forKey:@"ftr_device_token"];
+    }
 }
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -58,6 +60,14 @@
 }
 
 ////////////////////////////////////////////////////////////////////////////////
+- (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo
+{
+    // TODO: Test this case
+    [[FTRClient sharedClient] handleNotification:userInfo delegate:self];
+    NSLog(@"Received APN: %@", userInfo);
+}
+
+////////////////////////////////////////////////////////////////////////////////
 - (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler
 {
     // TODO: Fetch data from backend and call completionHandler
@@ -65,6 +75,13 @@
 
     [[FTRClient sharedClient] handleNotification:userInfo delegate:self];
     [self showLocalNotification:@"Authentication Request" withBody:userInfo[@"body"]];
+}
+
+////////////////////////////////////////////////////////////////////////////////
+- (void)application:(UIApplication *)application didReceiveLocalNotification:(UILocalNotification *)notification
+{
+    // TODO: Handle this case if sypport for iOS < 10 is needed
+    NSLog(@"Received local notification: %@", notification);
 }
 
 #pragma mark - Handle URL Scheme calls
@@ -158,16 +175,14 @@ didReceiveNotificationResponse:(UNNotificationResponse *)response
 ////////////////////////////////////////////////////////////////////////////////
 - (void)showLocalNotification:(NSString *)title withBody:(NSString *)body
 {
-    if (@available(iOS 10.0, *)) {
-        NSDictionary *userInfo;
-        UNNotificationRequest* request = [self createNotificationRequestWithBody:body
-                                                                           title:title
-                                                                           sound:@"default"
-                                                                        category:@"FTCATEGORY_APPROVE"
-                                                                        userInfo:userInfo];
-        UNUserNotificationCenter *nscenter = [UNUserNotificationCenter currentNotificationCenter];
-        [nscenter addNotificationRequest:request withCompletionHandler:nil];
-    }
+    NSDictionary *userInfo;
+    UNNotificationRequest* request = [self createNotificationRequestWithBody:body
+                                                                       title:title
+                                                                       sound:@"default"
+                                                                    category:@"FTCATEGORY_APPROVE"
+                                                                    userInfo:userInfo];
+    UNUserNotificationCenter *nscenter = [UNUserNotificationCenter currentNotificationCenter];
+    [nscenter addNotificationRequest:request withCompletionHandler:nil];
 }
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -202,23 +217,33 @@ didReceiveNotificationResponse:(UNNotificationResponse *)response
 {
     // TODO: Handle the successful MobileAuth request
     NSLog(@"authenticationURLOpened: %@", authenticationInfo);
-
-    // For demo purposes we automatically confirm it and then only ask the user wants to switch back to the caller
-    UIAlertController *ac = [UIAlertController alertControllerWithTitle:@"MobileAuth Success"
-                                                                message:@"Would you like to open the callback?"
-                                                         preferredStyle:UIAlertControllerStyleAlert];
-    [ac addAction:[UIAlertAction actionWithTitle:@"Open" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
-        NSURL *url = [NSURL URLWithString:authenticationInfo[@"success_url_callback"]];
-        if (@available(iOS 10.0, *)) {
+    
+    NSString *redirectUri = authenticationInfo[@"success_url_callback"];
+    if(redirectUri && redirectUri.length > 0){
+        // For demo purposes we automatically confirm it and then only ask the user wants to switch back to the caller
+        UIAlertController *ac = [UIAlertController alertControllerWithTitle:@"MobileAuth Success"
+                                                                    message:@"Would you like to open the callback?"
+                                                             preferredStyle:UIAlertControllerStyleAlert];
+        [ac addAction:[UIAlertAction actionWithTitle:@"Open" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
+            NSURL *url = [NSURL URLWithString:redirectUri];
             [[UIApplication sharedApplication] openURL:url
                                                options:@{}
                                      completionHandler:nil];
-        }
-    }]];
-    [ac addAction:[UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-        NSLog(@"");
-    }]];
-    [self.window.rootViewController presentViewController:ac animated:NO completion:nil];
+        }]];
+        [ac addAction:[UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+            NSLog(@"");
+        }]];
+        [self.window.rootViewController presentViewController:ac animated:NO completion:nil];
+    } else {
+        // For demo purposes we automatically confirm it and then only ask the user wants to switch back to the caller
+        UIAlertController *ac = [UIAlertController alertControllerWithTitle:@"MobileAuth Success"
+                                                                    message:@""
+                                                             preferredStyle:UIAlertControllerStyleAlert];
+        [ac addAction:[UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
+            
+        }]];
+        [self.window.rootViewController presentViewController:ac animated:NO completion:nil];
+    }
 }
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -233,9 +258,22 @@ didReceiveNotificationResponse:(UNNotificationResponse *)response
 ////////////////////////////////////////////////////////////////////////////////
 - (void)openURLError:(nonnull NSError *)error
 {
+    NSString *message;
+    if(error.userInfo){
+        message = error.userInfo[@"msg"];
+    }
+    
+    if(!message){
+        message = error.localizedDescription;
+    }
+    
+    if(!message){
+        message = @"Unknown error";
+    }
+    
     // TODO: Handle the error
     NSLog(@"openURLError: %@", error);
-    [self _showAlertWithTitle:@"Error" message:@"Enrollment failed"];
+    [self _showAlertWithTitle:@"Error" message:message];
 }
 
 #pragma mark - Alerts

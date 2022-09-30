@@ -7,7 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		4E7AB1DC264D310900490F82 /* NSArray+Map.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E7AB1DA264D310900490F82 /* NSArray+Map.m */; };
+		1BD23D32286CE8A3007D163D /* CustomDemoButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BD23D31286CE8A3007D163D /* CustomDemoButton.swift */; };
+		4E1C5C8926315EA80044EA15 /* NSArray+Map.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E1C5C8826315EA80044EA15 /* NSArray+Map.m */; };
 		5E587B1D1FF41B0C0024ACFA /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E587B1C1FF41B0C0024ACFA /* AppDelegate.m */; };
 		5E587B201FF41B0C0024ACFA /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E587B1F1FF41B0C0024ACFA /* ViewController.m */; };
 		5E587B231FF41B0C0024ACFA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5E587B211FF41B0C0024ACFA /* Main.storyboard */; };
@@ -21,26 +22,21 @@
 		5E84AC4720224A8B007A0191 /* futurae.com_tertiary.cer in Resources */ = {isa = PBXBuildFile; fileRef = 5E84AC4320224A8B007A0191 /* futurae.com_tertiary.cer */; };
 		5E84AC4820224A8B007A0191 /* futurae.com_primary.cer in Resources */ = {isa = PBXBuildFile; fileRef = 5E84AC4420224A8B007A0191 /* futurae.com_primary.cer */; };
 		5E84AC4920224A8B007A0191 /* futurae.com_secondary.cer in Resources */ = {isa = PBXBuildFile; fileRef = 5E84AC4520224A8B007A0191 /* futurae.com_secondary.cer */; };
-		C61B5DF328E79FF2001CC6F6 /* FuturaeKit in Frameworks */ = {isa = PBXBuildFile; productRef = C61B5DF228E79FF2001CC6F6 /* FuturaeKit */; };
+		C64EE98F28E75DA500CEB405 /* FuturaeKit in Frameworks */ = {isa = PBXBuildFile; productRef = C64EE98E28E75DA500CEB405 /* FuturaeKit */; };
+		C672FB1F2850CC77006C23E5 /* SVPinView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C672FB1A2850CC77006C23E5 /* SVPinView.swift */; };
+		C672FB202850CC77006C23E5 /* SVPinField.swift in Sources */ = {isa = PBXBuildFile; fileRef = C672FB1B2850CC77006C23E5 /* SVPinField.swift */; };
+		C672FB212850CC77006C23E5 /* SVPinView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C672FB1D2850CC77006C23E5 /* SVPinView.xib */; };
+		C672FB222850CC77006C23E5 /* SVPinCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C672FB1E2850CC77006C23E5 /* SVPinCell.xib */; };
+		C672FB252850CCCC006C23E5 /* PinViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C672FB232850CCCB006C23E5 /* PinViewController.swift */; };
+		C672FB262850CCCC006C23E5 /* KeychainConfigViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C672FB242850CCCB006C23E5 /* KeychainConfigViewController.swift */; };
+		C683ADC3286F0EB50023523E /* SDKConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = C683ADC2286F0EB50023523E /* SDKConstants.swift */; };
 /* End PBXBuildFile section */
 
-/* Begin PBXCopyFilesBuildPhase section */
-		5E587B3B1FF41C730024ACFA /* Embed Frameworks */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 12;
-			dstPath = "";
-			dstSubfolderSpec = 10;
-			files = (
-			);
-			name = "Embed Frameworks";
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXCopyFilesBuildPhase section */
-
 /* Begin PBXFileReference section */
+		1BD23D31286CE8A3007D163D /* CustomDemoButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomDemoButton.swift; sourceTree = "<group>"; };
 		27EC427C20343EB20078E457 /* FuturaeDemo.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = FuturaeDemo.entitlements; sourceTree = "<group>"; };
-		4E7AB1DA264D310900490F82 /* NSArray+Map.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+Map.m"; sourceTree = "<group>"; };
-		4E7AB1DB264D310900490F82 /* NSArray+Map.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+Map.h"; sourceTree = "<group>"; };
+		4E1C5C8726315EA80044EA15 /* NSArray+Map.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSArray+Map.h"; sourceTree = "<group>"; };
+		4E1C5C8826315EA80044EA15 /* NSArray+Map.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSArray+Map.m"; sourceTree = "<group>"; };
 		5E587B181FF41B0C0024ACFA /* FuturaeDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FuturaeDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5E587B1B1FF41B0C0024ACFA /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		5E587B1C1FF41B0C0024ACFA /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -60,6 +56,13 @@
 		5E84AC4320224A8B007A0191 /* futurae.com_tertiary.cer */ = {isa = PBXFileReference; lastKnownFileType = file; name = futurae.com_tertiary.cer; path = FuturaeDemo/Resources/futurae.com_tertiary.cer; sourceTree = "<group>"; };
 		5E84AC4420224A8B007A0191 /* futurae.com_primary.cer */ = {isa = PBXFileReference; lastKnownFileType = file; name = futurae.com_primary.cer; path = FuturaeDemo/Resources/futurae.com_primary.cer; sourceTree = "<group>"; };
 		5E84AC4520224A8B007A0191 /* futurae.com_secondary.cer */ = {isa = PBXFileReference; lastKnownFileType = file; name = futurae.com_secondary.cer; path = FuturaeDemo/Resources/futurae.com_secondary.cer; sourceTree = "<group>"; };
+		C672FB1A2850CC77006C23E5 /* SVPinView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SVPinView.swift; sourceTree = "<group>"; };
+		C672FB1B2850CC77006C23E5 /* SVPinField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SVPinField.swift; sourceTree = "<group>"; };
+		C672FB1D2850CC77006C23E5 /* SVPinView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SVPinView.xib; sourceTree = "<group>"; };
+		C672FB1E2850CC77006C23E5 /* SVPinCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SVPinCell.xib; sourceTree = "<group>"; };
+		C672FB232850CCCB006C23E5 /* PinViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PinViewController.swift; sourceTree = "<group>"; };
+		C672FB242850CCCB006C23E5 /* KeychainConfigViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeychainConfigViewController.swift; sourceTree = "<group>"; };
+		C683ADC2286F0EB50023523E /* SDKConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SDKConstants.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -67,7 +70,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C61B5DF328E79FF2001CC6F6 /* FuturaeKit in Frameworks */,
+				C64EE98F28E75DA500CEB405 /* FuturaeKit in Frameworks */,
 				5E837AF92021D0E000DA4FCC /* UserNotifications.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -75,11 +78,11 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		4E7AB1D9264D30D400490F82 /* Helpers */ = {
+		4E1C5C8A26315EAC0044EA15 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
-				4E7AB1DB264D310900490F82 /* NSArray+Map.h */,
-				4E7AB1DA264D310900490F82 /* NSArray+Map.m */,
+				4E1C5C8726315EA80044EA15 /* NSArray+Map.h */,
+				4E1C5C8826315EA80044EA15 /* NSArray+Map.m */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -87,10 +90,10 @@
 		5E587B0F1FF41B0C0024ACFA = {
 			isa = PBXGroup;
 			children = (
-				5E587B1A1FF41B0C0024ACFA /* FuturaeDemo */,
-				5E84AC4120224A7B007A0191 /* Resources */,
 				5E587B311FF41BBD0024ACFA /* Frameworks */,
+				5E587B1A1FF41B0C0024ACFA /* FuturaeDemo */,
 				5E587B191FF41B0C0024ACFA /* Products */,
+				5E84AC4120224A7B007A0191 /* Resources */,
 			);
 			sourceTree = "<group>";
 		};
@@ -105,21 +108,26 @@
 		5E587B1A1FF41B0C0024ACFA /* FuturaeDemo */ = {
 			isa = PBXGroup;
 			children = (
-				4E7AB1D9264D30D400490F82 /* Helpers */,
-				27EC427C20343EB20078E457 /* FuturaeDemo.entitlements */,
+				C672FB172850CC77006C23E5 /* Libraries */,
+				4E1C5C8A26315EAC0044EA15 /* Helpers */,
 				5E587B1B1FF41B0C0024ACFA /* AppDelegate.h */,
 				5E587B1C1FF41B0C0024ACFA /* AppDelegate.m */,
-				5E587B1E1FF41B0C0024ACFA /* ViewController.h */,
-				5E587B1F1FF41B0C0024ACFA /* ViewController.m */,
+				5E587B241FF41B0C0024ACFA /* Assets.xcassets */,
 				5E7040DE2016821D00E8B2BF /* FTRQRCodeReaderView.h */,
 				5E7040DF2016821D00E8B2BF /* FTRQRCodeReaderView.m */,
 				5E7040D22016774500E8B2BF /* FTRQRCodeViewController.h */,
 				5E7040D32016774500E8B2BF /* FTRQRCodeViewController.m */,
-				5E587B211FF41B0C0024ACFA /* Main.storyboard */,
-				5E587B241FF41B0C0024ACFA /* Assets.xcassets */,
-				5E587B261FF41B0C0024ACFA /* LaunchScreen.storyboard */,
+				27EC427C20343EB20078E457 /* FuturaeDemo.entitlements */,
 				5E587B291FF41B0C0024ACFA /* Info.plist */,
+				5E587B261FF41B0C0024ACFA /* LaunchScreen.storyboard */,
+				5E587B211FF41B0C0024ACFA /* Main.storyboard */,
+				5E587B1E1FF41B0C0024ACFA /* ViewController.h */,
+				5E587B1F1FF41B0C0024ACFA /* ViewController.m */,
 				5E587B2A1FF41B0C0024ACFA /* main.m */,
+				C672FB242850CCCB006C23E5 /* KeychainConfigViewController.swift */,
+				C672FB232850CCCB006C23E5 /* PinViewController.swift */,
+				1BD23D31286CE8A3007D163D /* CustomDemoButton.swift */,
+				C683ADC2286F0EB50023523E /* SDKConstants.swift */,
 			);
 			path = FuturaeDemo;
 			sourceTree = "<group>";
@@ -143,6 +151,41 @@
 			name = Resources;
 			sourceTree = "<group>";
 		};
+		C672FB172850CC77006C23E5 /* Libraries */ = {
+			isa = PBXGroup;
+			children = (
+				C672FB182850CC77006C23E5 /* SVPinView */,
+			);
+			path = Libraries;
+			sourceTree = "<group>";
+		};
+		C672FB182850CC77006C23E5 /* SVPinView */ = {
+			isa = PBXGroup;
+			children = (
+				C672FB192850CC77006C23E5 /* Classes */,
+				C672FB1C2850CC77006C23E5 /* XIB's */,
+			);
+			path = SVPinView;
+			sourceTree = "<group>";
+		};
+		C672FB192850CC77006C23E5 /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				C672FB1A2850CC77006C23E5 /* SVPinView.swift */,
+				C672FB1B2850CC77006C23E5 /* SVPinField.swift */,
+			);
+			path = Classes;
+			sourceTree = "<group>";
+		};
+		C672FB1C2850CC77006C23E5 /* XIB's */ = {
+			isa = PBXGroup;
+			children = (
+				C672FB1D2850CC77006C23E5 /* SVPinView.xib */,
+				C672FB1E2850CC77006C23E5 /* SVPinCell.xib */,
+			);
+			path = "XIB's";
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -153,7 +196,6 @@
 				5E587B141FF41B0C0024ACFA /* Sources */,
 				5E587B151FF41B0C0024ACFA /* Frameworks */,
 				5E587B161FF41B0C0024ACFA /* Resources */,
-				5E587B3B1FF41C730024ACFA /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -161,7 +203,7 @@
 			);
 			name = FuturaeDemo;
 			packageProductDependencies = (
-				C61B5DF228E79FF2001CC6F6 /* FuturaeKit */,
+				C64EE98E28E75DA500CEB405 /* FuturaeKit */,
 			);
 			productName = FuturaeDemo;
 			productReference = 5E587B181FF41B0C0024ACFA /* FuturaeDemo.app */;
@@ -173,7 +215,7 @@
 		5E587B101FF41B0C0024ACFA /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 1310;
+				LastUpgradeCheck = 1250;
 				ORGANIZATIONNAME = Futurae;
 				TargetAttributes = {
 					5E587B171FF41B0C0024ACFA = {
@@ -200,7 +242,7 @@
 			);
 			mainGroup = 5E587B0F1FF41B0C0024ACFA;
 			packageReferences = (
-				C61B5DF128E79FF2001CC6F6 /* XCRemoteSwiftPackageReference "ios-sdk" */,
+				C64EE98D28E75DA500CEB405 /* XCRemoteSwiftPackageReference "futurae-ios-sdk" */,
 			);
 			productRefGroup = 5E587B191FF41B0C0024ACFA /* Products */;
 			projectDirPath = "";
@@ -216,7 +258,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C672FB222850CC77006C23E5 /* SVPinCell.xib in Resources */,
 				5E587B281FF41B0C0024ACFA /* LaunchScreen.storyboard in Resources */,
+				C672FB212850CC77006C23E5 /* SVPinView.xib in Resources */,
 				5E587B251FF41B0C0024ACFA /* Assets.xcassets in Resources */,
 				5E84AC4720224A8B007A0191 /* futurae.com_tertiary.cer in Resources */,
 				5E587B231FF41B0C0024ACFA /* Main.storyboard in Resources */,
@@ -235,10 +279,16 @@
 			files = (
 				5E7040E02016821D00E8B2BF /* FTRQRCodeReaderView.m in Sources */,
 				5E587B201FF41B0C0024ACFA /* ViewController.m in Sources */,
+				1BD23D32286CE8A3007D163D /* CustomDemoButton.swift in Sources */,
+				C672FB252850CCCC006C23E5 /* PinViewController.swift in Sources */,
 				5E7040D42016774500E8B2BF /* FTRQRCodeViewController.m in Sources */,
-				4E7AB1DC264D310900490F82 /* NSArray+Map.m in Sources */,
+				C672FB262850CCCC006C23E5 /* KeychainConfigViewController.swift in Sources */,
+				4E1C5C8926315EA80044EA15 /* NSArray+Map.m in Sources */,
+				C672FB1F2850CC77006C23E5 /* SVPinView.swift in Sources */,
+				C683ADC3286F0EB50023523E /* SDKConstants.swift in Sources */,
 				5E587B2B1FF41B0C0024ACFA /* main.m in Sources */,
 				5E587B1D1FF41B0C0024ACFA /* AppDelegate.m in Sources */,
+				C672FB202850CC77006C23E5 /* SVPinField.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -289,7 +339,6 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
-				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -316,7 +365,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -348,7 +397,6 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
-				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -369,7 +417,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
@@ -384,19 +432,17 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = T82Z6CGNMT;
-				ENABLE_BITCODE = YES;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)",
-				);
 				INFOPLIST_FILE = FuturaeDemo/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0.0;
+				MARKETING_VERSION = 2.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.futurae.FuturaeDemo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -409,19 +455,16 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = T82Z6CGNMT;
-				ENABLE_BITCODE = YES;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)",
-				);
 				INFOPLIST_FILE = FuturaeDemo/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0.0;
+				MARKETING_VERSION = 2.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.futurae.FuturaeDemo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
@@ -450,20 +493,20 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		C61B5DF128E79FF2001CC6F6 /* XCRemoteSwiftPackageReference "ios-sdk" */ = {
+		C64EE98D28E75DA500CEB405 /* XCRemoteSwiftPackageReference "futurae-ios-sdk" */ = {
 			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/Futurae-Technologies/ios-sdk";
+			repositoryURL = "https://git.futurae.com/futurae-public/futurae-ios-sdk.git";
 			requirement = {
 				kind = exactVersion;
-				version = 1.6.0;
+				version = 2.0.0;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		C61B5DF228E79FF2001CC6F6 /* FuturaeKit */ = {
+		C64EE98E28E75DA500CEB405 /* FuturaeKit */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = C61B5DF128E79FF2001CC6F6 /* XCRemoteSwiftPackageReference "ios-sdk" */;
+			package = C64EE98D28E75DA500CEB405 /* XCRemoteSwiftPackageReference "futurae-ios-sdk" */;
 			productName = FuturaeKit;
 		};
 /* End XCSwiftPackageProductDependency section */

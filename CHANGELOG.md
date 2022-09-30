@@ -1,3 +1,22 @@
+# Version `2.0.0`
+2022-30-09
+
++ Introduces the user presence verification feature.
++ Breaking changes are being introduced - please review the migration guides on the web documentation.
+
+# Version `1.5.2`
+2021-30-09
+
++ [Changed] `uri_success_callback_url` and `uri_failure_callback_url` query parameters are not used in authentication URL anymore. Use `mobile_auth_redirect_uri` instead.
++ [Changed] Disable code coverage
+
+# Version `1.5.1`
+2021-10-07
+
++ [Removed] CFBundleSupportedPlatforms key from the Info.plist file
++ [Changed] Dropped support for iOS 9.0. Bumped deployment target version to iOS 10.0.
+
+
 # Version `1.6.0`
 2022-01-21
 
