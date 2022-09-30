@@ -1,3 +1,15 @@
+# Version `1.5.2`
+2021-10-07
+
++ [Changed] `uri_success_callback_url` and `uri_failure_callback_url` query parameters are not used in authentication URL anymore. Use `mobile_auth_redirect_uri` instead.
++ [Changed] Disable code coverage
+
+# Version `1.5.1`
+2021-10-07
+
++ [Removed] CFBundleSupportedPlatforms key from the Info.plist file
++ [Changed] Dropped support for iOS 9.0. Bumped deployment target version to iOS 10.0.
+
 # Version `1.5.0`
 2021-10-07
 
