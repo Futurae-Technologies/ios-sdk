@@ -2,6 +2,8 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+    <key>NSFaceIDUsageDescription</key>
+    <string>Unlock sensititive data</string>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
 	<key>CFBundleExecutable</key>
@@ -33,57 +35,8 @@
 	<string>$(CURRENT_PROJECT_VERSION)</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
-	<key>NSBluetoothAlwaysUsageDescription</key>
-	<string>Provide bluetooth access for adaptive functionality</string>
-	<key>NSBluetoothPeripheralUsageDescription</key>
-	<string>Provide bluetooth peripheral access for adaptive functionality</string>
-	<key>NSBonjourServices</key>
-	<array>
-		<string>_smb._tcp.</string>
-		<string>_privet._tcp.</string>
-		<string>_device-info._tcp.</string>
-		<string>_sftp-ssh._tcp.</string>
-		<string>_airplay._tcp.</string>
-		<string>_scanner._tcp.</string>
-		<string>_mediaremotetv._tcp.</string>
-		<string>_rdlink._tcp.</string>
-		<string>_rfb._tcp.</string>
-		<string>_uscan._tcp.</string>
-		<string>_companion-link._tcp.</string>
-		<string>_apple-mobdev2._tcp.</string>
-		<string>_b._dns-sd._udp.</string>
-		<string>_afpovertcp._tcp.</string>
-		<string>_nfs._tcp.</string>
-		<string>_webdav._tcp.</string>
-		<string>_ftp._tcp.</string>
-		<string>_ssh._tcp.</string>
-		<string>_eppc._tcp.</string>
-		<string>_http._tcp.</string>
-		<string>_telnet._tcp.</string>
-		<string>_printer._tcp.</string>
-		<string>_ipp._tcp.</string>
-		<string>_pdl-datastream._tcp.</string>
-		<string>_riousbprint._tcp.</string>
-		<string>_daap._tcp.</string>
-		<string>_dpap._tcp.</string>
-		<string>_ichat._tcp.</string>
-		<string>_presence._tcp.</string>
-		<string>_ica-networking._tcp.</string>
-		<string>_airport._tcp.</string>
-		<string>_xserveraid._tcp.</string>
-		<string>_distcc._tcp.</string>
-		<string>_apple-sasl._tcp.</string>
-		<string>_workstation._tcp.</string>
-		<string>_servermgr._tcp.</string>
-		<string>_raop._tcp.</string>
-		<string>_xcs2p._tcp.</string>
-	</array>
 	<key>NSCameraUsageDescription</key>
 	<string>This app uses the camera to scan your enrollment and authentication QR Codes.</string>
-	<key>NSLocalNetworkUsageDescription</key>
-	<string>Provide network access for adaptive functionality</string>
-	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>Provide location access for adaptive functionality</string>
 	<key>UIBackgroundModes</key>
 	<array>
 		<string>remote-notification</string>

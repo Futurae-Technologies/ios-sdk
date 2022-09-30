@@ -1,102 +1,990 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21219" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Ibc-J1-55c">
     <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21200"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--FUNCTIONS-->
         <scene sceneID="tne-QT-ifu">
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="ViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="618"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="25" translatesAutoresizingMaskIntoConstraints="NO" id="ZCm-HJ-efC">
-                                <rect key="frame" x="50.5" y="82" width="274" height="503"/>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cUi-fR-hOY">
+                                <rect key="frame" x="0.0" y="10" width="375" height="608"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="M0a-WQ-c6y">
-                                        <rect key="frame" x="0.0" y="0.0" width="274" height="41"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="24"/>
-                                        <state key="normal" title="Enroll"/>
-                                        <connections>
-                                            <action selector="enrollTouchedUpInside:" destination="BYZ-38-t0r" eventType="touchUpInside" id="7vx-ss-4Pa"/>
-                                        </connections>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Fu1-ck-yQS">
-                                        <rect key="frame" x="0.0" y="66" width="274" height="41"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="24"/>
-                                        <state key="normal" title="Logout"/>
-                                        <connections>
-                                            <action selector="logoutTouchedUpInside:" destination="BYZ-38-t0r" eventType="touchUpInside" id="HOH-jv-nQB"/>
-                                        </connections>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="v4j-GO-GWb">
-                                        <rect key="frame" x="0.0" y="132" width="274" height="41"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="24"/>
-                                        <state key="normal" title="Online QR Code Auth"/>
-                                        <connections>
-                                            <action selector="onlineQRCodeTouchedUpInside:" destination="BYZ-38-t0r" eventType="touchUpInside" id="9Jf-ug-79f"/>
-                                        </connections>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eJL-2h-Bpp">
-                                        <rect key="frame" x="0.0" y="198" width="274" height="41"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="24"/>
-                                        <state key="normal" title="Offline QR Code Auth"/>
-                                        <connections>
-                                            <action selector="offlineQRCodeTouchedUpInside:" destination="BYZ-38-t0r" eventType="touchUpInside" id="mPW-Ki-FbS"/>
-                                        </connections>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NUG-QO-Bxf">
-                                        <rect key="frame" x="0.0" y="264" width="274" height="41"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="24"/>
-                                        <state key="normal" title="TOTP Auth"/>
-                                        <connections>
-                                            <action selector="totpTouchedUpInside:" destination="BYZ-38-t0r" eventType="touchUpInside" id="TBh-r6-VHr"/>
-                                        </connections>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="T5Q-1N-nio">
-                                        <rect key="frame" x="0.0" y="330" width="274" height="41"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="24"/>
-                                        <state key="normal" title="Scan QR Code"/>
-                                        <connections>
-                                            <action selector="scanQRCodeTouchedUpInside:" destination="BYZ-38-t0r" eventType="touchUpInside" id="IR0-aP-N7X"/>
-                                        </connections>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DW9-WM-BQq">
-                                        <rect key="frame" x="0.0" y="396" width="274" height="41"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="24"/>
-                                        <state key="normal" title="Check account migration"/>
-                                        <connections>
-                                            <action selector="checkAccountMigrationTouchedUpInside:" destination="BYZ-38-t0r" eventType="touchUpInside" id="0ZW-EU-ysS"/>
-                                        </connections>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fyS-7w-qUY">
-                                        <rect key="frame" x="0.0" y="462" width="274" height="41"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="24"/>
-                                        <state key="normal" title="Execute account migration"/>
-                                        <connections>
-                                            <action selector="executeAccountMigrationTouchedUpInside:" destination="BYZ-38-t0r" eventType="touchUpInside" id="hcF-sj-61Q"/>
-                                        </connections>
-                                    </button>
+                                    <stackView hidden="YES" opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" alignment="center" spacing="25" translatesAutoresizingMaskIntoConstraints="NO" id="ZCm-HJ-efC">
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="905"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="o3k-Hi-SjC" customClass="CustomDemoButton" customModule="FuturaeDemo" customModuleProvider="target">
+                                                <rect key="frame" x="83" y="0.0" width="209" height="37"/>
+                                                <color key="backgroundColor" red="0.2470588088" green="0.24313727020000001" blue="0.32941177490000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <inset key="contentEdgeInsets" minX="8" minY="8" maxX="8" maxY="8"/>
+                                                <state key="normal" title="Enroll and Setup SDK PIN"/>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                        <real key="value" value="5"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                                        <real key="value" value="1"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                                        <color key="value" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
+                                                <connections>
+                                                    <action selector="enrollWithPinTouchedUpInside:" destination="BYZ-38-t0r" eventType="touchUpInside" id="xVw-Xb-pVx"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="M0a-WQ-c6y" customClass="CustomDemoButton" customModule="FuturaeDemo" customModuleProvider="target">
+                                                <rect key="frame" x="158" y="62" width="59" height="37"/>
+                                                <color key="backgroundColor" red="0.2470588088" green="0.24313727020000001" blue="0.32941177490000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <inset key="contentEdgeInsets" minX="8" minY="8" maxX="8" maxY="8"/>
+                                                <state key="normal" title="Enroll"/>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                        <real key="value" value="5"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                                        <real key="value" value="1"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                                        <color key="value" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
+                                                <connections>
+                                                    <action selector="enrollTouchedUpInside:" destination="BYZ-38-t0r" eventType="touchUpInside" id="7vx-ss-4Pa"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Fu1-ck-yQS" customClass="CustomDemoButton" customModule="FuturaeDemo" customModuleProvider="target">
+                                                <rect key="frame" x="152.5" y="124" width="70" height="37"/>
+                                                <color key="backgroundColor" red="0.2470588088" green="0.24313727020000001" blue="0.32941177490000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <inset key="contentEdgeInsets" minX="8" minY="8" maxX="8" maxY="8"/>
+                                                <state key="normal" title="Logout"/>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                        <real key="value" value="5"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                                        <real key="value" value="1"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                                        <color key="value" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
+                                                <connections>
+                                                    <action selector="logoutTouchedUpInside:" destination="BYZ-38-t0r" eventType="touchUpInside" id="HOH-jv-nQB"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="v4j-GO-GWb" customClass="CustomDemoButton" customModule="FuturaeDemo" customModuleProvider="target">
+                                                <rect key="frame" x="98.5" y="186" width="178" height="37"/>
+                                                <color key="backgroundColor" red="0.2470588088" green="0.24313727020000001" blue="0.32941177490000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <inset key="contentEdgeInsets" minX="8" minY="8" maxX="8" maxY="8"/>
+                                                <state key="normal" title="Online QR Code Auth"/>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                        <real key="value" value="5"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                                        <real key="value" value="1"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                                        <color key="value" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
+                                                <connections>
+                                                    <action selector="onlineQRCodeTouchedUpInside:" destination="BYZ-38-t0r" eventType="touchUpInside" id="9Jf-ug-79f"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eJL-2h-Bpp" customClass="CustomDemoButton" customModule="FuturaeDemo" customModuleProvider="target">
+                                                <rect key="frame" x="98" y="248" width="179" height="37"/>
+                                                <color key="backgroundColor" red="0.2470588088" green="0.24313727020000001" blue="0.32941177490000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <inset key="contentEdgeInsets" minX="8" minY="8" maxX="8" maxY="8"/>
+                                                <state key="normal" title="Offline QR Code Auth"/>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                        <real key="value" value="5"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                                        <real key="value" value="1"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                                        <color key="value" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
+                                                <connections>
+                                                    <action selector="offlineQRCodeTouchedUpInside:" destination="BYZ-38-t0r" eventType="touchUpInside" id="mPW-Ki-FbS"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="opL-80-ACl" customClass="CustomDemoButton" customModule="FuturaeDemo" customModuleProvider="target">
+                                                <rect key="frame" x="64" y="310" width="247" height="37"/>
+                                                <color key="backgroundColor" red="0.2470588088" green="0.24313727020000001" blue="0.32941177490000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <inset key="contentEdgeInsets" minX="8" minY="8" maxX="8" maxY="8"/>
+                                                <state key="normal" title="Offline QR Code Auth with PIN"/>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                        <real key="value" value="5"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                                        <real key="value" value="1"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                                        <color key="value" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
+                                                <connections>
+                                                    <action selector="offlineQRCodeWithPINTouchedUpInside:" destination="BYZ-38-t0r" eventType="touchUpInside" id="ZBl-hm-Hua"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZE9-cC-fgo" customClass="CustomDemoButton" customModule="FuturaeDemo" customModuleProvider="target">
+                                                <rect key="frame" x="15.5" y="372" width="344" height="37"/>
+                                                <color key="backgroundColor" red="0.2470588088" green="0.24313727020000001" blue="0.32941177490000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <inset key="contentEdgeInsets" minX="8" minY="8" maxX="8" maxY="8"/>
+                                                <state key="normal" title="Offline QR Code Auth with Biometrics (PIN)"/>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                        <real key="value" value="5"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                                        <real key="value" value="1"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                                        <color key="value" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
+                                                <connections>
+                                                    <action selector="offlineQRCodeWithBiometricsTouchedUpInside:" destination="BYZ-38-t0r" eventType="touchUpInside" id="3a6-Zl-W2p"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NUG-QO-Bxf" customClass="CustomDemoButton" customModule="FuturaeDemo" customModuleProvider="target">
+                                                <rect key="frame" x="138" y="434" width="99" height="37"/>
+                                                <color key="backgroundColor" red="0.2470588088" green="0.24313727020000001" blue="0.32941177490000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <inset key="contentEdgeInsets" minX="8" minY="8" maxX="8" maxY="8"/>
+                                                <state key="normal" title="TOTP Auth"/>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                        <real key="value" value="5"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                                        <real key="value" value="1"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                                        <color key="value" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
+                                                <connections>
+                                                    <action selector="totpTouchedUpInside:" destination="BYZ-38-t0r" eventType="touchUpInside" id="TBh-r6-VHr"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gMv-wT-lt6" customClass="CustomDemoButton" customModule="FuturaeDemo" customModuleProvider="target">
+                                                <rect key="frame" x="104.5" y="496" width="166" height="37"/>
+                                                <color key="backgroundColor" red="0.2470588088" green="0.24313727020000001" blue="0.32941177490000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <inset key="contentEdgeInsets" minX="8" minY="8" maxX="8" maxY="8"/>
+                                                <state key="normal" title="TOTP Auth with PIN"/>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                        <real key="value" value="5"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                                        <real key="value" value="1"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                                        <color key="value" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
+                                                <connections>
+                                                    <action selector="totpWithPINTouchedUpInside:" destination="BYZ-38-t0r" eventType="touchUpInside" id="qIo-M5-iSK"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IJp-DQ-N3R" customClass="CustomDemoButton" customModule="FuturaeDemo" customModuleProvider="target">
+                                                <rect key="frame" x="55.5" y="558" width="264" height="37"/>
+                                                <color key="backgroundColor" red="0.2470588088" green="0.24313727020000001" blue="0.32941177490000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <inset key="contentEdgeInsets" minX="8" minY="8" maxX="8" maxY="8"/>
+                                                <state key="normal" title="TOTP Auth with Biometrics (PIN)"/>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                        <real key="value" value="5"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                                        <real key="value" value="1"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                                        <color key="value" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
+                                                <connections>
+                                                    <action selector="totpWithBiometricsTouchedUpInside:" destination="BYZ-38-t0r" eventType="touchUpInside" id="qwQ-0r-qY6"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="T5Q-1N-nio" customClass="CustomDemoButton" customModule="FuturaeDemo" customModuleProvider="target">
+                                                <rect key="frame" x="124" y="620" width="127" height="37"/>
+                                                <color key="backgroundColor" red="0.2470588088" green="0.24313727020000001" blue="0.32941177490000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <inset key="contentEdgeInsets" minX="8" minY="8" maxX="8" maxY="8"/>
+                                                <state key="normal" title="Scan QR Code"/>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                        <real key="value" value="5"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                                        <real key="value" value="1"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                                        <color key="value" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
+                                                <connections>
+                                                    <action selector="scanQRCodeTouchedUpInside:" destination="BYZ-38-t0r" eventType="touchUpInside" id="IR0-aP-N7X"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bD9-Mr-AGE" customClass="CustomDemoButton" customModule="FuturaeDemo" customModuleProvider="target">
+                                                <rect key="frame" x="90.5" y="682" width="194" height="37"/>
+                                                <color key="backgroundColor" red="0.2470588088" green="0.24313727020000001" blue="0.32941177490000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <inset key="contentEdgeInsets" minX="8" minY="8" maxX="8" maxY="8"/>
+                                                <state key="normal" title="Scan QR Code with PIN"/>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                        <real key="value" value="5"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                                        <real key="value" value="1"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                                        <color key="value" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
+                                                <connections>
+                                                    <action selector="scanQRCodeWithPINTouchedUpInside:" destination="BYZ-38-t0r" eventType="touchUpInside" id="nbC-lX-Kru"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="idy-dX-CuG" customClass="CustomDemoButton" customModule="FuturaeDemo" customModuleProvider="target">
+                                                <rect key="frame" x="41.5" y="744" width="292" height="37"/>
+                                                <color key="backgroundColor" red="0.2470588088" green="0.24313727020000001" blue="0.32941177490000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <inset key="contentEdgeInsets" minX="8" minY="8" maxX="8" maxY="8"/>
+                                                <state key="normal" title="Scan QR Code with Biometrics (PIN)"/>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                        <real key="value" value="5"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                                        <real key="value" value="1"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                                        <color key="value" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
+                                                <connections>
+                                                    <action selector="scanQRCodeWithBiometricsTouchedUpInside:" destination="BYZ-38-t0r" eventType="touchUpInside" id="nDW-3I-sYX"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DW9-WM-BQq" customClass="CustomDemoButton" customModule="FuturaeDemo" customModuleProvider="target">
+                                                <rect key="frame" x="84" y="806" width="207" height="37"/>
+                                                <color key="backgroundColor" red="0.2470588088" green="0.24313727020000001" blue="0.32941177490000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <inset key="contentEdgeInsets" minX="8" minY="8" maxX="8" maxY="8"/>
+                                                <state key="normal" title="Check account migration"/>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                        <real key="value" value="5"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                                        <real key="value" value="1"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                                        <color key="value" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
+                                                <connections>
+                                                    <action selector="checkAccountMigrationTouchedUpInside:" destination="BYZ-38-t0r" eventType="touchUpInside" id="0ZW-EU-ysS"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fyS-7w-qUY" customClass="CustomDemoButton" customModule="FuturaeDemo" customModuleProvider="target">
+                                                <rect key="frame" x="78" y="868" width="219" height="37"/>
+                                                <color key="backgroundColor" red="0.2470588088" green="0.24313727020000001" blue="0.32941177490000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <inset key="contentEdgeInsets" minX="8" minY="8" maxX="8" maxY="8"/>
+                                                <state key="normal" title="Execute account migration"/>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                        <real key="value" value="5"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                                        <real key="value" value="1"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                                        <color key="value" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
+                                                <connections>
+                                                    <action selector="executeAccountMigrationTouchedUpInside:" destination="BYZ-38-t0r" eventType="touchUpInside" id="hcF-sj-61Q"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                    </stackView>
                                 </subviews>
-                            </stackView>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstItem="ZCm-HJ-efC" firstAttribute="top" secondItem="cUi-fR-hOY" secondAttribute="top" id="25B-Uq-NYe"/>
+                                    <constraint firstAttribute="bottom" secondItem="ZCm-HJ-efC" secondAttribute="bottom" id="Lgd-yp-uJr"/>
+                                    <constraint firstItem="ZCm-HJ-efC" firstAttribute="leading" secondItem="cUi-fR-hOY" secondAttribute="leading" id="TP1-UP-9ZY"/>
+                                    <constraint firstAttribute="trailing" secondItem="ZCm-HJ-efC" secondAttribute="trailing" id="XQR-eF-lIE"/>
+                                    <constraint firstItem="ZCm-HJ-efC" firstAttribute="width" secondItem="cUi-fR-hOY" secondAttribute="width" id="fs7-IE-u3g"/>
+                                </constraints>
+                            </scrollView>
+                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="To show this view you need to select and launch with a configuration in the first tab - Lock Configuration." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gDR-tX-V9e">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="618"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="21"/>
+                                <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
-                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="ZCm-HJ-efC" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="gau-Eg-vg8"/>
-                            <constraint firstItem="ZCm-HJ-efC" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="jSa-YK-HxP"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="cUi-fR-hOY" secondAttribute="trailing" id="HRr-Ej-4L5"/>
+                            <constraint firstItem="cUi-fR-hOY" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="10" id="ca8-P6-IbD"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="gDR-tX-V9e" secondAttribute="trailing" id="crW-wc-iIt"/>
+                            <constraint firstItem="gDR-tX-V9e" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="gWy-7Y-f3S"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="cUi-fR-hOY" secondAttribute="bottom" id="oXV-0a-Z3d"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="gDR-tX-V9e" secondAttribute="bottom" id="uUW-5V-kus"/>
+                            <constraint firstItem="cUi-fR-hOY" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="vqk-K6-Xui"/>
+                            <constraint firstItem="gDR-tX-V9e" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="wXp-7I-goh"/>
                         </constraints>
                     </view>
+                    <tabBarItem key="tabBarItem" title="FUNCTIONS" image="terminal" catalog="system" selectedImage="terminal" id="R8f-3b-m6K"/>
+                    <connections>
+                        <outlet property="messageLabel" destination="gDR-tX-V9e" id="2C0-wJ-rNi"/>
+                        <outlet property="stackView" destination="ZCm-HJ-efC" id="nwC-sq-M8m"/>
+                        <outletCollection property="pinButtons" destination="opL-80-ACl" id="pRC-Uy-dbF"/>
+                        <outletCollection property="pinButtons" destination="ZE9-cC-fgo" id="K0v-eD-2wK"/>
+                        <outletCollection property="pinButtons" destination="gMv-wT-lt6" id="vey-QV-9A4"/>
+                        <outletCollection property="pinButtons" destination="IJp-DQ-N3R" id="Jh5-ir-NEn"/>
+                        <outletCollection property="pinButtons" destination="bD9-Mr-AGE" id="WDt-Ho-nn0"/>
+                        <outletCollection property="pinButtons" destination="idy-dX-CuG" id="IjI-oY-A04"/>
+                        <outletCollection property="pinButtons" destination="o3k-Hi-SjC" id="aen-vO-zQp"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="1460" y="-356"/>
+        </scene>
+        <!--Tab Bar Controller-->
+        <scene sceneID="Jyz-ii-kev">
+            <objects>
+                <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="Ibc-J1-55c" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" translucent="NO" id="Oco-8Y-Zva">
+                        <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="selectedImageTintColor" systemColor="systemGreenColor"/>
+                    </tabBar>
+                    <connections>
+                        <segue destination="FqC-QZ-eSk" kind="relationship" relationship="viewControllers" id="DLA-M7-57Z"/>
+                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="viewControllers" id="ajb-Gy-G5M"/>
+                    </connections>
+                </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ipr-ZQ-nbV" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
             <point key="canvasLocation" x="140" y="133.5832083958021"/>
         </scene>
+        <!--Pin View Controller-->
+        <scene sceneID="Oc7-81-jET">
+            <objects>
+                <viewController storyboardIdentifier="pinViewController" id="png-33-wRC" customClass="PinViewController" customModule="FuturaeDemo" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="dpH-Ca-Jgn">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="duo-gC-Ko8" customClass="SVPinView" customModule="FuturaeDemo" customModuleProvider="target">
+                                <rect key="frame" x="8" y="91" width="359" height="80"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="80" id="TKS-tV-LG1"/>
+                                </constraints>
+                            </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Please enter your pin number." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9Le-LL-Wwy">
+                                <rect key="frame" x="71.5" y="40.5" width="232.5" height="20.5"/>
+                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="17"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="aDv-Fg-Upo">
+                                <rect key="frame" x="50" y="221" width="275" height="30"/>
+                                <subviews>
+                                    <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="j7s-XI-elP">
+                                        <rect key="frame" x="0.0" y="0.0" width="0.0" height="30"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FWy-Hi-M5M">
+                                                <rect key="frame" x="0.0" y="0.0" width="0.0" height="30"/>
+                                                <color key="backgroundColor" white="1" alpha="0.29999999999999999" colorSpace="calibratedWhite"/>
+                                                <state key="normal" title="  Show Pin  ">
+                                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                </state>
+                                            </button>
+                                        </subviews>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        <constraints>
+                                            <constraint firstAttribute="trailing" secondItem="FWy-Hi-M5M" secondAttribute="trailing" id="8dk-fo-aTR"/>
+                                            <constraint firstItem="FWy-Hi-M5M" firstAttribute="top" secondItem="j7s-XI-elP" secondAttribute="top" id="CL3-Sq-bLe"/>
+                                            <constraint firstItem="FWy-Hi-M5M" firstAttribute="leading" secondItem="j7s-XI-elP" secondAttribute="leading" id="Ymz-FQ-xEW"/>
+                                            <constraint firstAttribute="bottom" secondItem="FWy-Hi-M5M" secondAttribute="bottom" id="qB4-TK-UgI"/>
+                                        </constraints>
+                                    </view>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6II-qW-tOp">
+                                        <rect key="frame" x="0.0" y="0.0" width="275" height="30"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TEE-ae-XCK">
+                                                <rect key="frame" x="0.0" y="0.0" width="275" height="30"/>
+                                                <color key="backgroundColor" white="1" alpha="0.29999999999999999" colorSpace="calibratedWhite"/>
+                                                <state key="normal" title="  Clear Pin  ">
+                                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="clearPin" destination="png-33-wRC" eventType="touchUpInside" id="cn0-ny-Qci"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        <constraints>
+                                            <constraint firstAttribute="bottom" secondItem="TEE-ae-XCK" secondAttribute="bottom" id="0VS-AZ-ewt"/>
+                                            <constraint firstItem="TEE-ae-XCK" firstAttribute="leading" secondItem="6II-qW-tOp" secondAttribute="leading" id="MEd-1R-emG"/>
+                                            <constraint firstAttribute="trailing" secondItem="TEE-ae-XCK" secondAttribute="trailing" id="Vi4-td-UuT"/>
+                                            <constraint firstItem="TEE-ae-XCK" firstAttribute="top" secondItem="6II-qW-tOp" secondAttribute="top" id="pdf-ym-VpA"/>
+                                        </constraints>
+                                    </view>
+                                    <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1KH-XB-M7Q">
+                                        <rect key="frame" x="0.0" y="0.0" width="0.0" height="30"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NtA-pC-4cv">
+                                                <rect key="frame" x="0.0" y="0.0" width="0.0" height="30"/>
+                                                <color key="backgroundColor" white="1" alpha="0.29984482019999997" colorSpace="calibratedWhite"/>
+                                                <state key="normal" title="  Toggle Style  ">
+                                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                </state>
+                                            </button>
+                                        </subviews>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        <constraints>
+                                            <constraint firstAttribute="trailing" secondItem="NtA-pC-4cv" secondAttribute="trailing" id="56p-bj-j2d"/>
+                                            <constraint firstItem="NtA-pC-4cv" firstAttribute="leading" secondItem="1KH-XB-M7Q" secondAttribute="leading" id="FrQ-XQ-xNz"/>
+                                            <constraint firstItem="NtA-pC-4cv" firstAttribute="top" secondItem="1KH-XB-M7Q" secondAttribute="top" id="Jx8-VQ-uJa"/>
+                                            <constraint firstAttribute="bottom" secondItem="NtA-pC-4cv" secondAttribute="bottom" id="lTS-3i-OX0"/>
+                                        </constraints>
+                                    </view>
+                                </subviews>
+                            </stackView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7S3-c2-Ema">
+                                <rect key="frame" x="107" y="281" width="161" height="30"/>
+                                <color key="backgroundColor" white="1" alpha="0.29984482019999997" colorSpace="calibratedWhite"/>
+                                <state key="normal" title="  Paste from Clipboard  ">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="pastePin" destination="png-33-wRC" eventType="touchUpInside" id="KNJ-EW-Ptc"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="INPUT" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qOA-n2-I7f">
+                                <rect key="frame" x="162" y="10" width="51" height="20.5"/>
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="MKA-yJ-lnN"/>
+                        <color key="backgroundColor" red="0.46481662330000001" green="0.36143663190000003" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="duo-gC-Ko8" firstAttribute="leading" secondItem="MKA-yJ-lnN" secondAttribute="leading" constant="8" id="5IZ-aQ-mtx"/>
+                            <constraint firstItem="duo-gC-Ko8" firstAttribute="top" secondItem="9Le-LL-Wwy" secondAttribute="bottom" constant="30" id="7Ut-pR-c3T"/>
+                            <constraint firstItem="aDv-Fg-Upo" firstAttribute="top" secondItem="duo-gC-Ko8" secondAttribute="bottom" constant="50" id="AI7-fG-pqH"/>
+                            <constraint firstItem="7S3-c2-Ema" firstAttribute="top" secondItem="aDv-Fg-Upo" secondAttribute="bottom" constant="30" id="C50-iX-H4c"/>
+                            <constraint firstItem="MKA-yJ-lnN" firstAttribute="trailing" secondItem="aDv-Fg-Upo" secondAttribute="trailing" constant="50" id="Ecu-tZ-zKq"/>
+                            <constraint firstItem="7S3-c2-Ema" firstAttribute="centerX" secondItem="dpH-Ca-Jgn" secondAttribute="centerX" id="I7F-mr-70R"/>
+                            <constraint firstItem="qOA-n2-I7f" firstAttribute="top" secondItem="MKA-yJ-lnN" secondAttribute="top" constant="10" id="LWg-4I-Y2N"/>
+                            <constraint firstItem="aDv-Fg-Upo" firstAttribute="leading" secondItem="MKA-yJ-lnN" secondAttribute="leading" constant="50" id="PFx-EZ-29M"/>
+                            <constraint firstItem="qOA-n2-I7f" firstAttribute="centerX" secondItem="dpH-Ca-Jgn" secondAttribute="centerX" id="V2d-TD-AgT"/>
+                            <constraint firstAttribute="trailing" secondItem="duo-gC-Ko8" secondAttribute="trailing" constant="8" id="XCY-XD-hbw"/>
+                            <constraint firstItem="9Le-LL-Wwy" firstAttribute="top" secondItem="qOA-n2-I7f" secondAttribute="bottom" constant="10" id="XgK-UH-tXo"/>
+                            <constraint firstItem="9Le-LL-Wwy" firstAttribute="centerX" secondItem="dpH-Ca-Jgn" secondAttribute="centerX" id="fz7-Sb-f8f"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="J4o-Q3-CFE"/>
+                    <connections>
+                        <outlet property="pinView" destination="duo-gC-Ko8" id="Qqh-YB-qWg"/>
+                        <outlet property="titleLabel" destination="qOA-n2-I7f" id="SuS-7T-ud9"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="TP4-6g-8zJ" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2457" y="134"/>
+        </scene>
+        <!--LOCK CONFIGURATION-->
+        <scene sceneID="hTa-2A-Lpi">
+            <objects>
+                <viewController id="FqC-QZ-eSk" customClass="KeychainConfigViewController" customModule="FuturaeDemo" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="njb-Vq-t3B">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="618"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FBE-Zd-I8F">
+                                <rect key="frame" x="0.0" y="10" width="375" height="364.5"/>
+                                <subviews>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" alignment="center" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="ex8-cS-kWs">
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="0.0"/>
+                                        <subviews>
+                                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="249" verticalCompressionResistancePriority="751" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rzg-JL-Xel" customClass="CustomDemoButton" customModule="FuturaeDemo" customModuleProvider="target">
+                                                <rect key="frame" x="53" y="0.0" width="191" height="0.0"/>
+                                                <color key="backgroundColor" red="0.2470588088" green="0.24313727020000001" blue="0.32941177490000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <inset key="contentEdgeInsets" minX="8" minY="8" maxX="8" maxY="8"/>
+                                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                                <state key="normal" title="Unlock with Biometrics">
+                                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                </state>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                        <real key="value" value="5"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                                        <real key="value" value="1"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                                        <color key="value" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
+                                                <connections>
+                                                    <action selector="unlockWithBiometrics:" destination="FqC-QZ-eSk" eventType="touchUpInside" id="eCh-bR-Ha0"/>
+                                                </connections>
+                                            </button>
+                                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="d6e-9S-z0F" customClass="CustomDemoButton" customModule="FuturaeDemo" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="0.0" width="297" height="0.0"/>
+                                                <color key="backgroundColor" red="0.2470588088" green="0.24313727020000001" blue="0.32941177490000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <inset key="contentEdgeInsets" minX="8" minY="8" maxX="8" maxY="8"/>
+                                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                                <state key="normal" title="Unlock with Biometrics OR Passcode">
+                                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                </state>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                        <real key="value" value="5"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                                        <real key="value" value="1"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                                        <color key="value" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
+                                                <connections>
+                                                    <action selector="unlockWithBiometricsPasscode:" destination="FqC-QZ-eSk" eventType="touchUpInside" id="Cc6-Zr-yh2"/>
+                                                </connections>
+                                            </button>
+                                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="p1K-S3-N5J" customClass="CustomDemoButton" customModule="FuturaeDemo" customModuleProvider="target">
+                                                <rect key="frame" x="103.5" y="0.0" width="90" height="0.0"/>
+                                                <color key="backgroundColor" red="0.2470588088" green="0.24313727020000001" blue="0.32941177490000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <inset key="contentEdgeInsets" minX="8" minY="8" maxX="8" maxY="8"/>
+                                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                                <state key="normal" title="Lock SDK">
+                                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                </state>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                        <real key="value" value="5"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                                        <real key="value" value="1"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                                        <color key="value" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
+                                                <connections>
+                                                    <action selector="lockSDK:" destination="FqC-QZ-eSk" eventType="touchUpInside" id="3ys-d6-858"/>
+                                                </connections>
+                                            </button>
+                                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vmp-Fi-12E" customClass="CustomDemoButton" customModule="FuturaeDemo" customModuleProvider="target">
+                                                <rect key="frame" x="37.5" y="0.0" width="222" height="0.0"/>
+                                                <color key="backgroundColor" red="0.2470588088" green="0.24313727020000001" blue="0.32941177490000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <inset key="contentEdgeInsets" minX="8" minY="8" maxX="8" maxY="8"/>
+                                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                                <state key="normal" title="Have Biometrics Changed?">
+                                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                </state>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                        <real key="value" value="5"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                                        <real key="value" value="1"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                                        <color key="value" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
+                                                <connections>
+                                                    <action selector="checkBiometricsValidity:" destination="FqC-QZ-eSk" eventType="touchUpInside" id="xiQ-Lh-H40"/>
+                                                </connections>
+                                            </button>
+                                            <stackView hidden="YES" opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="nBD-4Q-ClI">
+                                                <rect key="frame" x="57" y="0.0" width="183" height="30"/>
+                                                <subviews>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QvK-Kr-irh" customClass="CustomDemoButton" customModule="FuturaeDemo" customModuleProvider="target">
+                                                        <rect key="frame" x="0.0" y="0.0" width="183" height="0.0"/>
+                                                        <color key="backgroundColor" red="0.2470588088" green="0.24313727020000001" blue="0.32941177490000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                        <inset key="contentEdgeInsets" minX="8" minY="8" maxX="8" maxY="8"/>
+                                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                                        <state key="normal" title="Unlock with SDK PIN">
+                                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        </state>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                                <real key="value" value="5"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                            <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                                                <real key="value" value="1"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                            <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                                                <color key="value" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                        </userDefinedRuntimeAttributes>
+                                                        <connections>
+                                                            <action selector="unlockWithPin:" destination="FqC-QZ-eSk" eventType="touchUpInside" id="Ev4-s2-idD"/>
+                                                        </connections>
+                                                    </button>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SVQ-I9-FyT" customClass="CustomDemoButton" customModule="FuturaeDemo" customModuleProvider="target">
+                                                        <rect key="frame" x="0.0" y="10" width="183" height="0.0"/>
+                                                        <color key="backgroundColor" red="0.2470588088" green="0.24313727020000001" blue="0.32941177490000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                        <inset key="contentEdgeInsets" minX="8" minY="8" maxX="8" maxY="8"/>
+                                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                                        <state key="normal" title="Change SDK PIN">
+                                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        </state>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                                <real key="value" value="5"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                            <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                                                <real key="value" value="1"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                            <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                                                <color key="value" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                        </userDefinedRuntimeAttributes>
+                                                        <connections>
+                                                            <action selector="changePin:" destination="FqC-QZ-eSk" eventType="touchUpInside" id="OVO-11-mw1"/>
+                                                        </connections>
+                                                    </button>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HR1-Au-VaM" customClass="CustomDemoButton" customModule="FuturaeDemo" customModuleProvider="target">
+                                                        <rect key="frame" x="0.0" y="20" width="183" height="0.0"/>
+                                                        <color key="backgroundColor" red="0.2470588088" green="0.24313727020000001" blue="0.32941177490000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                        <inset key="contentEdgeInsets" minX="8" minY="8" maxX="8" maxY="8"/>
+                                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                                        <state key="normal" title="Activate Biometrics">
+                                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        </state>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                                <real key="value" value="5"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                            <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                                                <real key="value" value="1"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                            <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                                                <color key="value" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                        </userDefinedRuntimeAttributes>
+                                                        <connections>
+                                                            <action selector="activateBiometrics:" destination="FqC-QZ-eSk" eventType="touchUpInside" id="SAx-bR-CzE"/>
+                                                        </connections>
+                                                    </button>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2GW-rH-IjZ" customClass="CustomDemoButton" customModule="FuturaeDemo" customModuleProvider="target">
+                                                        <rect key="frame" x="0.0" y="30" width="183" height="0.0"/>
+                                                        <color key="backgroundColor" red="0.2470588088" green="0.24313727020000001" blue="0.32941177490000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                        <inset key="contentEdgeInsets" minX="8" minY="8" maxX="8" maxY="8"/>
+                                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                                        <state key="normal" title="Deactivate Biometrics">
+                                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        </state>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                                <real key="value" value="5"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                            <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                                                <real key="value" value="1"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                            <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                                                <color key="value" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                        </userDefinedRuntimeAttributes>
+                                                        <connections>
+                                                            <action selector="deactivateBiometrics:" destination="FqC-QZ-eSk" eventType="touchUpInside" id="HZ7-Cc-aqk"/>
+                                                        </connections>
+                                                    </button>
+                                                </subviews>
+                                            </stackView>
+                                        </subviews>
+                                    </stackView>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="ex8-cS-kWs" firstAttribute="width" secondItem="FBE-Zd-I8F" secondAttribute="width" id="8rW-ba-PgS"/>
+                                    <constraint firstItem="ex8-cS-kWs" firstAttribute="leading" secondItem="FBE-Zd-I8F" secondAttribute="leading" id="Y0F-0u-3TL"/>
+                                    <constraint firstAttribute="trailing" secondItem="ex8-cS-kWs" secondAttribute="trailing" id="gdo-rT-Mez"/>
+                                    <constraint firstItem="ex8-cS-kWs" firstAttribute="top" secondItem="FBE-Zd-I8F" secondAttribute="top" id="huD-88-MIe"/>
+                                    <constraint firstAttribute="bottom" secondItem="ex8-cS-kWs" secondAttribute="bottom" id="j1W-ra-DO1"/>
+                                </constraints>
+                            </scrollView>
+                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Status" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="D4p-4s-dTw">
+                                <rect key="frame" x="16" y="384.5" width="343" height="20.5"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="20.5" id="BjB-h5-qru"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="natural" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lnb-uK-4FM">
+                                <rect key="frame" x="16" y="405" width="343" height="70"/>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="70" id="MED-0G-INJ"/>
+                                </constraints>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="pRe-4N-bzo">
+                                <rect key="frame" x="16" y="475" width="343" height="143"/>
+                                <subviews>
+                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="86J-tq-D4g">
+                                        <rect key="frame" x="0.0" y="0.0" width="343" height="38"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YKd-3A-QvE" customClass="CustomDemoButton" customModule="FuturaeDemo" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="0.0" width="171.5" height="38"/>
+                                                <state key="normal" title="Button"/>
+                                                <buttonConfiguration key="configuration" style="plain" title="LAUNCH">
+                                                    <fontDescription key="titleFontDescription" type="system" pointSize="20"/>
+                                                    <color key="baseForegroundColor" systemColor="systemGreenColor"/>
+                                                </buttonConfiguration>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                        <real key="value" value="5"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                                        <real key="value" value="1"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                                        <color key="value" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
+                                                <connections>
+                                                    <action selector="saveSettings:" destination="FqC-QZ-eSk" eventType="touchUpInside" id="x62-O8-nS1"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MBP-Zb-yoS" customClass="CustomDemoButton" customModule="FuturaeDemo" customModuleProvider="target">
+                                                <rect key="frame" x="171.5" y="0.0" width="171.5" height="38"/>
+                                                <state key="normal" title="Button"/>
+                                                <buttonConfiguration key="configuration" style="plain" title="RESET">
+                                                    <fontDescription key="titleFontDescription" type="system" pointSize="20"/>
+                                                    <color key="baseForegroundColor" systemColor="systemPinkColor"/>
+                                                </buttonConfiguration>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                        <real key="value" value="5"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                                        <real key="value" value="1"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                                        <color key="value" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
+                                                <connections>
+                                                    <action selector="reset:" destination="FqC-QZ-eSk" eventType="touchUpInside" id="6Fw-pT-eLm"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </stackView>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Bfr-Bm-fYm">
+                                        <rect key="frame" x="0.0" y="43" width="343" height="100"/>
+                                        <subviews>
+                                            <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lUr-hb-Tha">
+                                                <rect key="frame" x="0.0" y="0.0" width="343" height="100"/>
+                                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="100" id="9rH-px-F5G"/>
+                                                </constraints>
+                                                <connections>
+                                                    <outlet property="dataSource" destination="FqC-QZ-eSk" id="0oB-Pg-4NL"/>
+                                                    <outlet property="delegate" destination="FqC-QZ-eSk" id="b47-n4-drK"/>
+                                                </connections>
+                                            </pickerView>
+                                        </subviews>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstAttribute="bottom" secondItem="lUr-hb-Tha" secondAttribute="bottom" id="Zf1-9U-LXy"/>
+                                            <constraint firstItem="lUr-hb-Tha" firstAttribute="leading" secondItem="Bfr-Bm-fYm" secondAttribute="leading" id="a97-yG-QPP"/>
+                                            <constraint firstItem="lUr-hb-Tha" firstAttribute="top" secondItem="Bfr-Bm-fYm" secondAttribute="top" id="gDf-Cn-r19"/>
+                                            <constraint firstAttribute="trailing" secondItem="lUr-hb-Tha" secondAttribute="trailing" id="qaP-TU-F0e"/>
+                                        </constraints>
+                                    </view>
+                                </subviews>
+                            </stackView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="cf3-xs-HMO"/>
+                        <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="D4p-4s-dTw" firstAttribute="top" secondItem="FBE-Zd-I8F" secondAttribute="bottom" constant="10" id="54s-UX-bHZ"/>
+                            <constraint firstItem="FBE-Zd-I8F" firstAttribute="top" secondItem="cf3-xs-HMO" secondAttribute="top" constant="10" id="6Rz-AR-oFr"/>
+                            <constraint firstItem="cf3-xs-HMO" firstAttribute="bottom" secondItem="pRe-4N-bzo" secondAttribute="bottom" id="6ff-FZ-5oJ"/>
+                            <constraint firstItem="cf3-xs-HMO" firstAttribute="trailing" secondItem="lnb-uK-4FM" secondAttribute="trailing" constant="16" id="Eq1-Hd-Nhr"/>
+                            <constraint firstItem="pRe-4N-bzo" firstAttribute="leading" secondItem="cf3-xs-HMO" secondAttribute="leading" constant="16" id="Q43-ND-Bzj"/>
+                            <constraint firstItem="cf3-xs-HMO" firstAttribute="trailing" secondItem="pRe-4N-bzo" secondAttribute="trailing" constant="16" id="c9s-6M-qU7"/>
+                            <constraint firstItem="cf3-xs-HMO" firstAttribute="trailing" secondItem="FBE-Zd-I8F" secondAttribute="trailing" id="eon-9t-GGF"/>
+                            <constraint firstItem="lnb-uK-4FM" firstAttribute="leading" secondItem="cf3-xs-HMO" secondAttribute="leading" constant="16" id="gBd-pa-wDP"/>
+                            <constraint firstItem="cf3-xs-HMO" firstAttribute="trailing" secondItem="D4p-4s-dTw" secondAttribute="trailing" constant="16" id="kNL-rx-eqj"/>
+                            <constraint firstItem="lnb-uK-4FM" firstAttribute="bottom" secondItem="pRe-4N-bzo" secondAttribute="top" id="oHe-ZR-R9S"/>
+                            <constraint firstItem="FBE-Zd-I8F" firstAttribute="leading" secondItem="cf3-xs-HMO" secondAttribute="leading" id="otk-lO-Beq"/>
+                            <constraint firstItem="lnb-uK-4FM" firstAttribute="top" secondItem="D4p-4s-dTw" secondAttribute="bottom" id="qXc-fN-URe"/>
+                            <constraint firstItem="D4p-4s-dTw" firstAttribute="leading" secondItem="cf3-xs-HMO" secondAttribute="leading" constant="16" id="tYN-zy-tFy"/>
+                        </constraints>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="LOCK CONFIGURATION" image="gear" catalog="system" selectedImage="gear" id="6te-Ru-kXM"/>
+                    <connections>
+                        <outlet property="activatePinBiometricsBtn" destination="HR1-Au-VaM" id="5sf-zl-Jtg"/>
+                        <outlet property="changePinBtn" destination="SVQ-I9-FyT" id="44a-A1-27X"/>
+                        <outlet property="checkBiometricsBtn" destination="vmp-Fi-12E" id="FC9-GW-FdP"/>
+                        <outlet property="deactivatePinBiometricsBtn" destination="2GW-rH-IjZ" id="Gdb-7z-ylo"/>
+                        <outlet property="lockSDKBtn" destination="p1K-S3-N5J" id="74k-MF-rUZ"/>
+                        <outlet property="pinStack" destination="nBD-4Q-ClI" id="j4f-49-Aey"/>
+                        <outlet property="settingsPickerView" destination="lUr-hb-Tha" id="ps7-I3-NJh"/>
+                        <outlet property="statusLabel" destination="D4p-4s-dTw" id="3rR-Fo-TCB"/>
+                        <outlet property="unlockWithBiometricsBtn" destination="rzg-JL-Xel" id="5Ob-bV-VFY"/>
+                        <outlet property="unlockWithBiometricsPasscodeBtn" destination="d6e-9S-z0F" id="rsN-2F-vlb"/>
+                        <outlet property="unlockWithPIN" destination="QvK-Kr-irh" id="Zs2-xD-iS5"/>
+                        <outlet property="valueTextView" destination="lnb-uK-4FM" id="HYv-dm-h5h"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Cfu-JQ-f3g" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1460" y="516"/>
+        </scene>
     </scenes>
+    <designables>
+        <designable name="2GW-rH-IjZ">
+            <size key="intrinsicContentSize" width="183" height="37"/>
+        </designable>
+        <designable name="DW9-WM-BQq">
+            <size key="intrinsicContentSize" width="207" height="37"/>
+        </designable>
+        <designable name="Fu1-ck-yQS">
+            <size key="intrinsicContentSize" width="70" height="37"/>
+        </designable>
+        <designable name="HR1-Au-VaM">
+            <size key="intrinsicContentSize" width="163" height="37"/>
+        </designable>
+        <designable name="IJp-DQ-N3R">
+            <size key="intrinsicContentSize" width="264" height="37"/>
+        </designable>
+        <designable name="M0a-WQ-c6y">
+            <size key="intrinsicContentSize" width="59" height="37"/>
+        </designable>
+        <designable name="MBP-Zb-yoS">
+            <size key="intrinsicContentSize" width="83" height="38"/>
+        </designable>
+        <designable name="NUG-QO-Bxf">
+            <size key="intrinsicContentSize" width="99" height="37"/>
+        </designable>
+        <designable name="QvK-Kr-irh">
+            <size key="intrinsicContentSize" width="174" height="37"/>
+        </designable>
+        <designable name="SVQ-I9-FyT">
+            <size key="intrinsicContentSize" width="144" height="37"/>
+        </designable>
+        <designable name="T5Q-1N-nio">
+            <size key="intrinsicContentSize" width="127" height="37"/>
+        </designable>
+        <designable name="YKd-3A-QvE">
+            <size key="intrinsicContentSize" width="103.5" height="38"/>
+        </designable>
+        <designable name="ZE9-cC-fgo">
+            <size key="intrinsicContentSize" width="344" height="37"/>
+        </designable>
+        <designable name="bD9-Mr-AGE">
+            <size key="intrinsicContentSize" width="194" height="37"/>
+        </designable>
+        <designable name="d6e-9S-z0F">
+            <size key="intrinsicContentSize" width="297" height="37"/>
+        </designable>
+        <designable name="eJL-2h-Bpp">
+            <size key="intrinsicContentSize" width="179" height="37"/>
+        </designable>
+        <designable name="fyS-7w-qUY">
+            <size key="intrinsicContentSize" width="219" height="37"/>
+        </designable>
+        <designable name="gMv-wT-lt6">
+            <size key="intrinsicContentSize" width="166" height="37"/>
+        </designable>
+        <designable name="idy-dX-CuG">
+            <size key="intrinsicContentSize" width="292" height="37"/>
+        </designable>
+        <designable name="o3k-Hi-SjC">
+            <size key="intrinsicContentSize" width="209" height="37"/>
+        </designable>
+        <designable name="opL-80-ACl">
+            <size key="intrinsicContentSize" width="247" height="37"/>
+        </designable>
+        <designable name="p1K-S3-N5J">
+            <size key="intrinsicContentSize" width="90" height="37"/>
+        </designable>
+        <designable name="rzg-JL-Xel">
+            <size key="intrinsicContentSize" width="191" height="37"/>
+        </designable>
+        <designable name="v4j-GO-GWb">
+            <size key="intrinsicContentSize" width="178" height="37"/>
+        </designable>
+        <designable name="vmp-Fi-12E">
+            <size key="intrinsicContentSize" width="222" height="37"/>
+        </designable>
+    </designables>
+    <resources>
+        <image name="gear" catalog="system" width="128" height="122"/>
+        <image name="terminal" catalog="system" width="128" height="93"/>
+        <systemColor name="systemGreenColor">
+            <color red="0.20392156862745098" green="0.7803921568627451" blue="0.34901960784313724" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemPinkColor">
+            <color red="1" green="0.17647058823529413" blue="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+    </resources>
 </document>
