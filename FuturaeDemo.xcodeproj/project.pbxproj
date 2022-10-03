@@ -29,6 +29,7 @@
 		C672FB252850CCCC006C23E5 /* PinViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C672FB232850CCCB006C23E5 /* PinViewController.swift */; };
 		C672FB262850CCCC006C23E5 /* KeychainConfigViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C672FB242850CCCB006C23E5 /* KeychainConfigViewController.swift */; };
 		C683ADC3286F0EB50023523E /* SDKConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = C683ADC2286F0EB50023523E /* SDKConstants.swift */; };
+		C6B443FF28EB752900C760CF /* FuturaeKit in Frameworks */ = {isa = PBXBuildFile; productRef = C6B443FE28EB752900C760CF /* FuturaeKit */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -69,6 +70,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C6B443FF28EB752900C760CF /* FuturaeKit in Frameworks */,
 				5E837AF92021D0E000DA4FCC /* UserNotifications.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -201,6 +203,7 @@
 			);
 			name = FuturaeDemo;
 			packageProductDependencies = (
+				C6B443FE28EB752900C760CF /* FuturaeKit */,
 			);
 			productName = FuturaeDemo;
 			productReference = 5E587B181FF41B0C0024ACFA /* FuturaeDemo.app */;
@@ -239,7 +242,7 @@
 			);
 			mainGroup = 5E587B0F1FF41B0C0024ACFA;
 			packageReferences = (
-				C61B5D9F28EB5443009AEE0C /* XCRemoteSwiftPackageReference "ios-sdk" */,
+				C6B443FD28EB752900C760CF /* XCRemoteSwiftPackageReference "ios-sdk" */,
 			);
 			productRefGroup = 5E587B191FF41B0C0024ACFA /* Products */;
 			projectDirPath = "";
@@ -488,7 +491,7 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		C61B5D9F28EB5443009AEE0C /* XCRemoteSwiftPackageReference "ios-sdk" */ = {
+		C6B443FD28EB752900C760CF /* XCRemoteSwiftPackageReference "ios-sdk" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/Futurae-Technologies/ios-sdk";
 			requirement = {
@@ -497,6 +500,14 @@
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		C6B443FE28EB752900C760CF /* FuturaeKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = C6B443FD28EB752900C760CF /* XCRemoteSwiftPackageReference "ios-sdk" */;
+			productName = FuturaeKit;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 5E587B101FF41B0C0024ACFA /* Project object */;
 }
