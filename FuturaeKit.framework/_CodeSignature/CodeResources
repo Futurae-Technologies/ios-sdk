@@ -14,7 +14,7 @@
 		</data>
 		<key>Headers/FTRClient.h</key>
 		<data>
-		MXHE4odxmt/hK6DUCHKSYkr3P9Y=
+		aPMu5GtqLRsRNilDHEppkQiWhUc=
 		</data>
 		<key>Headers/FTRConfig.h</key>
 		<data>
@@ -26,7 +26,7 @@
 		</data>
 		<key>Headers/FTRKeychainConfig.h</key>
 		<data>
-		xEnfO5Z7bsuOlbeRvME9+NmPqI0=
+		v9fwT5qmnKOOCsdihF40wzi63bY=
 		</data>
 		<key>Headers/FTRNotificationDelegate.h</key>
 		<data>
@@ -62,7 +62,7 @@
 		</data>
 		<key>Headers/LockConfiguration.h</key>
 		<data>
-		ReWT8PfSmvWbi3LIjayb01p1Tc0=
+		nduj+40xNzIu5vlVEjzSH29K5wM=
 		</data>
 		<key>Headers/SDKState.h</key>
 		<data>
@@ -74,15 +74,15 @@
 		</data>
 		<key>Modules/FuturaeKit.swiftmodule/Project/arm64-apple-ios-simulator.swiftsourceinfo</key>
 		<data>
-		KW7Sum5EZD2P6wKowe5IgaqE/Ec=
+		/F8LGKuM450Nssg8XouaFNhEmDU=
 		</data>
 		<key>Modules/FuturaeKit.swiftmodule/Project/x86_64-apple-ios-simulator.swiftsourceinfo</key>
 		<data>
-		HWICh+MK/rhYLK8WH7jqy2t4aS4=
+		0r84UAnY4aVNk7zBllk7LIjd3BY=
 		</data>
 		<key>Modules/FuturaeKit.swiftmodule/arm64-apple-ios-simulator.abi.json</key>
 		<data>
-		O7B/XMlkOjSUpXSFMWZ6m/vbge0=
+		ODIowRkk4kGo12rRN+/SXThl3Yo=
 		</data>
 		<key>Modules/FuturaeKit.swiftmodule/arm64-apple-ios-simulator.private.swiftinterface</key>
 		<data>
@@ -98,11 +98,11 @@
 		</data>
 		<key>Modules/FuturaeKit.swiftmodule/arm64-apple-ios-simulator.swiftmodule</key>
 		<data>
-		LYdgp4D8usB78USdO2BTL4VCmEU=
+		TwbSXrLAzK1GQupCDHdwOXo3VyY=
 		</data>
 		<key>Modules/FuturaeKit.swiftmodule/x86_64-apple-ios-simulator.abi.json</key>
 		<data>
-		O7B/XMlkOjSUpXSFMWZ6m/vbge0=
+		ODIowRkk4kGo12rRN+/SXThl3Yo=
 		</data>
 		<key>Modules/FuturaeKit.swiftmodule/x86_64-apple-ios-simulator.private.swiftinterface</key>
 		<data>
@@ -118,7 +118,7 @@
 		</data>
 		<key>Modules/FuturaeKit.swiftmodule/x86_64-apple-ios-simulator.swiftmodule</key>
 		<data>
-		DLJqHRRQg7hs9rLmLoAD4QvkgrM=
+		BWi5REIbx1Uc+/wH1ePifEbx0/g=
 		</data>
 		<key>Modules/module.modulemap</key>
 		<data>
@@ -145,7 +145,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			2/1WrOOWT2k29tGArlmjPVq8mtgJJT8fw2OyQOQyVuE=
+			gjcoYdOAwWR4mkYT93+maA/ln2tY+NzDiLpaYVAwfO4=
 			</data>
 		</dict>
 		<key>Headers/FTRConfig.h</key>
@@ -166,7 +166,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			vzLOmJS3BpMrkI2HREBxaGXgHAb65lAEldlhW1vpeCQ=
+			J9JXFT1EdXlBQ619NJeQex9u/8+o12Nv0a0BotTCQlo=
 			</data>
 		</dict>
 		<key>Headers/FTRNotificationDelegate.h</key>
@@ -229,7 +229,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			hWW2QcVm9ZxFVT+qrvpj8/BmkpQO70SCyeGycB07wfQ=
+			SaqLWRSDyEnBDJC7YIDIFIWE2UW7RubkzoZHEe5qW7E=
 			</data>
 		</dict>
 		<key>Headers/SDKState.h</key>
@@ -243,21 +243,21 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			Arz8vwg0hZOScba1jHEyrtkXXlIOyBWigUF0solNukk=
+			MRZeaKjs4GkaVjIt4lm42ugBzej+5owwAhbvWszYjno=
 			</data>
 		</dict>
 		<key>Modules/FuturaeKit.swiftmodule/Project/x86_64-apple-ios-simulator.swiftsourceinfo</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			JX581kBf3UVyLlJh4vEXvhNULPbgXE/EtyPKdzsnHh4=
+			z0qqU1s83qj3mflMk3Xa6ta8iyXFMCKmiZTBVA8pxfE=
 			</data>
 		</dict>
 		<key>Modules/FuturaeKit.swiftmodule/arm64-apple-ios-simulator.abi.json</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			/J0JQIAluw5DKw8IgPx58AT8St/eGJhFIq4I6og/ZTg=
+			UURT2G6ePcE9sAGSYkAEZyp3LkEY4NgPlRYH7ozvg/8=
 			</data>
 		</dict>
 		<key>Modules/FuturaeKit.swiftmodule/arm64-apple-ios-simulator.private.swiftinterface</key>
@@ -285,14 +285,14 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			NirGgStSwumHcm/hFD7hJVa5mHtEbrdnhO2+G5zRcEg=
+			Un9nuDfgmpkQg0+BenFTuF7hcVZ267zuZBY+wxKTow4=
 			</data>
 		</dict>
 		<key>Modules/FuturaeKit.swiftmodule/x86_64-apple-ios-simulator.abi.json</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			/J0JQIAluw5DKw8IgPx58AT8St/eGJhFIq4I6og/ZTg=
+			UURT2G6ePcE9sAGSYkAEZyp3LkEY4NgPlRYH7ozvg/8=
 			</data>
 		</dict>
 		<key>Modules/FuturaeKit.swiftmodule/x86_64-apple-ios-simulator.private.swiftinterface</key>
@@ -320,7 +320,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			CfSoPzoP6gB4nKyv7l32EL3YPUzW93bUqz4f9pil8mA=
+			SVaH9zhGy9K9fXkkPh17XjH2KCm5eX1eFuHcMwGA3GY=
 			</data>
 		</dict>
 		<key>Modules/module.modulemap</key>

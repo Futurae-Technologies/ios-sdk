@@ -48,11 +48,29 @@ typedef void (^FTRLockHandler)(NSError * _Nullable error);
 @property (nonatomic) NSTimeInterval unlockDuration;
 @property (nonatomic) BOOL invalidatedByBiometricsChange;
 
+///  Return a new instance of LockConfiguration.
+///
+/// - Parameters:
+///     - type: Optional value of LockConfigurationType enum. Sets the lock configuration type. If this is not set, it will default to LockConfigurationTypeNone.
+/// - Returns: A new instance of LockConfiguration.
 -(instancetype)initWithType:(LockConfigurationType)type;
 
+///  Return a new instance of LockConfiguration.
+///
+/// - Parameters:
+///     - type: Optional value of LockConfigurationType enum. Sets the lock configuration type. If this is not set, it will default to LockConfigurationTypeNone.
+///     - unlockDuration: Optional duration in seconds that the SDK unlocks for, after successfully calling an unlock method. If this is not set, then the SDK will assume a default unlock duration of 60 seconds.
+/// - Returns: A new instance of LockConfiguration.
 -(instancetype)initWithType:(LockConfigurationType)type
 unlockDuration: (NSTimeInterval)unlockDuration;
 
+///  Return a new instance of LockConfiguration.
+///
+/// - Parameters:
+///     - type: Optional value of LockConfigurationType enum. Sets the lock configuration type. If this is not set, it will default to LockConfigurationTypeNone.
+///     - unlockDuration: Optional duration in seconds that the SDK unlocks for, after successfully calling an unlock method. If this is not set, then the SDK will assume a default unlock duration of 60 seconds.
+///     - invalidatedByBiometricsChange: Optional boolean flag to define if the cryptographic keys will be invalidated when biometrics on the device change (adding/removing). If this is not set, it will default to false.
+/// - Returns: A new instance of LockConfiguration.
 -(instancetype)initWithType:(LockConfigurationType)type
 unlockDuration: (NSTimeInterval)unlockDuration
 invalidatedByBiometricsChange: (BOOL)invalidatedByBiometricsChange;
