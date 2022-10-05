@@ -213,7 +213,7 @@ BOOL operationWithBiometrics = NO;
     [FTRClient.sharedClient executeAccountMigrationSuccess:^(NSArray<FTRAccount *> * _Nonnull accountsMigrated) {
         NSString *title = @"Executing account migration succeeds";
         NSArray<NSString *> *usernames = [accountsMigrated map:^NSString *_Nonnull(FTRAccount *account) {
-            return account.username;
+            return account.username ? account.username : @"";
         }];
         NSString *joinedUsernames = [usernames componentsJoinedByString:@"\n"];
         NSString *message = [NSString stringWithFormat:@"Migrated accounts [%lu]:\n\n%@",
