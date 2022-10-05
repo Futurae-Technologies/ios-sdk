@@ -1,11 +1,16 @@
+# Version `1.5.3`
+2022-10-05
+
++ [Changed] Safely insert values in dictionary within openURL method to prevent crashes.
+
 # Version `1.5.2`
-2021-10-07
+2022-09-30
 
 + [Changed] `uri_success_callback_url` and `uri_failure_callback_url` query parameters are not used in authentication URL anymore. Use `mobile_auth_redirect_uri` instead.
 + [Changed] Disable code coverage
 
 # Version `1.5.1`
-2021-10-07
+2021-07-01
 
 + [Removed] CFBundleSupportedPlatforms key from the Info.plist file
 + [Changed] Dropped support for iOS 9.0. Bumped deployment target version to iOS 10.0.

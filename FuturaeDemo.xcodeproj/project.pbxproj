@@ -452,7 +452,7 @@
 			repositoryURL = "https://github.com/Futurae-Technologies/ios-sdk";
 			requirement = {
 				kind = exactVersion;
-				version = 1.5.2;
+				version = 1.5.3;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
