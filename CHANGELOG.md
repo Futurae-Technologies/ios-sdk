@@ -1,3 +1,8 @@
+# Version `2.0.1`
+2022-30-09
+
++ [Changed] Safely insert values in dictionary within openURL method to prevent crashes.
+
 # Version `2.0.0`
 2022-30-09
 
