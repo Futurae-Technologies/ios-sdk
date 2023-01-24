@@ -1,3 +1,14 @@
+# Version `2.0.3`
+2023-23-01
+
++ [Fixed] Bug where SDK doesn't properly check for existing RSA keys
++ [Changed] Add condition for sending public key to server based on user defaults value
+
+# Version `2.0.2`
+2022-18-10
+
++ [Changed] Build framework with latest official Xcode release
+
 # Version `2.0.1`
 2022-30-09
 
