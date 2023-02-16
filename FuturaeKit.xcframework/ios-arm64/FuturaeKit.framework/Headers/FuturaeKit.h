@@ -25,4 +25,4 @@ FOUNDATION_EXPORT const unsigned char FuturaeKitVersionString[];
 #import <FuturaeKit/SDKState.h>
 #import <FuturaeKit/FTRPublicConstants.h>
 #import <FuturaeKit/FTRApiError.h>
-
+#import <FuturaeKit/KeychainAccessibility.h>

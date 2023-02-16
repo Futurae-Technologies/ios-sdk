@@ -8,6 +8,7 @@
 
 import UIKit
 import FuturaeKit
+import LocalAuthentication
 
 final class KeychainConfigViewController: UIViewController {
     @IBOutlet weak var statusLabel: UILabel!
@@ -91,13 +92,14 @@ final class KeychainConfigViewController: UIViewController {
     }
 
     func setupConfig(){
+        let startInvalidatedByBiometricsChange = LAContext().canEvaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, error: nil)
         let type = selectedConfigOption!
         let config = FTRConfig(sdkId: SDKConstants.SDKID,
                                sdkKey: SDKConstants.SDKKEY,
                                baseUrl: SDKConstants.SDKURL,
                                lockConfiguration: LockConfiguration(type: type,
                                                                     unlockDuration: 60,
-                                                                    invalidatedByBiometricsChange: true)
+                                                                    invalidatedByBiometricsChange: startInvalidatedByBiometricsChange)
         )
         FTRClient.launch(with: config) { [unowned self] in
 

@@ -6,7 +6,7 @@
 	<dict>
 		<key>Headers/FTRAccount.h</key>
 		<data>
-		yXLk1LIvrHetMNmtJMrkAZQC6DA=
+		qHAgW2uncx6sOZG6ULXwE6C9BAM=
 		</data>
 		<key>Headers/FTRApiError.h</key>
 		<data>
@@ -14,11 +14,11 @@
 		</data>
 		<key>Headers/FTRClient.h</key>
 		<data>
-		aPMu5GtqLRsRNilDHEppkQiWhUc=
+		/SaAjGz74DAYI7m0/XgDkHYS4dQ=
 		</data>
 		<key>Headers/FTRConfig.h</key>
 		<data>
-		/FTYgvn7DL/44TMi5V2bLXcz7Ao=
+		YJDotMRqKsxw7TgGw7L9ki7j32I=
 		</data>
 		<key>Headers/FTRExtraInfo.h</key>
 		<data>
@@ -54,7 +54,7 @@
 		</data>
 		<key>Headers/FuturaeKit.h</key>
 		<data>
-		v/W3zQzAydAzXGwHbKZvp50DReM=
+		rKiXbnCMSv2HmhN9edgaBRiRHpc=
 		</data>
 		<key>Headers/KeychainAccessibility.h</key>
 		<data>
@@ -70,15 +70,15 @@
 		</data>
 		<key>Info.plist</key>
 		<data>
-		giZdWPiYAqIdVEblc0Rzh44hUNw=
+		YsqSP3ku7PBV2EyF9qlrfews748=
 		</data>
 		<key>Modules/FuturaeKit.swiftmodule/Project/arm64-apple-ios-simulator.swiftsourceinfo</key>
 		<data>
-		FE5trBMGC4yOvSD0/F4PgIcOmDk=
+		BNnJwrefiGL4ceGP7ijr7Lh9Sd8=
 		</data>
 		<key>Modules/FuturaeKit.swiftmodule/Project/x86_64-apple-ios-simulator.swiftsourceinfo</key>
 		<data>
-		DSaJdQbLNIaBfKYRO7wRXTqWK84=
+		cZE8t90V0xV6id7L4/dAOeLPorI=
 		</data>
 		<key>Modules/FuturaeKit.swiftmodule/arm64-apple-ios-simulator.abi.json</key>
 		<data>
@@ -131,7 +131,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			si4W+1s55laHOWEkqbySh+Ar6tbgacQ3TJEoQGD9oAw=
+			z05gZSSasULPgzWeJHWia4iy3hxw5XOOvWpvxiexMqM=
 			</data>
 		</dict>
 		<key>Headers/FTRApiError.h</key>
@@ -145,14 +145,14 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			gjcoYdOAwWR4mkYT93+maA/ln2tY+NzDiLpaYVAwfO4=
+			TlsrSZ2ZgkK+/txkg4+s4Ad3SR4itXYUpg5GB6kXt48=
 			</data>
 		</dict>
 		<key>Headers/FTRConfig.h</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			W3Tij3ZNK/rop/2kbxIFnOGR/sWBvddKlc66CpI+SSo=
+			Beve/j3uTnFpT4oCmEWPX7pz0O48rENL7DnG2M/beIQ=
 			</data>
 		</dict>
 		<key>Headers/FTRExtraInfo.h</key>
@@ -215,7 +215,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			rxs4tKfJaZ4hBS2T7qCRZyJdZc1azj1WT9iFhf0ldDM=
+			fjSaFPRtIokQ7r6VTMtiY4IT0l8yumte1vskxEo8iwE=
 			</data>
 		</dict>
 		<key>Headers/KeychainAccessibility.h</key>
@@ -243,14 +243,14 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			DUtw2mGWjpjHfQzR5dO9hvDVJN+xwDOa3vkXLM56QLs=
+			zChfprmhDAYE4+TfnxJM9cT3cVjYWGUZ0R/f4y3HJYY=
 			</data>
 		</dict>
 		<key>Modules/FuturaeKit.swiftmodule/Project/x86_64-apple-ios-simulator.swiftsourceinfo</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			fDYgiNWVxtufjUffa8nHRSQXAS2OYc66Jvy1ZoZJ+8A=
+			JfwxSOZ2XTrxZhraVsD9nk0DPvO+drIJuEK2vQtfNXU=
 			</data>
 		</dict>
 		<key>Modules/FuturaeKit.swiftmodule/arm64-apple-ios-simulator.abi.json</key>

@@ -18,7 +18,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *messageLabel;
 @property (strong, nonatomic) IBOutletCollection(UIButton) NSArray *pinButtons;
 
-@property (nonatomic) BOOL *enrollWithPin;
+@property (nonatomic) BOOL enrollWithPin;
 
 - (IBAction)enrollTouchedUpInside:(UIButton *)sender;
 - (IBAction)enrollWithPinTouchedUpInside:(UIButton *)sender;
@@ -30,6 +30,7 @@
 - (IBAction)totpWithPINTouchedUpInside:(id)sender;
 - (IBAction)offlineQRCodeWithPINTouchedUpInside:(id)sender;
 - (IBAction)scanQRCodeWithPINTouchedUpInside:(id)sender;
+- (IBAction)fetchAccountHistory:(UIButton *)sender;
 
 @end
 

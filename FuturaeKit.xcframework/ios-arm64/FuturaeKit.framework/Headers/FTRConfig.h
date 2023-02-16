@@ -45,11 +45,6 @@ NS_ASSUME_NONNULL_BEGIN
 + (instancetype)configWithSdkId:(NSString *)sdkId
                          sdkKey:(NSString *)sdkKey
                         baseUrl:(NSString *)baseUrl
-              lockConfiguration: (LockConfiguration * )lockConfiguration;
-
-+ (instancetype)configWithSdkId:(NSString *)sdkId
-                         sdkKey:(NSString *)sdkKey
-                        baseUrl:(NSString *)baseUrl
                        keychain:(FTRKeychainConfig *)keychain
               lockConfiguration: (LockConfiguration * )lockConfiguration;
 

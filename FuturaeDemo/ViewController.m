@@ -16,6 +16,7 @@
 #import <FuturaeKit/FuturaeKit.h>
 #import "NSArray+Map.h"
 #import "FuturaeDemo-Swift.h"
+#import "HistoryItem.h"
 
 ////////////////////////////////////////////////////////////////////////////////
 @interface ViewController () <FTRQRCodeReaderDelegate>
@@ -167,6 +168,22 @@ BOOL operationWithBiometrics = NO;
     }
 }
 
+- (IBAction)syncTokenTouchedUpInside:(UIButton *)sender
+{
+    __weak __typeof(self) weakSelf = self;
+    FTRAccount *account = [[FTRClient sharedClient] getAccounts].firstObject;
+    [[FTRClient sharedClient] synchronousAuthTokenForUser:account.user_id callback:^(NSError * _Nullable error, NSString * _Nullable token) {
+        if (error) {
+            [weakSelf _showAlertWithTitle:@"Error" message:error.userInfo[@"msg"]];
+            return;
+        }
+        
+        NSString *title = @"Sync Auth Token";
+        UIPasteboard.generalPasteboard.string = token;
+        [weakSelf _showAlertWithTitle:title message:token];
+    }];
+}
+
 - (IBAction)scanQRCodeTouchedUpInside:(UIButton *)sender
 {
     [self presentQRCodeControllerWithQRCodeType:QRCodeTypeGeneric sender:sender];
@@ -213,7 +230,7 @@ BOOL operationWithBiometrics = NO;
     [FTRClient.sharedClient executeAccountMigrationSuccess:^(NSArray<FTRAccount *> * _Nonnull accountsMigrated) {
         NSString *title = @"Executing account migration succeeds";
         NSArray<NSString *> *usernames = [accountsMigrated map:^NSString *_Nonnull(FTRAccount *account) {
-            return account.username ? account.username : @"";
+            return account.username;
         }];
         NSString *joinedUsernames = [usernames componentsJoinedByString:@"\n"];
         NSString *message = [NSString stringWithFormat:@"Migrated accounts [%lu]:\n\n%@",
@@ -227,6 +244,35 @@ BOOL operationWithBiometrics = NO;
     }];
 }
 
+- (IBAction)fetchAccountHistory:(UIButton *)sender {
+    FTRAccount *account = [[FTRClient sharedClient] getAccounts].firstObject;
+    __weak __typeof(self) weakSelf = self;
+    [FTRClient.sharedClient getAccountHistory:account success:^(id responseObject) {
+        NSArray<HistoryItem *> *allItems = [weakSelf historyItemsFromResponse:responseObject];
+        HistoryTableViewController *vc = [[HistoryTableViewController alloc] initWithAccount:account items:allItems];
+        UINavigationController *nc = [[UINavigationController alloc] initWithRootViewController:vc];
+        [self presentViewController:nc animated:YES completion:nil];
+    }
+    failure:^(NSError * _Nullable error) {
+        NSString *title = @"Fetch account history failed";
+        NSString *message = [error.userInfo.allValues componentsJoinedByString:@", "];
+        [weakSelf _showAlertWithTitle:title message:message];
+    }];
+}
+
+- (IBAction)getAccountsStatus:(UIButton *)sender {
+    NSArray<FTRAccount *> *accounts = [[FTRClient sharedClient] getAccounts];
+    __weak __typeof(self) weakSelf = self;
+    [FTRClient.sharedClient getAccountsStatus:accounts success:^(id responseObject) {
+        [weakSelf _showAlertWithTitle:@"Accounts status" message:[NSString stringWithFormat:@"%@", responseObject]];
+    }
+    failure:^(NSError * _Nullable error) {
+        NSString *title = @"Error";
+        NSString *message = [error.userInfo.allValues componentsJoinedByString:@", "];
+        [weakSelf _showAlertWithTitle:title message:message];
+    }];
+}
+    
 #pragma mark - FTRQRCodeReaderDelegate
 ////////////////////////////////////////////////////////////////////////////////
 - (void)reader:(FTRQRCodeViewController * _Nullable)reader didScanResult:(NSString *_Nullable)result
@@ -406,4 +452,12 @@ BOOL operationWithBiometrics = NO;
     [self presentViewController:ac animated:YES completion:nil];
 }
 
+- (NSArray<HistoryItem *> *)historyItemsFromResponse:(id)response {
+    NSMutableArray<HistoryItem *> *allItems = NSMutableArray.new;
+    for (NSDictionary *accountHistory in response[@"activity"]) {
+        [allItems addObject:[[HistoryItem alloc] initFromAccountHistory:accountHistory]];
+    }
+
+    return allItems.copy;
+}
 @end

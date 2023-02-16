@@ -1,3 +1,10 @@
+# Version `2.0.4`
+2023-14-02
+
++ [Added] Token for synchronous authentication 
++ [Added] Retrieve account history
++ [Added] User presence verification parameter in auth endpoints
+
 # Version `2.0.3`
 2023-23-01
 

@@ -200,6 +200,20 @@ typedef void (^FTRRequestDataHandler)(id _Nullable data);
                success:(nullable FTRRequestDataHandler)success
                failure:(nullable FTRRequestHandler)failure;
 
+///  Get the history of users approve and rejecet operations
+///
+///  This is a protected operation, so the SDK must be unlocked before calling this method.
+///
+/// - Parameters:
+///     - account:  `FTRAccount` instance for which data be will be fetched.
+///     - success: The success block to call when account history was successfully fetched.
+///     - failure: The block to execute when the request fails.
+///
+
+- (void)getAccountHistory:(FTRAccount * _Nonnull)account
+                  success:(nullable FTRRequestDataHandler)success
+                  failure:(nullable FTRRequestHandler)failure;
+
 ///  Approve an online QR Code authentication, when the session includes `extra_info` details.
 ///
 ///  This is a protected operation, so the SDK must be unlocked before calling this method.
@@ -331,13 +345,19 @@ typedef void (^FTRRequestDataHandler)(id _Nullable data);
 - (FTRTotp * _Nonnull)nextTotpForUser:(NSString * _Nonnull)userId
                                SDKPin:(NSString* _Nullable)SDKPin
                                 error:(NSError *_Nullable*_Nullable)error;
-///  Check QR Code type based on QR code string.
+
+///  Return the token for synchronous authentication, for the provided user id.
+///
+///  This is a protected operation, so the SDK must be unlocked before calling this method.
 ///
 /// - Parameters:
-///     - QRCode: Provide string directly from scanned QR code image.
+///     - userId: The account’s Futurae user id.
+///     - error: A pointer to an error object. If an error occurs, this pointer is set to an actual error object containing the error information. You may specify nil for this parameter if you do not want the error information.
 ///
-/// - Returns: A QR Code type.
-///
+/// - Returns: Token for synchronous authentication.
+- (void)synchronousAuthTokenForUser:(NSString *_Nonnull)userId
+                callback:(void(^_Nonnull)(NSError  * _Nullable error, NSString  * _Nullable token))callback;
+
 + (FTRQRCodeType)QRCodeTypeFromQRCode:(NSString *_Nonnull)QRCode;
 
 /// Generates the 6-digit confirmation number that the user needs to enter in the browser when authenticating with the offline QR Code Factor, after they approve the authentication or transaction request.
@@ -579,5 +599,11 @@ typedef void (^FTRRequestDataHandler)(id _Nullable data);
 /// - Returns: `true` if the biometrics keys have been changed, othewise returns `false`.
 ///
 - (BOOL)haveBiometricsChanged;
+
+/// Retrieve the base URL of the SDK configuration
+///
+/// - Returns: base URL of the SDK configuration
+///
+- (NSString * _Nonnull)baseURL;
 
 @end
