@@ -7,8 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		07F9EAD4299E9E5A0004C41D /* FuturaeKit.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 07F9EAD3299E9E5A0004C41D /* FuturaeKit.xcframework */; };
-		07F9EAD5299E9E5A0004C41D /* FuturaeKit.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 07F9EAD3299E9E5A0004C41D /* FuturaeKit.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		07F9EAD8299EA0890004C41D /* FuturaeKit.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 07F9EAD7299EA0890004C41D /* FuturaeKit.xcframework */; };
+		07F9EAD9299EA0890004C41D /* FuturaeKit.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 07F9EAD7299EA0890004C41D /* FuturaeKit.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		1B55F0392975BB01002B2179 /* HistoryTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B55F0382975BB01002B2179 /* HistoryTableViewController.swift */; };
 		1B55F03C2975C824002B2179 /* HistoryItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B55F03B2975C824002B2179 /* HistoryItem.m */; };
 		1BD23D32286CE8A3007D163D /* CustomDemoButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BD23D31286CE8A3007D163D /* CustomDemoButton.swift */; };
@@ -37,13 +37,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		07F9EAD6299E9E5A0004C41D /* Embed Frameworks */ = {
+		07F9EADA299EA0890004C41D /* Embed Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				07F9EAD5299E9E5A0004C41D /* FuturaeKit.xcframework in Embed Frameworks */,
+				07F9EAD9299EA0890004C41D /* FuturaeKit.xcframework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -51,7 +51,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		07F9EAD3299E9E5A0004C41D /* FuturaeKit.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; path = FuturaeKit.xcframework; sourceTree = "<group>"; };
+		07F9EAD7299EA0890004C41D /* FuturaeKit.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; path = FuturaeKit.xcframework; sourceTree = "<group>"; };
 		1B55F0382975BB01002B2179 /* HistoryTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryTableViewController.swift; sourceTree = "<group>"; };
 		1B55F03A2975C824002B2179 /* HistoryItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HistoryItem.h; sourceTree = "<group>"; };
 		1B55F03B2975C824002B2179 /* HistoryItem.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HistoryItem.m; sourceTree = "<group>"; };
@@ -96,7 +96,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				5E837AF92021D0E000DA4FCC /* UserNotifications.framework in Frameworks */,
-				07F9EAD4299E9E5A0004C41D /* FuturaeKit.xcframework in Frameworks */,
+				07F9EAD8299EA0890004C41D /* FuturaeKit.xcframework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -165,7 +165,7 @@
 		5E587B311FF41BBD0024ACFA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				07F9EAD3299E9E5A0004C41D /* FuturaeKit.xcframework */,
+				07F9EAD7299EA0890004C41D /* FuturaeKit.xcframework */,
 				5E837AF82021D0DF00DA4FCC /* UserNotifications.framework */,
 				5E587B381FF41C730024ACFA /* FuturaeKit.framework */,
 			);
@@ -228,7 +228,7 @@
 				5E587B141FF41B0C0024ACFA /* Sources */,
 				5E587B151FF41B0C0024ACFA /* Frameworks */,
 				5E587B161FF41B0C0024ACFA /* Resources */,
-				07F9EAD6299E9E5A0004C41D /* Embed Frameworks */,
+				07F9EADA299EA0890004C41D /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
