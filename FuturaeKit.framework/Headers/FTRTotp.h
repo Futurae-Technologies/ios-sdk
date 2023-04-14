@@ -17,7 +17,4 @@
 @property (strong, nonatomic) NSString *totp;
 @property (strong, nonatomic) NSString *remaining_secs;
 
-- (instancetype)initWithJSONString:(NSString *)JSONString;
-- (instancetype)initWithDictionary:(NSDictionary*)dictionary;
-
 @end

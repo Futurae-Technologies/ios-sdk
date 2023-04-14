@@ -21,7 +21,7 @@
                                 <rect key="frame" x="0.0" y="10" width="375" height="608"/>
                                 <subviews>
                                     <stackView hidden="YES" opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" alignment="center" spacing="25" translatesAutoresizingMaskIntoConstraints="NO" id="ZCm-HJ-efC">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="1029"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="1306"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="o3k-Hi-SjC" customClass="CustomDemoButton" customModule="FuturaeDemo" customModuleProvider="target">
                                                 <rect key="frame" x="83" y="0.0" width="209" height="37"/>
@@ -359,8 +359,29 @@
                                                     <action selector="executeAccountMigrationTouchedUpInside:" destination="BYZ-38-t0r" eventType="touchUpInside" id="hcF-sj-61Q"/>
                                                 </connections>
                                             </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nbE-Is-rDu" customClass="CustomDemoButton" customModule="FuturaeDemo" customModuleProvider="target">
+                                                <rect key="frame" x="56.5" y="992" width="262" height="37"/>
+                                                <color key="backgroundColor" red="0.2470588088" green="0.24313727020000001" blue="0.32941177490000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <inset key="contentEdgeInsets" minX="8" minY="8" maxX="8" maxY="8"/>
+                                                <state key="normal" title="Execute account migration (PIN)"/>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                        <real key="value" value="5"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                                        <real key="value" value="1"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                                        <color key="value" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
+                                                <connections>
+                                                    <action selector="executeAccountMigrationWithPinTouchedUpInside:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Y9p-uf-bPj"/>
+                                                </connections>
+                                            </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dQH-JJ-qib" customClass="CustomDemoButton" customModule="FuturaeDemo" customModuleProvider="target">
-                                                <rect key="frame" x="97" y="992" width="181" height="37"/>
+                                                <rect key="frame" x="97" y="1054" width="181" height="37"/>
                                                 <color key="backgroundColor" red="0.2470588088" green="0.24313727020000001" blue="0.32941177490000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <inset key="contentEdgeInsets" minX="8" minY="8" maxX="8" maxY="8"/>
@@ -381,7 +402,7 @@
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kNu-nU-RBE" customClass="CustomDemoButton" customModule="FuturaeDemo" customModuleProvider="target">
-                                                <rect key="frame" x="101" y="992" width="173" height="37"/>
+                                                <rect key="frame" x="101" y="1116" width="173" height="37"/>
                                                 <color key="backgroundColor" red="0.2470588088" green="0.24313727020000001" blue="0.32941177490000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <inset key="contentEdgeInsets" minX="8" minY="8" maxX="8" maxY="8"/>
@@ -401,6 +422,13 @@
                                                     <action selector="getAccountsStatus:" destination="BYZ-38-t0r" eventType="touchUpInside" id="6H1-Hd-v5G"/>
                                                 </connections>
                                             </button>
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="qkn-CG-ake">
+                                                <rect key="frame" x="67.5" y="1178" width="240" height="128"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="128" id="0Lu-Tc-m29"/>
+                                                    <constraint firstAttribute="width" constant="240" id="tcb-4w-hmb"/>
+                                                </constraints>
+                                            </imageView>
                                         </subviews>
                                     </stackView>
                                 </subviews>
@@ -437,6 +465,7 @@
                     <tabBarItem key="tabBarItem" title="FUNCTIONS" image="terminal" catalog="system" selectedImage="terminal" id="R8f-3b-m6K"/>
                     <connections>
                         <outlet property="messageLabel" destination="gDR-tX-V9e" id="2C0-wJ-rNi"/>
+                        <outlet property="serviceLogoImageView" destination="qkn-CG-ake" id="9x0-kT-gtq"/>
                         <outlet property="stackView" destination="ZCm-HJ-efC" id="nwC-sq-M8m"/>
                         <outletCollection property="pinButtons" destination="opL-80-ACl" id="pRC-Uy-dbF"/>
                         <outletCollection property="pinButtons" destination="ZE9-cC-fgo" id="K0v-eD-2wK"/>
@@ -613,10 +642,34 @@
                                 <rect key="frame" x="0.0" y="10" width="375" height="364.5"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" alignment="center" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="ex8-cS-kWs">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="0.0"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="37"/>
                                         <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="249" verticalCompressionResistancePriority="751" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pd0-up-q0i" customClass="CustomDemoButton" customModule="FuturaeDemo" customModuleProvider="target">
+                                                <rect key="frame" x="95" y="0.0" width="185" height="37"/>
+                                                <color key="backgroundColor" red="0.2470588088" green="0.24313727020000001" blue="0.32941177490000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <inset key="contentEdgeInsets" minX="8" minY="8" maxX="8" maxY="8"/>
+                                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                                <state key="normal" title="Biometrics Permission">
+                                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                </state>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                        <real key="value" value="5"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                                        <real key="value" value="1"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                                        <color key="value" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
+                                                <connections>
+                                                    <action selector="checkBiometricsPermission:" destination="FqC-QZ-eSk" eventType="touchUpInside" id="ody-JR-Y0T"/>
+                                                </connections>
+                                            </button>
                                             <button hidden="YES" opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="249" verticalCompressionResistancePriority="751" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rzg-JL-Xel" customClass="CustomDemoButton" customModule="FuturaeDemo" customModuleProvider="target">
-                                                <rect key="frame" x="53" y="0.0" width="191" height="0.0"/>
+                                                <rect key="frame" x="92" y="0.0" width="191" height="0.0"/>
                                                 <color key="backgroundColor" red="0.2470588088" green="0.24313727020000001" blue="0.32941177490000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <inset key="contentEdgeInsets" minX="8" minY="8" maxX="8" maxY="8"/>
@@ -640,7 +693,7 @@
                                                 </connections>
                                             </button>
                                             <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="d6e-9S-z0F" customClass="CustomDemoButton" customModule="FuturaeDemo" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="0.0" width="297" height="0.0"/>
+                                                <rect key="frame" x="39" y="0.0" width="297" height="0.0"/>
                                                 <color key="backgroundColor" red="0.2470588088" green="0.24313727020000001" blue="0.32941177490000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <inset key="contentEdgeInsets" minX="8" minY="8" maxX="8" maxY="8"/>
@@ -664,7 +717,7 @@
                                                 </connections>
                                             </button>
                                             <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="p1K-S3-N5J" customClass="CustomDemoButton" customModule="FuturaeDemo" customModuleProvider="target">
-                                                <rect key="frame" x="103.5" y="0.0" width="90" height="0.0"/>
+                                                <rect key="frame" x="142.5" y="0.0" width="90" height="0.0"/>
                                                 <color key="backgroundColor" red="0.2470588088" green="0.24313727020000001" blue="0.32941177490000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <inset key="contentEdgeInsets" minX="8" minY="8" maxX="8" maxY="8"/>
@@ -688,7 +741,7 @@
                                                 </connections>
                                             </button>
                                             <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vmp-Fi-12E" customClass="CustomDemoButton" customModule="FuturaeDemo" customModuleProvider="target">
-                                                <rect key="frame" x="37.5" y="0.0" width="222" height="0.0"/>
+                                                <rect key="frame" x="76.5" y="0.0" width="222" height="0.0"/>
                                                 <color key="backgroundColor" red="0.2470588088" green="0.24313727020000001" blue="0.32941177490000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <inset key="contentEdgeInsets" minX="8" minY="8" maxX="8" maxY="8"/>
@@ -712,7 +765,7 @@
                                                 </connections>
                                             </button>
                                             <stackView hidden="YES" opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="nBD-4Q-ClI">
-                                                <rect key="frame" x="57" y="0.0" width="183" height="30"/>
+                                                <rect key="frame" x="96" y="0.0" width="183" height="30"/>
                                                 <subviews>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QvK-Kr-irh" customClass="CustomDemoButton" customModule="FuturaeDemo" customModuleProvider="target">
                                                         <rect key="frame" x="0.0" y="0.0" width="183" height="0.0"/>
@@ -851,7 +904,7 @@
                                         <rect key="frame" x="0.0" y="0.0" width="343" height="38"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YKd-3A-QvE" customClass="CustomDemoButton" customModule="FuturaeDemo" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="0.0" width="171.5" height="38"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="114.5" height="38"/>
                                                 <state key="normal" title="Button"/>
                                                 <buttonConfiguration key="configuration" style="plain" title="LAUNCH">
                                                     <fontDescription key="titleFontDescription" type="system" pointSize="20"/>
@@ -873,7 +926,7 @@
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MBP-Zb-yoS" customClass="CustomDemoButton" customModule="FuturaeDemo" customModuleProvider="target">
-                                                <rect key="frame" x="171.5" y="0.0" width="171.5" height="38"/>
+                                                <rect key="frame" x="114.5" y="0.0" width="114" height="38"/>
                                                 <state key="normal" title="Button"/>
                                                 <buttonConfiguration key="configuration" style="plain" title="RESET">
                                                     <fontDescription key="titleFontDescription" type="system" pointSize="20"/>
@@ -892,6 +945,28 @@
                                                 </userDefinedRuntimeAttributes>
                                                 <connections>
                                                     <action selector="reset:" destination="FqC-QZ-eSk" eventType="touchUpInside" id="6Fw-pT-eLm"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1DE-yh-ELl" customClass="CustomDemoButton" customModule="FuturaeDemo" customModuleProvider="target">
+                                                <rect key="frame" x="228.5" y="0.0" width="114.5" height="38"/>
+                                                <state key="normal" title="Button"/>
+                                                <buttonConfiguration key="configuration" style="plain" title="SWITCH">
+                                                    <fontDescription key="titleFontDescription" type="system" pointSize="20"/>
+                                                    <color key="baseForegroundColor" systemColor="systemMintColor"/>
+                                                </buttonConfiguration>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                        <real key="value" value="5"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                                        <real key="value" value="1"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                                        <color key="value" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
+                                                <connections>
+                                                    <action selector="switchConfig:" destination="FqC-QZ-eSk" eventType="touchUpInside" id="Eyf-qw-TpQ"/>
                                                 </connections>
                                             </button>
                                         </subviews>
@@ -967,6 +1042,9 @@
         <designable name="0jo-0t-GFf">
             <size key="intrinsicContentSize" width="153" height="37"/>
         </designable>
+        <designable name="1DE-yh-ELl">
+            <size key="intrinsicContentSize" width="99" height="38"/>
+        </designable>
         <designable name="2GW-rH-IjZ">
             <size key="intrinsicContentSize" width="183" height="37"/>
         </designable>
@@ -1030,6 +1108,9 @@
         <designable name="kNu-nU-RBE">
             <size key="intrinsicContentSize" width="173" height="37"/>
         </designable>
+        <designable name="nbE-Is-rDu">
+            <size key="intrinsicContentSize" width="262" height="37"/>
+        </designable>
         <designable name="o3k-Hi-SjC">
             <size key="intrinsicContentSize" width="209" height="37"/>
         </designable>
@@ -1038,6 +1119,9 @@
         </designable>
         <designable name="p1K-S3-N5J">
             <size key="intrinsicContentSize" width="90" height="37"/>
+        </designable>
+        <designable name="pd0-up-q0i">
+            <size key="intrinsicContentSize" width="185" height="37"/>
         </designable>
         <designable name="rzg-JL-Xel">
             <size key="intrinsicContentSize" width="191" height="37"/>
@@ -1054,6 +1138,9 @@
         <image name="terminal" catalog="system" width="128" height="93"/>
         <systemColor name="systemGreenColor">
             <color red="0.20392156862745098" green="0.7803921568627451" blue="0.34901960784313724" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemMintColor">
+            <color red="0.0" green="0.7803921568627451" blue="0.74509803921568629" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemPinkColor">
             <color red="1" green="0.17647058823529413" blue="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

@@ -33,7 +33,6 @@
 @property (strong, nonatomic) NSString *hotp_seed;
 @property (nonatomic) NSNumber *sync_counter;
 
-- (instancetype)initWithJSONString:(NSString *)JSONString;
 - (instancetype)initWithDictionary:(NSDictionary*)dictionary;
 
 @end

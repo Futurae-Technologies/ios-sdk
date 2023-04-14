@@ -1,3 +1,12 @@
+# Version `2.1.0`
+2023-14-04
+
++ [Added] Methods for switching lock configuration
++ [Changed] The method `checkAccountMigrationPossibleSuccess:failure:` has been deprecated. Use instead `checkMigratableAccountsSuccess:failure:` which provides more information about the accounts to be recovered.
++ [Added] Method `executeAccountMigrationWithSDKPin` for completing account migration where SDK PIN is required.
++ [Fixed] Bug where synchronous authentication would fail after first enrollment.
++ [Changed] For config type LockConfigurationTypeBiometricsOrPasscode, if invalidatedByBiometrics is set to true and no biometrics are available (or biometrics are available but permissions are not granted) then the SDK will proceed to function with passcode only.
+
 # Version `2.0.4`
 2023-14-02
 

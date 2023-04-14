@@ -12,12 +12,12 @@
 
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
-
 #import <FuturaeKit/FTRNotificationDelegate.h>
 #import <FuturaeKit/FTROpenURLDelegate.h>
 #import <FuturaeKit/FTRAccount.h>
-#import <FuturaeKit/LockConfiguration.h>
+#import <FuturaeKit/FTRMigrationCheckData.h>
 #import "SDKState.h"
+#import "LockConfiguration.h"
 
 // The domain for all errors originating in FTRClient.
 FOUNDATION_EXPORT NSString * _Nonnull const FTRClientErrorDomain;
@@ -31,7 +31,8 @@ typedef NS_ENUM(NSUInteger, FTRClientOfflineQRCodeError) {
 typedef NS_CLOSED_ENUM(NSUInteger, FTRAccountMigrationError) {
     FTRAccountMigrationErrorNoMigrationInfo = 900,
     FTRAccountMigrationErrorAccountsExistError = 901,
-    FTRAccountMigrationErrorAccountPreviouslyEnrolledError = 902
+    FTRAccountMigrationErrorAccountPreviouslyEnrolledError = 902,
+    FTRAccountMigrationErrorPinRequired = 903
 };
 
 // error codes
@@ -420,7 +421,6 @@ typedef void (^FTRRequestDataHandler)(id _Nullable data);
 ///
 - (NSArray<FTRExtraInfo *> *_Nonnull)extraInfoFromOfflineQRCode:(NSString *_Nonnull)QRCode;
 
-
 /// Check how many accounts are available to migrate.
 ///
 /// - Parameters:
@@ -428,7 +428,16 @@ typedef void (^FTRRequestDataHandler)(id _Nullable data);
 ///   - failure: The failure block to call when checking of account migration failed. You can access error's userInfo dictionary to see more readable description of an error.
 ///
 - (void)checkAccountMigrationPossibleSuccess:(void (^_Nonnull)(NSUInteger numberOfAccountsToMigrate))success
-                                     failure:(void (^_Nonnull)(NSError *_Nonnull error))failure;
+                                     failure:(void (^_Nonnull)(NSError *_Nonnull error))failure __deprecated_msg("Use checkMigratableAccounts: instead");
+
+/// Check which accounts are available to migrate.
+///
+/// - Parameters:
+///   - success: The success block to call when checking of account migration is completed successfully. There is information included of how many accounts are available to migrate and their usernames.
+///   - failure: The failure block to call when checking of account migration failed. You can access error's userInfo dictionary to see more readable description of an error.
+///
+- (void)checkMigratableAccountsSuccess:(void (^_Nonnull)(FTRMigrationCheckData * _Nonnull migrationInfo))success
+                        failure:(void (^_Nonnull)(NSError *_Nonnull error))failure;
 
 /// Function to execute the Automatic Account Migration, and recover accounts enrolled in a previous installation or device.
 ///
@@ -443,6 +452,20 @@ typedef void (^FTRRequestDataHandler)(id _Nullable data);
 - (void)executeAccountMigrationSuccess:(void (^_Nonnull)(NSArray<FTRAccount *> *_Nonnull accountsMigrated))success
                                failure:(void (^_Nonnull)(NSError *_Nonnull error))failure;
 
+/// Function to execute the Automatic Account Migration, and recover accounts enrolled in a previous installation or device using a SDK Pin.
+///
+/// For this method to succeed, the device must have valid migration data and no accounts were enrolled before calling this method.
+///
+/// Provide the SDK Pin that was used during enrollment of the accounts to be migrated or a new SDK Pin if none was used.
+///
+/// - Parameters:
+///   - SDKPin: The SDK Pin required to complete the migration.
+///   - success: The success block to call when executing account migration is completed successfully. There is an array of all accounts that are migrated successfully.
+///   - failure : The failure block to call when executing account migration failed. You can access error's userInfo dictionary to see more readable description of an error.
+///
+- (void)executeAccountMigrationWithSDKPin: (NSString * _Nonnull)SDKPin
+                                  success:(void (^_Nonnull)(NSArray<FTRAccount *> * _Nonnull))success
+                                  failure:(void (^_Nonnull)(NSError * _Nonnull))failure;
 
 /// Reset the SDK to a clean installation state. This will irreversibly reset the configuration and remove all accounts, keys, secrets, credentials and lock configurations from the SDK.
 + (void)reset;
@@ -605,5 +628,51 @@ typedef void (^FTRRequestDataHandler)(id _Nullable data);
 /// - Returns: base URL of the SDK configuration
 ///
 - (NSString * _Nonnull)baseURL;
+
+///
+/// Switch to lock configuration of type `LockConfigurationTypeNone`
+///
+/// - Parameters:
+///   - lockConfiguration: The configuration object.
+///   - callback: The response of the operation.
+///
+-(void)switchToLockConfigurationNone:(LockConfiguration *_Nonnull)lockConfiguration
+                        callback:(nullable FTRRequestHandler)callback;
+
+///
+/// Switch to lock configuration of type `LockConfigurationTypeBiometricsOnly`
+///
+/// - Parameters:
+///   - lockConfiguration: The configuration object.
+///   - promptReason: text briefly describing the reason why the biometric authentication is being performed. Will be shown on the Touch ID / Face ID prompt.
+///   - callback: The response of the operation.
+///
+-(void)switchToLockConfigurationBiometrics:(LockConfiguration *_Nonnull)lockConfiguration
+                    promptReason:(NSString * _Nullable)promptReason
+                        callback:(nullable FTRRequestHandler)callback;
+
+///
+/// Switch to lock configuration of type `LockConfigurationTypeBiometricsOrPasscode`
+///
+/// - Parameters:
+///   - lockConfiguration: The configuration object.
+///   - promptReason: text briefly describing the reason why the biometric authentication is being performed. Will be shown on the Touch ID / Face ID prompt.
+///   - callback: The response of the operation.
+///
+-(void)switchToLockConfigurationBiometricsOrPasscode:(LockConfiguration *_Nonnull)lockConfiguration
+                    promptReason:(NSString * _Nullable)promptReason
+                        callback:(nullable FTRRequestHandler)callback;
+
+///
+/// Switch to lock configuration of type `LockConfigurationTypeSDKPinWithBiometricsOptional`
+///
+/// - Parameters:
+///   - lockConfiguration: The configuration object.
+///   - SDKPin: The SDK Pin provided by the user
+///   - callback: The response of the operation.
+///
+-(void)switchToLockConfigurationSDKPin:(LockConfiguration *_Nonnull)lockConfiguration
+                          SDKPin:(NSString* _Nullable)SDKPin
+                        callback:(nullable FTRRequestHandler)callback;
 
 @end

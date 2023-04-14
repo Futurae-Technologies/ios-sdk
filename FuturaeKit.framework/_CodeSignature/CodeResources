@@ -6,7 +6,7 @@
 	<dict>
 		<key>Headers/FTRAccount.h</key>
 		<data>
-		qHAgW2uncx6sOZG6ULXwE6C9BAM=
+		M9EqLZelsUGKbCovaKNTaOF1NQo=
 		</data>
 		<key>Headers/FTRApiError.h</key>
 		<data>
@@ -14,7 +14,7 @@
 		</data>
 		<key>Headers/FTRClient.h</key>
 		<data>
-		/SaAjGz74DAYI7m0/XgDkHYS4dQ=
+		1UxNpIxfFwgINqvV2oHsGshFBpY=
 		</data>
 		<key>Headers/FTRConfig.h</key>
 		<data>
@@ -27,6 +27,14 @@
 		<key>Headers/FTRKeychainConfig.h</key>
 		<data>
 		v9fwT5qmnKOOCsdihF40wzi63bY=
+		</data>
+		<key>Headers/FTRMigratableAccount.h</key>
+		<data>
+		j3rBKQqSlIHTGOgzyBedvGLAffw=
+		</data>
+		<key>Headers/FTRMigrationCheckData.h</key>
+		<data>
+		5cC+fqxg1lvHrOMIuF+c1uaunZc=
 		</data>
 		<key>Headers/FTRNotificationDelegate.h</key>
 		<data>
@@ -46,7 +54,7 @@
 		</data>
 		<key>Headers/FTRTotp.h</key>
 		<data>
-		TvLE2zc6epFZUfJbpfo0NZr0Qz0=
+		m2bQWbcKjUX+rye1fjOE1faU5Ww=
 		</data>
 		<key>Headers/FuturaeKit-Swift.h</key>
 		<data>
@@ -54,7 +62,7 @@
 		</data>
 		<key>Headers/FuturaeKit.h</key>
 		<data>
-		rKiXbnCMSv2HmhN9edgaBRiRHpc=
+		2iRjS3COm5he2AgyxVTsNNDEIj8=
 		</data>
 		<key>Headers/KeychainAccessibility.h</key>
 		<data>
@@ -62,7 +70,7 @@
 		</data>
 		<key>Headers/LockConfiguration.h</key>
 		<data>
-		nduj+40xNzIu5vlVEjzSH29K5wM=
+		nCApdRHfSzznLCnqjzsXIgOYgu0=
 		</data>
 		<key>Headers/SDKState.h</key>
 		<data>
@@ -70,15 +78,15 @@
 		</data>
 		<key>Info.plist</key>
 		<data>
-		YsqSP3ku7PBV2EyF9qlrfews748=
+		v4HvuUT2ds83T+sfEnnC30o3/4A=
 		</data>
 		<key>Modules/FuturaeKit.swiftmodule/Project/arm64-apple-ios-simulator.swiftsourceinfo</key>
 		<data>
-		BNnJwrefiGL4ceGP7ijr7Lh9Sd8=
+		WK5DHMYrMJXHre0VrL60IxNH6aI=
 		</data>
 		<key>Modules/FuturaeKit.swiftmodule/Project/x86_64-apple-ios-simulator.swiftsourceinfo</key>
 		<data>
-		cZE8t90V0xV6id7L4/dAOeLPorI=
+		0Is3xY6F9SNINnO0nMQ1vCSo8b4=
 		</data>
 		<key>Modules/FuturaeKit.swiftmodule/arm64-apple-ios-simulator.abi.json</key>
 		<data>
@@ -131,7 +139,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			z05gZSSasULPgzWeJHWia4iy3hxw5XOOvWpvxiexMqM=
+			x3pcwG/PGike4e+4fEGi0zIZfhmrU+nB7+8xlDRkliA=
 			</data>
 		</dict>
 		<key>Headers/FTRApiError.h</key>
@@ -145,7 +153,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			TlsrSZ2ZgkK+/txkg4+s4Ad3SR4itXYUpg5GB6kXt48=
+			IM59u12N1mTGVVNR8f+5jVd+VR+eVh9UOGqrudKUk74=
 			</data>
 		</dict>
 		<key>Headers/FTRConfig.h</key>
@@ -167,6 +175,20 @@
 			<key>hash2</key>
 			<data>
 			J9JXFT1EdXlBQ619NJeQex9u/8+o12Nv0a0BotTCQlo=
+			</data>
+		</dict>
+		<key>Headers/FTRMigratableAccount.h</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			oBVChn1fLifjBv7XSjXryLe01VNk0S0MZBLq5Q/NsDw=
+			</data>
+		</dict>
+		<key>Headers/FTRMigrationCheckData.h</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			8lgsW5OWapLnWMv3jZ7GFDegK8a3EKPD6J37/e8TPqg=
 			</data>
 		</dict>
 		<key>Headers/FTRNotificationDelegate.h</key>
@@ -201,7 +223,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			AMq/47c1fd2fm57APvP8vzgy+4mJS8kGWuyXT9hdarI=
+			k/cNkU1phN/N7x7kCSWV5O/QX68tbAnK/red++mfJOY=
 			</data>
 		</dict>
 		<key>Headers/FuturaeKit-Swift.h</key>
@@ -215,7 +237,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			fjSaFPRtIokQ7r6VTMtiY4IT0l8yumte1vskxEo8iwE=
+			/4oLquyq7co3uMRH+qnHZZ5qmrvAXEMjtNoFyiq9ktI=
 			</data>
 		</dict>
 		<key>Headers/KeychainAccessibility.h</key>
@@ -229,7 +251,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			SaqLWRSDyEnBDJC7YIDIFIWE2UW7RubkzoZHEe5qW7E=
+			ILutaJlG2dzcKripva6PoW7URxVLTCm55y4hEs3iarQ=
 			</data>
 		</dict>
 		<key>Headers/SDKState.h</key>
@@ -243,14 +265,14 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			zChfprmhDAYE4+TfnxJM9cT3cVjYWGUZ0R/f4y3HJYY=
+			rNkfSXDeqrvAZsq7V6hXFElSoZECmVnmEoA9heb4YeI=
 			</data>
 		</dict>
 		<key>Modules/FuturaeKit.swiftmodule/Project/x86_64-apple-ios-simulator.swiftsourceinfo</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			JfwxSOZ2XTrxZhraVsD9nk0DPvO+drIJuEK2vQtfNXU=
+			rYaFb32ZCLtPQEbIdbH3rwfvfnl07APhFbvsUU+lH0k=
 			</data>
 		</dict>
 		<key>Modules/FuturaeKit.swiftmodule/arm64-apple-ios-simulator.abi.json</key>

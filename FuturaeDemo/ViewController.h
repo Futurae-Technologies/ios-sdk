@@ -16,6 +16,7 @@
 
 @property (weak, nonatomic) IBOutlet UIStackView *stackView;
 @property (weak, nonatomic) IBOutlet UILabel *messageLabel;
+@property (weak, nonatomic) IBOutlet UIImageView *serviceLogoImageView;
 @property (strong, nonatomic) IBOutletCollection(UIButton) NSArray *pinButtons;
 
 @property (nonatomic) BOOL enrollWithPin;

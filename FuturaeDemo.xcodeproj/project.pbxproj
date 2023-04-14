@@ -7,8 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		07F9EAD8299EA0890004C41D /* FuturaeKit.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 07F9EAD7299EA0890004C41D /* FuturaeKit.xcframework */; };
-		07F9EAD9299EA0890004C41D /* FuturaeKit.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 07F9EAD7299EA0890004C41D /* FuturaeKit.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		07BEE76329E96044000257EE /* FuturaeKit.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 07BEE76229E96044000257EE /* FuturaeKit.xcframework */; };
+		07BEE76429E96044000257EE /* FuturaeKit.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 07BEE76229E96044000257EE /* FuturaeKit.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		1B55F0392975BB01002B2179 /* HistoryTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B55F0382975BB01002B2179 /* HistoryTableViewController.swift */; };
 		1B55F03C2975C824002B2179 /* HistoryItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B55F03B2975C824002B2179 /* HistoryItem.m */; };
 		1BD23D32286CE8A3007D163D /* CustomDemoButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BD23D31286CE8A3007D163D /* CustomDemoButton.swift */; };
@@ -22,7 +22,6 @@
 		5E587B2B1FF41B0C0024ACFA /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E587B2A1FF41B0C0024ACFA /* main.m */; };
 		5E7040D42016774500E8B2BF /* FTRQRCodeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E7040D32016774500E8B2BF /* FTRQRCodeViewController.m */; };
 		5E7040E02016821D00E8B2BF /* FTRQRCodeReaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E7040DF2016821D00E8B2BF /* FTRQRCodeReaderView.m */; };
-		5E837AF92021D0E000DA4FCC /* UserNotifications.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E837AF82021D0DF00DA4FCC /* UserNotifications.framework */; };
 		5E84AC4620224A8B007A0191 /* futurae.com_4096.cer in Resources */ = {isa = PBXBuildFile; fileRef = 5E84AC4220224A8B007A0191 /* futurae.com_4096.cer */; };
 		5E84AC4720224A8B007A0191 /* futurae.com_tertiary.cer in Resources */ = {isa = PBXBuildFile; fileRef = 5E84AC4320224A8B007A0191 /* futurae.com_tertiary.cer */; };
 		5E84AC4820224A8B007A0191 /* futurae.com_primary.cer in Resources */ = {isa = PBXBuildFile; fileRef = 5E84AC4420224A8B007A0191 /* futurae.com_primary.cer */; };
@@ -37,13 +36,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		07F9EADA299EA0890004C41D /* Embed Frameworks */ = {
+		07BEE76529E96044000257EE /* Embed Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				07F9EAD9299EA0890004C41D /* FuturaeKit.xcframework in Embed Frameworks */,
+				07BEE76429E96044000257EE /* FuturaeKit.xcframework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -51,7 +50,9 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		07F9EAD7299EA0890004C41D /* FuturaeKit.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; path = FuturaeKit.xcframework; sourceTree = "<group>"; };
+		0795C64729D3B13D0050F342 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		0795C64929D3B1420050F342 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		07BEE76229E96044000257EE /* FuturaeKit.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; path = FuturaeKit.xcframework; sourceTree = "<group>"; };
 		1B55F0382975BB01002B2179 /* HistoryTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryTableViewController.swift; sourceTree = "<group>"; };
 		1B55F03A2975C824002B2179 /* HistoryItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HistoryItem.h; sourceTree = "<group>"; };
 		1B55F03B2975C824002B2179 /* HistoryItem.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HistoryItem.m; sourceTree = "<group>"; };
@@ -81,6 +82,7 @@
 		5E84AC4320224A8B007A0191 /* futurae.com_tertiary.cer */ = {isa = PBXFileReference; lastKnownFileType = file; name = futurae.com_tertiary.cer; path = FuturaeDemo/Resources/futurae.com_tertiary.cer; sourceTree = "<group>"; };
 		5E84AC4420224A8B007A0191 /* futurae.com_primary.cer */ = {isa = PBXFileReference; lastKnownFileType = file; name = futurae.com_primary.cer; path = FuturaeDemo/Resources/futurae.com_primary.cer; sourceTree = "<group>"; };
 		5E84AC4520224A8B007A0191 /* futurae.com_secondary.cer */ = {isa = PBXFileReference; lastKnownFileType = file; name = futurae.com_secondary.cer; path = FuturaeDemo/Resources/futurae.com_secondary.cer; sourceTree = "<group>"; };
+		C63F725728F7E30700BA1634 /* AdaptiveKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = AdaptiveKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C672FB1A2850CC77006C23E5 /* SVPinView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SVPinView.swift; sourceTree = "<group>"; };
 		C672FB1B2850CC77006C23E5 /* SVPinField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SVPinField.swift; sourceTree = "<group>"; };
 		C672FB1D2850CC77006C23E5 /* SVPinView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SVPinView.xib; sourceTree = "<group>"; };
@@ -95,8 +97,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5E837AF92021D0E000DA4FCC /* UserNotifications.framework in Frameworks */,
-				07F9EAD8299EA0890004C41D /* FuturaeKit.xcframework in Frameworks */,
+				07BEE76329E96044000257EE /* FuturaeKit.xcframework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -165,7 +166,10 @@
 		5E587B311FF41BBD0024ACFA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				07F9EAD7299EA0890004C41D /* FuturaeKit.xcframework */,
+				07BEE76229E96044000257EE /* FuturaeKit.xcframework */,
+				0795C64929D3B1420050F342 /* Security.framework */,
+				0795C64729D3B13D0050F342 /* Foundation.framework */,
+				C63F725728F7E30700BA1634 /* AdaptiveKit.framework */,
 				5E837AF82021D0DF00DA4FCC /* UserNotifications.framework */,
 				5E587B381FF41C730024ACFA /* FuturaeKit.framework */,
 			);
@@ -228,7 +232,7 @@
 				5E587B141FF41B0C0024ACFA /* Sources */,
 				5E587B151FF41B0C0024ACFA /* Frameworks */,
 				5E587B161FF41B0C0024ACFA /* Resources */,
-				07F9EADA299EA0890004C41D /* Embed Frameworks */,
+				07BEE76529E96044000257EE /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -250,7 +254,6 @@
 				TargetAttributes = {
 					5E587B171FF41B0C0024ACFA = {
 						CreatedOnToolsVersion = 9.2;
-						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
 								enabled = 1;
@@ -468,7 +471,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2.0.4;
+				MARKETING_VERSION = 2.1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.futurae.FuturaeDemo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "FuturaeDemo/Helpers/FuturaeDemo-Bridging-Header.h";
@@ -483,18 +486,22 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = FuturaeDemo/FuturaeDemo.entitlements;
-				CODE_SIGN_STYLE = Automatic;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = T82Z6CGNMT;
+				DEVELOPMENT_TEAM = "";
+				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = T82Z6CGNMT;
 				INFOPLIST_FILE = FuturaeDemo/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2.0.4;
+				MARKETING_VERSION = 2.1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.futurae.FuturaeDemo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = "FuturaeDemo adhoc";
 				SWIFT_OBJC_BRIDGING_HEADER = "FuturaeDemo/Helpers/FuturaeDemo-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";

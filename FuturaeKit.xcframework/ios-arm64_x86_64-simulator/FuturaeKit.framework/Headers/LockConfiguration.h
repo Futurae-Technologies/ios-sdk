@@ -78,11 +78,6 @@ invalidatedByBiometricsChange: (BOOL)invalidatedByBiometricsChange;
 +(void)set:(LockConfiguration *)config;
 +(LockConfiguration * _Nullable)get;
 
-+(SecAccessControlRef _Nullable)accessControl;
-+(SecAccessControlRef _Nullable)accessControlWithPrivateKeyUsage;
--(BOOL)hasKeyProtection;
--(LAPolicy)laPolicy;
-
 @end
 
 NS_ASSUME_NONNULL_END

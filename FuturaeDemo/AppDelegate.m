@@ -136,9 +136,9 @@ didReceiveNotificationResponse:(UNNotificationResponse *)response
             [extraInfoMsg appendString:@"\n"];
         }
     }
-
+    NSNumber *sessionTimeout = authenticationInfo[@"session_timeout"];
     UIAlertController *ac = [UIAlertController alertControllerWithTitle:@"Approve"
-                                                                message:[NSString stringWithFormat: @"Would you like to approve the request? %@", extraInfoMsg]
+                                                                message:[NSString stringWithFormat: @"Would you like to approve the request? %@. \nSession timeout:\n %@ seconds.", extraInfoMsg, sessionTimeout.stringValue]
                                                          preferredStyle:UIAlertControllerStyleAlert];
     [ac addAction:[UIAlertAction actionWithTitle:@"Approve" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
         [[FTRClient sharedClient] approveAuthWithUserId:authenticationInfo[@"user_id"] sessionId:authenticationInfo[@"session_id"] extraInfo:authenticationInfo[@"extra_info"] callback:^(NSError * _Nullable error) {

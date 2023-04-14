@@ -43,6 +43,30 @@ BOOL operationWithBiometrics = NO;
     for (UIButton *btn in _pinButtons) {
         [btn setHidden:isNotPinView];
     }
+    
+    [self loadServiceLogo];
+}
+
+- (void)loadServiceLogo {
+    if(!FTRClient.sdkIsLaunched){
+        return;
+    }
+    
+    FTRAccount *account = [[FTRClient sharedClient] getAccounts].firstObject;
+    if (account == nil || account.service_logo == nil || [account.service_logo isKindOfClass:[NSNull class]]) {
+        return;
+    }
+    
+    __weak __typeof(self) weakSelf = self;
+    NSURL *url = [[NSURL alloc] initWithString:account.service_logo];
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        NSData *data = [NSData dataWithContentsOfURL:url];
+        UIImage* image = [[UIImage alloc]initWithData:data];
+
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [weakSelf.serviceLogoImageView setImage:image];
+        });
+    });
 }
 
 #pragma mark - Handlers
@@ -212,11 +236,20 @@ BOOL operationWithBiometrics = NO;
 - (IBAction)checkAccountMigrationTouchedUpInside:(UIButton *)sender
 {
     __weak __typeof(self) weakSelf = self;
-    [FTRClient.sharedClient checkAccountMigrationPossibleSuccess:^(NSUInteger numberOfAccountsToMigrate) {
-        NSString *title = @"Checking account migration succeeds";
-        NSString *message = [NSString stringWithFormat:@"Number of accounts to migrate: %lu",
-                             (unsigned long)numberOfAccountsToMigrate];
+    [FTRClient.sharedClient checkMigratableAccountsSuccess:^(FTRMigrationCheckData *data) {
+        NSString *title = [NSString stringWithFormat:@"Number of accounts to migrate: %lu",
+                           (unsigned long)data.numberOfAccountsToMigrate];
+        
+        NSMutableString *string = NSMutableString.new;
+        for (FTRMigratableAccount *acc in data.migratableAccounts) {
+            [string appendString: acc.username];
+            [string appendString:@"\n"];
+        }
+        [string appendString:[NSString stringWithFormat:@"Pin protected: %s \n", data.pinProtected ? "true" : "false"]];
+        
+        NSString *message = string;
         [weakSelf _showAlertWithTitle:title message:message];
+        [weakSelf loadServiceLogo];
     } failure:^(NSError * _Nonnull error) {
         NSString *title = @"Checking account migration failed";
         NSString *message = [error.userInfo.allValues componentsJoinedByString:@", "];
@@ -226,8 +259,27 @@ BOOL operationWithBiometrics = NO;
 
 - (IBAction)executeAccountMigrationTouchedUpInside:(UIButton *)sender
 {
+    [self executeAccountMigrationWithSDKPin:nil];
+}
+
+- (IBAction)executeAccountMigrationWithPinTouchedUpInside:(UIButton *)sender
+{
     __weak __typeof(self) weakSelf = self;
-    [FTRClient.sharedClient executeAccountMigrationSuccess:^(NSArray<FTRAccount *> * _Nonnull accountsMigrated) {
+    
+    PinViewController *vc = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"pinViewController"];
+    [vc setPinModeWithMode:@"input"];
+    [vc setDidFinishWithPinWithCallback:^(NSString * _Nullable pin) {
+        [self executeAccountMigrationWithSDKPin:pin];
+    }];
+    
+    [self dismissViewControllerAnimated:YES completion:^{
+        [weakSelf presentViewController:vc animated:true completion:nil];
+    }];
+}
+
+-(void)executeAccountMigrationWithSDKPin:(NSString * _Nullable)SDKPin {
+    __weak __typeof(self) weakSelf = self;
+    [FTRClient.sharedClient executeAccountMigrationWithSDKPin:SDKPin success:^(NSArray<FTRAccount *> * _Nonnull accountsMigrated) {
         NSString *title = @"Executing account migration succeeds";
         NSArray<NSString *> *usernames = [accountsMigrated map:^NSString *_Nonnull(FTRAccount *account) {
             return account.username;
@@ -298,9 +350,8 @@ BOOL operationWithBiometrics = NO;
 
 - (void)enrollWithQRCode:(NSString *)QRCodeResult
 {
+    __weak __typeof(self) weakSelf = self;
     if(self.enrollWithPin){
-        __weak __typeof(self) weakSelf = self;
-        
         PinViewController *vc = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"pinViewController"];
         [vc setPinModeWithMode:@"set"];
         [vc setDidFinishWithPinWithCallback:^(NSString * _Nullable pin) {
@@ -312,6 +363,7 @@ BOOL operationWithBiometrics = NO;
                     }
                     
                     [weakSelf _showAlertWithTitle:@"Success" message:@"User account enrolled successfully!"];
+                    [weakSelf loadServiceLogo];
                 }];
             }];
         }];
@@ -322,13 +374,14 @@ BOOL operationWithBiometrics = NO;
         
     } else {
         [FTRClient.sharedClient enroll:QRCodeResult callback:^(NSError *error) {
-            [self dismissViewControllerAnimated:YES completion:^{
+            [weakSelf dismissViewControllerAnimated:YES completion:^{
                 if (error) {
-                    [self _showAlertWithTitle:@"Error" message:error.userInfo[@"msg"]];
+                    [weakSelf _showAlertWithTitle:@"Error" message:error.userInfo[@"msg"]];
                     return;
                 }
                 
-                [self _showAlertWithTitle:@"Success" message:@"User account enrolled successfully!"];
+                [weakSelf _showAlertWithTitle:@"Success" message:@"User account enrolled successfully!"];
+                [weakSelf loadServiceLogo];
             }];
         }];
     }

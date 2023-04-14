@@ -51,7 +51,7 @@ final class KeychainConfigViewController: UIViewController {
         guard let option = UnlockMethodType(rawValue: option) else {
             return "None"
         }
-
+        
         
         switch option {
         case .biometric:
@@ -60,7 +60,7 @@ final class KeychainConfigViewController: UIViewController {
             return "Biometrics OR Passcode"
         case .sdkPin:
             return "SDK PIN"
-        @unknown default:
+        default:
             return "Unknown"
         }
     }
@@ -69,7 +69,7 @@ final class KeychainConfigViewController: UIViewController {
                                                     .biometricsOnly,
                                                     .sdkPinWithBiometricsOptional,
                                                     .none]
-
+    
     private var sdkClient: FTRClient?
     
     override func viewDidLoad() {
@@ -77,7 +77,7 @@ final class KeychainConfigViewController: UIViewController {
         UITabBar.appearance().barTintColor = .black
         UITabBar.appearance().tintColor = .green
         UITabBar.appearance().unselectedItemTintColor = .gray
-
+        
         let savedOption = UserDefaults.standard.integer(forKey: "key_config")
         if(savedOption > 0) {
             selectedConfigOption = .init(rawValue: savedOption)
@@ -90,19 +90,19 @@ final class KeychainConfigViewController: UIViewController {
             valueTextView.text = "SDK is not launched\nSelect lock configuration and press launch button below"
         }
     }
-
+    
     func setupConfig(){
-        let startInvalidatedByBiometricsChange = LAContext().canEvaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, error: nil)
         let type = selectedConfigOption!
         let config = FTRConfig(sdkId: SDKConstants.SDKID,
                                sdkKey: SDKConstants.SDKKEY,
                                baseUrl: SDKConstants.SDKURL,
                                lockConfiguration: LockConfiguration(type: type,
                                                                     unlockDuration: 60,
-                                                                    invalidatedByBiometricsChange: startInvalidatedByBiometricsChange)
+                                                                    invalidatedByBiometricsChange: true)
         )
+        
         FTRClient.launch(with: config) { [unowned self] in
-
+            
             setupSdkView()
             
             if let token = UserDefaults.standard.data(forKey: "ftr_device_token") {
@@ -122,10 +122,11 @@ final class KeychainConfigViewController: UIViewController {
             settingsPickerView.selectRow(index, inComponent: 0, animated: false)
         }
         
+        checkBiometricsBtn.isHidden = selectedConfigOption! == .none
+        
         timer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { [unowned self] _ in
             if let status = sdkClient?.getSdkState(), let types = sdkClient?.getActiveUnlockMethods() {
                 let unlockTypes = types.map { nameForUnlockType($0.intValue) }.joined(separator: ", ")
-                checkBiometricsBtn.isHidden = !types.contains { $0 == NSNumber(integerLiteral: UnlockMethodType.biometric.rawValue) || $0 == NSNumber(integerLiteral: UnlockMethodType.biometricsOrPasscode.rawValue)}
                 statusLabel.text = "STATUS: \(stringForEnum(status.lockStatus)) \nCONFIGURATION: \(stringForEnum(status.configStatus)) \nUNLOCK SECONDS LEFT: \(Int(status.unlockedRemainingDuration.rounded()))\nUNLOCK METHODS: \(unlockTypes)"
             }
         }
@@ -205,6 +206,72 @@ final class KeychainConfigViewController: UIViewController {
         valueTextView.text = "SDK is not launched\nSelect lock configuration and press launch button below"
     }
     
+    @IBAction func switchConfig(_ sender: Any) {
+        let row = settingsPickerView.selectedRow(inComponent: 0)
+        selectedConfigOption = options[row]
+        
+        if(selectedConfigOption! == .sdkPinWithBiometricsOptional) {
+            let vc = PinViewController.create(pinMode: .input, title: "SWITCH TO PIN") { [unowned self] pin in
+                if let pin = pin {
+                    sdkClient?.switch(toLockConfigurationSDKPin: LockConfiguration(type: selectedConfigOption!,
+                                                                                   unlockDuration: 60,
+                                                                                   invalidatedByBiometricsChange: true), sdkPin: pin, callback: { [unowned self] error in
+                        valueTextView.isHidden = false
+                        valueTextView.text = ((error == nil ? "Success" : (error! as NSError).userInfo["msg"] as? String ?? error?.localizedDescription) ?? "Error")
+                        
+                        if(error == nil){
+                            UserDefaults.standard.set(selectedConfigOption?.rawValue ?? 0,
+                                                      forKey: "key_config")
+                            setupSdkView()
+                        }
+                    })
+                    
+                }
+            }
+            
+            present(vc, animated: true)
+        } else if(selectedConfigOption! == .biometricsOnly) {
+            sdkClient?.switch(toLockConfigurationBiometrics: LockConfiguration(type: selectedConfigOption!,
+                                                                               unlockDuration: 60,
+                                                                               invalidatedByBiometricsChange: true), promptReason: "Unlock to switch configuration", callback: { [unowned self] error in
+                valueTextView.isHidden = false
+                valueTextView.text = ((error == nil ? "Success" : (error! as NSError).userInfo["msg"] as? String ?? error?.localizedDescription) ?? "Error")
+                
+                if(error == nil){
+                    UserDefaults.standard.set(selectedConfigOption?.rawValue ?? 0,
+                                              forKey: "key_config")
+                    setupSdkView()
+                }
+            })
+        } else if(selectedConfigOption! == .biometricsOrPasscode) {
+            sdkClient?.switch(toLockConfigurationBiometricsOrPasscode: LockConfiguration(type: selectedConfigOption!,
+                                                                                         unlockDuration: 60,
+                                                                                         invalidatedByBiometricsChange: true), promptReason: "Unlock to switch configuration", callback: { [unowned self] error in
+                valueTextView.isHidden = false
+                valueTextView.text = ((error == nil ? "Success" : (error! as NSError).userInfo["msg"] as? String ?? error?.localizedDescription) ?? "Error")
+                
+                if(error == nil){
+                    UserDefaults.standard.set(selectedConfigOption?.rawValue ?? 0,
+                                              forKey: "key_config")
+                    setupSdkView()
+                }
+            })
+        } else {
+            sdkClient?.switch(toLockConfigurationNone: LockConfiguration(type: selectedConfigOption!,
+                                                                         unlockDuration: 60,
+                                                                         invalidatedByBiometricsChange: true), callback: { [unowned self] error in
+                valueTextView.isHidden = false
+                valueTextView.text = ((error == nil ? "Success" : (error! as NSError).userInfo["msg"] as? String ?? error?.localizedDescription) ?? "Error")
+                
+                if(error == nil){
+                    UserDefaults.standard.set(selectedConfigOption?.rawValue ?? 0,
+                                              forKey: "key_config")
+                    setupSdkView()
+                }
+            })
+        }
+    }
+    
     @IBAction func lockSDK(_ sender: Any) {
         let error = sdkClient?.lock()
         valueTextView.isHidden = false
@@ -224,7 +291,7 @@ final class KeychainConfigViewController: UIViewController {
     @IBAction func unlockWithBiometricsPasscode(_ sender: Any) {
         unlockWithBiometrics(sender)
     }
-
+    
     // PIN
     @IBAction func unlockWithPin(_ sender: Any) {
         let vc = PinViewController.create(pinMode: .input, title: "UNLOCK WITH PIN") { [unowned self] pin in
@@ -236,7 +303,7 @@ final class KeychainConfigViewController: UIViewController {
                 
             }
         }
-
+        
         present(vc, animated: true)
     }
     
@@ -251,11 +318,11 @@ final class KeychainConfigViewController: UIViewController {
                 })
             }
         }
-
+        
         present(vc, animated: true)
     }
     
-
+    
     @IBAction func activateBiometrics(_ sender: Any) {
         let error = sdkClient?.activateBiometrics()
         valueTextView.isHidden = false
@@ -271,6 +338,15 @@ final class KeychainConfigViewController: UIViewController {
     @IBAction func checkBiometricsValidity(_ sender: Any) {
         let haveBiometricsChanged = sdkClient?.haveBiometricsChanged() ?? false
         showAlert(title: "", message: haveBiometricsChanged ? "Biometrics have changed" : "Biometrics have not changed")
+    }
+    
+    @IBAction func checkBiometricsPermission(_ sender: Any) {
+        LAContext().evaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, localizedReason: "Request permission") { [unowned self] granted, error in
+            DispatchQueue.main.async { [unowned self] in
+                valueTextView.text = "Last operation: " + (granted ? "Permission granted" : (error?.localizedDescription ?? "Permission not granted"))
+                valueTextView.isHidden = false
+            }
+        }
     }
 }
 
@@ -292,6 +368,6 @@ extension KeychainConfigViewController: UIPickerViewDataSource {
     }
     
     func pickerView(_ pickerView: UIPickerView, attributedTitleForRow row: Int, forComponent component: Int) -> NSAttributedString? {
-            return NSAttributedString(string: nameForOption(options[row]), attributes: [NSAttributedString.Key.foregroundColor: UIColor.white])
-        }
+        return NSAttributedString(string: nameForOption(options[row]), attributes: [NSAttributedString.Key.foregroundColor: UIColor.white])
+    }
 }
