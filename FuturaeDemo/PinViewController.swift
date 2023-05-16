@@ -11,6 +11,7 @@ public enum PinMode: String {
     case set
     case update
     case input
+    case shortCode
 }
 
 public class PinViewController: UIViewController {
@@ -24,9 +25,12 @@ public class PinViewController: UIViewController {
     
     @IBOutlet var pinView: SVPinView!
     @IBOutlet var titleLabel: UILabel!
+    @IBOutlet var subtitleLabel: UILabel!
     
     public var didFinishWithPin: ((String?) -> Void)?
     public var pinMode: PinMode!
+    var pinLength = 4
+    var secureText = true
     
     public override func viewDidLoad() {
         super.viewDidLoad()
@@ -42,8 +46,16 @@ public class PinViewController: UIViewController {
         setGradientBackground(view: self.view, colorTop: valenciaColor, colorBottom: discoColor)
     }
     
-    @objc public func setPinMode(mode: String){
+    @objc public func setPinMode(_ mode: String){
         pinMode = PinMode(rawValue: mode)
+    }
+    
+    @objc public func setPinLength(_ length: Int){
+        pinLength = length
+    }
+    
+    @objc public func setSecureText(_ secure: Bool){
+        secureText = secure
     }
     
     @objc public func setDidFinishWithPin(callback: ((String?) -> Void)?){
@@ -51,23 +63,43 @@ public class PinViewController: UIViewController {
     }
     
     func configurePinView() {
-        titleLabel.text = title
+        if pinMode == .shortCode {
+            titleLabel.text = "Manual Entry Enroll Code"
+            subtitleLabel.isHidden = true
+        } else {
+            titleLabel.text = title
+        }
         
-        pinView.pinLength = 4
-        pinView.secureCharacter = "\u{25CF}"
-        pinView.interSpace = 10
+        pinView.pinLength = pinLength
+        
+        if secureText {
+            pinView.placeholder = "******"
+            pinView.secureCharacter = "\u{25CF}"
+            pinView.allowsWhitespaces = false
+            pinView.keyboardType = .phonePad
+            pinView.style = .none
+            
+            pinView.fieldBackgroundColor = UIColor.white.withAlphaComponent(0.3)
+            pinView.activeFieldBackgroundColor = UIColor.white.withAlphaComponent(0.5)
+            pinView.fieldCornerRadius = 15
+            pinView.activeFieldCornerRadius = 15
+            pinView.interSpace = 10
+        } else {
+            pinView.keyboardType = .default
+            pinView.allowsWhitespaces = true
+            pinView.style = .underline
+            pinView.secureCharacter = ""
+            pinView.interSpace = 3
+        }
+        
+        pinView.shouldSecureText = secureText
+        
+        
         pinView.textColor = UIColor.white
         pinView.borderLineColor = UIColor.white
         pinView.activeBorderLineColor = UIColor.white
         pinView.borderLineThickness = 1
-        pinView.shouldSecureText = true
-        pinView.allowsWhitespaces = false
-        pinView.style = .none
-        pinView.fieldBackgroundColor = UIColor.white.withAlphaComponent(0.3)
-        pinView.activeFieldBackgroundColor = UIColor.white.withAlphaComponent(0.5)
-        pinView.fieldCornerRadius = 15
-        pinView.activeFieldCornerRadius = 15
-        pinView.placeholder = "******"
+
         pinView.deleteButtonAction = .deleteCurrentAndMoveToPrevious
         pinView.keyboardAppearance = .default
         pinView.tintColor = .white
@@ -75,7 +107,7 @@ public class PinViewController: UIViewController {
         pinView.shouldDismissKeyboardOnEmptyFirstField = false
         
         pinView.font = UIFont.systemFont(ofSize: 15)
-        pinView.keyboardType = .phonePad
+        
         pinView.pinInputAccessoryView = { () -> UIView in
             let doneToolbar: UIToolbar = UIToolbar(frame: CGRect(x: 0, y: 0, width: 320, height: 50))
             doneToolbar.barStyle = UIBarStyle.default

@@ -7,8 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		07BEE76329E96044000257EE /* FuturaeKit.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 07BEE76229E96044000257EE /* FuturaeKit.xcframework */; };
-		07BEE76429E96044000257EE /* FuturaeKit.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 07BEE76229E96044000257EE /* FuturaeKit.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		07615DAB2A12914E0000D51A /* FuturaeKit.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 07615DAA2A12914D0000D51A /* FuturaeKit.xcframework */; };
+		07615DAC2A12914E0000D51A /* FuturaeKit.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 07615DAA2A12914D0000D51A /* FuturaeKit.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		1B55F0392975BB01002B2179 /* HistoryTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B55F0382975BB01002B2179 /* HistoryTableViewController.swift */; };
 		1B55F03C2975C824002B2179 /* HistoryItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B55F03B2975C824002B2179 /* HistoryItem.m */; };
 		1BD23D32286CE8A3007D163D /* CustomDemoButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BD23D31286CE8A3007D163D /* CustomDemoButton.swift */; };
@@ -36,13 +36,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		07BEE76529E96044000257EE /* Embed Frameworks */ = {
+		07615DAD2A12914E0000D51A /* Embed Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				07BEE76429E96044000257EE /* FuturaeKit.xcframework in Embed Frameworks */,
+				07615DAC2A12914E0000D51A /* FuturaeKit.xcframework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -50,9 +50,9 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		07615DAA2A12914D0000D51A /* FuturaeKit.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; path = FuturaeKit.xcframework; sourceTree = "<group>"; };
 		0795C64729D3B13D0050F342 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		0795C64929D3B1420050F342 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
-		07BEE76229E96044000257EE /* FuturaeKit.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; path = FuturaeKit.xcframework; sourceTree = "<group>"; };
 		1B55F0382975BB01002B2179 /* HistoryTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryTableViewController.swift; sourceTree = "<group>"; };
 		1B55F03A2975C824002B2179 /* HistoryItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HistoryItem.h; sourceTree = "<group>"; };
 		1B55F03B2975C824002B2179 /* HistoryItem.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HistoryItem.m; sourceTree = "<group>"; };
@@ -97,7 +97,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				07BEE76329E96044000257EE /* FuturaeKit.xcframework in Frameworks */,
+				07615DAB2A12914E0000D51A /* FuturaeKit.xcframework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -166,7 +166,7 @@
 		5E587B311FF41BBD0024ACFA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				07BEE76229E96044000257EE /* FuturaeKit.xcframework */,
+				07615DAA2A12914D0000D51A /* FuturaeKit.xcframework */,
 				0795C64929D3B1420050F342 /* Security.framework */,
 				0795C64729D3B13D0050F342 /* Foundation.framework */,
 				C63F725728F7E30700BA1634 /* AdaptiveKit.framework */,
@@ -232,7 +232,7 @@
 				5E587B141FF41B0C0024ACFA /* Sources */,
 				5E587B151FF41B0C0024ACFA /* Frameworks */,
 				5E587B161FF41B0C0024ACFA /* Resources */,
-				07BEE76529E96044000257EE /* Embed Frameworks */,
+				07615DAD2A12914E0000D51A /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -398,7 +398,6 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -450,7 +449,6 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
@@ -462,18 +460,23 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = FuturaeDemo/FuturaeDemo.entitlements;
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = T82Z6CGNMT;
+				DEVELOPMENT_TEAM = "";
+				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = T82Z6CGNMT;
 				INFOPLIST_FILE = FuturaeDemo/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2.1.0;
+				MARKETING_VERSION = 2.2.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.futurae.FuturaeDemo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = "FuturaeDemo development";
 				SWIFT_OBJC_BRIDGING_HEADER = "FuturaeDemo/Helpers/FuturaeDemo-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
@@ -486,22 +489,20 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = FuturaeDemo/FuturaeDemo.entitlements;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
-				CODE_SIGN_STYLE = Manual;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = "";
-				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = T82Z6CGNMT;
+				DEVELOPMENT_TEAM = T82Z6CGNMT;
 				INFOPLIST_FILE = FuturaeDemo/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2.1.0;
+				MARKETING_VERSION = 2.2.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.futurae.FuturaeDemo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = "FuturaeDemo adhoc";
 				SWIFT_OBJC_BRIDGING_HEADER = "FuturaeDemo/Helpers/FuturaeDemo-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";

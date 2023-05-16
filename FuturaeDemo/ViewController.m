@@ -83,6 +83,16 @@ BOOL operationWithBiometrics = NO;
     [self presentQRCodeControllerWithQRCodeType:QRCodeTypeEnrollment sender:sender];
 }
 
+- (IBAction)enrollShortCodeTouchedUpInside:(UIButton *)sender
+{
+    [self enrollShortCodeWithPin:NO];
+}
+
+- (IBAction)enrollShortCodeWithPinTouchedUpInside:(UIButton *)sender
+{
+    [self enrollShortCodeWithPin:YES];
+}
+
 ////////////////////////////////////////////////////////////////////////////////
 - (IBAction)logoutTouchedUpInside:(UIButton *)sender
 {
@@ -98,7 +108,7 @@ BOOL operationWithBiometrics = NO;
         if(error){
             [self _showAlertWithTitle:@"Error" message: error.userInfo[@"msg"] ? error.userInfo[@"msg"] : error.localizedDescription];
         } else {
-            [self _showAlertWithTitle:@"Success" message:[NSString stringWithFormat:@"Logged out user %@", account.username]];
+            [self _showAlertWithTitle:@"Success" message:[NSString stringWithFormat:@"Logged out user %@", account.username ? account.username : @"Username N/A"]];
         }
     }];
 }
@@ -119,7 +129,7 @@ BOOL operationWithBiometrics = NO;
     __weak __typeof(self) weakSelf = self;
     
     PinViewController *vc = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"pinViewController"];
-    [vc setPinModeWithMode:@"set"];
+    [vc setPinMode:@"set"];
     [vc setDidFinishWithPinWithCallback:^(NSString * _Nullable pin) {
         offlineQRCodePin = pin;
         [self presentQRCodeControllerWithQRCodeType:QRCodeTypeOfflineAuth sender:sender];
@@ -149,7 +159,7 @@ BOOL operationWithBiometrics = NO;
     __weak __typeof(self) weakSelf = self;
     
     PinViewController *vc = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"pinViewController"];
-    [vc setPinModeWithMode:@"set"];
+    [vc setPinMode:@"set"];
     [vc setDidFinishWithPinWithCallback:^(NSString * _Nullable pin) {
         [weakSelf totpAuth:pin];
     }];
@@ -217,7 +227,7 @@ BOOL operationWithBiometrics = NO;
     __weak __typeof(self) weakSelf = self;
     
     PinViewController *vc = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"pinViewController"];
-    [vc setPinModeWithMode:@"set"];
+    [vc setPinMode:@"set"];
     [vc setDidFinishWithPinWithCallback:^(NSString * _Nullable pin) {
         offlineQRCodePin = pin;
         [self presentQRCodeControllerWithQRCodeType:QRCodeTypeGeneric sender:sender];
@@ -267,7 +277,7 @@ BOOL operationWithBiometrics = NO;
     __weak __typeof(self) weakSelf = self;
     
     PinViewController *vc = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"pinViewController"];
-    [vc setPinModeWithMode:@"input"];
+    [vc setPinMode:@"input"];
     [vc setDidFinishWithPinWithCallback:^(NSString * _Nullable pin) {
         [self executeAccountMigrationWithSDKPin:pin];
     }];
@@ -282,7 +292,7 @@ BOOL operationWithBiometrics = NO;
     [FTRClient.sharedClient executeAccountMigrationWithSDKPin:SDKPin success:^(NSArray<FTRAccount *> * _Nonnull accountsMigrated) {
         NSString *title = @"Executing account migration succeeds";
         NSArray<NSString *> *usernames = [accountsMigrated map:^NSString *_Nonnull(FTRAccount *account) {
-            return account.username;
+            return account.username ? account.username : @"Username N/A";
         }];
         NSString *joinedUsernames = [usernames componentsJoinedByString:@"\n"];
         NSString *message = [NSString stringWithFormat:@"Migrated accounts [%lu]:\n\n%@",
@@ -353,7 +363,7 @@ BOOL operationWithBiometrics = NO;
     __weak __typeof(self) weakSelf = self;
     if(self.enrollWithPin){
         PinViewController *vc = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"pinViewController"];
-        [vc setPinModeWithMode:@"set"];
+        [vc setPinMode:@"set"];
         [vc setDidFinishWithPinWithCallback:^(NSString * _Nullable pin) {
             [FTRClient.sharedClient enrollAndSetupSDKPin:pin code:QRCodeResult callback:^(NSError * _Nullable error) {
                 [weakSelf dismissViewControllerAnimated:YES completion:^{
@@ -387,6 +397,59 @@ BOOL operationWithBiometrics = NO;
     }
 }
 
+- (void)enrollShortCodeWithPin:(BOOL)withPin {
+    __weak __typeof(self) weakSelf = self;
+    PinViewController *vc = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"pinViewController"];
+    [vc setPinLength: 19];
+    [vc setSecureText:NO];
+    [vc setPinMode:@"shortCode"];
+    [vc setDidFinishWithPinWithCallback:^(NSString * _Nullable pin) {
+        [weakSelf dismissViewControllerAnimated:YES completion:^{
+            [weakSelf enrollWithShortCode:pin enrollWithPin:withPin];
+        }];
+    }];
+    
+    [self presentViewController:vc animated:true completion:nil];
+}
+
+- (void)enrollWithShortCode:(NSString *)code enrollWithPin:(BOOL)withPin
+{
+    __weak __typeof(self) weakSelf = self;
+    
+    if(withPin){
+        PinViewController *vc = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"pinViewController"];
+        [vc setPinMode:@"set"];
+        [vc setDidFinishWithPinWithCallback:^(NSString * _Nullable pin) {
+            [FTRClient.sharedClient enrollAndSetupSDKPin:pin activationShortCode:code callback:^(NSError * _Nullable error) {
+                [weakSelf dismissViewControllerAnimated:YES completion:^{
+                    if (error) {
+                        [weakSelf _showAlertWithTitle:@"Error" message:error.userInfo[@"msg"]];
+                        return;
+                    }
+                    
+                    [weakSelf _showAlertWithTitle:@"Success" message:@"User account enrolled successfully!"];
+                    [weakSelf loadServiceLogo];
+                }];
+            }];
+        }];
+        
+        [self presentViewController:vc animated:true completion:nil];
+        
+    } else {
+        [FTRClient.sharedClient enrollWithActivationShortCode:code callback:^(NSError *error) {
+            [weakSelf dismissViewControllerAnimated:YES completion:^{
+                if (error) {
+                    [weakSelf _showAlertWithTitle:@"Error" message:error.userInfo[@"msg"]];
+                    return;
+                }
+                
+                [weakSelf _showAlertWithTitle:@"Success" message:@"User account enrolled successfully!"];
+                [weakSelf loadServiceLogo];
+            }];
+        }];
+    }
+}
+
 - (void)approveAuthWithQRCode:(NSString *)QRCodeResult
 {
     [FTRClient.sharedClient approveAuthWithQrCode:QRCodeResult callback:^(NSError * _Nullable error) {
@@ -396,6 +459,40 @@ BOOL operationWithBiometrics = NO;
                 return;
             }
             [self _showAlertWithTitle:@"Success" message:@"User authenticated successfully!"];
+        }];
+    }];
+}
+
+- (void)approveAuthWithUsernamelessQRCode:(NSString *)QRCodeResult
+{
+    NSArray<FTRAccount *> *accounts = FTRClient.sharedClient.getAccounts;
+    UIAlertController *ac = [UIAlertController alertControllerWithTitle:@"Usernameless QR code"
+                                                                message:@"Select an account"
+                                                         preferredStyle:UIAlertControllerStyleActionSheet];
+    
+    __weak __typeof(self) weakSelf = self;
+    for (FTRAccount *account in accounts) {
+        [ac addAction:[UIAlertAction actionWithTitle:account.username ? account.username : @"Username N/A" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+            [weakSelf approveAuthWithUsernamelessQRCode:QRCodeResult userId:account.user_id];
+        }]];
+    }
+    
+    [ac addAction:[UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:nil]];
+    
+    [self dismissViewControllerAnimated:YES completion:^{
+        [weakSelf presentViewController:ac animated:true completion:nil];
+    }];
+}
+
+- (void)approveAuthWithUsernamelessQRCode:(NSString *)QRCodeResult userId: (NSString *)userId {
+    __weak __typeof(self) weakSelf = self;
+    [FTRClient.sharedClient approveAuthWithUsernamelessQrCode:QRCodeResult userId: userId callback:^(NSError * _Nullable error) {
+        [weakSelf dismissViewControllerAnimated:YES completion:^{
+            if (error) {
+                [self _showAlertWithTitle:@"Error" message:error.userInfo[@"msg"]];
+                return;
+            }
+            [weakSelf _showAlertWithTitle:@"Success" message:@"User authenticated successfully!"];
         }];
     }];
 }
@@ -419,6 +516,9 @@ BOOL operationWithBiometrics = NO;
             break;
         case FTRQRCodeTypeOnlineAuth:
             [self approveAuthWithQRCode:QRCodeResult];
+            break;
+        case FTRQRCodeTypeUsernameless:
+            [self approveAuthWithUsernamelessQRCode:QRCodeResult];
             break;
         case FTRQRCodeTypeOfflineAuth:
             [self offlineAuthWithQRCode:QRCodeResult];

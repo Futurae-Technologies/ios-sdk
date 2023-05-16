@@ -1,3 +1,10 @@
+# Version `2.2.0`
+2023-16-05
+
++ Add FTRClient functions enrollWithActivationShortCode and enrollAndSetupSDKPin:activationShortCode used for enrolling accounts with activation short codes.
++ Add FTRClient functions approveAuthWithUsernamelessQrCode to handle Usernameless QR codes.
++ FTRClient function QRCodeTypeFromQRCode now can also return value FTRQRCodeTypeUsernameless for usernameless QR codes.
+
 # Version `2.1.0`
 2023-14-04
 

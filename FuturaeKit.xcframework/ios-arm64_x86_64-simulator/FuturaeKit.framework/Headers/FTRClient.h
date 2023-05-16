@@ -56,7 +56,8 @@ typedef NS_CLOSED_ENUM(NSUInteger, FTRQRCodeType) {
     FTRQRCodeTypeEnrollment,
     FTRQRCodeTypeOnlineAuth,
     FTRQRCodeTypeOfflineAuth,
-    FTRQRCodeTypeInvalid
+    FTRQRCodeTypeInvalid,
+    FTRQRCodeTypeUsernameless,
 };
 
 typedef void (^FTRRequestHandler)(NSError * _Nullable error);
@@ -137,6 +138,23 @@ typedef void (^FTRRequestDataHandler)(id _Nullable data);
 ///
 - (void)enroll:(NSString * _Nonnull)qrCode
       callback:(nullable FTRRequestHandler)callback;
+
+///  Enroll function with short activation code, for which the app does not provide an SDK Pin.
+///
+///  It needs to be used for all lock configuration types, with the only exception being that the first enrollment for the `LockConfigurationTypeSDKPinWithBiometricsOptional` lock configuration type needs to take place by using the `enrollAndSetupSDKPin` function.
+///
+///  This function is protected, therefore the SDK must be unlocked prior to calling it.
+///
+///  The callback response returns the following errors:
+///  - `FTRLockErrorInvalidOperation` if the SDK has been initialized for `LockConfigurationTypeSDKPinWithBiometricsOptional` and this is the very first enrollment. In this case the enrollAndSetupSDKPin should have been used instead.
+///  - `FTRLockErrorMechanismUnavailable` if biometric authentication is unavailable`.
+///
+/// - Parameters:
+///     - code: the short activation code for the user’s enrollment.
+///     - callback: The response of the operation.
+///
+- (void)enrollWithActivationShortCode:(NSString * _Nonnull)code
+                             callback:(nullable FTRRequestHandler)callback;
 
 /// Logout the user, in other words to remove the account.
 ///
@@ -228,6 +246,38 @@ typedef void (^FTRRequestDataHandler)(id _Nullable data);
                     extraInfo:(NSArray * _Nullable)extraInfo
                      callback:(nullable FTRRequestHandler)callback;
 
+///  Approve a usernameless QR Code authentication, when the session includes `extra_info` details.
+///
+///  This is a protected operation, so the SDK must be unlocked before calling this method.
+///
+/// - Parameters:
+///     - qrCode: Provided string directly from scanned QR code image.
+///     - userId: Futurae account's user id which the authentication will be binded to.
+///     - extraInfo: Session's additional contextual information which is displayed to the user.
+///     - callback: To get notified about success or failure of this operation.
+///
+- (void)approveAuthWithUsernamelessQrCode:(NSString * _Nonnull)qrCode
+                                   userId:(NSString * _Nonnull)userId
+                                extraInfo:(NSArray * _Nullable)extraInfo
+                                 callback:(nullable FTRRequestHandler)callback;
+
+///  Reject a usernameless QR Code authentication, when the session includes `extra_info` details.
+///
+///  This is a protected operation, so the SDK must be unlocked before calling this method.
+///
+/// - Parameters:
+///     - qrCode: Provided string directly from scanned QR code image.
+///     - userId: Futurae account's user id which the authentication will be binded to.
+///     - isFraud: Flag to choose whether to report a fraudulent authentication attempt.
+///     - extraInfo: Session's additional contextual information which is displayed to the user.
+///     - callback: To get notified about success or failure of this operation.
+///
+- (void)rejectAuthWithUsernamelessQrCode:(NSString * _Nonnull)qrCode
+                                  userId:(NSString * _Nonnull)userId
+                                 isFraud:(Boolean)isFraud
+                               extraInfo:(NSArray * _Nullable)extraInfo
+                                callback:(nullable FTRRequestHandler)callback;
+
 ///  Accept an Approve (aka. One-touch) authentication including `extra_info` data.
 ///
 ///  This is a protected operation, so the SDK must be unlocked before calling this method.
@@ -270,6 +320,35 @@ typedef void (^FTRRequestDataHandler)(id _Nullable data);
 ///
 - (void)approveAuthWithQrCode:(NSString * _Nonnull)qrCode
                      callback:(nullable FTRRequestHandler)callback;
+
+
+///  Approve a usernameless QR Code authentication.
+///
+///  This is a protected operation, so the SDK must be unlocked before calling this method.
+///
+/// - Parameters:
+///     - qrCode: Provided string directly from scanned QR code image.
+///     - userId: Futurae account's user id which the authentication will be binded to.
+///     - callback: To get notified about success or failure of this operation.
+///
+- (void)approveAuthWithUsernamelessQrCode:(NSString * _Nonnull)qrCode
+                                   userId:(NSString * _Nonnull)userId
+                                 callback:(nullable FTRRequestHandler)callback;
+
+///  Reject a usernameless QR Code authentication.
+///
+///  This is a protected operation, so the SDK must be unlocked before calling this method.
+///
+/// - Parameters:
+///     - qrCode: Provided string directly from scanned QR code image.
+///     - userId: Futurae account's user id which the authentication will be binded to.
+///     - isFraud: Flag to choose whether to report a fraudulent authentication attempt.
+///     - callback: To get notified about success or failure of this operation.
+///
+- (void)rejectAuthWithUsernamelessQrCode:(NSString * _Nonnull)qrCode
+                                  userId:(NSString * _Nonnull)userId
+                                 isFraud:(Boolean)isFraud
+                                callback:(nullable FTRRequestHandler)callback;
 
 ///  Accept an Approve (aka. One-touch) authentication.
 ///
@@ -488,6 +567,26 @@ typedef void (^FTRRequestDataHandler)(id _Nullable data);
 ///
 - (void)enrollAndSetupSDKPin:(NSString* _Nonnull)SDKPin
                         code:(NSString * _Nonnull)code
+                    callback:(FTRLockHandler _Nullable)callback;
+
+/// Using a short activation code, enrolls the user's first account when the SDK lock configuration type is `LockConfigurationTypeSDKPinWithBiometricsOptional`, and will result in an error when used with any other lock configuration type.
+///
+/// This method shall only be used on the first enrollment, if the device has no accounts enrolled beforehand. For subsequent enrollments, the `enroll` method shall be used instead.
+///
+/// This function unlocks the SDK, for the configured `unlockDuration`, upon success.
+///
+/// The callback response returns the following errors:
+/// - `FTRLockErrorInvalidOperation` if the current SDK configuration does not support biometric authentication.
+/// - `FTRLockErrorIllegalArgument` if any of the specified arguments are invalid.
+///
+///
+/// - Parameters:
+///   - SDKPin: The SDK Pin which the user has provided to the app.
+///   - code: The short activation code for the user’s enrollment.
+///   - callback: The response of the operation.
+///
+- (void)enrollAndSetupSDKPin:(NSString* _Nonnull)SDKPin
+         activationShortCode:(NSString * _Nonnull)code
                     callback:(FTRLockHandler _Nullable)callback;
 
 /// Query the SDK to find out whether it is unlocked.
