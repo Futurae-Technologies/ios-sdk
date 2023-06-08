@@ -9,7 +9,7 @@
 import Foundation
 
 public class SDKConstants: NSObject {
-    @objc public static let SDKID = ""
-    @objc public static let SDKKEY = ""
-    @objc public static let SDKURL = ""
+    @objc public static let SDKID = "c52fd980-dbdf-437b-991d-090b2063eb7e"
+    @objc public static let SDKKEY = "sJay/RtagFNcTqPnww7r2LHsVImrpeP8dbLymk9dH/qG"
+    @objc public static let SDKURL = "https://api-test.futurae.com"
 }

@@ -32,7 +32,9 @@ typedef NS_CLOSED_ENUM(NSUInteger, FTRAccountMigrationError) {
     FTRAccountMigrationErrorNoMigrationInfo = 900,
     FTRAccountMigrationErrorAccountsExistError = 901,
     FTRAccountMigrationErrorAccountPreviouslyEnrolledError = 902,
-    FTRAccountMigrationErrorPinRequired = 903
+    FTRAccountMigrationErrorPinRequired = 903,
+    FTRAccountMigrationErrorNoDeviceUDID = 904,
+    FTRAccountMigrationErrorNoMigrationToken = 905
 };
 
 // error codes
@@ -41,6 +43,8 @@ FOUNDATION_EXTERN const NSUInteger FTRClientErrorInvalidEnrollmentCode;
 FOUNDATION_EXTERN const NSUInteger FTRClientErrorInvalidAuthorizationCode;
 FOUNDATION_EXTERN const NSUInteger FTRClientErrorAccountAlreadyActive;
 FOUNDATION_EXTERN const NSUInteger FTRClientErrorOutdatedApp;
+FOUNDATION_EXTERN const NSUInteger FTRClientErrorMissingDeviceToken;
+FOUNDATION_EXTERN const NSUInteger FTRClientErrorMissingDeviceUDID;
 
 // notifications
 FOUNDATION_EXTERN _Nonnull NSNotificationName const FTRNotificationError;
