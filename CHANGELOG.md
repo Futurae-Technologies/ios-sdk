@@ -1,9 +1,16 @@
+# Version `2.2.1`
+2023-08-06
+
++ [Fix] Handle launch crash in simulator for some iOS 13 versions
++ [Changed] Handle crash on account migration and return error when device UDID or migration token is missing
++ [Changed] Return error from SDK methods when missing device UDID or token
+
 # Version `2.2.0`
 2023-16-05
 
-+ Add FTRClient functions enrollWithActivationShortCode and enrollAndSetupSDKPin:activationShortCode used for enrolling accounts with activation short codes.
-+ Add FTRClient functions approveAuthWithUsernamelessQrCode to handle Usernameless QR codes.
-+ FTRClient function QRCodeTypeFromQRCode now can also return value FTRQRCodeTypeUsernameless for usernameless QR codes.
++ [Added] FTRClient functions enrollWithActivationShortCode and enrollAndSetupSDKPin:activationShortCode used for enrolling accounts with activation short codes.
++ [Added] FTRClient functions approveAuthWithUsernamelessQrCode to handle Usernameless QR codes.
++ [Added] FTRClient function QRCodeTypeFromQRCode now can also return value FTRQRCodeTypeUsernameless for usernameless QR codes.
 
 # Version `2.1.0`
 2023-14-04

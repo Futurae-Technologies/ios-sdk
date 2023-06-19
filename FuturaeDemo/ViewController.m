@@ -482,6 +482,8 @@ BOOL operationWithBiometrics = NO;
     [self dismissViewControllerAnimated:YES completion:^{
         [weakSelf presentViewController:ac animated:true completion:nil];
     }];
+    
+    
 }
 
 - (void)approveAuthWithUsernamelessQRCode:(NSString *)QRCodeResult userId: (NSString *)userId {
