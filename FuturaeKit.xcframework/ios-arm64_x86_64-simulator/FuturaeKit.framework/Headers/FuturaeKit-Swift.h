@@ -289,6 +289,32 @@ SWIFT_CLASS("_TtC10FuturaeKit14ASN1DERParsing")
 - (nonnull instancetype)init OBJC_DESIGNATED_INITIALIZER;
 @end
 
+@class NSString;
+
+SWIFT_CLASS("_TtC10FuturaeKit9AppAttest") SWIFT_AVAILABILITY(ios,introduced=14.0)
+@interface AppAttest : NSObject
+SWIFT_CLASS_PROPERTY(@property (nonatomic, class, readonly, copy) NSString * _Nonnull keyIdDefaults;)
++ (NSString * _Nonnull)keyIdDefaults SWIFT_WARN_UNUSED_RESULT;
+SWIFT_CLASS_PROPERTY(@property (nonatomic, class, readonly, copy) NSString * _Nonnull appIdDefaults;)
++ (NSString * _Nonnull)appIdDefaults SWIFT_WARN_UNUSED_RESULT;
+SWIFT_CLASS_PROPERTY(@property (nonatomic, class, readonly, copy) NSString * _Nonnull attestationType;)
++ (NSString * _Nonnull)attestationType SWIFT_WARN_UNUSED_RESULT;
+SWIFT_CLASS_PROPERTY(@property (nonatomic, class, readonly, copy) NSString * _Nonnull assertionType;)
++ (NSString * _Nonnull)assertionType SWIFT_WARN_UNUSED_RESULT;
++ (void)getAttestOrAssertWithType:(NSString * _Nonnull)type challenge:(NSString * _Nonnull)challenge success:(void (^ _Nonnull)(NSString * _Nonnull, NSString * _Nonnull, NSString * _Nonnull))success failure:(void (^ _Nonnull)(NSError * _Nonnull))failure SWIFT_AVAILABILITY(ios,introduced=14.0);
++ (void)getAttestationWithChallenge:(NSString * _Nonnull)challenge success:(void (^ _Nonnull)(NSString * _Nonnull, NSString * _Nonnull, NSString * _Nonnull))success failure:(void (^ _Nonnull)(NSError * _Nonnull))failure SWIFT_AVAILABILITY(ios,introduced=14.0);
++ (void)getAssertionWithChallenge:(NSString * _Nonnull)challenge success:(void (^ _Nonnull)(NSString * _Nonnull, NSString * _Nonnull, NSString * _Nonnull))success failure:(void (^ _Nonnull)(NSError * _Nonnull))failure SWIFT_AVAILABILITY(ios,introduced=14.0);
+- (nonnull instancetype)init OBJC_DESIGNATED_INITIALIZER;
+@end
+
+@class JailbreakStatus;
+
+SWIFT_CLASS("_TtC10FuturaeKit14DeviceSecurity")
+@interface DeviceSecurity : NSObject
++ (JailbreakStatus * _Nonnull)jailbreakStatus SWIFT_WARN_UNUSED_RESULT;
+- (nonnull instancetype)init OBJC_DESIGNATED_INITIALIZER;
+@end
+
 #endif
 #if defined(__cplusplus)
 #endif
@@ -585,6 +611,32 @@ typedef unsigned int swift_uint4  __attribute__((__ext_vector_type__(4)));
 SWIFT_CLASS("_TtC10FuturaeKit14ASN1DERParsing")
 @interface ASN1DERParsing : NSObject
 + (NSData * _Nullable)unpackBERencodedASN1formatToRawWithSignature:(NSData * _Nonnull)signature error:(NSError * _Nullable * _Nullable)error SWIFT_WARN_UNUSED_RESULT;
+- (nonnull instancetype)init OBJC_DESIGNATED_INITIALIZER;
+@end
+
+@class NSString;
+
+SWIFT_CLASS("_TtC10FuturaeKit9AppAttest") SWIFT_AVAILABILITY(ios,introduced=14.0)
+@interface AppAttest : NSObject
+SWIFT_CLASS_PROPERTY(@property (nonatomic, class, readonly, copy) NSString * _Nonnull keyIdDefaults;)
++ (NSString * _Nonnull)keyIdDefaults SWIFT_WARN_UNUSED_RESULT;
+SWIFT_CLASS_PROPERTY(@property (nonatomic, class, readonly, copy) NSString * _Nonnull appIdDefaults;)
++ (NSString * _Nonnull)appIdDefaults SWIFT_WARN_UNUSED_RESULT;
+SWIFT_CLASS_PROPERTY(@property (nonatomic, class, readonly, copy) NSString * _Nonnull attestationType;)
++ (NSString * _Nonnull)attestationType SWIFT_WARN_UNUSED_RESULT;
+SWIFT_CLASS_PROPERTY(@property (nonatomic, class, readonly, copy) NSString * _Nonnull assertionType;)
++ (NSString * _Nonnull)assertionType SWIFT_WARN_UNUSED_RESULT;
++ (void)getAttestOrAssertWithType:(NSString * _Nonnull)type challenge:(NSString * _Nonnull)challenge success:(void (^ _Nonnull)(NSString * _Nonnull, NSString * _Nonnull, NSString * _Nonnull))success failure:(void (^ _Nonnull)(NSError * _Nonnull))failure SWIFT_AVAILABILITY(ios,introduced=14.0);
++ (void)getAttestationWithChallenge:(NSString * _Nonnull)challenge success:(void (^ _Nonnull)(NSString * _Nonnull, NSString * _Nonnull, NSString * _Nonnull))success failure:(void (^ _Nonnull)(NSError * _Nonnull))failure SWIFT_AVAILABILITY(ios,introduced=14.0);
++ (void)getAssertionWithChallenge:(NSString * _Nonnull)challenge success:(void (^ _Nonnull)(NSString * _Nonnull, NSString * _Nonnull, NSString * _Nonnull))success failure:(void (^ _Nonnull)(NSError * _Nonnull))failure SWIFT_AVAILABILITY(ios,introduced=14.0);
+- (nonnull instancetype)init OBJC_DESIGNATED_INITIALIZER;
+@end
+
+@class JailbreakStatus;
+
+SWIFT_CLASS("_TtC10FuturaeKit14DeviceSecurity")
+@interface DeviceSecurity : NSObject
++ (JailbreakStatus * _Nonnull)jailbreakStatus SWIFT_WARN_UNUSED_RESULT;
 - (nonnull instancetype)init OBJC_DESIGNATED_INITIALIZER;
 @end
 

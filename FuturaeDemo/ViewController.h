@@ -14,6 +14,8 @@
 
 @interface ViewController : UIViewController
 
+@property (weak, nonatomic) IBOutlet UIButton *enableAdaptiveButton;
+@property (weak, nonatomic) IBOutlet UIButton *disableAdaptiveButton;
 @property (weak, nonatomic) IBOutlet UIStackView *stackView;
 @property (weak, nonatomic) IBOutlet UILabel *messageLabel;
 @property (weak, nonatomic) IBOutlet UIImageView *serviceLogoImageView;
@@ -32,6 +34,7 @@
 - (IBAction)offlineQRCodeWithPINTouchedUpInside:(id)sender;
 - (IBAction)scanQRCodeWithPINTouchedUpInside:(id)sender;
 - (IBAction)fetchAccountHistory:(UIButton *)sender;
+- (IBAction)adaptiveCollections:(UIButton *)sender;
 
 @end
 

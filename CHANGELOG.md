@@ -1,3 +1,12 @@
+# Version `2.3.0`
+2023-30-06
++ [Added] FTRClient function `enableAdaptiveWithDelegate` function to enable Adaptive.  
++ [Added] FTRClient function `disableAdaptive` to disable Adaptive.  
++ [Added] FTRClient function `isAdaptiveEnabled` to check if Adaptive is enabled.
++ [Added] FTRClient function `setAdaptiveTimeThreshold` to set Adaptive collection interval.
++ [Added] FTRClient function `pendingAdaptiveCollections` to get data collections that are pending sending to backend.
++ [Added] FTRClient function `jailbreakStatus` that returns `JailbreakStatus` object. This object has a BOOL `jailbroken` property that shows if a jailbreak is detected and NSString `message` that contains a description of jailbreak marker if any.
+
 # Version `2.2.1`
 2023-08-06
 

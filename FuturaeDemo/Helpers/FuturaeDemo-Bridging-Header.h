@@ -7,9 +7,4 @@
 //
 
 #import "HistoryItem.h"
-
-#ifndef FuturaeDemo_Bridging_Header_h
-#define FuturaeDemo_Bridging_Header_h
-
-
-#endif /* FuturaeDemo_Bridging_Header_h */
+#import "ViewController.h"

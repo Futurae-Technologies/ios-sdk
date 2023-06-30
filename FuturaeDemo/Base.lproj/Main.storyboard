@@ -3,7 +3,7 @@
     <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21678"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21679"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -21,7 +21,7 @@
                                 <rect key="frame" x="0.0" y="30" width="375" height="588"/>
                                 <subviews>
                                     <stackView hidden="YES" opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" alignment="center" spacing="25" translatesAutoresizingMaskIntoConstraints="NO" id="ZCm-HJ-efC">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="1306"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="1678"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="o3k-Hi-SjC" customClass="CustomDemoButton" customModule="FuturaeDemo" customModuleProvider="target">
                                                 <rect key="frame" x="83" y="0.0" width="209" height="37"/>
@@ -464,8 +464,113 @@
                                                     <action selector="getAccountsStatus:" destination="BYZ-38-t0r" eventType="touchUpInside" id="6H1-Hd-v5G"/>
                                                 </connections>
                                             </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1pg-tN-20N" customClass="CustomDemoButton" customModule="FuturaeDemo" customModuleProvider="target">
+                                                <rect key="frame" x="118" y="1302" width="139" height="37"/>
+                                                <color key="backgroundColor" red="0.2470588088" green="0.24313727020000001" blue="0.32941177490000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <inset key="contentEdgeInsets" minX="8" minY="8" maxX="8" maxY="8"/>
+                                                <state key="normal" title="Enable Adaptive"/>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                        <real key="value" value="5"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                                        <real key="value" value="1"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                                        <color key="value" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
+                                                <connections>
+                                                    <action selector="enableAdaptive:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Hto-Y1-lpn"/>
+                                                </connections>
+                                            </button>
+                                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2Cr-Ur-Hnk" customClass="CustomDemoButton" customModule="FuturaeDemo" customModuleProvider="target">
+                                                <rect key="frame" x="115.5" y="1351.5" width="144" height="0.0"/>
+                                                <color key="backgroundColor" red="0.2470588088" green="0.24313727020000001" blue="0.32941177490000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <inset key="contentEdgeInsets" minX="8" minY="8" maxX="8" maxY="8"/>
+                                                <state key="normal" title="Disable Adaptive"/>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                        <real key="value" value="5"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                                        <real key="value" value="1"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                                        <color key="value" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
+                                                <connections>
+                                                    <action selector="disableAdaptive:" destination="BYZ-38-t0r" eventType="touchUpInside" id="IPv-j3-c04"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2pU-VS-K5o" customClass="CustomDemoButton" customModule="FuturaeDemo" customModuleProvider="target">
+                                                <rect key="frame" x="120" y="1364" width="135" height="37"/>
+                                                <color key="backgroundColor" red="0.2470588088" green="0.24313727020000001" blue="0.32941177490000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <inset key="contentEdgeInsets" minX="8" minY="8" maxX="8" maxY="8"/>
+                                                <state key="normal" title="App Attestation"/>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                        <real key="value" value="5"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                                        <real key="value" value="1"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                                        <color key="value" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
+                                                <connections>
+                                                    <action selector="validateAttestation:" destination="BYZ-38-t0r" eventType="touchUpInside" id="L6s-2X-wMK"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="01w-un-XNo" userLabel="Is Jailbroken" customClass="CustomDemoButton" customModule="FuturaeDemo" customModuleProvider="target">
+                                                <rect key="frame" x="119.5" y="1426" width="136" height="37"/>
+                                                <color key="backgroundColor" red="0.2470588088" green="0.24313727020000001" blue="0.32941177490000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <inset key="contentEdgeInsets" minX="8" minY="8" maxX="8" maxY="8"/>
+                                                <state key="normal" title="Jailbreak status"/>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                        <real key="value" value="5"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                                        <real key="value" value="1"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                                        <color key="value" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
+                                                <connections>
+                                                    <action selector="jailbreakStatus:" destination="BYZ-38-t0r" eventType="touchUpInside" id="3Wy-qD-FiC"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Kam-9i-m9A" customClass="CustomDemoButton" customModule="FuturaeDemo" customModuleProvider="target">
+                                                <rect key="frame" x="101.5" y="1488" width="172" height="37"/>
+                                                <color key="backgroundColor" red="0.2470588088" green="0.24313727020000001" blue="0.32941177490000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <inset key="contentEdgeInsets" minX="8" minY="8" maxX="8" maxY="8"/>
+                                                <state key="normal" title="Adaptive Collections"/>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                        <real key="value" value="5"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                                        <real key="value" value="1"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                                        <color key="value" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
+                                                <connections>
+                                                    <action selector="adaptiveCollections:" destination="BYZ-38-t0r" eventType="touchUpInside" id="bVE-hm-LDk"/>
+                                                </connections>
+                                            </button>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="qkn-CG-ake">
-                                                <rect key="frame" x="67.5" y="1178" width="240" height="128"/>
+                                                <rect key="frame" x="67.5" y="1550" width="240" height="128"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="128" id="0Lu-Tc-m29"/>
                                                     <constraint firstAttribute="width" constant="240" id="tcb-4w-hmb"/>
@@ -506,6 +611,8 @@
                     </view>
                     <tabBarItem key="tabBarItem" title="FUNCTIONS" image="terminal" catalog="system" selectedImage="terminal" id="R8f-3b-m6K"/>
                     <connections>
+                        <outlet property="disableAdaptiveButton" destination="2Cr-Ur-Hnk" id="wlt-dv-vkU"/>
+                        <outlet property="enableAdaptiveButton" destination="1pg-tN-20N" id="5JP-T0-6wM"/>
                         <outlet property="messageLabel" destination="gDR-tX-V9e" id="2C0-wJ-rNi"/>
                         <outlet property="serviceLogoImageView" destination="qkn-CG-ake" id="9x0-kT-gtq"/>
                         <outlet property="stackView" destination="ZCm-HJ-efC" id="nwC-sq-M8m"/>
@@ -522,6 +629,103 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1460" y="-356"/>
+        </scene>
+        <!--Adaptive View Controller-->
+        <scene sceneID="skj-u8-24J">
+            <objects>
+                <viewController storyboardIdentifier="AdaptiveViewController" id="Mjv-iU-tUC" customClass="AdaptiveViewController" customModule="FuturaeDemo" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="7iW-Qy-65X">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="Sml-w1-buH">
+                                <rect key="frame" x="0.0" y="20" width="375" height="647"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="AdaptiveCell" id="ge7-8u-Dbu" customClass="AdaptiveTableViewCell" customModule="FuturaeDemo" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="50" width="375" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="ge7-8u-Dbu" id="gAb-Na-7YP">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tBH-M4-3xF">
+                                                    <rect key="frame" x="16" y="11" width="343" height="22"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="21.5" id="ktv-lC-iHP"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="tBH-M4-3xF" firstAttribute="top" secondItem="gAb-Na-7YP" secondAttribute="topMargin" id="5w7-Fq-A4t"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="tBH-M4-3xF" secondAttribute="bottom" id="M8G-1f-e5k"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="tBH-M4-3xF" secondAttribute="trailing" id="e3d-cV-Cvs"/>
+                                                <constraint firstItem="tBH-M4-3xF" firstAttribute="leading" secondItem="gAb-Na-7YP" secondAttribute="leadingMargin" id="uKT-gv-dr8"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="titleLabel" destination="tBH-M4-3xF" id="jno-La-NxN"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                                <sections/>
+                                <connections>
+                                    <outlet property="dataSource" destination="Mjv-iU-tUC" id="8wd-Hc-W1g"/>
+                                    <outlet property="delegate" destination="Mjv-iU-tUC" id="LhG-f7-OfZ"/>
+                                </connections>
+                            </tableView>
+                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iN2-2n-KWJ">
+                                <rect key="frame" x="0.0" y="20" width="375" height="54"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="54" id="wrB-fK-DjU"/>
+                                </constraints>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="CLOSE"/>
+                                <connections>
+                                    <action selector="closeTextView:" destination="Mjv-iU-tUC" eventType="touchUpInside" id="wQI-vz-qx4"/>
+                                </connections>
+                            </button>
+                            <textView hidden="YES" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="D3a-Ce-1ch">
+                                <rect key="frame" x="0.0" y="74" width="375" height="593"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
+                                <color key="textColor" systemColor="labelColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="8QN-dZ-C8E"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="D3a-Ce-1ch" firstAttribute="leading" secondItem="8QN-dZ-C8E" secondAttribute="leading" id="4Cm-kj-i2c"/>
+                            <constraint firstItem="Sml-w1-buH" firstAttribute="trailing" secondItem="8QN-dZ-C8E" secondAttribute="trailing" id="5Zb-rq-FJO"/>
+                            <constraint firstItem="iN2-2n-KWJ" firstAttribute="top" secondItem="8QN-dZ-C8E" secondAttribute="top" id="Ege-ts-cRe"/>
+                            <constraint firstItem="8QN-dZ-C8E" firstAttribute="trailing" secondItem="D3a-Ce-1ch" secondAttribute="trailing" id="P3N-pM-avA"/>
+                            <constraint firstItem="Sml-w1-buH" firstAttribute="leading" secondItem="8QN-dZ-C8E" secondAttribute="leading" id="X8J-Go-7yQ"/>
+                            <constraint firstItem="D3a-Ce-1ch" firstAttribute="bottom" secondItem="8QN-dZ-C8E" secondAttribute="bottom" id="XL9-X6-7Cc"/>
+                            <constraint firstItem="iN2-2n-KWJ" firstAttribute="trailing" secondItem="8QN-dZ-C8E" secondAttribute="trailing" id="eT4-xe-VkI"/>
+                            <constraint firstItem="D3a-Ce-1ch" firstAttribute="top" secondItem="iN2-2n-KWJ" secondAttribute="bottom" id="hqD-fW-MU2"/>
+                            <constraint firstItem="D3a-Ce-1ch" firstAttribute="trailing" secondItem="8QN-dZ-C8E" secondAttribute="trailing" id="nvW-Sj-TWu"/>
+                            <constraint firstItem="Sml-w1-buH" firstAttribute="bottom" secondItem="8QN-dZ-C8E" secondAttribute="bottom" id="pCb-nP-7Za"/>
+                            <constraint firstItem="8QN-dZ-C8E" firstAttribute="bottom" secondItem="D3a-Ce-1ch" secondAttribute="bottom" id="rq5-4x-9wb"/>
+                            <constraint firstItem="D3a-Ce-1ch" firstAttribute="leading" secondItem="8QN-dZ-C8E" secondAttribute="leading" id="sRw-qD-sm3"/>
+                            <constraint firstItem="Sml-w1-buH" firstAttribute="top" secondItem="8QN-dZ-C8E" secondAttribute="top" id="uV9-AU-15m"/>
+                            <constraint firstItem="iN2-2n-KWJ" firstAttribute="leading" secondItem="8QN-dZ-C8E" secondAttribute="leading" id="zUj-Va-6DI"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="closeButton" destination="iN2-2n-KWJ" id="cDb-oE-XJJ"/>
+                        <outlet property="tableView" destination="Sml-w1-buH" id="ucL-kr-VVX"/>
+                        <outlet property="textView" destination="D3a-Ce-1ch" id="LCz-He-3Dl"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="j4z-3k-F73" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1722.4000000000001" y="85.907046476761622"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="Jyz-ii-kev">
@@ -1083,14 +1287,26 @@
         </scene>
     </scenes>
     <designables>
+        <designable name="01w-un-XNo">
+            <size key="intrinsicContentSize" width="136" height="37"/>
+        </designable>
         <designable name="0jo-0t-GFf">
             <size key="intrinsicContentSize" width="153" height="37"/>
         </designable>
         <designable name="1DE-yh-ELl">
             <size key="intrinsicContentSize" width="99" height="38"/>
         </designable>
+        <designable name="1pg-tN-20N">
+            <size key="intrinsicContentSize" width="139" height="37"/>
+        </designable>
+        <designable name="2Cr-Ur-Hnk">
+            <size key="intrinsicContentSize" width="144" height="37"/>
+        </designable>
         <designable name="2GW-rH-IjZ">
             <size key="intrinsicContentSize" width="183" height="37"/>
+        </designable>
+        <designable name="2pU-VS-K5o">
+            <size key="intrinsicContentSize" width="135" height="37"/>
         </designable>
         <designable name="DW9-WM-BQq">
             <size key="intrinsicContentSize" width="207" height="37"/>
@@ -1106,6 +1322,9 @@
         </designable>
         <designable name="IJp-DQ-N3R">
             <size key="intrinsicContentSize" width="264" height="37"/>
+        </designable>
+        <designable name="Kam-9i-m9A">
+            <size key="intrinsicContentSize" width="172" height="37"/>
         </designable>
         <designable name="M0a-WQ-c6y">
             <size key="intrinsicContentSize" width="59" height="37"/>
@@ -1186,6 +1405,12 @@
     <resources>
         <image name="gear" catalog="system" width="128" height="122"/>
         <image name="terminal" catalog="system" width="128" height="93"/>
+        <systemColor name="labelColor">
+            <color red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
         <systemColor name="systemGreenColor">
             <color red="0.20392156862745098" green="0.7803921568627451" blue="0.34901960784313724" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>

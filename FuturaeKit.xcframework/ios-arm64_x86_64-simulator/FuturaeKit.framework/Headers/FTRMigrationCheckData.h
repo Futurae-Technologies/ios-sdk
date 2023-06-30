@@ -15,6 +15,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic) NSUInteger numberOfAccountsToMigrate;
 @property (nonatomic) BOOL pinProtected;
+@property (nonatomic) BOOL adaptiveMigrationEnabled;
 @property (nonatomic) NSArray<FTRMigratableAccount*> *migratableAccounts;
 
 - (instancetype)initWithDictionary:(NSDictionary*)dictionary;
