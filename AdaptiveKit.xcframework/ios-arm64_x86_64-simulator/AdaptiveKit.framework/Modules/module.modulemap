@@ -1,0 +1,11 @@
+framework module AdaptiveKit {
+  umbrella header "AdaptiveKit.h"
+
+  export *
+  module * { export * }
+}
+
+module AdaptiveKit.Swift {
+  header "AdaptiveKit-Swift.h"
+  requires objc
+}

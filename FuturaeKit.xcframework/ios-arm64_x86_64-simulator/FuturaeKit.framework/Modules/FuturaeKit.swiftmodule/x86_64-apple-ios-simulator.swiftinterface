@@ -2,13 +2,191 @@
 // swift-compiler-version: Apple Swift version 5.8.1 (swiftlang-5.8.0.124.5 clang-1403.0.22.11.100)
 // swift-module-flags: -target x86_64-apple-ios11.0-simulator -enable-objc-interop -enable-library-evolution -swift-version 5 -enforce-exclusivity=checked -O -module-name FuturaeKit
 // swift-module-flags-ignorable: -enable-bare-slash-regex
+import CryptoKit
+import Darwin
+import DeviceCheck
 import Foundation
 @_exported import FuturaeKit
+import MachO
+import ObjectiveC
 import Swift
+import UIKit
 import _Concurrency
 import _StringProcessing
+final public class CodableCBORDecoder {
+  final public var useStringKeys: Swift.Bool
+  final public var dateStrategy: FuturaeKit.DateStrategy
+  public init()
+  final public var userInfo: [Swift.CodingUserInfoKey : Any]
+  final public func decode<T>(_ type: T.Type, from data: Foundation.Data) throws -> T where T : Swift.Decodable
+  final public func decode<T>(_ type: T.Type, from data: Swift.ArraySlice<Swift.UInt8>) throws -> T where T : Swift.Decodable
+  @objc deinit
+}
+public protocol CBORInputStream {
+  mutating func popByte() throws -> Swift.UInt8
+  mutating func popBytes(_ n: Swift.Int) throws -> Swift.ArraySlice<Swift.UInt8>
+}
+public typealias FailedCheckType = (check: FuturaeKit.FailedCheck, failMessage: Swift.String)
+public enum FailedCheck : Swift.CaseIterable {
+  case urlSchemes
+  case existenceOfSuspiciousFiles
+  case suspiciousFilesCanBeOpened
+  case restrictedDirectoriesWriteable
+  case fork
+  case symbolicLinks
+  case dyld
+  case openedPorts
+  case pSelectFlag
+  case suspiciousObjCClasses
+  public static func == (a: FuturaeKit.FailedCheck, b: FuturaeKit.FailedCheck) -> Swift.Bool
+  public func hash(into hasher: inout Swift.Hasher)
+  public typealias AllCases = [FuturaeKit.FailedCheck]
+  public static var allCases: [FuturaeKit.FailedCheck] {
+    get
+  }
+  public var hashValue: Swift.Int {
+    get
+  }
+}
+@_inheritsConvenienceInitializers @available(iOS 14.0, *)
+@objc public class AppAttest : ObjectiveC.NSObject {
+  @objc public static let keyIdDefaults: Swift.String
+  @objc public static let appIdDefaults: Swift.String
+  @objc public static let attestationType: Swift.String
+  @objc public static let assertionType: Swift.String
+  @available(iOS 14.0, *)
+  @objc public class func getAttestOrAssert(type: Swift.String, challenge: Swift.String, success: @escaping (_ data: Swift.String, _ keyId: Swift.String, _ appId: Swift.String) -> Swift.Void, failure: @escaping (_ error: any Swift.Error) -> Swift.Void)
+  @available(iOS 14.0, *)
+  @objc public class func getAttestation(challenge: Swift.String, success: @escaping (_ data: Swift.String, _ keyId: Swift.String, _ appId: Swift.String) -> Swift.Void, failure: @escaping (_ error: any Swift.Error) -> Swift.Void)
+  @available(iOS 14.0, *)
+  @objc public class func getAssertion(challenge: Swift.String, success: @escaping (_ data: Swift.String, _ keyId: Swift.String, _ appId: Swift.String) -> Swift.Void, failure: @escaping (_ error: any Swift.Error) -> Swift.Void)
+  @objc override dynamic public init()
+  @objc deinit
+}
 @_inheritsConvenienceInitializers @objc public class ASN1DERParsing : ObjectiveC.NSObject {
   @objc public class func unpackBERencodedASN1formatToRaw(signature: Foundation.NSData) throws -> Foundation.NSData
   @objc override dynamic public init()
   @objc deinit
 }
+public struct CBOROptions {
+  public init(useStringKeys: Swift.Bool = false, dateStrategy: FuturaeKit.DateStrategy = .taggedAsEpochTimestamp, forbidNonStringMapKeys: Swift.Bool = false)
+}
+public enum DateStrategy {
+  case taggedAsEpochTimestamp
+  case annotatedMap
+  public static func == (a: FuturaeKit.DateStrategy, b: FuturaeKit.DateStrategy) -> Swift.Bool
+  public func hash(into hasher: inout Swift.Hasher)
+  public var hashValue: Swift.Int {
+    get
+  }
+}
+@_hasMissingDesignatedInitializers @available(iOSApplicationExtension, unavailable)
+public class IOSSecuritySuite {
+  public static func amIJailbrokenWithFailMessage() -> (jailbroken: Swift.Bool, failMessage: Swift.String)
+  @objc deinit
+}
+@_inheritsConvenienceInitializers @objc public class DeviceSecurity : ObjectiveC.NSObject {
+  @objc public class func jailbreakStatus() -> FuturaeKit.JailbreakStatus
+  @objc override dynamic public init()
+  @objc deinit
+}
+indirect public enum CBOR : Swift.Equatable, Swift.Hashable, Swift.ExpressibleByNilLiteral, Swift.ExpressibleByIntegerLiteral, Swift.ExpressibleByStringLiteral, Swift.ExpressibleByArrayLiteral, Swift.ExpressibleByDictionaryLiteral, Swift.ExpressibleByBooleanLiteral, Swift.ExpressibleByFloatLiteral {
+  case unsignedInt(Swift.UInt64)
+  case negativeInt(Swift.UInt64)
+  case byteString([Swift.UInt8])
+  case utf8String(Swift.String)
+  case array([FuturaeKit.CBOR])
+  case map([FuturaeKit.CBOR : FuturaeKit.CBOR])
+  case tagged(FuturaeKit.CBOR.Tag, FuturaeKit.CBOR)
+  case simple(Swift.UInt8)
+  case boolean(Swift.Bool)
+  case null
+  case undefined
+  case half(Swift.Float32)
+  case float(Swift.Float32)
+  case double(Swift.Float64)
+  case `break`
+  case date(Foundation.Date)
+  public func hash(into hasher: inout Swift.Hasher)
+  public subscript(position: FuturaeKit.CBOR) -> FuturaeKit.CBOR? {
+    get
+    set(x)
+  }
+  public init(nilLiteral: ())
+  public init(integerLiteral value: Swift.Int)
+  public init(extendedGraphemeClusterLiteral value: Swift.String)
+  public init(unicodeScalarLiteral value: Swift.String)
+  public init(stringLiteral value: Swift.String)
+  public init(arrayLiteral elements: FuturaeKit.CBOR...)
+  public init(dictionaryLiteral elements: (FuturaeKit.CBOR, FuturaeKit.CBOR)...)
+  public init(booleanLiteral value: Swift.Bool)
+  public init(floatLiteral value: Swift.Float32)
+  public static func == (lhs: FuturaeKit.CBOR, rhs: FuturaeKit.CBOR) -> Swift.Bool
+  public struct Tag : Swift.RawRepresentable, Swift.Equatable, Swift.Hashable {
+    public let rawValue: Swift.UInt64
+    public init(rawValue: Swift.UInt64)
+    public var hashValue: Swift.Int {
+      get
+    }
+    public typealias RawValue = Swift.UInt64
+  }
+  public typealias ArrayLiteralElement = FuturaeKit.CBOR
+  public typealias BooleanLiteralType = Swift.Bool
+  public typealias ExtendedGraphemeClusterLiteralType = Swift.String
+  public typealias FloatLiteralType = Swift.Float32
+  public typealias IntegerLiteralType = Swift.Int
+  public typealias Key = FuturaeKit.CBOR
+  public typealias StringLiteralType = Swift.String
+  public typealias UnicodeScalarLiteralType = Swift.String
+  public typealias Value = FuturaeKit.CBOR
+  public var hashValue: Swift.Int {
+    get
+  }
+}
+extension FuturaeKit.CBOR.Tag {
+  public static let standardDateTimeString: FuturaeKit.CBOR.Tag
+  public static let epochBasedDateTime: FuturaeKit.CBOR.Tag
+  public static let positiveBignum: FuturaeKit.CBOR.Tag
+  public static let negativeBignum: FuturaeKit.CBOR.Tag
+  public static let decimalFraction: FuturaeKit.CBOR.Tag
+  public static let bigfloat: FuturaeKit.CBOR.Tag
+  public static let expectedConversionToBase64URLEncoding: FuturaeKit.CBOR.Tag
+  public static let expectedConversionToBase64Encoding: FuturaeKit.CBOR.Tag
+  public static let expectedConversionToBase16Encoding: FuturaeKit.CBOR.Tag
+  public static let encodedCBORDataItem: FuturaeKit.CBOR.Tag
+  public static let uri: FuturaeKit.CBOR.Tag
+  public static let base64Url: FuturaeKit.CBOR.Tag
+  public static let base64: FuturaeKit.CBOR.Tag
+  public static let regularExpression: FuturaeKit.CBOR.Tag
+  public static let mimeMessage: FuturaeKit.CBOR.Tag
+  public static let uuid: FuturaeKit.CBOR.Tag
+  public static let selfDescribeCBOR: FuturaeKit.CBOR.Tag
+}
+public enum CBORError : Swift.Error {
+  case unfinishedSequence
+  case wrongTypeInsideSequence
+  case tooLongSequence
+  case incorrectUTF8String
+  public static func == (a: FuturaeKit.CBORError, b: FuturaeKit.CBORError) -> Swift.Bool
+  public func hash(into hasher: inout Swift.Hasher)
+  public var hashValue: Swift.Int {
+    get
+  }
+}
+extension FuturaeKit.CBOR {
+  public static func decode(_ input: [Swift.UInt8], options: FuturaeKit.CBOROptions = CBOROptions()) throws -> FuturaeKit.CBOR?
+}
+public class CBORDecoder {
+  public var options: FuturaeKit.CBOROptions
+  public init(stream: any FuturaeKit.CBORInputStream, options: FuturaeKit.CBOROptions = CBOROptions())
+  public init(input: Swift.ArraySlice<Swift.UInt8>, options: FuturaeKit.CBOROptions = CBOROptions())
+  public init(input: [Swift.UInt8], options: FuturaeKit.CBOROptions = CBOROptions())
+  public func decodeItem() throws -> FuturaeKit.CBOR?
+  @objc deinit
+}
+extension FuturaeKit.FailedCheck : Swift.Equatable {}
+extension FuturaeKit.FailedCheck : Swift.Hashable {}
+extension FuturaeKit.DateStrategy : Swift.Equatable {}
+extension FuturaeKit.DateStrategy : Swift.Hashable {}
+extension FuturaeKit.CBORError : Swift.Equatable {}
+extension FuturaeKit.CBORError : Swift.Hashable {}

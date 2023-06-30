@@ -116,6 +116,12 @@ final class KeychainConfigViewController: UIViewController {
     
     func setupSdkView(){
         sdkClient = FTRClient.shared()
+//        sdkClient?.setUserPresenceDelegate(self)
+        if(UserDefaults.standard.bool(forKey: "adaptive_enabled")){
+            if let vc = (tabBarController?.viewControllers?.first { $0 is ViewController }){
+                sdkClient?.enableAdaptive(with: vc as! FTRAdaptiveSDKDelegate)
+            }
+        }
         valueTextView.text = "SDK is launched with config: \(nameForOption(selectedConfigOption!))"
         setupButtonsForOption(selectedConfigOption!)
         if let index = (options.firstIndex { $0 == selectedConfigOption }){
@@ -369,5 +375,11 @@ extension KeychainConfigViewController: UIPickerViewDataSource {
     
     func pickerView(_ pickerView: UIPickerView, attributedTitleForRow row: Int, forComponent component: Int) -> NSAttributedString? {
         return NSAttributedString(string: nameForOption(options[row]), attributes: [NSAttributedString.Key.foregroundColor: UIColor.white])
+    }
+}
+
+extension KeychainConfigViewController: FTRUserPresenceDelegate {
+    func userPresenceVerificationType() -> UserPresenceVerificationType {
+        .none
     }
 }

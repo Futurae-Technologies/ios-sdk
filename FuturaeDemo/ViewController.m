@@ -27,6 +27,13 @@
 @end
 
 ////////////////////////////////////////////////////////////////////////////////
+
+////////////////////////////////////////////////////////////////////////////////
+@interface ViewController () <FTRAdaptiveSDKDelegate>
+@end
+
+////////////////////////////////////////////////////////////////////////////////
+
 @implementation ViewController
 
 NSString * _Nullable offlineQRCodePin;
@@ -177,16 +184,14 @@ BOOL operationWithBiometrics = NO;
     if(operationWithBiometrics){
         operationWithBiometrics = NO;
         [[FTRClient sharedClient] nextTotpForUserWithBiometrics:account.user_id callback:^(NSError * _Nullable err, FTRTotp * _Nullable totp) {
-            dispatch_async(dispatch_get_main_queue(), ^{
-                if(err){
-                    [weakSelf _showAlertWithTitle:@"Error" message:err.userInfo[@"msg"]];
-                    return;
-                } else {
-                    NSString *title = @"TOTP";
-                    NSString *body = [NSString stringWithFormat:@"Code: %@ (remaining: %@ sec)", totp.totp, totp.remaining_secs];
-                    [weakSelf _showAlertWithTitle:title message:body];
-                }
-            });
+            if(err){
+                [weakSelf _showAlertWithTitle:@"Error" message:err.userInfo[@"msg"]];
+                return;
+            } else {
+                NSString *title = @"TOTP";
+                NSString *body = [NSString stringWithFormat:@"Code: %@ (remaining: %@ sec)", totp.totp, totp.remaining_secs];
+                [weakSelf _showAlertWithTitle:title message:body];
+            }
             
         } promptReason:@"Unlock SDK"];
     } else {
@@ -256,6 +261,7 @@ BOOL operationWithBiometrics = NO;
             [string appendString:@"\n"];
         }
         [string appendString:[NSString stringWithFormat:@"Pin protected: %s \n", data.pinProtected ? "true" : "false"]];
+        [string appendString:[NSString stringWithFormat:@"Adaptive migration enabled: %s \n", data.adaptiveMigrationEnabled ? "true" : "false"]];
         
         NSString *message = string;
         [weakSelf _showAlertWithTitle:title message:message];
@@ -334,7 +340,42 @@ BOOL operationWithBiometrics = NO;
         [weakSelf _showAlertWithTitle:title message:message];
     }];
 }
-    
+
+- (IBAction)adaptiveCollections:(UIButton *)sender {
+    AdaptiveViewController *vc = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"AdaptiveViewController"];
+    [self presentViewController:vc animated:YES completion:nil];
+}
+
+- (IBAction)enableAdaptive:(UIButton *)sender {
+    [FTRClient.sharedClient enableAdaptiveWithDelegate:self];
+    [_enableAdaptiveButton setHidden:YES];
+    [_disableAdaptiveButton setHidden:NO];
+    [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"adaptive_enabled"];
+}
+
+- (IBAction)disableAdaptive:(UIButton *)sender {
+    [FTRClient.sharedClient disableAdaptive];
+    [_enableAdaptiveButton setHidden:NO];
+    [_disableAdaptiveButton setHidden:YES];
+    [[NSUserDefaults standardUserDefaults] setBool:NO forKey:@"adaptive_enabled"];
+}
+
+- (IBAction)validateAttestation:(UIButton *)sender {
+    if (@available(iOS 14.0, *)) {
+        __weak __typeof(self) weakSelf = self;
+        [FTRClient.sharedClient appAttestation:^(NSError*  _Nullable error) {
+            [weakSelf _showAlertWithTitle:error ? @"Attestation failed" : @"Attestation success" message: error ? @"App integrity could not be verified" : @"App integrity verified"];
+        }];
+    } else {
+        // Fallback on earlier versions
+    }
+}
+
+- (IBAction)jailbreakStatus:(UIButton *)sender {
+    JailbreakStatus *status = FTRClient.sharedClient.jailbreakStatus;
+    [self _showAlertWithTitle:status.jailbroken ? @"Device is jailbroken" : @"Jailbreak not detected" message: status.message ? status.message : @""];
+}
+
 #pragma mark - FTRQRCodeReaderDelegate
 ////////////////////////////////////////////////////////////////////////////////
 - (void)reader:(FTRQRCodeViewController * _Nullable)reader didScanResult:(NSString *_Nullable)result
@@ -561,9 +602,7 @@ BOOL operationWithBiometrics = NO;
         operationWithBiometrics = NO;
         __weak __typeof(self) weakSelf = self;
         [[FTRClient sharedClient] computeVerificationCodeFromQRCodeWithBiometrics:QRCodeResult callback:^(NSError * _Nullable err, NSString * _Nullable signature) {
-            dispatch_async(dispatch_get_main_queue(), ^{
-                [weakSelf showOfflineQRCodeSignatureAlert:signature error:err];
-            });
+            [weakSelf showOfflineQRCodeSignatureAlert:signature error:err];
         } promptReason:@"Unlock SDK"];
     } else {
         NSString *signature = [FTRClient.sharedClient computeVerificationCodeFromQRCode:QRCodeResult SDKPin: offlineQRCodePin error:&error];
@@ -600,11 +639,13 @@ BOOL operationWithBiometrics = NO;
 ////////////////////////////////////////////////////////////////////////////////
 - (void)_showAlertWithTitle:(NSString *)title message:(NSString *)message
 {
-    UIAlertController *ac = [UIAlertController alertControllerWithTitle:title
-                                                                message:message
-                                                         preferredStyle:UIAlertControllerStyleAlert];
-    [ac addAction:[UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleCancel handler:nil]];
-    [self presentViewController:ac animated:YES completion:nil];
+    dispatch_async(dispatch_get_main_queue(), ^{
+        UIAlertController *ac = [UIAlertController alertControllerWithTitle:title
+                                                                    message:message
+                                                             preferredStyle:UIAlertControllerStyleAlert];
+        [ac addAction:[UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleCancel handler:nil]];
+        [self presentViewController:ac animated:YES completion:nil];
+    });
 }
 
 - (NSArray<HistoryItem *> *)historyItemsFromResponse:(id)response {
@@ -615,4 +656,37 @@ BOOL operationWithBiometrics = NO;
 
     return allItems.copy;
 }
+
+- (FTRAdaptivePermissionStatus)bluetoothPermissionStatus {
+    return FTRAdaptivePermissionStatusOn;
+}
+
+- (FTRAdaptivePermissionStatus)bluetoothSettingStatus {
+    return FTRAdaptivePermissionStatusOn;
+}
+
+- (FTRAdaptivePermissionStatus)locationPermissionStatus {
+    return FTRAdaptivePermissionStatusOn;
+}
+
+- (FTRAdaptivePermissionStatus)locationPrecisePermissionStatus {
+    return FTRAdaptivePermissionStatusOn;
+}
+
+- (FTRAdaptivePermissionStatus)locationSettingStatus {
+    return FTRAdaptivePermissionStatusOn;
+}
+
+- (FTRAdaptivePermissionStatus)networkPermissionStatus {
+    return FTRAdaptivePermissionStatusOn;
+}
+
+- (FTRAdaptivePermissionStatus)networkSettingStatus {
+    return FTRAdaptivePermissionStatusOn;
+}
+
+- (void)didReceiveUpdateWithCollectedData:(NSDictionary<NSString *,id> *)collectedData {
+    [AdaptiveDebugStorage.shared save:collectedData];
+}
+
 @end

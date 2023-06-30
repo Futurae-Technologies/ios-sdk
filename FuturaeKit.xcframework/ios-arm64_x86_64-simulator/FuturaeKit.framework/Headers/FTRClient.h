@@ -14,10 +14,14 @@
 #import <UIKit/UIKit.h>
 #import <FuturaeKit/FTRNotificationDelegate.h>
 #import <FuturaeKit/FTROpenURLDelegate.h>
+#import <FuturaeKit/FTRAdaptiveSDKDelegate.h>
+#import <FuturaeKit/FTRUserPresenceDelegate.h>
 #import <FuturaeKit/FTRAccount.h>
 #import <FuturaeKit/FTRMigrationCheckData.h>
 #import "SDKState.h"
 #import "LockConfiguration.h"
+#import <FuturaeKit/JailbreakStatus.h>
+
 
 // The domain for all errors originating in FTRClient.
 FOUNDATION_EXPORT NSString * _Nonnull const FTRClientErrorDomain;
@@ -732,6 +736,33 @@ typedef void (^FTRRequestDataHandler)(id _Nullable data);
 ///
 - (NSString * _Nonnull)baseURL;
 
+/// Enable adaptive mechanism.
+///
+/// This method throws an exception error if AdaptiveSDK framework is not imported in the project.
+///
+/// - Parameters:
+///   - delegate: An object that conforms to the FTRAdaptiveSDKDelegate protocol.
+- (void)enableAdaptiveWithDelegate:(_Nonnull id<FTRAdaptiveSDKDelegate>)delegate;
+
+/// Disable adaptive mechanism.
+- (void)disableAdaptive;
+
+/// Check if adaptive mechanism is enabled.
+- (BOOL)isAdaptiveEnabled;
+
+/// When a collection is requested, set the time in seconds for which the last adaptive collection should be returned until a new collection starts.
+///
+/// - Parameters:
+///   - threshold: Threshold in seconds.
+- (void)setAdaptiveTimeThreshold: (int)threshold;
+
+/// The SDK will send adaptive collections to the backend, if adaptive mechanism is enabled.
+/// If for some reason sending the collections fails, they will move to a pending collection list and the SDK will try to send them again upon next launch.
+///
+/// - Returns: Array of adaptive collections that are pending sending to backend
+///
+- (NSArray<NSDictionary<NSString *, id> *> *_Nonnull)pendingAdaptiveCollections;
+
 ///
 /// Switch to lock configuration of type `LockConfigurationTypeNone`
 ///
@@ -777,5 +808,25 @@ typedef void (^FTRRequestDataHandler)(id _Nullable data);
 -(void)switchToLockConfigurationSDKPin:(LockConfiguration *_Nonnull)lockConfiguration
                           SDKPin:(NSString* _Nullable)SDKPin
                         callback:(nullable FTRRequestHandler)callback;
+
+- (void)logAnalyticsData:(NSDictionary<NSString *,id> * _Nonnull)analyticsData
+                callback:(nullable FTRRequestHandler)callback;
+
+- (void)setUserPresenceDelegate:(id<FTRUserPresenceDelegate> _Nullable)delegate;
+
+///
+/// Method used to determine the jailbreak status of the device
+///
+/// - Returns: `JailbreakStatus` object with the jailbreak status and a message for which jailbreak indicator was detected
+///
+- (JailbreakStatus *_Nonnull)jailbreakStatus;
+
+///
+/// Method using Apple's App Attest service to certify that  a valid instance of the app is installed
+///
+/// - Parameters:
+///   - callback: The response of the operation. If error is nil, app instance has been validated.
+///
+- (void)appAttestation:(_Nonnull FTRRequestHandler)callback API_AVAILABLE(ios(14.0));
 
 @end
