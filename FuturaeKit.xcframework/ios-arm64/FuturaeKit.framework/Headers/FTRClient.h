@@ -186,6 +186,22 @@ typedef void (^FTRRequestDataHandler)(id _Nullable data);
 - (void)logoutAccount:(nonnull FTRAccount *)account
              callback:(nullable FTRRequestHandler)callback;
 
+
+///  Delete user account from the SDK.
+///
+///  This is a method that forcefully removes account from the SDK DB.
+///  To perform logout under the normal circumstances, please use the designated methods
+///     ``logoutUser:callback:`` or ``logoutAccount:callback:``.
+///
+///  The reason to use this method might be case when account is remotely unenrolled but treated as enrolled by the SDK.
+///
+/// - Parameters:
+///     - userId:  Futurae account's user id that will be deleted.
+///     - completionHandler: To get notified about success or failure of this operation.
+///
+- (void)deleteAccount:(NSString * _Nonnull)userId
+             callback:(nullable FTRRequestHandler) completionHandler;
+
 ///  Get the status of the provided `accounts` list.
 ///
 /// - Parameters:
@@ -829,4 +845,16 @@ typedef void (^FTRRequestDataHandler)(id _Nullable data);
 ///
 - (void)appAttestation:(_Nonnull FTRRequestHandler)callback API_AVAILABLE(ios(14.0));
 
+/// Decrypt extra info that is encrypted and provided from the push notification content
+///
+///
+/// - Parameters:
+///    - encryptedExtraInfo: value of `extra_info_enc` key from the notification user info dictionary.
+///    - userId: The account’s Futurae user id.
+///    - error: A pointer to an error object. If an error occurs, this pointer is set to an actual error object containing the error information. You may specify nil for this parameter if you do not want the error information.
+/// - Returns: The decrypted extra info as an array of key value pairs.
+///
+- (NSArray<NSDictionary *> * _Nullable)decryptExtraInfo:(NSString *_Nonnull)encryptedExtraInfo
+                                                 userId:(NSString * _Nonnull)userId
+                                                  error:(NSError *_Nullable*_Nullable)error;
 @end

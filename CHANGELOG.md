@@ -1,3 +1,10 @@
+# Version `2.3.1`
+2023-13-07
++ [Added] FTRClient function `decryptExtraInfo` to decrypt extra_info provided in a push notification payload.  
++ [Added] `appGroup` parameter to the `FTRConfig` init method. Passing a value to this parameter as well as the `appGroup` parameter of the `FTRKeychainConfig` init method, makes it possible to use a shared SDK client between apps or extensions (such as the NotificationServiceExtension).
++ [Fix] Bug where the `enrolled` property of the `FTRAccount` object always returns false.
++ [Added] The `userInfo` dictionary of `NSError` instances returned by the SDK may contain a `sdk_error_code` property that corresponds to an `FTRApiError` type.
+
 # Version `2.3.0`
 2023-30-06
 + [Added] FTRClient function `enableAdaptiveWithDelegate` function to enable Adaptive.  
