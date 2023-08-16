@@ -121,6 +121,25 @@ BOOL operationWithBiometrics = NO;
 }
 
 ////////////////////////////////////////////////////////////////////////////////
+- (IBAction)forceDeleteAccountTouchedUpInside:(UIButton *)sender
+{
+    // For demo purposes we simply delete the first account we can find
+    FTRAccount *account = [[FTRClient sharedClient] getAccounts].firstObject;
+    if (account == nil) {
+        [self _showAlertWithTitle:@"Error" message:@"No user enrolled"];
+        return;
+    }
+    
+    [[FTRClient sharedClient] deleteAccount:account.user_id callback:^(NSError * _Nullable error) {
+        if (error) {
+            [self _showAlertWithTitle:@"Error" message: error.userInfo[@"msg"] ? error.userInfo[@"msg"] : error.localizedDescription];
+        } else {
+            [self _showAlertWithTitle:@"Success" message:[NSString stringWithFormat:@"Deleted user_id %@", account.user_id]];
+        }
+    }];
+}
+
+////////////////////////////////////////////////////////////////////////////////
 - (IBAction)onlineQRCodeTouchedUpInside:(UIButton *)sender
 {
     [self presentQRCodeControllerWithQRCodeType:QRCodeTypeOnlineAuth sender:sender];
@@ -374,6 +393,30 @@ BOOL operationWithBiometrics = NO;
 - (IBAction)jailbreakStatus:(UIButton *)sender {
     JailbreakStatus *status = FTRClient.sharedClient.jailbreakStatus;
     [self _showAlertWithTitle:status.jailbroken ? @"Device is jailbroken" : @"Jailbreak not detected" message: status.message ? status.message : @""];
+}
+
+- (IBAction)updateAppGroup:(UIButton *)sender {
+    __weak __typeof(self) weakSelf = self;
+    [FTRClient.sharedClient updateSDKConfigWithAppGroup: SDKConstants.APP_GROUP
+                                           keychainConfig:[FTRKeychainConfig configWithAccessGroup:SDKConstants.APP_GROUP]
+                                                 callback:^(NSError * _Nullable error) {
+        [weakSelf _showAlertWithTitle: error ? @"Failed to update" : @"App group updated" message: @""];
+        if(!error){
+            [[[NSUserDefaults alloc] initWithSuiteName:SDKConstants.APP_GROUP] setBool:YES forKey:@"app_group_enabled"];
+        }
+    }];
+}
+
+- (IBAction)removeAppGroup:(UIButton *)sender {
+    __weak __typeof(self) weakSelf = self;
+    [FTRClient.sharedClient updateSDKConfigWithAppGroup: nil
+                                           keychainConfig:nil
+                                                 callback:^(NSError * _Nullable error) {
+        [weakSelf _showAlertWithTitle: error ? @"Failed to remove" : @"App group removed" message: @""];
+        if(!error){
+            [[[NSUserDefaults alloc] initWithSuiteName:SDKConstants.APP_GROUP] setBool:NO forKey:@"app_group_enabled"];
+        }
+    }];
 }
 
 #pragma mark - FTRQRCodeReaderDelegate

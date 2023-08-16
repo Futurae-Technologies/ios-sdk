@@ -26,6 +26,7 @@
 - (IBAction)enrollTouchedUpInside:(UIButton *)sender;
 - (IBAction)enrollWithPinTouchedUpInside:(UIButton *)sender;
 - (IBAction)logoutTouchedUpInside:(UIButton *)sender;
+- (IBAction)forceDeleteAccountTouchedUpInside:(UIButton *)sender;
 - (IBAction)onlineQRCodeTouchedUpInside:(UIButton *)sender;
 - (IBAction)offlineQRCodeTouchedUpInside:(UIButton *)sender;
 - (IBAction)totpTouchedUpInside:(UIButton *)sender;

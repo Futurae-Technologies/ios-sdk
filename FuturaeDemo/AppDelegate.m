@@ -12,6 +12,7 @@
 
 #import "AppDelegate.h"
 #import <FuturaeKit/FuturaeKit.h>
+#import "FuturaeDemo-Swift.h"
 
 #import <UserNotifications/UserNotifications.h>
 
@@ -27,7 +28,21 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     // push notifications
+    UNNotificationAction *approveAction = [UNNotificationAction actionWithIdentifier:@"approve"
+                                                                               title:@"Approve"
+                                                                             options:UNNotificationActionOptionNone];
+
+    UNNotificationAction *rejectAction = [UNNotificationAction actionWithIdentifier:@"reject"
+                                                                              title:@"Reject"
+                                                                            options:UNNotificationActionOptionDestructive];
+
+    UNNotificationCategory *approveCategory = [UNNotificationCategory categoryWithIdentifier:@"auth"
+                                                                                     actions:@[approveAction, rejectAction]
+                                                                           intentIdentifiers:@[]
+                                                                                     options:UNNotificationCategoryOptionNone];
+
     UNUserNotificationCenter *center = [UNUserNotificationCenter currentNotificationCenter];
+    [center setNotificationCategories:[NSSet setWithObjects:approveCategory, nil]];
     center.delegate = self;
     [center requestAuthorizationWithOptions:(UNAuthorizationOptionAlert | UNAuthorizationOptionSound | UNAuthorizationOptionBadge)
                           completionHandler:^(BOOL granted, NSError * _Nullable error) {
@@ -47,8 +62,8 @@
     if(FTRClient.sdkIsLaunched){
         [[FTRClient sharedClient] registerPushToken:deviceToken];
     } else {
-        [[NSUserDefaults standardUserDefaults]
-         setObject:deviceToken forKey:@"ftr_device_token"];
+        NSUserDefaults *customDefaults = [[NSUserDefaults alloc] initWithSuiteName:SDKConstants.APP_GROUP];
+        [customDefaults setObject:deviceToken forKey:SDKConstants.DEVICE_TOKEN_KEY];
     }
 }
 
@@ -113,6 +128,43 @@
 didReceiveNotificationResponse:(UNNotificationResponse *)response
          withCompletionHandler:(void(^)(void))completionHandler NS_AVAILABLE_IOS(10.0)
 {
+    NSDictionary *authenticationInfo = response.notification.request.content.userInfo;
+    if([response.actionIdentifier isEqualToString:@"approve"]){
+        
+        [[FTRClient sharedClient] getSessionInfo:authenticationInfo[@"user_id"] sessionId:authenticationInfo[@"session_id"] success:^(id  _Nullable data) {
+            
+            [[FTRClient sharedClient] approveAuthWithUserId:authenticationInfo[@"user_id"] sessionId:authenticationInfo[@"session_id"] extraInfo:data[@"extra_info"] callback:^(NSError * _Nullable error) {
+                if (error != nil) {
+                    NSLog(@"Failed to approve: %@", error);
+                    return;
+                }
+                
+            }];
+        } failure:^(NSError * _Nullable error) {
+                    //
+        }];
+        
+        return;
+    }
+    
+    if([response.actionIdentifier isEqualToString:@"reject"]){
+        [[FTRClient sharedClient] getSessionInfo:authenticationInfo[@"user_id"] sessionId:authenticationInfo[@"session_id"]
+                                         success:^(id  _Nullable data) {
+            
+            [[FTRClient sharedClient] rejectAuthWithUserId:authenticationInfo[@"user_id"] sessionId:authenticationInfo[@"session_id"] isFraud:NO extraInfo:data[@"extra_info"]  callback:^(NSError * _Nullable error) {
+                if (error != nil) {
+                    NSLog(@"Failed to reject: %@", error);
+                    return;
+                }
+            }];
+        } failure:^(NSError * _Nullable error) {
+                    //
+        }];
+        
+        return;
+    }
+
+    
     [[FTRClient sharedClient] handleNotification:response.notification.request.content.userInfo delegate:self];
     NSLog(@"userNotificationCenter didReceiveNotificationResponse");
 }

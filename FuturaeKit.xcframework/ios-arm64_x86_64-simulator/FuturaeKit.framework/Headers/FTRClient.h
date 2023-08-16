@@ -21,6 +21,7 @@
 #import "SDKState.h"
 #import "LockConfiguration.h"
 #import <FuturaeKit/JailbreakStatus.h>
+#import "FTRKeychainConfig.h"
 
 
 // The domain for all errors originating in FTRClient.
@@ -857,4 +858,17 @@ typedef void (^FTRRequestDataHandler)(id _Nullable data);
 - (NSArray<NSDictionary *> * _Nullable)decryptExtraInfo:(NSString *_Nonnull)encryptedExtraInfo
                                                  userId:(NSString * _Nonnull)userId
                                                   error:(NSError *_Nullable*_Nullable)error;
+///
+/// Update SDK configuration with new shared App Group and Keychain Access Group
+///
+/// This function is protected, therefore the SDK must be unlocked prior to calling it.
+///
+/// - Parameters:
+///   - appGroup: The app group parameter.
+///   - keychainConfig: The keychain configuration object. If nil is passed default keychain configuration will be applied.
+///   - callback: The response of the operation.
+///
+-(void)updateSDKConfigWithAppGroup:(NSString *_Nullable)appGroup
+                      keychainConfig:(FTRKeychainConfig *_Nullable)keychainConfig
+                          callback:(nullable FTRRequestHandler)callback;
 @end

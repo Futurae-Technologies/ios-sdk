@@ -23,5 +23,6 @@
   "2.2.0": "https://artifactory.futurae.com/artifactory/futurae-ios/FuturaeKit-v2.2.0-framework.zip",
   "2.2.1": "https://artifactory.futurae.com/artifactory/futurae-ios/FuturaeKit-v2.2.1-framework.zip",
   "2.3.0": "https://artifactory.futurae.com/artifactory/futurae-ios/FuturaeKit-v2.3.0-framework.zip",
-  "2.3.1": "https://artifactory.futurae.com/artifactory/futurae-ios/FuturaeKit-v2.3.1-framework.zip"
+  "2.3.1": "https://artifactory.futurae.com/artifactory/futurae-ios/FuturaeKit-v2.3.1-framework.zip",
+  "2.3.2": "https://github.com/Futurae-Technologies/ios-sdk/releases/download/v2.3.2/FuturaeKit-v2.3.2-framework.zip"
 }
