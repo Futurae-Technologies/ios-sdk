@@ -78,7 +78,7 @@ final class KeychainConfigViewController: UIViewController {
         UITabBar.appearance().tintColor = .green
         UITabBar.appearance().unselectedItemTintColor = .gray
         
-        let savedOption = UserDefaults.standard.integer(forKey: "key_config")
+        let savedOption = UserDefaults.custom.integer(forKey: SDKConstants.KEY_CONFIG)
         if(savedOption > 0) {
             selectedConfigOption = .init(rawValue: savedOption)
             setupConfig()
@@ -93,19 +93,33 @@ final class KeychainConfigViewController: UIViewController {
     
     func setupConfig(){
         let type = selectedConfigOption!
-        let config = FTRConfig(sdkId: SDKConstants.SDKID,
-                               sdkKey: SDKConstants.SDKKEY,
-                               baseUrl: SDKConstants.SDKURL,
-                               lockConfiguration: LockConfiguration(type: type,
-                                                                    unlockDuration: 60,
-                                                                    invalidatedByBiometricsChange: true)
-        )
+        
+        var config: FTRConfig
+        if UserDefaults(suiteName: SDKConstants.APP_GROUP)?.bool(forKey: "app_group_enabled") == true {
+            config = FTRConfig(sdkId: SDKConstants.SDKID,
+                                   sdkKey: SDKConstants.SDKKEY,
+                                   baseUrl: SDKConstants.SDKURL,
+                                   keychain: FTRKeychainConfig(accessGroup: SDKConstants.KEYCHAIN_ACCESS_GROUP),
+                                   lockConfiguration: LockConfiguration(type: type,
+                                                                        unlockDuration: 60,
+                                                                        invalidatedByBiometricsChange: true)
+                                   ,appGroup: SDKConstants.APP_GROUP
+            )
+        } else {
+            config = FTRConfig(sdkId: SDKConstants.SDKID,
+                                   sdkKey: SDKConstants.SDKKEY,
+                                   baseUrl: SDKConstants.SDKURL,
+                                   lockConfiguration: LockConfiguration(type: type,
+                                                                        unlockDuration: 60,
+                                                                        invalidatedByBiometricsChange: true)
+            )
+        }
         
         FTRClient.launch(with: config) { [unowned self] in
             
             setupSdkView()
             
-            if let token = UserDefaults.standard.data(forKey: "ftr_device_token") {
+            if let token = UserDefaults.custom.data(forKey: SDKConstants.DEVICE_TOKEN_KEY) {
                 FTRClient.shared()?.registerPushToken(token)
             }
         } failure: { [unowned self] error in
@@ -117,7 +131,7 @@ final class KeychainConfigViewController: UIViewController {
     func setupSdkView(){
         sdkClient = FTRClient.shared()
 //        sdkClient?.setUserPresenceDelegate(self)
-        if(UserDefaults.standard.bool(forKey: "adaptive_enabled")){
+        if(UserDefaults.custom.bool(forKey: SDKConstants.ADAPTIVE_ENABLED_KEY)){
             if let vc = (tabBarController?.viewControllers?.first { $0 is ViewController }){
                 sdkClient?.enableAdaptive(with: vc as! FTRAdaptiveSDKDelegate)
             }
@@ -193,8 +207,8 @@ final class KeychainConfigViewController: UIViewController {
         let row = settingsPickerView.selectedRow(inComponent: 0)
         selectedConfigOption = options[row]
         
-        UserDefaults.standard.set(selectedConfigOption?.rawValue ?? 0,
-                                  forKey: "key_config")
+        UserDefaults.custom.set(selectedConfigOption?.rawValue ?? 0,
+                                  forKey: SDKConstants.KEY_CONFIG)
         
         setupConfig()
     }
@@ -203,8 +217,8 @@ final class KeychainConfigViewController: UIViewController {
         timer?.invalidate()
         timer = nil
         FTRClient.reset()
-        UserDefaults.standard.set(0,
-                                  forKey: "key_config")
+        UserDefaults.custom.set(0,
+                                  forKey: SDKConstants.KEY_CONFIG)
         selectedConfigOption = nil;
         [pinStack, unlockWithBiometricsBtn, unlockWithBiometricsPasscodeBtn, lockSDKBtn, checkBiometricsBtn].forEach { $0?.isHidden = true }
         statusLabel.text = ""
@@ -226,8 +240,8 @@ final class KeychainConfigViewController: UIViewController {
                         valueTextView.text = ((error == nil ? "Success" : (error! as NSError).userInfo["msg"] as? String ?? error?.localizedDescription) ?? "Error")
                         
                         if(error == nil){
-                            UserDefaults.standard.set(selectedConfigOption?.rawValue ?? 0,
-                                                      forKey: "key_config")
+                            UserDefaults.custom.set(selectedConfigOption?.rawValue ?? 0,
+                                                      forKey: SDKConstants.KEY_CONFIG)
                             setupSdkView()
                         }
                     })
@@ -244,8 +258,8 @@ final class KeychainConfigViewController: UIViewController {
                 valueTextView.text = ((error == nil ? "Success" : (error! as NSError).userInfo["msg"] as? String ?? error?.localizedDescription) ?? "Error")
                 
                 if(error == nil){
-                    UserDefaults.standard.set(selectedConfigOption?.rawValue ?? 0,
-                                              forKey: "key_config")
+                    UserDefaults.custom.set(selectedConfigOption?.rawValue ?? 0,
+                                              forKey: SDKConstants.KEY_CONFIG)
                     setupSdkView()
                 }
             })
@@ -257,8 +271,8 @@ final class KeychainConfigViewController: UIViewController {
                 valueTextView.text = ((error == nil ? "Success" : (error! as NSError).userInfo["msg"] as? String ?? error?.localizedDescription) ?? "Error")
                 
                 if(error == nil){
-                    UserDefaults.standard.set(selectedConfigOption?.rawValue ?? 0,
-                                              forKey: "key_config")
+                    UserDefaults.custom.set(selectedConfigOption?.rawValue ?? 0,
+                                              forKey: SDKConstants.KEY_CONFIG)
                     setupSdkView()
                 }
             })
@@ -270,8 +284,8 @@ final class KeychainConfigViewController: UIViewController {
                 valueTextView.text = ((error == nil ? "Success" : (error! as NSError).userInfo["msg"] as? String ?? error?.localizedDescription) ?? "Error")
                 
                 if(error == nil){
-                    UserDefaults.standard.set(selectedConfigOption?.rawValue ?? 0,
-                                              forKey: "key_config")
+                    UserDefaults.custom.set(selectedConfigOption?.rawValue ?? 0,
+                                              forKey: SDKConstants.KEY_CONFIG)
                     setupSdkView()
                 }
             })

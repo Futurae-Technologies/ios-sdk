@@ -1,3 +1,8 @@
+# Version 2.3.2
+2023-16-08
++ [Added] FTRClient function `updateSDKConfig(withAppGroup:keychainConfig:callback:)` to update app group and keychain access group configuration
++ [Updated] FTRConfig's constructors with `pinCerts` are marked as deprecated. The `pinCerts` flag set to false no longer has effect, the SSL pinning is always enabled. SDK will give a warning if client app tries to have SSL pinning disabled.
+
 # Version `2.3.1`
 2023-13-07
 + [Added] FTRClient function `decryptExtraInfo` to decrypt extra_info provided in a push notification payload.  

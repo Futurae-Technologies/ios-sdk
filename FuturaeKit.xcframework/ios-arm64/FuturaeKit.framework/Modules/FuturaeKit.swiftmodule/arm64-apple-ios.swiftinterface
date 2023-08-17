@@ -17,6 +17,35 @@ import Swift
 import UIKit
 import _Concurrency
 import _StringProcessing
+public struct JWS {
+  public let header: FuturaeKit.JWSHeader
+  public let payload: FuturaeKit.Payload
+  public let signature: Foundation.Data
+  public var compactSerializedString: Swift.String {
+    get
+  }
+  public var compactSerializedData: Foundation.Data {
+    get
+  }
+  public init<KeyType>(header: FuturaeKit.JWSHeader, payload: FuturaeKit.Payload, signer: FuturaeKit.Signer<KeyType>) throws
+  public init(compactSerialization: Swift.String) throws
+  public init(compactSerialization: Foundation.Data) throws
+  @available(*, deprecated, message: "Use `isValid(for verifier:)` instead")
+  public func isValid<KeyType>(for publicKey: KeyType) -> Swift.Bool
+  @available(*, deprecated, message: "Use `validate(using verifier:)` instead")
+  public func validate<KeyType>(with publicKey: KeyType) throws -> FuturaeKit.JWS
+  public func validate(using verifier: FuturaeKit.Verifier) throws -> FuturaeKit.JWS
+  public func isValid(for verifier: FuturaeKit.Verifier) -> Swift.Bool
+}
+extension FuturaeKit.JWS : FuturaeKit.CompactSerializable {
+  public func serialize(to serializer: inout any FuturaeKit.CompactSerializer)
+}
+extension FuturaeKit.JWS : FuturaeKit.CompactDeserializable {
+  public static var componentCount: Swift.Int {
+    get
+  }
+  public init(from deserializer: any FuturaeKit.CompactDeserializer) throws
+}
 extension FuturaeKit.CS {
   public struct BigInt : Swift.SignedInteger {
     public enum Sign {
@@ -86,28 +115,6 @@ public struct CCM {
   public init(iv: Swift.Array<Swift.UInt8>, tagLength: Swift.Int, messageLength: Swift.Int, authenticationTag: Swift.Array<Swift.UInt8>, additionalAuthenticatedData: Swift.Array<Swift.UInt8>? = nil)
   public func worker(blockSize: Swift.Int, cipherOperation: @escaping FuturaeKit.CipherOperationOnBlock, encryptionOperation: @escaping FuturaeKit.CipherOperationOnBlock) throws -> any FuturaeKit.CipherModeWorker
 }
-public struct Signer<KeyType> {
-  public init?(signingAlgorithm: FuturaeKit.SignatureAlgorithm, privateKey: KeyType)
-}
-public typealias SymmetricKeyComponents = (Foundation.Data)
-public protocol ExpressibleAsSymmetricKeyComponents {
-  static func representing(symmetricKeyComponents components: FuturaeKit.SymmetricKeyComponents) throws -> Self
-  func symmetricKeyComponents() throws -> FuturaeKit.SymmetricKeyComponents
-}
-public struct SymmetricKey : FuturaeKit.JWK {
-  public let keyType: FuturaeKit.JWKKeyType
-  public let parameters: [Swift.String : Swift.String]
-  public var requiredParameters: [Swift.String : Swift.String] {
-    get
-  }
-  public let key: Swift.String
-  public init(key: Foundation.Data, additionalParameters parameters: [Swift.String : Swift.String] = [:])
-  public init(key: any FuturaeKit.ExpressibleAsSymmetricKeyComponents, additionalParameters parameters: [Swift.String : Swift.String] = [:]) throws
-  public init(data: Foundation.Data) throws
-  public func converted<T>(to type: T.Type) throws -> T where T : FuturaeKit.ExpressibleAsSymmetricKeyComponents
-  @available(iOS 11.0, *)
-  public func withThumbprintAsKeyId(algorithm: FuturaeKit.JWKThumbprintAlgorithm = .SHA256) throws -> FuturaeKit.SymmetricKey
-}
 final public class Poly1305 : FuturaeKit.Authenticator {
   public enum Error : Swift.Error {
     case authenticateError
@@ -121,21 +128,6 @@ final public class Poly1305 : FuturaeKit.Authenticator {
   public init(key: Swift.Array<Swift.UInt8>)
   final public func authenticate(_ bytes: Swift.Array<Swift.UInt8>) throws -> Swift.Array<Swift.UInt8>
   @objc deinit
-}
-public struct Encrypter<KeyType> {
-  public init?(keyManagementAlgorithm: FuturaeKit.KeyManagementAlgorithm, contentEncryptionAlgorithm: FuturaeKit.ContentEncryptionAlgorithm, encryptionKey: KeyType)
-}
-extension FuturaeKit.Encrypter {
-  @available(*, deprecated, message: "Use `init?(keyManagementAlgorithm:contentEncryptionAlgorithm:encryptionKey:)` instead")
-  public init?(keyEncryptionAlgorithm: FuturaeKit.AsymmetricKeyAlgorithm, encryptionKey key: KeyType, contentEncyptionAlgorithm: FuturaeKit.SymmetricKeyAlgorithm)
-  @available(*, deprecated, message: "Use `init?(keyManagementAlgorithm:contentEncryptionAlgorithm:encryptionKey:)` instead")
-  public init?(keyEncryptionAlgorithm: FuturaeKit.AsymmetricKeyAlgorithm, keyEncryptionKey kek: KeyType, contentEncyptionAlgorithm: FuturaeKit.SymmetricKeyAlgorithm)
-}
-@available(*, deprecated, message: "This type will be removed with the next major release.")
-public struct EncryptionContext {
-}
-@available(*, deprecated, message: "This type will be removed with the next major release.")
-public struct SymmetricEncryptionContext {
 }
 extension FuturaeKit.CS.BigInt : Swift.Codable {
   public init(from decoder: any Swift.Decoder) throws
@@ -159,18 +151,9 @@ public struct HKDF {
   public func calculate() throws -> Swift.Array<Swift.UInt8>
   public func callAsFunction() throws -> Swift.Array<Swift.UInt8>
 }
-extension FuturaeKit.JWK {
-  public subscript(parameter: Swift.String) -> Swift.String? {
-    get
-  }
-}
-extension FuturaeKit.JWK {
-  public func jsonString() -> Swift.String?
-  public func jsonData() -> Foundation.Data?
-}
-extension Security.SecKey : FuturaeKit.ExpressibleAsRSAPublicKeyComponents {
-  public static func representing(rsaPublicKeyComponents components: FuturaeKit.RSAPublicKeyComponents) throws -> Self
-  public func rsaPublicKeyComponents() throws -> FuturaeKit.RSAPublicKeyComponents
+public protocol DataConvertible {
+  init?(_ data: Foundation.Data)
+  func data() -> Foundation.Data
 }
 extension FuturaeKit.AES : FuturaeKit.Cryptors {
   @inlinable final public func makeEncryptor() throws -> any FuturaeKit.Cryptor & FuturaeKit.Updatable {
@@ -205,6 +188,15 @@ extension FuturaeKit.CS.BigUInt {
   }
   public func signum() -> FuturaeKit.CS.BigUInt
 }
+final public class CodableCBORDecoder {
+  final public var useStringKeys: Swift.Bool
+  final public var dateStrategy: FuturaeKit.DateStrategy
+  public init()
+  final public var userInfo: [Swift.CodingUserInfoKey : Any]
+  final public func decode<T>(_ type: T.Type, from data: Foundation.Data) throws -> T where T : Swift.Decodable
+  final public func decode<T>(_ type: T.Type, from data: Swift.ArraySlice<Swift.UInt8>) throws -> T where T : Swift.Decodable
+  @objc deinit
+}
 final public class Blowfish {
   public enum Error : Swift.Error {
     case dataPaddingRequired
@@ -226,10 +218,6 @@ extension FuturaeKit.Blowfish : FuturaeKit.Cipher {
   final public func encrypt<C>(_ bytes: C) throws -> Swift.Array<Swift.UInt8> where C : Swift.Collection, C.Element == Swift.UInt8, C.Index == Swift.Int
   final public func decrypt<C>(_ bytes: C) throws -> Swift.Array<Swift.UInt8> where C : Swift.Collection, C.Element == Swift.UInt8, C.Index == Swift.Int
 }
-extension Foundation.Data : FuturaeKit.ExpressibleAsECPublicKeyComponents {
-  public static func representing(ecPublicKeyComponents components: FuturaeKit.ECPublicKeyComponents) throws -> Foundation.Data
-  public func ecPublicKeyComponents() throws -> FuturaeKit.ECPublicKeyComponents
-}
 extension FuturaeKit.CS.BigUInt : Swift.Strideable {
   public typealias Stride = FuturaeKit.CS.BigInt
   public func advanced(by n: FuturaeKit.CS.BigInt) -> FuturaeKit.CS.BigUInt
@@ -249,36 +237,6 @@ extension FuturaeKit.CS.BigInt {
   public init(_ buffer: Swift.UnsafeRawBufferPointer)
   public init(_ data: Foundation.Data)
   public func serialize() -> Foundation.Data
-}
-public struct JWKSet {
-  public let keys: [any FuturaeKit.JWK]
-  public init(keys: [any FuturaeKit.JWK])
-  public init(data: Foundation.Data) throws
-  public func jsonString() -> Swift.String?
-  public func jsonData() -> Foundation.Data?
-}
-extension FuturaeKit.JWKSet : Swift.Collection {
-  public typealias ArrayType = [any FuturaeKit.JWK]
-  public typealias Element = FuturaeKit.JWKSet.ArrayType.Element
-  public typealias Index = FuturaeKit.JWKSet.ArrayType.Index
-  public typealias Iterator = FuturaeKit.JWKSet.ArrayType.Iterator
-  public var startIndex: FuturaeKit.JWKSet.Index {
-    get
-  }
-  public var endIndex: FuturaeKit.JWKSet.Index {
-    get
-  }
-  public subscript(index: FuturaeKit.JWKSet.Index) -> FuturaeKit.JWKSet.Element {
-    get
-  }
-  public func index(after index: FuturaeKit.JWKSet.Index) -> FuturaeKit.JWKSet.Index
-  public func makeIterator() -> Swift.IndexingIterator<FuturaeKit.JWKSet.ArrayType>
-  public typealias Indices = Swift.DefaultIndices<FuturaeKit.JWKSet>
-  public typealias SubSequence = Swift.Slice<FuturaeKit.JWKSet>
-}
-extension FuturaeKit.JWKSet : Swift.ExpressibleByArrayLiteral {
-  public typealias ArrayLiteralElement = FuturaeKit.JWKSet.Element
-  public init(arrayLiteral elements: FuturaeKit.JWKSet.ArrayLiteralElement...)
 }
 extension Swift.String {
   @inlinable public var bytes: Swift.Array<Swift.UInt8> {
@@ -326,27 +284,9 @@ extension Swift.String {
     try self.bytes.authenticate(with: authenticator).toHexString()
   }
 }
-public enum ECCurveType : Swift.String, Swift.Codable {
-  case P256
-  case P384
-  case P521
-  public init?(rawValue: Swift.String)
-  public typealias RawValue = Swift.String
-  public var rawValue: Swift.String {
-    get
-  }
-}
-public enum ECCompression : Swift.UInt8 {
-  case CompressedYEven
-  case CompressedYOdd
-  case Uncompressed
-  case HybridYEven
-  case HybridYOdd
-  public init?(rawValue: Swift.UInt8)
-  public typealias RawValue = Swift.UInt8
-  public var rawValue: Swift.UInt8 {
-    get
-  }
+extension Security.SecKey : FuturaeKit.ExpressibleAsECPublicKeyComponents {
+  public static func representing(ecPublicKeyComponents components: FuturaeKit.ECPublicKeyComponents) throws -> Self
+  public func ecPublicKeyComponents() throws -> FuturaeKit.ECPublicKeyComponents
 }
 public protocol Updatable {
   mutating func update(withBytes bytes: Swift.ArraySlice<Swift.UInt8>, isLast: Swift.Bool) throws -> Swift.Array<Swift.UInt8>
@@ -390,37 +330,22 @@ extension FuturaeKit.Updatable {
     try self.finish(withBytes: [], output: output)
   }
 }
-final public class CodableCBORDecoder {
-  final public var useStringKeys: Swift.Bool
-  final public var dateStrategy: FuturaeKit.DateStrategy
-  public init()
-  final public var userInfo: [Swift.CodingUserInfoKey : Any]
-  final public func decode<T>(_ type: T.Type, from data: Foundation.Data) throws -> T where T : Swift.Decodable
-  final public func decode<T>(_ type: T.Type, from data: Swift.ArraySlice<Swift.UInt8>) throws -> T where T : Swift.Decodable
+@_inheritsConvenienceInitializers @objc public class JWEDecryption : ObjectiveC.NSObject {
+  @objc public class func decrypt(key: Foundation.Data, encryptedData: Swift.String) -> [[Swift.String : Any]]?
+  @objc override dynamic public init()
   @objc deinit
 }
-extension Foundation.Data {
-  public init?(base64URLEncoded base64URLString: Swift.String)
-  public init?(base64URLEncoded base64URLData: Foundation.Data)
-  public func base64URLEncodedString() -> Swift.String
-  public func base64URLEncodedData() -> Foundation.Data
+extension FuturaeKit.RSAPublicKey : Swift.Encodable {
+  public func encode(to encoder: any Swift.Encoder) throws
 }
-extension Foundation.Data : FuturaeKit.DataConvertible {
-  public init(_ data: Foundation.Data)
-  public func data() -> Foundation.Data
+extension FuturaeKit.RSAPublicKey : Swift.Decodable {
+  public init(from decoder: any Swift.Decoder) throws
 }
-public protocol CompactDeserializable {
-  static var componentCount: Swift.Int { get }
-  init(from deserializer: any FuturaeKit.CompactDeserializer) throws
+extension FuturaeKit.RSAPrivateKey : Swift.Encodable {
+  public func encode(to encoder: any Swift.Encoder) throws
 }
-public protocol CompactDeserializer {
-  func deserialize<T>(_ type: T.Type, at index: Swift.Int) throws -> T where T : FuturaeKit.DataConvertible
-}
-public struct JOSEDeserializer {
-  public init()
-  public func deserialize<T>(_ type: T.Type, fromCompactSerialization compactSerialization: Swift.String) throws -> T where T : FuturaeKit.CompactDeserializable
-}
-public enum ComponentCompactSerializedIndex {
+extension FuturaeKit.RSAPrivateKey : Swift.Decodable {
+  public init(from decoder: any Swift.Decoder) throws
 }
 extension Swift.UInt32 {
   @_specialize(exported: false, kind: full, where T == Swift.ArraySlice<Swift.UInt8>)
@@ -440,12 +365,34 @@ extension Swift.UInt32 {
     self = val0 | val1 | val2 | val3
   }
 }
-public enum SecureRandomError : Swift.Error {
-  case failed(status: Darwin.OSStatus)
-  case countMustBeGreaterThanZero
-}
-public struct SecureRandom {
-  public static func generate(count: Swift.Int) throws -> Foundation.Data
+public enum JOSESwiftError : Swift.Error {
+  case signingFailed(description: Swift.String)
+  case verifyingFailed(description: Swift.String)
+  case signatureInvalid
+  case encryptingFailed(description: Swift.String)
+  case decryptingFailed(description: Swift.String)
+  case wrongDataEncoding(data: Foundation.Data)
+  case invalidCompactSerializationComponentCount(count: Swift.Int)
+  case componentNotValidBase64URL(component: Swift.String)
+  case componentCouldNotBeInitializedFromData(data: Foundation.Data)
+  case couldNotConstructJWK
+  case modulusNotBase64URLUIntEncoded
+  case exponentNotBase64URLUIntEncoded
+  case privateExponentNotBase64URLUIntEncoded
+  case symmetricKeyNotBase64URLEncoded
+  case xNotBase64URLUIntEncoded
+  case yNotBase64URLUIntEncoded
+  case privateKeyNotBase64URLUIntEncoded
+  case invalidCurveType
+  case compressedCurvePointsUnsupported
+  case invalidCurvePointOctetLength
+  case localAuthenticationFailed(errorCode: Swift.Int)
+  case compressionFailed
+  case decompressionFailed
+  case compressionAlgorithmNotSupported
+  case rawDataMustBeGreaterThanZero
+  case compressedDataMustBeGreaterThanZero
+  case thumbprintSerialization
 }
 extension FuturaeKit.CS.BigUInt {
   public subscript(bitAt index: Swift.Int) -> Swift.Bool {
@@ -526,10 +473,9 @@ extension Swift.Array where Element == Swift.UInt8 {
   public func toBase64(options: Foundation.Data.Base64EncodingOptions = []) -> Swift.String
   public init(base64: Swift.String, options: Foundation.Data.Base64DecodingOptions = .ignoreUnknownCharacters)
 }
-@_inheritsConvenienceInitializers @objc public class JWEDecryption : ObjectiveC.NSObject {
-  @objc public class func decrypt(key: Foundation.Data, encryptedData: Swift.String) -> [[Swift.String : Any]]?
-  @objc override dynamic public init()
-  @objc deinit
+extension Security.SecKey : FuturaeKit.ExpressibleAsECPrivateKeyComponents {
+  public static func representing(ecPrivateKeyComponents components: FuturaeKit.ECPrivateKeyComponents) throws -> Self
+  public func ecPrivateKeyComponents() throws -> FuturaeKit.ECPrivateKeyComponents
 }
 public struct ECB : FuturaeKit.BlockMode {
   public let options: FuturaeKit.BlockModeOption
@@ -610,48 +556,6 @@ extension FuturaeKit.SHA3 : FuturaeKit.Updatable {
     return Array(result[0..<self.digestLength])
   }
 }
-public typealias RSAPublicKeyComponents = (modulus: Foundation.Data, exponent: Foundation.Data)
-public typealias RSAPrivateKeyComponents = (modulus: Foundation.Data, exponent: Foundation.Data, privateExponent: Foundation.Data)
-public protocol ExpressibleAsRSAPublicKeyComponents {
-  static func representing(rsaPublicKeyComponents components: FuturaeKit.RSAPublicKeyComponents) throws -> Self
-  func rsaPublicKeyComponents() throws -> FuturaeKit.RSAPublicKeyComponents
-}
-public protocol ExpressibleAsRSAPrivateKeyComponents {
-  static func representing(rsaPrivateKeyComponents components: FuturaeKit.RSAPrivateKeyComponents) throws -> Self
-  func rsaPrivateKeyComponents() throws -> FuturaeKit.RSAPrivateKeyComponents
-}
-public struct RSAPublicKey : FuturaeKit.JWK {
-  public let keyType: FuturaeKit.JWKKeyType
-  public let parameters: [Swift.String : Swift.String]
-  public var requiredParameters: [Swift.String : Swift.String] {
-    get
-  }
-  public let modulus: Swift.String
-  public let exponent: Swift.String
-  public init(modulus: Swift.String, exponent: Swift.String, additionalParameters parameters: [Swift.String : Swift.String] = [:])
-  public init(publicKey: any FuturaeKit.ExpressibleAsRSAPublicKeyComponents, additionalParameters parameters: [Swift.String : Swift.String] = [:]) throws
-  public init(data: Foundation.Data) throws
-  public func converted<T>(to type: T.Type) throws -> T where T : FuturaeKit.ExpressibleAsRSAPublicKeyComponents
-  @available(iOS 11.0, *)
-  public func withThumbprintAsKeyId(algorithm: FuturaeKit.JWKThumbprintAlgorithm = .SHA256) throws -> FuturaeKit.RSAPublicKey
-}
-public struct RSAPrivateKey : FuturaeKit.JWK {
-  public let keyType: FuturaeKit.JWKKeyType
-  public let parameters: [Swift.String : Swift.String]
-  public var requiredParameters: [Swift.String : Swift.String] {
-    get
-  }
-  public let modulus: Swift.String
-  public let exponent: Swift.String
-  public let privateExponent: Swift.String
-  public init(modulus: Swift.String, exponent: Swift.String, privateExponent: Swift.String, additionalParameters parameters: [Swift.String : Swift.String] = [:])
-  public init(privateKey: any FuturaeKit.ExpressibleAsRSAPrivateKeyComponents, additionalParameters parameters: [Swift.String : Swift.String] = [:]) throws
-  public init(data: Foundation.Data) throws
-  public func converted<T>(to type: T.Type) throws -> T where T : FuturaeKit.ExpressibleAsRSAPrivateKeyComponents
-  @available(iOS 11.0, *)
-  public func withThumbprintAsKeyId(algorithm: FuturaeKit.JWKThumbprintAlgorithm = .SHA256) throws -> FuturaeKit.RSAPrivateKey
-}
-public typealias RSAKeyPair = FuturaeKit.RSAPrivateKey
 extension FuturaeKit.RSA : FuturaeKit.Signature {
   final public func sign(_ bytes: Swift.ArraySlice<Swift.UInt8>) throws -> Swift.Array<Swift.UInt8>
   final public func sign(_ bytes: Swift.Array<Swift.UInt8>, variant: FuturaeKit.RSA.SignatureVariant) throws -> Swift.Array<Swift.UInt8>
@@ -685,21 +589,9 @@ extension FuturaeKit.RSA {
     }
   }
 }
-public protocol CompactSerializable {
-  func serialize(to serializer: inout any FuturaeKit.CompactSerializer)
-}
-public protocol CompactSerializer {
-  var components: [any FuturaeKit.DataConvertible] { get }
-  mutating func serialize<T>(_ object: T) where T : FuturaeKit.DataConvertible
-}
-public struct JOSESerializer {
-  public func serialize<T>(compact object: T) -> Swift.String where T : FuturaeKit.CompactSerializable
-}
-extension FuturaeKit.JWKSet : Swift.Encodable {
-  public func encode(to encoder: any Swift.Encoder) throws
-}
-extension FuturaeKit.JWKSet : Swift.Decodable {
-  public init(from decoder: any Swift.Decoder) throws
+public protocol CBORInputStream {
+  mutating func popByte() throws -> Swift.UInt8
+  mutating func popBytes(_ n: Swift.Int) throws -> Swift.ArraySlice<Swift.UInt8>
 }
 public struct CTR {
   public enum Error : Swift.Error {
@@ -846,6 +738,46 @@ extension FuturaeKit.PKCS5 {
     public func callAsFunction() throws -> Swift.Array<Swift.UInt8>
   }
 }
+public enum JWKKeyType : Swift.String, Swift.Codable {
+  case RSA
+  case OCT
+  case EC
+  public init?(rawValue: Swift.String)
+  public typealias RawValue = Swift.String
+  public var rawValue: Swift.String {
+    get
+  }
+}
+public protocol JWK : Swift.Decodable, Swift.Encodable {
+  var keyType: FuturaeKit.JWKKeyType { get }
+  var parameters: [Swift.String : Swift.String] { get }
+  var requiredParameters: [Swift.String : Swift.String] { get }
+  subscript(parameter: Swift.String) -> Swift.String? { get }
+  init(data: Foundation.Data) throws
+  func jsonString() -> Swift.String?
+  func jsonData() -> Foundation.Data?
+  @available(iOS 11.0, *)
+  func thumbprint(algorithm: FuturaeKit.JWKThumbprintAlgorithm) throws -> Swift.String
+  @available(iOS 11.0, *)
+  func withThumbprintAsKeyId(algorithm: FuturaeKit.JWKThumbprintAlgorithm) throws -> Self
+}
+extension FuturaeKit.JWK {
+  @available(iOS 11.0, *)
+  public func thumbprint(algorithm: FuturaeKit.JWKThumbprintAlgorithm = .SHA256) throws -> Swift.String
+}
+public protocol CommonHeaderParameterSpace {
+  var jku: Foundation.URL? { get set }
+  var jwk: Swift.String? { get set }
+  var jwkTyped: (any FuturaeKit.JWK)? { get set }
+  var kid: Swift.String? { get set }
+  var x5u: Foundation.URL? { get set }
+  var x5c: [Swift.String]? { get set }
+  var x5t: Swift.String? { get set }
+  var x5tS256: Swift.String? { get set }
+  var typ: Swift.String? { get set }
+  var cty: Swift.String? { get set }
+  var crit: [Swift.String]? { get set }
+}
 extension FuturaeKit.PKCS5 {
   public struct PBKDF1 {
     public enum Error : Swift.Error {
@@ -892,6 +824,28 @@ extension FuturaeKit.PKCS5 {
 }
 extension FuturaeKit.HMAC {
   convenience public init(key: Swift.String, variant: FuturaeKit.HMAC.Variant = .md5) throws
+}
+public typealias FailedCheckType = (check: FuturaeKit.FailedCheck, failMessage: Swift.String)
+public enum FailedCheck : Swift.CaseIterable {
+  case urlSchemes
+  case existenceOfSuspiciousFiles
+  case suspiciousFilesCanBeOpened
+  case restrictedDirectoriesWriteable
+  case fork
+  case symbolicLinks
+  case dyld
+  case openedPorts
+  case pSelectFlag
+  case suspiciousObjCClasses
+  public static func == (a: FuturaeKit.FailedCheck, b: FuturaeKit.FailedCheck) -> Swift.Bool
+  public func hash(into hasher: inout Swift.Hasher)
+  public typealias AllCases = [FuturaeKit.FailedCheck]
+  public static var allCases: [FuturaeKit.FailedCheck] {
+    get
+  }
+  public var hashValue: Swift.Int {
+    get
+  }
 }
 extension FuturaeKit.CS.BigUInt {
   public static func + (a: FuturaeKit.CS.BigUInt, b: FuturaeKit.CS.BigUInt) -> FuturaeKit.CS.BigUInt
@@ -992,12 +946,18 @@ extension FuturaeKit.CS.BigInt {
   public static func * (a: FuturaeKit.CS.BigInt, b: FuturaeKit.CS.BigInt) -> FuturaeKit.CS.BigInt
   public static func *= (a: inout FuturaeKit.CS.BigInt, b: FuturaeKit.CS.BigInt)
 }
+extension Foundation.Data {
+  public init?(base64URLEncoded base64URLString: Swift.String)
+  public init?(base64URLEncoded base64URLData: Foundation.Data)
+  public func base64URLEncodedString() -> Swift.String
+  public func base64URLEncodedData() -> Foundation.Data
+}
+extension Foundation.Data : FuturaeKit.DataConvertible {
+  public init(_ data: Foundation.Data)
+  public func data() -> Foundation.Data
+}
 extension FuturaeKit.ChaCha20 {
   convenience public init(key: Swift.String, iv: Swift.String) throws
-}
-public protocol CBORInputStream {
-  mutating func popByte() throws -> Swift.UInt8
-  mutating func popBytes(_ n: Swift.Int) throws -> Swift.ArraySlice<Swift.UInt8>
 }
 extension FuturaeKit.CS.BigUInt {
   public init?<T>(exactly source: T) where T : Swift.BinaryInteger
@@ -1020,6 +980,21 @@ extension FuturaeKit.CS.BigUInt : Swift.ExpressibleByIntegerLiteral {
 extension FuturaeKit.CS.BigInt : Swift.ExpressibleByIntegerLiteral {
   public init(integerLiteral value: Swift.Int64)
   public typealias IntegerLiteralType = Swift.Int64
+}
+@_inheritsConvenienceInitializers @available(iOS 14.0, *)
+@objc public class AppAttest : ObjectiveC.NSObject {
+  @objc public static let keyIdDefaults: Swift.String
+  @objc public static let appIdDefaults: Swift.String
+  @objc public static let attestationType: Swift.String
+  @objc public static let assertionType: Swift.String
+  @available(iOS 14.0, *)
+  @objc public class func getAttestOrAssert(type: Swift.String, challenge: Swift.String, success: @escaping (_ data: Swift.String, _ keyId: Swift.String, _ appId: Swift.String) -> Swift.Void, failure: @escaping (_ error: any Swift.Error) -> Swift.Void)
+  @available(iOS 14.0, *)
+  @objc public class func getAttestation(challenge: Swift.String, success: @escaping (_ data: Swift.String, _ keyId: Swift.String, _ appId: Swift.String) -> Swift.Void, failure: @escaping (_ error: any Swift.Error) -> Swift.Void)
+  @available(iOS 14.0, *)
+  @objc public class func getAssertion(challenge: Swift.String, success: @escaping (_ data: Swift.String, _ keyId: Swift.String, _ appId: Swift.String) -> Swift.Void, failure: @escaping (_ error: any Swift.Error) -> Swift.Void)
+  @objc override dynamic public init()
+  @objc deinit
 }
 @usableFromInline
 final internal class StreamDecryptor : FuturaeKit.Cryptor, FuturaeKit.Updatable {
@@ -1216,46 +1191,6 @@ extension FuturaeKit.CS.BigInt {
   public func isStrongProbablePrime(_ base: FuturaeKit.CS.BigInt) -> Swift.Bool
   public func isPrime(rounds: Swift.Int = 10) -> Swift.Bool
 }
-extension FuturaeKit.SymmetricKey : Swift.Encodable {
-  public func encode(to encoder: any Swift.Encoder) throws
-}
-extension FuturaeKit.SymmetricKey : Swift.Decodable {
-  public init(from decoder: any Swift.Decoder) throws
-}
-public typealias FailedCheckType = (check: FuturaeKit.FailedCheck, failMessage: Swift.String)
-public enum FailedCheck : Swift.CaseIterable {
-  case urlSchemes
-  case existenceOfSuspiciousFiles
-  case suspiciousFilesCanBeOpened
-  case restrictedDirectoriesWriteable
-  case fork
-  case symbolicLinks
-  case dyld
-  case openedPorts
-  case pSelectFlag
-  case suspiciousObjCClasses
-  public static func == (a: FuturaeKit.FailedCheck, b: FuturaeKit.FailedCheck) -> Swift.Bool
-  public func hash(into hasher: inout Swift.Hasher)
-  public typealias AllCases = [FuturaeKit.FailedCheck]
-  public static var allCases: [FuturaeKit.FailedCheck] {
-    get
-  }
-  public var hashValue: Swift.Int {
-    get
-  }
-}
-extension FuturaeKit.RSAPublicKey : Swift.Encodable {
-  public func encode(to encoder: any Swift.Encoder) throws
-}
-extension FuturaeKit.RSAPublicKey : Swift.Decodable {
-  public init(from decoder: any Swift.Decoder) throws
-}
-extension FuturaeKit.RSAPrivateKey : Swift.Encodable {
-  public func encode(to encoder: any Swift.Encoder) throws
-}
-extension FuturaeKit.RSAPrivateKey : Swift.Decodable {
-  public init(from decoder: any Swift.Decoder) throws
-}
 final public class GCM : FuturaeKit.BlockMode {
   public enum Mode {
     case combined
@@ -1283,6 +1218,83 @@ final public class GCM : FuturaeKit.BlockMode {
   final public func worker(blockSize: Swift.Int, cipherOperation: @escaping FuturaeKit.CipherOperationOnBlock, encryptionOperation: @escaping FuturaeKit.CipherOperationOnBlock) throws -> any FuturaeKit.CipherModeWorker
   @objc deinit
 }
+public enum SignatureAlgorithm : Swift.String {
+  case RS256
+  case RS384
+  case RS512
+  @available(iOS 11, *)
+  case PS256
+  @available(iOS 11, *)
+  case PS384
+  @available(iOS 11, *)
+  case PS512
+  case ES256
+  case ES384
+  case ES512
+  public init?(rawValue: Swift.String)
+  public typealias RawValue = Swift.String
+  public var rawValue: Swift.String {
+    get
+  }
+}
+public enum KeyManagementAlgorithm : Swift.String, Swift.CaseIterable {
+  case RSA1_5
+  case RSAOAEP
+  case RSAOAEP256
+  case A128KW
+  case A192KW
+  case A256KW
+  case direct
+  public init?(rawValue: Swift.String)
+  public typealias AllCases = [FuturaeKit.KeyManagementAlgorithm]
+  public typealias RawValue = Swift.String
+  public static var allCases: [FuturaeKit.KeyManagementAlgorithm] {
+    get
+  }
+  public var rawValue: Swift.String {
+    get
+  }
+}
+public enum ContentEncryptionAlgorithm : Swift.String {
+  case A256CBCHS512
+  case A128CBCHS256
+  case AES256GCM
+  public init?(rawValue: Swift.String)
+  public typealias RawValue = Swift.String
+  public var rawValue: Swift.String {
+    get
+  }
+}
+public enum HMACAlgorithm : Swift.String {
+  case SHA512
+  case SHA256
+  public init?(rawValue: Swift.String)
+  public typealias RawValue = Swift.String
+  public var rawValue: Swift.String {
+    get
+  }
+}
+public enum JWKThumbprintAlgorithm : Swift.String {
+  case SHA256
+  public init?(rawValue: Swift.String)
+  public typealias RawValue = Swift.String
+  public var rawValue: Swift.String {
+    get
+  }
+}
+public enum CompressionAlgorithm : Swift.String {
+  case DEFLATE
+  case NONE
+  public init?(rawValue: Swift.String)
+  public typealias RawValue = Swift.String
+  public var rawValue: Swift.String {
+    get
+  }
+}
+@available(*, deprecated, message: "Use `KeyManagementAlgorithm` instead")
+public typealias AsymmetricKeyAlgorithm = FuturaeKit.KeyManagementAlgorithm
+@available(*, deprecated, message: "Use `ContentEncryptionAlgorithm` instead")
+public typealias SymmetricKeyAlgorithm = FuturaeKit.ContentEncryptionAlgorithm
 public class BlockDecryptor : FuturaeKit.Cryptor, FuturaeKit.Updatable {
   @usableFromInline
   final internal let blockSize: Swift.Int
@@ -1348,25 +1360,6 @@ public class BlockDecryptor : FuturaeKit.Cryptor, FuturaeKit.Updatable {
   public func seek(to position: Swift.Int) throws
   @objc deinit
 }
-extension Security.SecKey : FuturaeKit.ExpressibleAsECPrivateKeyComponents {
-  public static func representing(ecPrivateKeyComponents components: FuturaeKit.ECPrivateKeyComponents) throws -> Self
-  public func ecPrivateKeyComponents() throws -> FuturaeKit.ECPrivateKeyComponents
-}
-@_inheritsConvenienceInitializers @available(iOS 14.0, *)
-@objc public class AppAttest : ObjectiveC.NSObject {
-  @objc public static let keyIdDefaults: Swift.String
-  @objc public static let appIdDefaults: Swift.String
-  @objc public static let attestationType: Swift.String
-  @objc public static let assertionType: Swift.String
-  @available(iOS 14.0, *)
-  @objc public class func getAttestOrAssert(type: Swift.String, challenge: Swift.String, success: @escaping (_ data: Swift.String, _ keyId: Swift.String, _ appId: Swift.String) -> Swift.Void, failure: @escaping (_ error: any Swift.Error) -> Swift.Void)
-  @available(iOS 14.0, *)
-  @objc public class func getAttestation(challenge: Swift.String, success: @escaping (_ data: Swift.String, _ keyId: Swift.String, _ appId: Swift.String) -> Swift.Void, failure: @escaping (_ error: any Swift.Error) -> Swift.Void)
-  @available(iOS 14.0, *)
-  @objc public class func getAssertion(challenge: Swift.String, success: @escaping (_ data: Swift.String, _ keyId: Swift.String, _ appId: Swift.String) -> Swift.Void, failure: @escaping (_ error: any Swift.Error) -> Swift.Void)
-  @objc override dynamic public init()
-  @objc deinit
-}
 final public class ChaCha20 {
   public enum Error : Swift.Error {
     case invalidKeyOrInitializationVector
@@ -1428,6 +1421,11 @@ extension Swift.UInt64 {
     self = val0 | val1 | val2 | val3 | val4 | val5 | val6 | val7
   }
 }
+@_inheritsConvenienceInitializers @objc public class ASN1DERParsing : ObjectiveC.NSObject {
+  @objc public class func unpackBERencodedASN1formatToRaw(signature: Foundation.NSData) throws -> Foundation.NSData
+  @objc override dynamic public init()
+  @objc deinit
+}
 @_specialize(exported: false, kind: full, where T == Swift.Int)
 @_specialize(exported: false, kind: full, where T == Swift.UInt)
 @_specialize(exported: false, kind: full, where T == Swift.UInt8)
@@ -1463,6 +1461,10 @@ public struct PCBC : FuturaeKit.BlockMode {
   public init(iv: Swift.Array<Swift.UInt8>)
   public func worker(blockSize: Swift.Int, cipherOperation: @escaping FuturaeKit.CipherOperationOnBlock, encryptionOperation: @escaping FuturaeKit.CipherOperationOnBlock) throws -> any FuturaeKit.CipherModeWorker
 }
+extension Security.SecKey : FuturaeKit.ExpressibleAsRSAPublicKeyComponents {
+  public static func representing(rsaPublicKeyComponents components: FuturaeKit.RSAPublicKeyComponents) throws -> Self
+  public func rsaPublicKeyComponents() throws -> FuturaeKit.RSAPublicKeyComponents
+}
 extension FuturaeKit.CS.BigUInt {
   public static func randomInteger<RNG>(withMaximumWidth width: Swift.Int, using generator: inout RNG) -> FuturaeKit.CS.BigUInt where RNG : Swift.RandomNumberGenerator
   public static func randomInteger(withMaximumWidth width: Swift.Int) -> FuturaeKit.CS.BigUInt
@@ -1471,9 +1473,60 @@ extension FuturaeKit.CS.BigUInt {
   public static func randomInteger<RNG>(lessThan limit: FuturaeKit.CS.BigUInt, using generator: inout RNG) -> FuturaeKit.CS.BigUInt where RNG : Swift.RandomNumberGenerator
   public static func randomInteger(lessThan limit: FuturaeKit.CS.BigUInt) -> FuturaeKit.CS.BigUInt
 }
-extension Foundation.Data : FuturaeKit.ExpressibleAsRSAPublicKeyComponents {
-  public static func representing(rsaPublicKeyComponents components: FuturaeKit.RSAPublicKeyComponents) throws -> Foundation.Data
-  public func rsaPublicKeyComponents() throws -> FuturaeKit.RSAPublicKeyComponents
+public struct JWSHeader {
+  public init(algorithm: FuturaeKit.SignatureAlgorithm)
+  public init(parameters: [Swift.String : Any]) throws
+}
+extension FuturaeKit.JWSHeader {
+  public var algorithm: FuturaeKit.SignatureAlgorithm? {
+    get
+  }
+}
+extension FuturaeKit.JWSHeader : FuturaeKit.CommonHeaderParameterSpace {
+  public var jku: Foundation.URL? {
+    get
+    set
+  }
+  public var jwk: Swift.String? {
+    get
+    set
+  }
+  public var jwkTyped: (any FuturaeKit.JWK)? {
+    get
+    set
+  }
+  public var kid: Swift.String? {
+    get
+    set
+  }
+  public var x5u: Foundation.URL? {
+    get
+    set
+  }
+  public var x5c: [Swift.String]? {
+    get
+    set
+  }
+  public var x5t: Swift.String? {
+    get
+    set
+  }
+  public var x5tS256: Swift.String? {
+    get
+    set
+  }
+  public var typ: Swift.String? {
+    get
+    set
+  }
+  public var cty: Swift.String? {
+    get
+    set
+  }
+  public var crit: [Swift.String]? {
+    get
+    set
+  }
 }
 public struct CBC : FuturaeKit.BlockMode {
   public enum Error : Swift.Error {
@@ -1628,18 +1681,20 @@ extension Foundation.Data {
   }
   public func toHexString() -> Swift.String
 }
-public protocol CommonHeaderParameterSpace {
-  var jku: Foundation.URL? { get set }
-  var jwk: Swift.String? { get set }
-  var jwkTyped: (any FuturaeKit.JWK)? { get set }
-  var kid: Swift.String? { get set }
-  var x5u: Foundation.URL? { get set }
-  var x5c: [Swift.String]? { get set }
-  var x5t: Swift.String? { get set }
-  var x5tS256: Swift.String? { get set }
-  var typ: Swift.String? { get set }
-  var cty: Swift.String? { get set }
-  var crit: [Swift.String]? { get set }
+public struct Encrypter<KeyType> {
+  public init?(keyManagementAlgorithm: FuturaeKit.KeyManagementAlgorithm, contentEncryptionAlgorithm: FuturaeKit.ContentEncryptionAlgorithm, encryptionKey: KeyType)
+}
+extension FuturaeKit.Encrypter {
+  @available(*, deprecated, message: "Use `init?(keyManagementAlgorithm:contentEncryptionAlgorithm:encryptionKey:)` instead")
+  public init?(keyEncryptionAlgorithm: FuturaeKit.AsymmetricKeyAlgorithm, encryptionKey key: KeyType, contentEncyptionAlgorithm: FuturaeKit.SymmetricKeyAlgorithm)
+  @available(*, deprecated, message: "Use `init?(keyManagementAlgorithm:contentEncryptionAlgorithm:encryptionKey:)` instead")
+  public init?(keyEncryptionAlgorithm: FuturaeKit.AsymmetricKeyAlgorithm, keyEncryptionKey kek: KeyType, contentEncyptionAlgorithm: FuturaeKit.SymmetricKeyAlgorithm)
+}
+@available(*, deprecated, message: "This type will be removed with the next major release.")
+public struct EncryptionContext {
+}
+@available(*, deprecated, message: "This type will be removed with the next major release.")
+public struct SymmetricEncryptionContext {
 }
 extension FuturaeKit.CS.BigUInt {
   public init?<S>(_ text: S, radix: Swift.Int = 10) where S : Swift.StringProtocol
@@ -1688,66 +1743,6 @@ extension FuturaeKit.CS.BigInt : Swift.CustomPlaygroundDisplayConvertible {
     get
   }
 }
-public struct JWSHeader {
-  public init(algorithm: FuturaeKit.SignatureAlgorithm)
-  public init(parameters: [Swift.String : Any]) throws
-}
-extension FuturaeKit.JWSHeader {
-  public var algorithm: FuturaeKit.SignatureAlgorithm? {
-    get
-  }
-}
-extension FuturaeKit.JWSHeader : FuturaeKit.CommonHeaderParameterSpace {
-  public var jku: Foundation.URL? {
-    get
-    set
-  }
-  public var jwk: Swift.String? {
-    get
-    set
-  }
-  public var jwkTyped: (any FuturaeKit.JWK)? {
-    get
-    set
-  }
-  public var kid: Swift.String? {
-    get
-    set
-  }
-  public var x5u: Foundation.URL? {
-    get
-    set
-  }
-  public var x5c: [Swift.String]? {
-    get
-    set
-  }
-  public var x5t: Swift.String? {
-    get
-    set
-  }
-  public var x5tS256: Swift.String? {
-    get
-    set
-  }
-  public var typ: Swift.String? {
-    get
-    set
-  }
-  public var cty: Swift.String? {
-    get
-    set
-  }
-  public var crit: [Swift.String]? {
-    get
-    set
-  }
-}
-@_inheritsConvenienceInitializers @objc public class ASN1DERParsing : ObjectiveC.NSObject {
-  @objc public class func unpackBERencodedASN1formatToRaw(signature: Foundation.NSData) throws -> Foundation.NSData
-  @objc override dynamic public init()
-  @objc deinit
-}
 public struct OFB : FuturaeKit.BlockMode {
   public enum Error : Swift.Error {
     case invalidInitializationVector
@@ -1761,6 +1756,13 @@ public struct OFB : FuturaeKit.BlockMode {
   public let customBlockSize: Swift.Int?
   public init(iv: Swift.Array<Swift.UInt8>)
   public func worker(blockSize: Swift.Int, cipherOperation: @escaping FuturaeKit.CipherOperationOnBlock, encryptionOperation: @escaping FuturaeKit.CipherOperationOnBlock) throws -> any FuturaeKit.CipherModeWorker
+}
+public enum SecureRandomError : Swift.Error {
+  case failed(status: Darwin.OSStatus)
+  case countMustBeGreaterThanZero
+}
+public struct SecureRandom {
+  public static func generate(count: Swift.Int) throws -> Foundation.Data
 }
 public enum CipherError : Swift.Error {
   case encrypt
@@ -1781,6 +1783,18 @@ public protocol Cipher : AnyObject {
 extension FuturaeKit.Cipher {
   public func encrypt(_ bytes: Swift.Array<Swift.UInt8>) throws -> Swift.Array<Swift.UInt8>
   public func decrypt(_ bytes: Swift.Array<Swift.UInt8>) throws -> Swift.Array<Swift.UInt8>
+}
+public struct CBOROptions {
+  public init(useStringKeys: Swift.Bool = false, dateStrategy: FuturaeKit.DateStrategy = .taggedAsEpochTimestamp, forbidNonStringMapKeys: Swift.Bool = false)
+}
+public enum DateStrategy {
+  case taggedAsEpochTimestamp
+  case annotatedMap
+  public static func == (a: FuturaeKit.DateStrategy, b: FuturaeKit.DateStrategy) -> Swift.Bool
+  public func hash(into hasher: inout Swift.Hasher)
+  public var hashValue: Swift.Int {
+    get
+  }
 }
 final public class RSA {
   public enum Error : Swift.Error {
@@ -1830,6 +1844,114 @@ extension FuturaeKit.RSA : Swift.CustomStringConvertible {
   override final public func authenticate(_ bytes: Swift.Array<Swift.UInt8>) throws -> Swift.Array<Swift.UInt8>
   override public init(key: Swift.Array<Swift.UInt8>) throws
   @objc deinit
+}
+extension FuturaeKit.JWKSet : Swift.Encodable {
+  public func encode(to encoder: any Swift.Encoder) throws
+}
+extension FuturaeKit.JWKSet : Swift.Decodable {
+  public init(from decoder: any Swift.Decoder) throws
+}
+extension Foundation.Data : FuturaeKit.ExpressibleAsECPrivateKeyComponents {
+  public static func representing(ecPrivateKeyComponents components: FuturaeKit.ECPrivateKeyComponents) throws -> Foundation.Data
+  public func ecPrivateKeyComponents() throws -> FuturaeKit.ECPrivateKeyComponents
+}
+public struct Verifier {
+  public init?<KeyType>(verifyingAlgorithm: FuturaeKit.SignatureAlgorithm, publicKey: KeyType)
+}
+final public class OCB : FuturaeKit.BlockMode {
+  public enum Mode {
+    case combined
+    case detached
+    public static func == (a: FuturaeKit.OCB.Mode, b: FuturaeKit.OCB.Mode) -> Swift.Bool
+    public func hash(into hasher: inout Swift.Hasher)
+    public var hashValue: Swift.Int {
+      get
+    }
+  }
+  final public let options: FuturaeKit.BlockModeOption
+  public enum Error : Swift.Error {
+    case invalidNonce
+    case fail
+    public static func == (a: FuturaeKit.OCB.Error, b: FuturaeKit.OCB.Error) -> Swift.Bool
+    public func hash(into hasher: inout Swift.Hasher)
+    public var hashValue: Swift.Int {
+      get
+    }
+  }
+  final public let customBlockSize: Swift.Int?
+  final public var authenticationTag: Swift.Array<Swift.UInt8>?
+  public init(nonce N: Swift.Array<Swift.UInt8>, additionalAuthenticatedData: Swift.Array<Swift.UInt8>? = nil, tagLength: Swift.Int = 16, mode: FuturaeKit.OCB.Mode = .detached)
+  @inlinable convenience public init(nonce N: Swift.Array<Swift.UInt8>, authenticationTag: Swift.Array<Swift.UInt8>, additionalAuthenticatedData: Swift.Array<Swift.UInt8>? = nil, mode: FuturaeKit.OCB.Mode = .detached) {
+    self.init(nonce: N, additionalAuthenticatedData: additionalAuthenticatedData, tagLength: authenticationTag.count, mode: mode)
+    self.authenticationTag = authenticationTag
+  }
+  final public func worker(blockSize: Swift.Int, cipherOperation: @escaping FuturaeKit.CipherOperationOnBlock, encryptionOperation: @escaping FuturaeKit.CipherOperationOnBlock) throws -> any FuturaeKit.CipherModeWorker
+  @objc deinit
+}
+extension FuturaeKit.CS.BigUInt {
+  public static func >>= <Other>(lhs: inout FuturaeKit.CS.BigUInt, rhs: Other) where Other : Swift.BinaryInteger
+  public static func <<= <Other>(lhs: inout FuturaeKit.CS.BigUInt, rhs: Other) where Other : Swift.BinaryInteger
+  public static func >> <Other>(lhs: FuturaeKit.CS.BigUInt, rhs: Other) -> FuturaeKit.CS.BigUInt where Other : Swift.BinaryInteger
+  public static func << <Other>(lhs: FuturaeKit.CS.BigUInt, rhs: Other) -> FuturaeKit.CS.BigUInt where Other : Swift.BinaryInteger
+}
+extension FuturaeKit.CS.BigInt {
+  public static func &<< (left: FuturaeKit.CS.BigInt, right: FuturaeKit.CS.BigInt) -> FuturaeKit.CS.BigInt
+  public static func &<<= (left: inout FuturaeKit.CS.BigInt, right: FuturaeKit.CS.BigInt)
+  public static func &>> (left: FuturaeKit.CS.BigInt, right: FuturaeKit.CS.BigInt) -> FuturaeKit.CS.BigInt
+  public static func &>>= (left: inout FuturaeKit.CS.BigInt, right: FuturaeKit.CS.BigInt)
+  public static func << <Other>(lhs: FuturaeKit.CS.BigInt, rhs: Other) -> FuturaeKit.CS.BigInt where Other : Swift.BinaryInteger
+  public static func <<= <Other>(lhs: inout FuturaeKit.CS.BigInt, rhs: Other) where Other : Swift.BinaryInteger
+  public static func >> <Other>(lhs: FuturaeKit.CS.BigInt, rhs: Other) -> FuturaeKit.CS.BigInt where Other : Swift.BinaryInteger
+  public static func >>= <Other>(lhs: inout FuturaeKit.CS.BigInt, rhs: Other) where Other : Swift.BinaryInteger
+}
+extension FuturaeKit.ECPublicKey : Swift.Encodable {
+  public func encode(to encoder: any Swift.Encoder) throws
+}
+extension FuturaeKit.ECPublicKey : Swift.Decodable {
+  public init(from decoder: any Swift.Decoder) throws
+}
+extension FuturaeKit.ECPrivateKey : Swift.Encodable {
+  public func encode(to encoder: any Swift.Encoder) throws
+}
+extension FuturaeKit.ECPrivateKey : Swift.Decodable {
+  public init(from decoder: any Swift.Decoder) throws
+}
+@_hasMissingDesignatedInitializers @available(iOSApplicationExtension, unavailable)
+public class IOSSecuritySuite {
+  public static func amIJailbrokenWithFailMessage() -> (jailbroken: Swift.Bool, failMessage: Swift.String)
+  @objc deinit
+}
+public protocol CompactSerializable {
+  func serialize(to serializer: inout any FuturaeKit.CompactSerializer)
+}
+public protocol CompactSerializer {
+  var components: [any FuturaeKit.DataConvertible] { get }
+  mutating func serialize<T>(_ object: T) where T : FuturaeKit.DataConvertible
+}
+public struct JOSESerializer {
+  public func serialize<T>(compact object: T) -> Swift.String where T : FuturaeKit.CompactSerializable
+}
+public enum ECCurveType : Swift.String, Swift.Codable {
+  case P256
+  case P384
+  case P521
+  public init?(rawValue: Swift.String)
+  public typealias RawValue = Swift.String
+  public var rawValue: Swift.String {
+    get
+  }
+}
+public enum ECCompression : Swift.UInt8 {
+  case CompressedYEven
+  case CompressedYOdd
+  case Uncompressed
+  case HybridYEven
+  case HybridYOdd
+  public init?(rawValue: Swift.UInt8)
+  public typealias RawValue = Swift.UInt8
+  public var rawValue: Swift.UInt8 {
+    get
+  }
 }
 public enum JWKParameter : Swift.String, Swift.CodingKey {
   case keyType
@@ -1908,109 +2030,6 @@ public enum ECParameter : Swift.String, Swift.CodingKey {
     get
   }
 }
-extension FuturaeKit.ECPublicKey : Swift.Encodable {
-  public func encode(to encoder: any Swift.Encoder) throws
-}
-extension FuturaeKit.ECPublicKey : Swift.Decodable {
-  public init(from decoder: any Swift.Decoder) throws
-}
-extension FuturaeKit.ECPrivateKey : Swift.Encodable {
-  public func encode(to encoder: any Swift.Encoder) throws
-}
-extension FuturaeKit.ECPrivateKey : Swift.Decodable {
-  public init(from decoder: any Swift.Decoder) throws
-}
-public struct JWS {
-  public let header: FuturaeKit.JWSHeader
-  public let payload: FuturaeKit.Payload
-  public let signature: Foundation.Data
-  public var compactSerializedString: Swift.String {
-    get
-  }
-  public var compactSerializedData: Foundation.Data {
-    get
-  }
-  public init<KeyType>(header: FuturaeKit.JWSHeader, payload: FuturaeKit.Payload, signer: FuturaeKit.Signer<KeyType>) throws
-  public init(compactSerialization: Swift.String) throws
-  public init(compactSerialization: Foundation.Data) throws
-  @available(*, deprecated, message: "Use `isValid(for verifier:)` instead")
-  public func isValid<KeyType>(for publicKey: KeyType) -> Swift.Bool
-  @available(*, deprecated, message: "Use `validate(using verifier:)` instead")
-  public func validate<KeyType>(with publicKey: KeyType) throws -> FuturaeKit.JWS
-  public func validate(using verifier: FuturaeKit.Verifier) throws -> FuturaeKit.JWS
-  public func isValid(for verifier: FuturaeKit.Verifier) -> Swift.Bool
-}
-extension FuturaeKit.JWS : FuturaeKit.CompactSerializable {
-  public func serialize(to serializer: inout any FuturaeKit.CompactSerializer)
-}
-extension FuturaeKit.JWS : FuturaeKit.CompactDeserializable {
-  public static var componentCount: Swift.Int {
-    get
-  }
-  public init(from deserializer: any FuturaeKit.CompactDeserializer) throws
-}
-final public class OCB : FuturaeKit.BlockMode {
-  public enum Mode {
-    case combined
-    case detached
-    public static func == (a: FuturaeKit.OCB.Mode, b: FuturaeKit.OCB.Mode) -> Swift.Bool
-    public func hash(into hasher: inout Swift.Hasher)
-    public var hashValue: Swift.Int {
-      get
-    }
-  }
-  final public let options: FuturaeKit.BlockModeOption
-  public enum Error : Swift.Error {
-    case invalidNonce
-    case fail
-    public static func == (a: FuturaeKit.OCB.Error, b: FuturaeKit.OCB.Error) -> Swift.Bool
-    public func hash(into hasher: inout Swift.Hasher)
-    public var hashValue: Swift.Int {
-      get
-    }
-  }
-  final public let customBlockSize: Swift.Int?
-  final public var authenticationTag: Swift.Array<Swift.UInt8>?
-  public init(nonce N: Swift.Array<Swift.UInt8>, additionalAuthenticatedData: Swift.Array<Swift.UInt8>? = nil, tagLength: Swift.Int = 16, mode: FuturaeKit.OCB.Mode = .detached)
-  @inlinable convenience public init(nonce N: Swift.Array<Swift.UInt8>, authenticationTag: Swift.Array<Swift.UInt8>, additionalAuthenticatedData: Swift.Array<Swift.UInt8>? = nil, mode: FuturaeKit.OCB.Mode = .detached) {
-    self.init(nonce: N, additionalAuthenticatedData: additionalAuthenticatedData, tagLength: authenticationTag.count, mode: mode)
-    self.authenticationTag = authenticationTag
-  }
-  final public func worker(blockSize: Swift.Int, cipherOperation: @escaping FuturaeKit.CipherOperationOnBlock, encryptionOperation: @escaping FuturaeKit.CipherOperationOnBlock) throws -> any FuturaeKit.CipherModeWorker
-  @objc deinit
-}
-extension Security.SecKey : FuturaeKit.ExpressibleAsECPublicKeyComponents {
-  public static func representing(ecPublicKeyComponents components: FuturaeKit.ECPublicKeyComponents) throws -> Self
-  public func ecPublicKeyComponents() throws -> FuturaeKit.ECPublicKeyComponents
-}
-extension FuturaeKit.CS.BigUInt {
-  public static func >>= <Other>(lhs: inout FuturaeKit.CS.BigUInt, rhs: Other) where Other : Swift.BinaryInteger
-  public static func <<= <Other>(lhs: inout FuturaeKit.CS.BigUInt, rhs: Other) where Other : Swift.BinaryInteger
-  public static func >> <Other>(lhs: FuturaeKit.CS.BigUInt, rhs: Other) -> FuturaeKit.CS.BigUInt where Other : Swift.BinaryInteger
-  public static func << <Other>(lhs: FuturaeKit.CS.BigUInt, rhs: Other) -> FuturaeKit.CS.BigUInt where Other : Swift.BinaryInteger
-}
-extension FuturaeKit.CS.BigInt {
-  public static func &<< (left: FuturaeKit.CS.BigInt, right: FuturaeKit.CS.BigInt) -> FuturaeKit.CS.BigInt
-  public static func &<<= (left: inout FuturaeKit.CS.BigInt, right: FuturaeKit.CS.BigInt)
-  public static func &>> (left: FuturaeKit.CS.BigInt, right: FuturaeKit.CS.BigInt) -> FuturaeKit.CS.BigInt
-  public static func &>>= (left: inout FuturaeKit.CS.BigInt, right: FuturaeKit.CS.BigInt)
-  public static func << <Other>(lhs: FuturaeKit.CS.BigInt, rhs: Other) -> FuturaeKit.CS.BigInt where Other : Swift.BinaryInteger
-  public static func <<= <Other>(lhs: inout FuturaeKit.CS.BigInt, rhs: Other) where Other : Swift.BinaryInteger
-  public static func >> <Other>(lhs: FuturaeKit.CS.BigInt, rhs: Other) -> FuturaeKit.CS.BigInt where Other : Swift.BinaryInteger
-  public static func >>= <Other>(lhs: inout FuturaeKit.CS.BigInt, rhs: Other) where Other : Swift.BinaryInteger
-}
-public struct CBOROptions {
-  public init(useStringKeys: Swift.Bool = false, dateStrategy: FuturaeKit.DateStrategy = .taggedAsEpochTimestamp, forbidNonStringMapKeys: Swift.Bool = false)
-}
-public enum DateStrategy {
-  case taggedAsEpochTimestamp
-  case annotatedMap
-  public static func == (a: FuturaeKit.DateStrategy, b: FuturaeKit.DateStrategy) -> Swift.Bool
-  public func hash(into hasher: inout Swift.Hasher)
-  public var hashValue: Swift.Int {
-    get
-  }
-}
 public struct CFB : FuturaeKit.BlockMode {
   public enum Error : Swift.Error {
     case invalidInitializationVector
@@ -2033,6 +2052,15 @@ public struct CFB : FuturaeKit.BlockMode {
   public let customBlockSize: Swift.Int?
   public init(iv: Swift.Array<Swift.UInt8>, segmentSize: FuturaeKit.CFB.SegmentSize = .cfb128)
   public func worker(blockSize: Swift.Int, cipherOperation: @escaping FuturaeKit.CipherOperationOnBlock, encryptionOperation: @escaping FuturaeKit.CipherOperationOnBlock) throws -> any FuturaeKit.CipherModeWorker
+}
+extension FuturaeKit.JWK {
+  public subscript(parameter: Swift.String) -> Swift.String? {
+    get
+  }
+}
+extension FuturaeKit.JWK {
+  public func jsonString() -> Swift.String?
+  public func jsonData() -> Foundation.Data?
 }
 extension FuturaeKit.Rabbit {
   convenience public init(key: Swift.String) throws
@@ -2164,88 +2192,15 @@ extension FuturaeKit.SHA2 : FuturaeKit.Updatable {
     return result
   }
 }
-public struct JWEHeader {
-  public init(keyManagementAlgorithm: FuturaeKit.KeyManagementAlgorithm, contentEncryptionAlgorithm: FuturaeKit.ContentEncryptionAlgorithm)
-  public init(parameters: [Swift.String : Any]) throws
-}
-extension FuturaeKit.JWEHeader {
-  public var keyManagementAlgorithm: FuturaeKit.KeyManagementAlgorithm? {
-    get
-  }
-  public var contentEncryptionAlgorithm: FuturaeKit.ContentEncryptionAlgorithm? {
-    get
-  }
-  public var compressionAlgorithm: FuturaeKit.CompressionAlgorithm? {
-    get
-  }
-  public var zip: Swift.String? {
-    get
-    set
-  }
-}
-extension FuturaeKit.JWEHeader : FuturaeKit.CommonHeaderParameterSpace {
-  public var jku: Foundation.URL? {
-    get
-    set
-  }
-  public var jwk: Swift.String? {
-    get
-    set
-  }
-  public var jwkTyped: (any FuturaeKit.JWK)? {
-    get
-    set
-  }
-  public var kid: Swift.String? {
-    get
-    set
-  }
-  public var x5u: Foundation.URL? {
-    get
-    set
-  }
-  public var x5c: [Swift.String]? {
-    get
-    set
-  }
-  public var x5t: Swift.String? {
-    get
-    set
-  }
-  public var x5tS256: Swift.String? {
-    get
-    set
-  }
-  public var typ: Swift.String? {
-    get
-    set
-  }
-  public var cty: Swift.String? {
-    get
-    set
-  }
-  public var crit: [Swift.String]? {
-    get
-    set
-  }
-}
-extension FuturaeKit.JWEHeader {
-  @available(*, deprecated, message: "Use `JWEHeader.keyManagementAlgorithm` instead")
-  public var algorithm: FuturaeKit.AsymmetricKeyAlgorithm? {
-    get
-  }
-  @available(*, deprecated, message: "Use `JWEHeader.contentEncryptionAlgorithm` instead")
-  public var encryptionAlgorithm: FuturaeKit.SymmetricKeyAlgorithm? {
-    get
-  }
-  @available(*, deprecated, message: "Use `init(keyManagementAlgorithm:contentEncryptionAlgorithm` instead")
-  public init(algorithm: FuturaeKit.AsymmetricKeyAlgorithm, encryptionAlgorithm: FuturaeKit.SymmetricKeyAlgorithm)
-}
 extension FuturaeKit.CS.BigUInt {
   public func squareRoot() -> FuturaeKit.CS.BigUInt
 }
 extension FuturaeKit.CS.BigInt {
   public func squareRoot() -> FuturaeKit.CS.BigInt
+}
+extension Foundation.Data : FuturaeKit.ExpressibleAsRSAPublicKeyComponents {
+  public static func representing(rsaPublicKeyComponents components: FuturaeKit.RSAPublicKeyComponents) throws -> Foundation.Data
+  public func rsaPublicKeyComponents() throws -> FuturaeKit.RSAPublicKeyComponents
 }
 @usableFromInline
 final internal class BlockEncryptor : FuturaeKit.Cryptor, FuturaeKit.Updatable {
@@ -2257,11 +2212,6 @@ final internal class BlockEncryptor : FuturaeKit.Cryptor, FuturaeKit.Updatable {
   @objc @usableFromInline
   deinit
 }
-@_hasMissingDesignatedInitializers @available(iOSApplicationExtension, unavailable)
-public class IOSSecuritySuite {
-  public static func amIJailbrokenWithFailMessage() -> (jailbroken: Swift.Bool, failMessage: Swift.String)
-  @objc deinit
-}
 extension Swift.String {
   public func decryptBase64ToString(cipher: any FuturaeKit.Cipher) throws -> Swift.String
   public func decryptBase64(cipher: any FuturaeKit.Cipher) throws -> Swift.Array<Swift.UInt8>
@@ -2269,6 +2219,10 @@ extension Swift.String {
 public typealias BigInteger = FuturaeKit.CS.BigInt
 public typealias BigUInteger = FuturaeKit.CS.BigUInt
 public enum CS {
+}
+extension Foundation.Data : FuturaeKit.ExpressibleAsSymmetricKeyComponents {
+  public static func representing(symmetricKeyComponents components: FuturaeKit.SymmetricKeyComponents) throws -> Foundation.Data
+  public func symmetricKeyComponents() throws -> FuturaeKit.SymmetricKeyComponents
 }
 @available(*, renamed: "Digest")
 public typealias Hash = FuturaeKit.Digest
@@ -2282,34 +2236,18 @@ public struct Digest {
   public static func sha2(_ bytes: Swift.Array<Swift.UInt8>, variant: FuturaeKit.SHA2.Variant) -> Swift.Array<Swift.UInt8>
   public static func sha3(_ bytes: Swift.Array<Swift.UInt8>, variant: FuturaeKit.SHA3.Variant) -> Swift.Array<Swift.UInt8>
 }
-public enum JOSESwiftError : Swift.Error {
-  case signingFailed(description: Swift.String)
-  case verifyingFailed(description: Swift.String)
-  case signatureInvalid
-  case encryptingFailed(description: Swift.String)
-  case decryptingFailed(description: Swift.String)
-  case wrongDataEncoding(data: Foundation.Data)
-  case invalidCompactSerializationComponentCount(count: Swift.Int)
-  case componentNotValidBase64URL(component: Swift.String)
-  case componentCouldNotBeInitializedFromData(data: Foundation.Data)
-  case couldNotConstructJWK
-  case modulusNotBase64URLUIntEncoded
-  case exponentNotBase64URLUIntEncoded
-  case privateExponentNotBase64URLUIntEncoded
-  case symmetricKeyNotBase64URLEncoded
-  case xNotBase64URLUIntEncoded
-  case yNotBase64URLUIntEncoded
-  case privateKeyNotBase64URLUIntEncoded
-  case invalidCurveType
-  case compressedCurvePointsUnsupported
-  case invalidCurvePointOctetLength
-  case localAuthenticationFailed(errorCode: Swift.Int)
-  case compressionFailed
-  case decompressionFailed
-  case compressionAlgorithmNotSupported
-  case rawDataMustBeGreaterThanZero
-  case compressedDataMustBeGreaterThanZero
-  case thumbprintSerialization
+public protocol CompactDeserializable {
+  static var componentCount: Swift.Int { get }
+  init(from deserializer: any FuturaeKit.CompactDeserializer) throws
+}
+public protocol CompactDeserializer {
+  func deserialize<T>(_ type: T.Type, at index: Swift.Int) throws -> T where T : FuturaeKit.DataConvertible
+}
+public struct JOSEDeserializer {
+  public init()
+  public func deserialize<T>(_ type: T.Type, fromCompactSerialization compactSerialization: Swift.String) throws -> T where T : FuturaeKit.CompactDeserializable
+}
+public enum ComponentCompactSerializedIndex {
 }
 extension FuturaeKit.CS.BigUInt {
   public init?<T>(exactly source: T) where T : Swift.BinaryFloatingPoint
@@ -2536,121 +2474,53 @@ extension FuturaeKit.AES : FuturaeKit.Cipher {
     return out
   }
 }
-public protocol Authenticator {
-  func authenticate(_ bytes: Swift.Array<Swift.UInt8>) throws -> Swift.Array<Swift.UInt8>
+public struct Signer<KeyType> {
+  public init?(signingAlgorithm: FuturaeKit.SignatureAlgorithm, privateKey: KeyType)
 }
-extension FuturaeKit.CS.BigUInt {
-  public func power(_ exponent: Swift.Int) -> FuturaeKit.CS.BigUInt
-  public func power(_ exponent: FuturaeKit.CS.BigUInt, modulus: FuturaeKit.CS.BigUInt) -> FuturaeKit.CS.BigUInt
+public typealias ECPublicKeyComponents = (crv: Swift.String, x: Foundation.Data, y: Foundation.Data)
+public typealias ECPrivateKeyComponents = (crv: Swift.String, x: Foundation.Data, y: Foundation.Data, d: Foundation.Data)
+public protocol ExpressibleAsECPublicKeyComponents {
+  static func representing(ecPublicKeyComponents components: FuturaeKit.ECPublicKeyComponents) throws -> Self
+  func ecPublicKeyComponents() throws -> FuturaeKit.ECPublicKeyComponents
 }
-extension FuturaeKit.CS.BigInt {
-  public func power(_ exponent: Swift.Int) -> FuturaeKit.CS.BigInt
-  public func power(_ exponent: FuturaeKit.CS.BigInt, modulus: FuturaeKit.CS.BigInt) -> FuturaeKit.CS.BigInt
+public protocol ExpressibleAsECPrivateKeyComponents {
+  static func representing(ecPrivateKeyComponents components: FuturaeKit.ECPrivateKeyComponents) throws -> Self
+  func ecPrivateKeyComponents() throws -> FuturaeKit.ECPrivateKeyComponents
 }
-public enum JWKKeyType : Swift.String, Swift.Codable {
-  case RSA
-  case OCT
-  case EC
-  public init?(rawValue: Swift.String)
-  public typealias RawValue = Swift.String
-  public var rawValue: Swift.String {
+public struct ECPublicKey : FuturaeKit.JWK {
+  public let keyType: FuturaeKit.JWKKeyType
+  public let parameters: [Swift.String : Swift.String]
+  public var requiredParameters: [Swift.String : Swift.String] {
     get
   }
-}
-public protocol JWK : Swift.Decodable, Swift.Encodable {
-  var keyType: FuturaeKit.JWKKeyType { get }
-  var parameters: [Swift.String : Swift.String] { get }
-  var requiredParameters: [Swift.String : Swift.String] { get }
-  subscript(parameter: Swift.String) -> Swift.String? { get }
-  init(data: Foundation.Data) throws
-  func jsonString() -> Swift.String?
-  func jsonData() -> Foundation.Data?
+  public let crv: FuturaeKit.ECCurveType
+  public let x: Swift.String
+  public let y: Swift.String
+  public init(crv: FuturaeKit.ECCurveType, x: Swift.String, y: Swift.String, additionalParameters parameters: [Swift.String : Swift.String] = [:])
+  public init(publicKey: any FuturaeKit.ExpressibleAsECPublicKeyComponents, additionalParameters parameters: [Swift.String : Swift.String] = [:]) throws
+  public init(data: Foundation.Data) throws
+  public func converted<T>(to type: T.Type) throws -> T where T : FuturaeKit.ExpressibleAsECPublicKeyComponents
   @available(iOS 11.0, *)
-  func thumbprint(algorithm: FuturaeKit.JWKThumbprintAlgorithm) throws -> Swift.String
+  public func withThumbprintAsKeyId(algorithm: FuturaeKit.JWKThumbprintAlgorithm = .SHA256) throws -> FuturaeKit.ECPublicKey
+}
+public struct ECPrivateKey : FuturaeKit.JWK {
+  public let keyType: FuturaeKit.JWKKeyType
+  public let parameters: [Swift.String : Swift.String]
+  public var requiredParameters: [Swift.String : Swift.String] {
+    get
+  }
+  public let crv: FuturaeKit.ECCurveType
+  public let x: Swift.String
+  public let y: Swift.String
+  public let privateKey: Swift.String
+  public init(crv: Swift.String, x: Swift.String, y: Swift.String, privateKey: Swift.String, additionalParameters parameters: [Swift.String : Swift.String] = [:]) throws
+  public init(privateKey: any FuturaeKit.ExpressibleAsECPrivateKeyComponents, additionalParameters parameters: [Swift.String : Swift.String] = [:]) throws
+  public init(data: Foundation.Data) throws
+  public func converted<T>(to type: T.Type) throws -> T where T : FuturaeKit.ExpressibleAsECPrivateKeyComponents
   @available(iOS 11.0, *)
-  func withThumbprintAsKeyId(algorithm: FuturaeKit.JWKThumbprintAlgorithm) throws -> Self
+  public func withThumbprintAsKeyId(algorithm: FuturaeKit.JWKThumbprintAlgorithm = .SHA256) throws -> FuturaeKit.ECPrivateKey
 }
-extension FuturaeKit.JWK {
-  @available(iOS 11.0, *)
-  public func thumbprint(algorithm: FuturaeKit.JWKThumbprintAlgorithm = .SHA256) throws -> Swift.String
-}
-public enum SignatureAlgorithm : Swift.String {
-  case RS256
-  case RS384
-  case RS512
-  @available(iOS 11, *)
-  case PS256
-  @available(iOS 11, *)
-  case PS384
-  @available(iOS 11, *)
-  case PS512
-  case ES256
-  case ES384
-  case ES512
-  public init?(rawValue: Swift.String)
-  public typealias RawValue = Swift.String
-  public var rawValue: Swift.String {
-    get
-  }
-}
-public enum KeyManagementAlgorithm : Swift.String, Swift.CaseIterable {
-  case RSA1_5
-  case RSAOAEP
-  case RSAOAEP256
-  case A128KW
-  case A192KW
-  case A256KW
-  case direct
-  public init?(rawValue: Swift.String)
-  public typealias AllCases = [FuturaeKit.KeyManagementAlgorithm]
-  public typealias RawValue = Swift.String
-  public static var allCases: [FuturaeKit.KeyManagementAlgorithm] {
-    get
-  }
-  public var rawValue: Swift.String {
-    get
-  }
-}
-public enum ContentEncryptionAlgorithm : Swift.String {
-  case A256CBCHS512
-  case A128CBCHS256
-  case AES256GCM
-  public init?(rawValue: Swift.String)
-  public typealias RawValue = Swift.String
-  public var rawValue: Swift.String {
-    get
-  }
-}
-public enum HMACAlgorithm : Swift.String {
-  case SHA512
-  case SHA256
-  public init?(rawValue: Swift.String)
-  public typealias RawValue = Swift.String
-  public var rawValue: Swift.String {
-    get
-  }
-}
-public enum JWKThumbprintAlgorithm : Swift.String {
-  case SHA256
-  public init?(rawValue: Swift.String)
-  public typealias RawValue = Swift.String
-  public var rawValue: Swift.String {
-    get
-  }
-}
-public enum CompressionAlgorithm : Swift.String {
-  case DEFLATE
-  case NONE
-  public init?(rawValue: Swift.String)
-  public typealias RawValue = Swift.String
-  public var rawValue: Swift.String {
-    get
-  }
-}
-@available(*, deprecated, message: "Use `KeyManagementAlgorithm` instead")
-public typealias AsymmetricKeyAlgorithm = FuturaeKit.KeyManagementAlgorithm
-@available(*, deprecated, message: "Use `ContentEncryptionAlgorithm` instead")
-public typealias SymmetricKeyAlgorithm = FuturaeKit.ContentEncryptionAlgorithm
+public typealias ECKeyPair = FuturaeKit.ECPrivateKey
 @_hasMissingDesignatedInitializers open class SwKeyStore {
   public enum SecError : Darwin.OSStatus, Swift.Error {
     case unimplemented
@@ -2978,6 +2848,88 @@ extension Foundation.Data {
 extension Swift.String {
   public func dataFromHexadecimalString() -> Foundation.Data?
 }
+public protocol Authenticator {
+  func authenticate(_ bytes: Swift.Array<Swift.UInt8>) throws -> Swift.Array<Swift.UInt8>
+}
+public typealias SymmetricKeyComponents = (Foundation.Data)
+public protocol ExpressibleAsSymmetricKeyComponents {
+  static func representing(symmetricKeyComponents components: FuturaeKit.SymmetricKeyComponents) throws -> Self
+  func symmetricKeyComponents() throws -> FuturaeKit.SymmetricKeyComponents
+}
+public struct SymmetricKey : FuturaeKit.JWK {
+  public let keyType: FuturaeKit.JWKKeyType
+  public let parameters: [Swift.String : Swift.String]
+  public var requiredParameters: [Swift.String : Swift.String] {
+    get
+  }
+  public let key: Swift.String
+  public init(key: Foundation.Data, additionalParameters parameters: [Swift.String : Swift.String] = [:])
+  public init(key: any FuturaeKit.ExpressibleAsSymmetricKeyComponents, additionalParameters parameters: [Swift.String : Swift.String] = [:]) throws
+  public init(data: Foundation.Data) throws
+  public func converted<T>(to type: T.Type) throws -> T where T : FuturaeKit.ExpressibleAsSymmetricKeyComponents
+  @available(iOS 11.0, *)
+  public func withThumbprintAsKeyId(algorithm: FuturaeKit.JWKThumbprintAlgorithm = .SHA256) throws -> FuturaeKit.SymmetricKey
+}
+extension FuturaeKit.CS.BigUInt {
+  public func power(_ exponent: Swift.Int) -> FuturaeKit.CS.BigUInt
+  public func power(_ exponent: FuturaeKit.CS.BigUInt, modulus: FuturaeKit.CS.BigUInt) -> FuturaeKit.CS.BigUInt
+}
+extension FuturaeKit.CS.BigInt {
+  public func power(_ exponent: Swift.Int) -> FuturaeKit.CS.BigInt
+  public func power(_ exponent: FuturaeKit.CS.BigInt, modulus: FuturaeKit.CS.BigInt) -> FuturaeKit.CS.BigInt
+}
+extension FuturaeKit.SymmetricKey : Swift.Encodable {
+  public func encode(to encoder: any Swift.Encoder) throws
+}
+extension FuturaeKit.SymmetricKey : Swift.Decodable {
+  public init(from decoder: any Swift.Decoder) throws
+}
+public struct Payload : FuturaeKit.DataConvertible {
+  public init(_ payload: Foundation.Data)
+  public func data() -> Foundation.Data
+}
+public typealias RSAPublicKeyComponents = (modulus: Foundation.Data, exponent: Foundation.Data)
+public typealias RSAPrivateKeyComponents = (modulus: Foundation.Data, exponent: Foundation.Data, privateExponent: Foundation.Data)
+public protocol ExpressibleAsRSAPublicKeyComponents {
+  static func representing(rsaPublicKeyComponents components: FuturaeKit.RSAPublicKeyComponents) throws -> Self
+  func rsaPublicKeyComponents() throws -> FuturaeKit.RSAPublicKeyComponents
+}
+public protocol ExpressibleAsRSAPrivateKeyComponents {
+  static func representing(rsaPrivateKeyComponents components: FuturaeKit.RSAPrivateKeyComponents) throws -> Self
+  func rsaPrivateKeyComponents() throws -> FuturaeKit.RSAPrivateKeyComponents
+}
+public struct RSAPublicKey : FuturaeKit.JWK {
+  public let keyType: FuturaeKit.JWKKeyType
+  public let parameters: [Swift.String : Swift.String]
+  public var requiredParameters: [Swift.String : Swift.String] {
+    get
+  }
+  public let modulus: Swift.String
+  public let exponent: Swift.String
+  public init(modulus: Swift.String, exponent: Swift.String, additionalParameters parameters: [Swift.String : Swift.String] = [:])
+  public init(publicKey: any FuturaeKit.ExpressibleAsRSAPublicKeyComponents, additionalParameters parameters: [Swift.String : Swift.String] = [:]) throws
+  public init(data: Foundation.Data) throws
+  public func converted<T>(to type: T.Type) throws -> T where T : FuturaeKit.ExpressibleAsRSAPublicKeyComponents
+  @available(iOS 11.0, *)
+  public func withThumbprintAsKeyId(algorithm: FuturaeKit.JWKThumbprintAlgorithm = .SHA256) throws -> FuturaeKit.RSAPublicKey
+}
+public struct RSAPrivateKey : FuturaeKit.JWK {
+  public let keyType: FuturaeKit.JWKKeyType
+  public let parameters: [Swift.String : Swift.String]
+  public var requiredParameters: [Swift.String : Swift.String] {
+    get
+  }
+  public let modulus: Swift.String
+  public let exponent: Swift.String
+  public let privateExponent: Swift.String
+  public init(modulus: Swift.String, exponent: Swift.String, privateExponent: Swift.String, additionalParameters parameters: [Swift.String : Swift.String] = [:])
+  public init(privateKey: any FuturaeKit.ExpressibleAsRSAPrivateKeyComponents, additionalParameters parameters: [Swift.String : Swift.String] = [:]) throws
+  public init(data: Foundation.Data) throws
+  public func converted<T>(to type: T.Type) throws -> T where T : FuturaeKit.ExpressibleAsRSAPrivateKeyComponents
+  @available(iOS 11.0, *)
+  public func withThumbprintAsKeyId(algorithm: FuturaeKit.JWKThumbprintAlgorithm = .SHA256) throws -> FuturaeKit.RSAPrivateKey
+}
+public typealias RSAKeyPair = FuturaeKit.RSAPrivateKey
 public protocol CipherModeWorker {
   var cipherOperation: FuturaeKit.CipherOperationOnBlock { get }
   var additionalBufferSize: Swift.Int { get }
@@ -3005,6 +2957,83 @@ public protocol FinalizingDecryptModeWorker : FuturaeKit.CipherModeWorker {
   mutating func didDecryptLast(bytes plaintext: Swift.ArraySlice<Swift.UInt8>) throws -> Swift.ArraySlice<Swift.UInt8>
   mutating func finalize(decrypt plaintext: Swift.ArraySlice<Swift.UInt8>) throws -> Swift.ArraySlice<Swift.UInt8>
 }
+public struct JWEHeader {
+  public init(keyManagementAlgorithm: FuturaeKit.KeyManagementAlgorithm, contentEncryptionAlgorithm: FuturaeKit.ContentEncryptionAlgorithm)
+  public init(parameters: [Swift.String : Any]) throws
+}
+extension FuturaeKit.JWEHeader {
+  public var keyManagementAlgorithm: FuturaeKit.KeyManagementAlgorithm? {
+    get
+  }
+  public var contentEncryptionAlgorithm: FuturaeKit.ContentEncryptionAlgorithm? {
+    get
+  }
+  public var compressionAlgorithm: FuturaeKit.CompressionAlgorithm? {
+    get
+  }
+  public var zip: Swift.String? {
+    get
+    set
+  }
+}
+extension FuturaeKit.JWEHeader : FuturaeKit.CommonHeaderParameterSpace {
+  public var jku: Foundation.URL? {
+    get
+    set
+  }
+  public var jwk: Swift.String? {
+    get
+    set
+  }
+  public var jwkTyped: (any FuturaeKit.JWK)? {
+    get
+    set
+  }
+  public var kid: Swift.String? {
+    get
+    set
+  }
+  public var x5u: Foundation.URL? {
+    get
+    set
+  }
+  public var x5c: [Swift.String]? {
+    get
+    set
+  }
+  public var x5t: Swift.String? {
+    get
+    set
+  }
+  public var x5tS256: Swift.String? {
+    get
+    set
+  }
+  public var typ: Swift.String? {
+    get
+    set
+  }
+  public var cty: Swift.String? {
+    get
+    set
+  }
+  public var crit: [Swift.String]? {
+    get
+    set
+  }
+}
+extension FuturaeKit.JWEHeader {
+  @available(*, deprecated, message: "Use `JWEHeader.keyManagementAlgorithm` instead")
+  public var algorithm: FuturaeKit.AsymmetricKeyAlgorithm? {
+    get
+  }
+  @available(*, deprecated, message: "Use `JWEHeader.contentEncryptionAlgorithm` instead")
+  public var encryptionAlgorithm: FuturaeKit.SymmetricKeyAlgorithm? {
+    get
+  }
+  @available(*, deprecated, message: "Use `init(keyManagementAlgorithm:contentEncryptionAlgorithm` instead")
+  public init(algorithm: FuturaeKit.AsymmetricKeyAlgorithm, encryptionAlgorithm: FuturaeKit.SymmetricKeyAlgorithm)
+}
 public protocol PaddingProtocol {
   func add(to: Swift.Array<Swift.UInt8>, blockSize: Swift.Int) -> Swift.Array<Swift.UInt8>
   func remove(from: Swift.Array<Swift.UInt8>, blockSize: Swift.Int?) -> Swift.Array<Swift.UInt8>
@@ -3028,10 +3057,6 @@ extension FuturaeKit.CS.BigInt {
   public static func == (a: FuturaeKit.CS.BigInt, b: FuturaeKit.CS.BigInt) -> Swift.Bool
   public static func < (a: FuturaeKit.CS.BigInt, b: FuturaeKit.CS.BigInt) -> Swift.Bool
 }
-public protocol DataConvertible {
-  init?(_ data: Foundation.Data)
-  func data() -> Foundation.Data
-}
 public struct Decrypter {
   public init?<KeyType>(keyManagementAlgorithm: FuturaeKit.KeyManagementAlgorithm, contentEncryptionAlgorithm: FuturaeKit.ContentEncryptionAlgorithm, decryptionKey: KeyType)
 }
@@ -3046,10 +3071,6 @@ public struct DecryptionContext {
 }
 @available(*, deprecated, message: "This type will be removed with the next major release.")
 public struct SymmetricDecryptionContext {
-}
-extension Foundation.Data : FuturaeKit.ExpressibleAsSymmetricKeyComponents {
-  public static func representing(symmetricKeyComponents components: FuturaeKit.SymmetricKeyComponents) throws -> Foundation.Data
-  public func symmetricKeyComponents() throws -> FuturaeKit.SymmetricKeyComponents
 }
 public struct JWE {
   public let header: FuturaeKit.JWEHeader
@@ -3078,54 +3099,6 @@ extension FuturaeKit.JWE : FuturaeKit.CompactDeserializable {
     get
   }
   public init(from deserializer: any FuturaeKit.CompactDeserializer) throws
-}
-public typealias ECPublicKeyComponents = (crv: Swift.String, x: Foundation.Data, y: Foundation.Data)
-public typealias ECPrivateKeyComponents = (crv: Swift.String, x: Foundation.Data, y: Foundation.Data, d: Foundation.Data)
-public protocol ExpressibleAsECPublicKeyComponents {
-  static func representing(ecPublicKeyComponents components: FuturaeKit.ECPublicKeyComponents) throws -> Self
-  func ecPublicKeyComponents() throws -> FuturaeKit.ECPublicKeyComponents
-}
-public protocol ExpressibleAsECPrivateKeyComponents {
-  static func representing(ecPrivateKeyComponents components: FuturaeKit.ECPrivateKeyComponents) throws -> Self
-  func ecPrivateKeyComponents() throws -> FuturaeKit.ECPrivateKeyComponents
-}
-public struct ECPublicKey : FuturaeKit.JWK {
-  public let keyType: FuturaeKit.JWKKeyType
-  public let parameters: [Swift.String : Swift.String]
-  public var requiredParameters: [Swift.String : Swift.String] {
-    get
-  }
-  public let crv: FuturaeKit.ECCurveType
-  public let x: Swift.String
-  public let y: Swift.String
-  public init(crv: FuturaeKit.ECCurveType, x: Swift.String, y: Swift.String, additionalParameters parameters: [Swift.String : Swift.String] = [:])
-  public init(publicKey: any FuturaeKit.ExpressibleAsECPublicKeyComponents, additionalParameters parameters: [Swift.String : Swift.String] = [:]) throws
-  public init(data: Foundation.Data) throws
-  public func converted<T>(to type: T.Type) throws -> T where T : FuturaeKit.ExpressibleAsECPublicKeyComponents
-  @available(iOS 11.0, *)
-  public func withThumbprintAsKeyId(algorithm: FuturaeKit.JWKThumbprintAlgorithm = .SHA256) throws -> FuturaeKit.ECPublicKey
-}
-public struct ECPrivateKey : FuturaeKit.JWK {
-  public let keyType: FuturaeKit.JWKKeyType
-  public let parameters: [Swift.String : Swift.String]
-  public var requiredParameters: [Swift.String : Swift.String] {
-    get
-  }
-  public let crv: FuturaeKit.ECCurveType
-  public let x: Swift.String
-  public let y: Swift.String
-  public let privateKey: Swift.String
-  public init(crv: Swift.String, x: Swift.String, y: Swift.String, privateKey: Swift.String, additionalParameters parameters: [Swift.String : Swift.String] = [:]) throws
-  public init(privateKey: any FuturaeKit.ExpressibleAsECPrivateKeyComponents, additionalParameters parameters: [Swift.String : Swift.String] = [:]) throws
-  public init(data: Foundation.Data) throws
-  public func converted<T>(to type: T.Type) throws -> T where T : FuturaeKit.ExpressibleAsECPrivateKeyComponents
-  @available(iOS 11.0, *)
-  public func withThumbprintAsKeyId(algorithm: FuturaeKit.JWKThumbprintAlgorithm = .SHA256) throws -> FuturaeKit.ECPrivateKey
-}
-public typealias ECKeyPair = FuturaeKit.ECPrivateKey
-public struct Payload : FuturaeKit.DataConvertible {
-  public init(_ payload: Foundation.Data)
-  public func data() -> Foundation.Data
 }
 public class CMAC : FuturaeKit.Authenticator {
   public enum Error : Swift.Error {
@@ -3303,6 +3276,10 @@ extension FuturaeKit.CBOR.Tag {
   public static let uuid: FuturaeKit.CBOR.Tag
   public static let selfDescribeCBOR: FuturaeKit.CBOR.Tag
 }
+extension Foundation.Data : FuturaeKit.ExpressibleAsECPublicKeyComponents {
+  public static func representing(ecPublicKeyComponents components: FuturaeKit.ECPublicKeyComponents) throws -> Foundation.Data
+  public func ecPublicKeyComponents() throws -> FuturaeKit.ECPublicKeyComponents
+}
 extension FuturaeKit.CS.BigUInt {
   public mutating func subtractReportingOverflow(_ b: FuturaeKit.CS.BigUInt, shiftedBy shift: Swift.Int = 0) -> Swift.Bool
   public func subtractingReportingOverflow(_ other: FuturaeKit.CS.BigUInt, shiftedBy shift: Swift.Int) -> (partialValue: FuturaeKit.CS.BigUInt, overflow: Swift.Bool)
@@ -3413,9 +3390,6 @@ extension FuturaeKit.CS.BigInt {
   public static func |= (lhs: inout FuturaeKit.CS.BigInt, rhs: FuturaeKit.CS.BigInt)
   public static func ^= (lhs: inout FuturaeKit.CS.BigInt, rhs: FuturaeKit.CS.BigInt)
 }
-public struct Verifier {
-  public init?<KeyType>(verifyingAlgorithm: FuturaeKit.SignatureAlgorithm, publicKey: KeyType)
-}
 public enum SignatureError : Swift.Error {
   case sign
   case verify
@@ -3436,9 +3410,35 @@ extension FuturaeKit.Signature {
   public func sign(_ bytes: Swift.Array<Swift.UInt8>) throws -> Swift.Array<Swift.UInt8>
   public func verify(signature: Swift.Array<Swift.UInt8>, for expectedData: Swift.Array<Swift.UInt8>) throws -> Swift.Bool
 }
-extension Foundation.Data : FuturaeKit.ExpressibleAsECPrivateKeyComponents {
-  public static func representing(ecPrivateKeyComponents components: FuturaeKit.ECPrivateKeyComponents) throws -> Foundation.Data
-  public func ecPrivateKeyComponents() throws -> FuturaeKit.ECPrivateKeyComponents
+public struct JWKSet {
+  public let keys: [any FuturaeKit.JWK]
+  public init(keys: [any FuturaeKit.JWK])
+  public init(data: Foundation.Data) throws
+  public func jsonString() -> Swift.String?
+  public func jsonData() -> Foundation.Data?
+}
+extension FuturaeKit.JWKSet : Swift.Collection {
+  public typealias ArrayType = [any FuturaeKit.JWK]
+  public typealias Element = FuturaeKit.JWKSet.ArrayType.Element
+  public typealias Index = FuturaeKit.JWKSet.ArrayType.Index
+  public typealias Iterator = FuturaeKit.JWKSet.ArrayType.Iterator
+  public var startIndex: FuturaeKit.JWKSet.Index {
+    get
+  }
+  public var endIndex: FuturaeKit.JWKSet.Index {
+    get
+  }
+  public subscript(index: FuturaeKit.JWKSet.Index) -> FuturaeKit.JWKSet.Element {
+    get
+  }
+  public func index(after index: FuturaeKit.JWKSet.Index) -> FuturaeKit.JWKSet.Index
+  public func makeIterator() -> Swift.IndexingIterator<FuturaeKit.JWKSet.ArrayType>
+  public typealias Indices = Swift.DefaultIndices<FuturaeKit.JWKSet>
+  public typealias SubSequence = Swift.Slice<FuturaeKit.JWKSet>
+}
+extension FuturaeKit.JWKSet : Swift.ExpressibleByArrayLiteral {
+  public typealias ArrayLiteralElement = FuturaeKit.JWKSet.Element
+  public init(arrayLiteral elements: FuturaeKit.JWKSet.ArrayLiteralElement...)
 }
 @_hasMissingDesignatedInitializers final public class AEADChaCha20Poly1305 : FuturaeKit.AEAD {
   public static let kLen: Swift.Int
@@ -3454,27 +3454,21 @@ extension FuturaeKit.CCM.Error : Swift.Equatable {}
 extension FuturaeKit.CCM.Error : Swift.Hashable {}
 extension FuturaeKit.Poly1305.Error : Swift.Equatable {}
 extension FuturaeKit.Poly1305.Error : Swift.Hashable {}
-extension FuturaeKit.HKDF.Error : Swift.Equatable {}
-extension FuturaeKit.HKDF.Error : Swift.Hashable {}
-extension FuturaeKit.HMACAlgorithm : Swift.Equatable {}
-extension FuturaeKit.HMACAlgorithm : Swift.Hashable {}
-extension FuturaeKit.HMACAlgorithm : Swift.RawRepresentable {}
-extension FuturaeKit.Blowfish.Error : Swift.Equatable {}
-extension FuturaeKit.Blowfish.Error : Swift.Hashable {}
-extension FuturaeKit.ECCurveType : Swift.Equatable {}
-extension FuturaeKit.ECCurveType : Swift.Hashable {}
-extension FuturaeKit.ECCurveType : Swift.RawRepresentable {}
-extension FuturaeKit.SignatureAlgorithm : Swift.Equatable {}
-extension FuturaeKit.SignatureAlgorithm : Swift.Hashable {}
-extension FuturaeKit.SignatureAlgorithm : Swift.RawRepresentable {}
-extension FuturaeKit.ECCompression : Swift.Equatable {}
-extension FuturaeKit.ECCompression : Swift.Hashable {}
-extension FuturaeKit.ECCompression : Swift.RawRepresentable {}
-extension FuturaeKit.SHA3.Variant : Swift.Equatable {}
-extension FuturaeKit.SHA3.Variant : Swift.Hashable {}
 extension FuturaeKit.ContentEncryptionAlgorithm : Swift.Equatable {}
 extension FuturaeKit.ContentEncryptionAlgorithm : Swift.Hashable {}
 extension FuturaeKit.ContentEncryptionAlgorithm : Swift.RawRepresentable {}
+extension FuturaeKit.KeyManagementAlgorithm : Swift.Equatable {}
+extension FuturaeKit.KeyManagementAlgorithm : Swift.Hashable {}
+extension FuturaeKit.KeyManagementAlgorithm : Swift.RawRepresentable {}
+extension FuturaeKit.HKDF.Error : Swift.Equatable {}
+extension FuturaeKit.HKDF.Error : Swift.Hashable {}
+extension FuturaeKit.Blowfish.Error : Swift.Equatable {}
+extension FuturaeKit.Blowfish.Error : Swift.Hashable {}
+extension FuturaeKit.JWKThumbprintAlgorithm : Swift.Equatable {}
+extension FuturaeKit.JWKThumbprintAlgorithm : Swift.Hashable {}
+extension FuturaeKit.JWKThumbprintAlgorithm : Swift.RawRepresentable {}
+extension FuturaeKit.SHA3.Variant : Swift.Equatable {}
+extension FuturaeKit.SHA3.Variant : Swift.Hashable {}
 extension FuturaeKit.RSA.SignatureVariant : Swift.Equatable {}
 extension FuturaeKit.RSA.SignatureVariant : Swift.Hashable {}
 extension FuturaeKit.CTR : FuturaeKit.BlockMode {}
@@ -3484,29 +3478,36 @@ extension FuturaeKit.Rabbit.Error : Swift.Equatable {}
 extension FuturaeKit.Rabbit.Error : Swift.Hashable {}
 extension FuturaeKit.PKCS5.PBKDF2.Error : Swift.Equatable {}
 extension FuturaeKit.PKCS5.PBKDF2.Error : Swift.Hashable {}
-extension FuturaeKit.JWKThumbprintAlgorithm : Swift.Equatable {}
-extension FuturaeKit.JWKThumbprintAlgorithm : Swift.Hashable {}
-extension FuturaeKit.JWKThumbprintAlgorithm : Swift.RawRepresentable {}
+extension FuturaeKit.JWKKeyType : Swift.Equatable {}
+extension FuturaeKit.JWKKeyType : Swift.Hashable {}
+extension FuturaeKit.JWKKeyType : Swift.RawRepresentable {}
 extension FuturaeKit.PKCS5.PBKDF1.Error : Swift.Equatable {}
 extension FuturaeKit.PKCS5.PBKDF1.Error : Swift.Hashable {}
 extension FuturaeKit.PKCS5.PBKDF1.Variant : Swift.Equatable {}
 extension FuturaeKit.PKCS5.PBKDF1.Variant : Swift.Hashable {}
-extension FuturaeKit.KeyManagementAlgorithm : Swift.Equatable {}
-extension FuturaeKit.KeyManagementAlgorithm : Swift.Hashable {}
-extension FuturaeKit.KeyManagementAlgorithm : Swift.RawRepresentable {}
+extension FuturaeKit.FailedCheck : Swift.Equatable {}
+extension FuturaeKit.FailedCheck : Swift.Hashable {}
 extension FuturaeKit.Bit : Swift.Equatable {}
 extension FuturaeKit.Bit : Swift.Hashable {}
 extension FuturaeKit.Bit : Swift.RawRepresentable {}
-extension FuturaeKit.FailedCheck : Swift.Equatable {}
-extension FuturaeKit.FailedCheck : Swift.Hashable {}
+extension FuturaeKit.SignatureAlgorithm : Swift.Equatable {}
+extension FuturaeKit.SignatureAlgorithm : Swift.Hashable {}
+extension FuturaeKit.SignatureAlgorithm : Swift.RawRepresentable {}
 extension FuturaeKit.GCM.Mode : Swift.Equatable {}
 extension FuturaeKit.GCM.Mode : Swift.Hashable {}
 extension FuturaeKit.GCM.Error : Swift.Equatable {}
 extension FuturaeKit.GCM.Error : Swift.Hashable {}
+extension FuturaeKit.HMACAlgorithm : Swift.Equatable {}
+extension FuturaeKit.HMACAlgorithm : Swift.Hashable {}
+extension FuturaeKit.HMACAlgorithm : Swift.RawRepresentable {}
+extension FuturaeKit.CompressionAlgorithm : Swift.Equatable {}
+extension FuturaeKit.CompressionAlgorithm : Swift.Hashable {}
+extension FuturaeKit.CompressionAlgorithm : Swift.RawRepresentable {}
 extension FuturaeKit.ChaCha20.Error : Swift.Equatable {}
 extension FuturaeKit.ChaCha20.Error : Swift.Hashable {}
 extension FuturaeKit.PCBC.Error : Swift.Equatable {}
 extension FuturaeKit.PCBC.Error : Swift.Hashable {}
+extension FuturaeKit.JWSHeader : FuturaeKit.DataConvertible {}
 extension FuturaeKit.CBC.Error : Swift.Equatable {}
 extension FuturaeKit.CBC.Error : Swift.Hashable {}
 extension FuturaeKit.HMAC.Error : Swift.Equatable {}
@@ -3514,13 +3515,24 @@ extension FuturaeKit.HMAC.Error : Swift.Hashable {}
 extension FuturaeKit.RSA.RSAEncryptionVariant : Swift.Equatable {}
 extension FuturaeKit.RSA.RSAEncryptionVariant : Swift.Hashable {}
 extension FuturaeKit.RSA.RSAEncryptionVariant : Swift.Sendable {}
-extension FuturaeKit.JWSHeader : FuturaeKit.DataConvertible {}
 extension FuturaeKit.OFB.Error : Swift.Equatable {}
 extension FuturaeKit.OFB.Error : Swift.Hashable {}
 extension FuturaeKit.CipherError : Swift.Equatable {}
 extension FuturaeKit.CipherError : Swift.Hashable {}
+extension FuturaeKit.DateStrategy : Swift.Equatable {}
+extension FuturaeKit.DateStrategy : Swift.Hashable {}
 extension FuturaeKit.RSA.Error : Swift.Equatable {}
 extension FuturaeKit.RSA.Error : Swift.Hashable {}
+extension FuturaeKit.OCB.Mode : Swift.Equatable {}
+extension FuturaeKit.OCB.Mode : Swift.Hashable {}
+extension FuturaeKit.OCB.Error : Swift.Equatable {}
+extension FuturaeKit.OCB.Error : Swift.Hashable {}
+extension FuturaeKit.ECCurveType : Swift.Equatable {}
+extension FuturaeKit.ECCurveType : Swift.Hashable {}
+extension FuturaeKit.ECCurveType : Swift.RawRepresentable {}
+extension FuturaeKit.ECCompression : Swift.Equatable {}
+extension FuturaeKit.ECCompression : Swift.Hashable {}
+extension FuturaeKit.ECCompression : Swift.RawRepresentable {}
 extension FuturaeKit.JWKParameter : Swift.Equatable {}
 extension FuturaeKit.JWKParameter : Swift.Hashable {}
 extension FuturaeKit.JWKParameter : Swift.RawRepresentable {}
@@ -3533,12 +3545,6 @@ extension FuturaeKit.SymmetricKeyParameter : Swift.RawRepresentable {}
 extension FuturaeKit.ECParameter : Swift.Equatable {}
 extension FuturaeKit.ECParameter : Swift.Hashable {}
 extension FuturaeKit.ECParameter : Swift.RawRepresentable {}
-extension FuturaeKit.OCB.Mode : Swift.Equatable {}
-extension FuturaeKit.OCB.Mode : Swift.Hashable {}
-extension FuturaeKit.OCB.Error : Swift.Equatable {}
-extension FuturaeKit.OCB.Error : Swift.Hashable {}
-extension FuturaeKit.DateStrategy : Swift.Equatable {}
-extension FuturaeKit.DateStrategy : Swift.Hashable {}
 extension FuturaeKit.CFB.Error : Swift.Equatable {}
 extension FuturaeKit.CFB.Error : Swift.Hashable {}
 extension FuturaeKit.CFB.SegmentSize : Swift.Equatable {}
@@ -3547,18 +3553,11 @@ extension FuturaeKit.CFB.SegmentSize : Swift.RawRepresentable {}
 extension FuturaeKit.SHA2.Variant : Swift.Equatable {}
 extension FuturaeKit.SHA2.Variant : Swift.Hashable {}
 extension FuturaeKit.SHA2.Variant : Swift.Sendable {}
-extension FuturaeKit.JWEHeader : FuturaeKit.DataConvertible {}
 extension FuturaeKit.AES.Error : Swift.Equatable {}
 extension FuturaeKit.AES.Error : Swift.Hashable {}
 extension FuturaeKit.AES.Variant : Swift.Equatable {}
 extension FuturaeKit.AES.Variant : Swift.Hashable {}
 extension FuturaeKit.AES.Variant : Swift.RawRepresentable {}
-extension FuturaeKit.JWKKeyType : Swift.Equatable {}
-extension FuturaeKit.JWKKeyType : Swift.Hashable {}
-extension FuturaeKit.JWKKeyType : Swift.RawRepresentable {}
-extension FuturaeKit.CompressionAlgorithm : Swift.Equatable {}
-extension FuturaeKit.CompressionAlgorithm : Swift.Hashable {}
-extension FuturaeKit.CompressionAlgorithm : Swift.RawRepresentable {}
 extension FuturaeKit.SwKeyStore.SecError : Swift.Equatable {}
 extension FuturaeKit.SwKeyStore.SecError : Swift.Hashable {}
 extension FuturaeKit.SwKeyStore.SecError : Swift.RawRepresentable {}
@@ -3604,6 +3603,7 @@ extension FuturaeKit.CC.CRC.Mode : Swift.RawRepresentable {}
 extension FuturaeKit.CC.KeyDerivation.PRFAlg : Swift.Equatable {}
 extension FuturaeKit.CC.KeyDerivation.PRFAlg : Swift.Hashable {}
 extension FuturaeKit.CC.KeyDerivation.PRFAlg : Swift.RawRepresentable {}
+extension FuturaeKit.JWEHeader : FuturaeKit.DataConvertible {}
 extension FuturaeKit.Padding : Swift.Equatable {}
 extension FuturaeKit.Padding : Swift.Hashable {}
 extension FuturaeKit.CMAC.Error : Swift.Equatable {}
