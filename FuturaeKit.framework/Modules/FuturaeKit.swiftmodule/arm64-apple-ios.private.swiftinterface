@@ -188,15 +188,6 @@ extension FuturaeKit.CS.BigUInt {
   }
   public func signum() -> FuturaeKit.CS.BigUInt
 }
-final public class CodableCBORDecoder {
-  final public var useStringKeys: Swift.Bool
-  final public var dateStrategy: FuturaeKit.DateStrategy
-  public init()
-  final public var userInfo: [Swift.CodingUserInfoKey : Any]
-  final public func decode<T>(_ type: T.Type, from data: Foundation.Data) throws -> T where T : Swift.Decodable
-  final public func decode<T>(_ type: T.Type, from data: Swift.ArraySlice<Swift.UInt8>) throws -> T where T : Swift.Decodable
-  @objc deinit
-}
 final public class Blowfish {
   public enum Error : Swift.Error {
     case dataPaddingRequired
@@ -589,10 +580,6 @@ extension FuturaeKit.RSA {
     }
   }
 }
-public protocol CBORInputStream {
-  mutating func popByte() throws -> Swift.UInt8
-  mutating func popBytes(_ n: Swift.Int) throws -> Swift.ArraySlice<Swift.UInt8>
-}
 public struct CTR {
   public enum Error : Swift.Error {
     case invalidInitializationVector
@@ -981,18 +968,37 @@ extension FuturaeKit.CS.BigInt : Swift.ExpressibleByIntegerLiteral {
   public init(integerLiteral value: Swift.Int64)
   public typealias IntegerLiteralType = Swift.Int64
 }
+@objc public enum AppAttestError : Swift.Int, Swift.Error {
+  case ServiceNotSupported = 0
+  case KeyIdFailure = 1
+  case KeyIdDefaultsNotFound = 2
+  case AttestationFailure = 3
+  case AssertionFailure = 4
+  case RetrieveChallengeFailure = 5
+  case AppIntegrityNotVerified = 6
+  case ResponseError = 7
+  case NoAccountsEnrolled = 8
+  public init?(rawValue: Swift.Int)
+  public typealias RawValue = Swift.Int
+  public static var _nsErrorDomain: Swift.String {
+    get
+  }
+  public var rawValue: Swift.Int {
+    get
+  }
+}
 @_inheritsConvenienceInitializers @available(iOS 14.0, *)
 @objc public class AppAttest : ObjectiveC.NSObject {
   @objc public static let keyIdDefaults: Swift.String
-  @objc public static let appIdDefaults: Swift.String
   @objc public static let attestationType: Swift.String
   @objc public static let assertionType: Swift.String
   @available(iOS 14.0, *)
-  @objc public class func getAttestOrAssert(type: Swift.String, challenge: Swift.String, success: @escaping (_ data: Swift.String, _ keyId: Swift.String, _ appId: Swift.String) -> Swift.Void, failure: @escaping (_ error: any Swift.Error) -> Swift.Void)
+  @objc public class func getAttestOrAssert(type: Swift.String, challenge: Swift.String, success: @escaping (_ data: Swift.String, _ keyId: Swift.String) -> Swift.Void, failure: @escaping (_ error: any Swift.Error) -> Swift.Void)
   @available(iOS 14.0, *)
-  @objc public class func getAttestation(challenge: Swift.String, success: @escaping (_ data: Swift.String, _ keyId: Swift.String, _ appId: Swift.String) -> Swift.Void, failure: @escaping (_ error: any Swift.Error) -> Swift.Void)
+  @objc public class func getAttestation(challenge: Swift.String, success: @escaping (_ data: Swift.String, _ keyId: Swift.String) -> Swift.Void, failure: @escaping (_ error: any Swift.Error) -> Swift.Void)
   @available(iOS 14.0, *)
-  @objc public class func getAssertion(challenge: Swift.String, success: @escaping (_ data: Swift.String, _ keyId: Swift.String, _ appId: Swift.String) -> Swift.Void, failure: @escaping (_ error: any Swift.Error) -> Swift.Void)
+  @objc public class func getAssertion(challenge: Swift.String, success: @escaping (_ data: Swift.String, _ keyId: Swift.String) -> Swift.Void, failure: @escaping (_ error: any Swift.Error) -> Swift.Void)
+  @objc public class func errorForType(_ type: FuturaeKit.AppAttestError, rawError: Foundation.NSError? = nil) -> Foundation.NSError
   @objc override dynamic public init()
   @objc deinit
 }
@@ -1783,18 +1789,6 @@ public protocol Cipher : AnyObject {
 extension FuturaeKit.Cipher {
   public func encrypt(_ bytes: Swift.Array<Swift.UInt8>) throws -> Swift.Array<Swift.UInt8>
   public func decrypt(_ bytes: Swift.Array<Swift.UInt8>) throws -> Swift.Array<Swift.UInt8>
-}
-public struct CBOROptions {
-  public init(useStringKeys: Swift.Bool = false, dateStrategy: FuturaeKit.DateStrategy = .taggedAsEpochTimestamp, forbidNonStringMapKeys: Swift.Bool = false)
-}
-public enum DateStrategy {
-  case taggedAsEpochTimestamp
-  case annotatedMap
-  public static func == (a: FuturaeKit.DateStrategy, b: FuturaeKit.DateStrategy) -> Swift.Bool
-  public func hash(into hasher: inout Swift.Hasher)
-  public var hashValue: Swift.Int {
-    get
-  }
 }
 final public class RSA {
   public enum Error : Swift.Error {
@@ -3204,78 +3198,6 @@ extension Swift.UInt8 {
 extension FuturaeKit.AES {
   convenience public init(key: Swift.String, iv: Swift.String, padding: FuturaeKit.Padding = .pkcs7) throws
 }
-indirect public enum CBOR : Swift.Equatable, Swift.Hashable, Swift.ExpressibleByNilLiteral, Swift.ExpressibleByIntegerLiteral, Swift.ExpressibleByStringLiteral, Swift.ExpressibleByArrayLiteral, Swift.ExpressibleByDictionaryLiteral, Swift.ExpressibleByBooleanLiteral, Swift.ExpressibleByFloatLiteral {
-  case unsignedInt(Swift.UInt64)
-  case negativeInt(Swift.UInt64)
-  case byteString([Swift.UInt8])
-  case utf8String(Swift.String)
-  case array([FuturaeKit.CBOR])
-  case map([FuturaeKit.CBOR : FuturaeKit.CBOR])
-  case tagged(FuturaeKit.CBOR.Tag, FuturaeKit.CBOR)
-  case simple(Swift.UInt8)
-  case boolean(Swift.Bool)
-  case null
-  case undefined
-  case half(Swift.Float32)
-  case float(Swift.Float32)
-  case double(Swift.Float64)
-  case `break`
-  case date(Foundation.Date)
-  public func hash(into hasher: inout Swift.Hasher)
-  public subscript(position: FuturaeKit.CBOR) -> FuturaeKit.CBOR? {
-    get
-    set(x)
-  }
-  public init(nilLiteral: ())
-  public init(integerLiteral value: Swift.Int)
-  public init(extendedGraphemeClusterLiteral value: Swift.String)
-  public init(unicodeScalarLiteral value: Swift.String)
-  public init(stringLiteral value: Swift.String)
-  public init(arrayLiteral elements: FuturaeKit.CBOR...)
-  public init(dictionaryLiteral elements: (FuturaeKit.CBOR, FuturaeKit.CBOR)...)
-  public init(booleanLiteral value: Swift.Bool)
-  public init(floatLiteral value: Swift.Float32)
-  public static func == (lhs: FuturaeKit.CBOR, rhs: FuturaeKit.CBOR) -> Swift.Bool
-  public struct Tag : Swift.RawRepresentable, Swift.Equatable, Swift.Hashable {
-    public let rawValue: Swift.UInt64
-    public init(rawValue: Swift.UInt64)
-    public var hashValue: Swift.Int {
-      get
-    }
-    public typealias RawValue = Swift.UInt64
-  }
-  public typealias ArrayLiteralElement = FuturaeKit.CBOR
-  public typealias BooleanLiteralType = Swift.Bool
-  public typealias ExtendedGraphemeClusterLiteralType = Swift.String
-  public typealias FloatLiteralType = Swift.Float32
-  public typealias IntegerLiteralType = Swift.Int
-  public typealias Key = FuturaeKit.CBOR
-  public typealias StringLiteralType = Swift.String
-  public typealias UnicodeScalarLiteralType = Swift.String
-  public typealias Value = FuturaeKit.CBOR
-  public var hashValue: Swift.Int {
-    get
-  }
-}
-extension FuturaeKit.CBOR.Tag {
-  public static let standardDateTimeString: FuturaeKit.CBOR.Tag
-  public static let epochBasedDateTime: FuturaeKit.CBOR.Tag
-  public static let positiveBignum: FuturaeKit.CBOR.Tag
-  public static let negativeBignum: FuturaeKit.CBOR.Tag
-  public static let decimalFraction: FuturaeKit.CBOR.Tag
-  public static let bigfloat: FuturaeKit.CBOR.Tag
-  public static let expectedConversionToBase64URLEncoding: FuturaeKit.CBOR.Tag
-  public static let expectedConversionToBase64Encoding: FuturaeKit.CBOR.Tag
-  public static let expectedConversionToBase16Encoding: FuturaeKit.CBOR.Tag
-  public static let encodedCBORDataItem: FuturaeKit.CBOR.Tag
-  public static let uri: FuturaeKit.CBOR.Tag
-  public static let base64Url: FuturaeKit.CBOR.Tag
-  public static let base64: FuturaeKit.CBOR.Tag
-  public static let regularExpression: FuturaeKit.CBOR.Tag
-  public static let mimeMessage: FuturaeKit.CBOR.Tag
-  public static let uuid: FuturaeKit.CBOR.Tag
-  public static let selfDescribeCBOR: FuturaeKit.CBOR.Tag
-}
 extension Foundation.Data : FuturaeKit.ExpressibleAsECPublicKeyComponents {
   public static func representing(ecPublicKeyComponents components: FuturaeKit.ECPublicKeyComponents) throws -> Foundation.Data
   public func ecPublicKeyComponents() throws -> FuturaeKit.ECPublicKeyComponents
@@ -3340,28 +3262,6 @@ extension Swift.Array where Element == Swift.UInt8 {
   public func encrypt(cipher: any FuturaeKit.Cipher) throws -> [Element]
   public func decrypt(cipher: any FuturaeKit.Cipher) throws -> [Element]
   public func authenticate<A>(with authenticator: A) throws -> [Element] where A : FuturaeKit.Authenticator
-}
-public enum CBORError : Swift.Error {
-  case unfinishedSequence
-  case wrongTypeInsideSequence
-  case tooLongSequence
-  case incorrectUTF8String
-  public static func == (a: FuturaeKit.CBORError, b: FuturaeKit.CBORError) -> Swift.Bool
-  public func hash(into hasher: inout Swift.Hasher)
-  public var hashValue: Swift.Int {
-    get
-  }
-}
-extension FuturaeKit.CBOR {
-  public static func decode(_ input: [Swift.UInt8], options: FuturaeKit.CBOROptions = CBOROptions()) throws -> FuturaeKit.CBOR?
-}
-public class CBORDecoder {
-  public var options: FuturaeKit.CBOROptions
-  public init(stream: any FuturaeKit.CBORInputStream, options: FuturaeKit.CBOROptions = CBOROptions())
-  public init(input: Swift.ArraySlice<Swift.UInt8>, options: FuturaeKit.CBOROptions = CBOROptions())
-  public init(input: [Swift.UInt8], options: FuturaeKit.CBOROptions = CBOROptions())
-  public func decodeItem() throws -> FuturaeKit.CBOR?
-  @objc deinit
 }
 public typealias CipherOperationOnBlock = (_ block: Swift.ArraySlice<Swift.UInt8>) -> Swift.Array<Swift.UInt8>?
 public protocol BlockMode {
@@ -3487,6 +3387,9 @@ extension FuturaeKit.PKCS5.PBKDF1.Variant : Swift.Equatable {}
 extension FuturaeKit.PKCS5.PBKDF1.Variant : Swift.Hashable {}
 extension FuturaeKit.FailedCheck : Swift.Equatable {}
 extension FuturaeKit.FailedCheck : Swift.Hashable {}
+extension FuturaeKit.AppAttestError : Swift.Equatable {}
+extension FuturaeKit.AppAttestError : Swift.Hashable {}
+extension FuturaeKit.AppAttestError : Swift.RawRepresentable {}
 extension FuturaeKit.Bit : Swift.Equatable {}
 extension FuturaeKit.Bit : Swift.Hashable {}
 extension FuturaeKit.Bit : Swift.RawRepresentable {}
@@ -3519,8 +3422,6 @@ extension FuturaeKit.OFB.Error : Swift.Equatable {}
 extension FuturaeKit.OFB.Error : Swift.Hashable {}
 extension FuturaeKit.CipherError : Swift.Equatable {}
 extension FuturaeKit.CipherError : Swift.Hashable {}
-extension FuturaeKit.DateStrategy : Swift.Equatable {}
-extension FuturaeKit.DateStrategy : Swift.Hashable {}
 extension FuturaeKit.RSA.Error : Swift.Equatable {}
 extension FuturaeKit.RSA.Error : Swift.Hashable {}
 extension FuturaeKit.OCB.Mode : Swift.Equatable {}
@@ -3608,7 +3509,5 @@ extension FuturaeKit.Padding : Swift.Equatable {}
 extension FuturaeKit.Padding : Swift.Hashable {}
 extension FuturaeKit.CMAC.Error : Swift.Equatable {}
 extension FuturaeKit.CMAC.Error : Swift.Hashable {}
-extension FuturaeKit.CBORError : Swift.Equatable {}
-extension FuturaeKit.CBORError : Swift.Hashable {}
 extension FuturaeKit.SignatureError : Swift.Equatable {}
 extension FuturaeKit.SignatureError : Swift.Hashable {}

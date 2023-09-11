@@ -12,5 +12,6 @@
 static NSString *const FTRApiErrorDomain = @"FTRApiErrorDomain";
 static NSString *const FTRLockErrorDomain = @"FTRLockErrorDomain";
 static NSString *const FTRLockErrorUserInfoKey = @"FTRLockErrorInfoKey";
+static NSString *const FTRAppAttestErrorDomain = @"FTRAppAttestErrorDomain";
 
 #endif /* FTRPublicConstants_h */

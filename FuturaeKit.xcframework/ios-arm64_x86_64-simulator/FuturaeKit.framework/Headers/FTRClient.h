@@ -311,6 +311,40 @@ typedef void (^FTRRequestDataHandler)(id _Nullable data);
 ///     - userId: Futurae account's user id which the authentication was created for.
 ///     - sessionId: Session identifier returned by the Futurae backend Auth API.
 ///     - extraInfo: Session's additional contextual information which is displayed to the user.
+///     - multiNumberChoice: Selected number by user for the multi-number challenge
+///     - callback: To get notified about success or failure of this operation.
+///
+- (void)approveAuthWithUserId:(NSString * _Nonnull)userId
+                    sessionId:(NSString * _Nonnull)sessionId
+                    extraInfo:(NSArray * _Nullable)extraInfo
+            multiNumberChoice:(NSNumber * _Nullable)multiNumberChoice
+                     callback:(nullable FTRRequestHandler)callback;
+
+///  Reject an Approve (aka. One-touch) authentication including `extra_info` data.
+///
+///  This is a protected operation, so the SDK must be unlocked before calling this method.
+///
+/// - Parameters:
+///     - userId: Futurae account's user id which the authentication was created for.
+///     - sessionId: Session identifier returned by the Futurae backend Auth API.
+///     - isFraud: Flag to choose whether to report a fraudulent authentication attempt.
+///     - extraInfo: Session's additional contextual information which is displayed to the user.
+///     - callback: To get notified about success or failure of this operation.
+///
+- (void)rejectAuthWithUserId:(NSString * _Nonnull)userId
+                   sessionId:(NSString * _Nonnull)sessionId
+                     isFraud:(Boolean)isFraud
+                   extraInfo:(NSArray * _Nullable)extraInfo
+                    callback:(nullable FTRRequestHandler)callback;
+
+///  Accept an Approve (aka. One-touch) authentication including `extra_info` data.
+///
+///  This is a protected operation, so the SDK must be unlocked before calling this method.
+///
+/// - Parameters:
+///     - userId: Futurae account's user id which the authentication was created for.
+///     - sessionId: Session identifier returned by the Futurae backend Auth API.
+///     - extraInfo: Session's additional contextual information which is displayed to the user.
 ///     - callback: To get notified about success or failure of this operation.
 ///
 - (void)approveAuthWithUserId:(NSString * _Nonnull)userId
@@ -374,6 +408,36 @@ typedef void (^FTRRequestDataHandler)(id _Nullable data);
                                   userId:(NSString * _Nonnull)userId
                                  isFraud:(Boolean)isFraud
                                 callback:(nullable FTRRequestHandler)callback;
+
+///  Accept an Approve (aka. One-touch) authentication.
+///
+///  This is a protected operation, so the SDK must be unlocked before calling this method.
+///
+/// - Parameters:
+///     - userId: Futurae account's user id which the authentication was created for.
+///     - sessionId: Session identifier returned by the Futurae backend Auth API.
+///     - multiNumberChoice: Selected number by user for the multi-number challenge
+///     - callback: To get notified about success or failure of this operation.
+///
+- (void)approveAuthWithUserId:(NSString * _Nonnull)userId
+                    sessionId:(NSString * _Nonnull)sessionId
+            multiNumberChoice:(NSNumber * _Nullable)multiNumberChoice
+                     callback:(nullable FTRRequestHandler)callback;
+
+///  Reject an Approve (aka. One-touch) authentication.
+///
+///  This is a protected operation, so the SDK must be unlocked before calling this method.
+///
+/// - Parameters:
+///     - userId: Futurae account's user id which the authentication was created for.
+///     - sessionId: Session identifier returned by the Futurae backend Auth API.
+///     - isFraud: Flag to choose whether to report a fraudulent authentication attempt.
+///     - callback: To get notified about success or failure of this operation.
+///
+- (void)rejectAuthWithUserId:(NSString * _Nonnull)userId
+                   sessionId:(NSString * _Nonnull)sessionId
+                     isFraud:(Boolean)isFraud
+                    callback:(nullable FTRRequestHandler)callback;
 
 ///  Accept an Approve (aka. One-touch) authentication.
 ///
@@ -842,9 +906,11 @@ typedef void (^FTRRequestDataHandler)(id _Nullable data);
 /// Method using Apple's App Attest service to certify that  a valid instance of the app is installed
 ///
 /// - Parameters:
-///   - callback: The response of the operation. If error is nil, app instance has been validated.
+///   - appId: Team ID + App bundle identifier For example: T82Z6XGNMX.com.futurae.FuturaeDemo.
+///   - production: A boolean value which indicates whether the app is in production mode (if built for testflight, app store)
+///   - callback: The response of the operation. If error is nil, app instance has been verified.
 ///
-- (void)appAttestation:(_Nonnull FTRRequestHandler)callback API_AVAILABLE(ios(14.0));
+- (void)appAttestation:(NSString * _Nonnull)appId production:(BOOL)production callback:(_Nonnull FTRRequestHandler)callback API_AVAILABLE(ios(14.0));
 
 /// Decrypt extra info that is encrypted and provided from the push notification content
 ///
