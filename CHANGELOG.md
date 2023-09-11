@@ -1,3 +1,10 @@
+# Version 2.3.3
+2023-11-09
++ [Added] Multi number challenge feature where user has to select the correct choice out of multiple numbers to approve authentication
++ [Fixed] App attestation issue where integrity check randomly failed
++ [Fixed] Crash which arises in some cases when updating from older to newer sdk version
++ [Updated] App Attestation method now expects two additional parameters: production and app ID
+
 # Version 2.3.2
 2023-16-08
 + [Added] FTRClient function `updateSDKConfig(withAppGroup:keychainConfig:callback:)` to update app group and keychain access group configuration

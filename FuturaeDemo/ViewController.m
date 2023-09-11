@@ -382,8 +382,12 @@ BOOL operationWithBiometrics = NO;
 - (IBAction)validateAttestation:(UIButton *)sender {
     if (@available(iOS 14.0, *)) {
         __weak __typeof(self) weakSelf = self;
-        [FTRClient.sharedClient appAttestation:^(NSError*  _Nullable error) {
-            [weakSelf _showAlertWithTitle:error ? @"Attestation failed" : @"Attestation success" message: error ? @"App integrity could not be verified" : @"App integrity verified"];
+        [FTRClient.sharedClient appAttestation:@"T82Z6CGNMT.com.futurae.FuturaeDemo"
+                                    production: NO
+                                      callback:^(NSError*  _Nullable error) {
+            NSLog(@"%@", error);
+            [weakSelf _showAlertWithTitle:error ? @"Attestation failed" : @"Attestation success"
+                                  message: (error && error.userInfo[@"message"]) ? error.userInfo[@"message"] : @"App integrity verified"];
         }];
     } else {
         // Fallback on earlier versions
