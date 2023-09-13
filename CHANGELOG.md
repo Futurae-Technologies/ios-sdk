@@ -1,3 +1,7 @@
+# Version 2.3.4
+2023-13-09
++ [Update] Internal fix that improves SDK versioning tracking
+
 # Version 2.3.3
 2023-11-09
 + [Added] Multi number challenge feature where user has to select the correct choice out of multiple numbers to approve authentication
