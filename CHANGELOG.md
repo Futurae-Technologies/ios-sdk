@@ -1,3 +1,7 @@
+# Version 2.3.5
+2023-19-10
++ [Update] Internal security improvements
+
 # Version 2.3.4
 2023-13-09
 + [Update] Internal fix that improves SDK versioning tracking
