@@ -95,7 +95,7 @@ final class KeychainConfigViewController: UIViewController {
         let type = selectedConfigOption!
         
         var config: FTRConfig
-        if UserDefaults(suiteName: SDKConstants.APP_GROUP)?.bool(forKey: "app_group_enabled") == true {
+        if UserDefaults(suiteName: SDKConstants.APP_GROUP)?.bool(forKey: SDKConstants.APP_GROUP_ENABLED) == true {
             config = FTRConfig(sdkId: SDKConstants.SDKID,
                                    sdkKey: SDKConstants.SDKKEY,
                                    baseUrl: SDKConstants.SDKURL,
@@ -211,6 +211,11 @@ final class KeychainConfigViewController: UIViewController {
                                   forKey: SDKConstants.KEY_CONFIG)
         
         setupConfig()
+    }
+    
+    @IBAction func launchWithAppGroup(_ sender: Any) {
+        UserDefaults.custom.set(true, forKey: SDKConstants.APP_GROUP_ENABLED)
+        saveSettings(sender)
     }
     
     @IBAction func reset(_ sender: Any) {
@@ -367,6 +372,25 @@ final class KeychainConfigViewController: UIViewController {
                 valueTextView.isHidden = false
             }
         }
+    }
+    
+    @IBAction func clearLaunchConfigDefault(_ sender: Any) {
+        UserDefaults.custom.removeObject(forKey: SDKConstants.KEY_CONFIG)
+        valueTextView.isHidden = false
+        valueTextView.text = "Launch config option cleared"
+    }
+    
+    @IBAction func checkAppGroupDataExists(_ sender: Any) {
+        let row = settingsPickerView.selectedRow(inComponent: 0)
+        selectedConfigOption = options[row]
+        let dataExists = FTRClient.checkDataExists(forAppGroup: SDKConstants.APP_GROUP,
+                                                   keychainConfig: FTRKeychainConfig(accessGroup: SDKConstants.APP_GROUP),
+                                                   lockConfiguration: .init(type: selectedConfigOption!,
+                                                                            unlockDuration: 60,
+                                                                            invalidatedByBiometricsChange: true)
+        )
+        valueTextView.isHidden = false
+        valueTextView.text = dataExists ? "Data exists" : "No data present"
     }
 }
 

@@ -1,3 +1,8 @@
+# Version 2.3.6
+2023-24-10
++ [Added] Added a new method `checkDataExistsForAppGroup:(NSString *_Nullable)appGroup`. The method checks if SDK data exists for the specified configuration. It may be used to help streamline migration to a new appgroup.
+
+
 # Version 2.3.5
 2023-19-10
 + [Update] Internal security improvements

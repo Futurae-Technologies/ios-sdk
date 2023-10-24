@@ -937,4 +937,19 @@ typedef void (^FTRRequestDataHandler)(id _Nullable data);
 -(void)updateSDKConfigWithAppGroup:(NSString *_Nullable)appGroup
                       keychainConfig:(FTRKeychainConfig *_Nullable)keychainConfig
                           callback:(nullable FTRRequestHandler)callback;
+
+
+///
+/// Check if SDK data exists for the specified configuration
+///
+///
+/// - Parameters:
+///   - appGroup: The app group parameter.
+///   - keychainConfig: The keychain configuration object. If nil is passed default keychain configuration will be applied.
+///   - lockConfiguration: The lock configuration object.
+///   - callback: The response of the operation.
+///
++(BOOL)checkDataExistsForAppGroup:(NSString *_Nullable)appGroup
+                   keychainConfig:(FTRKeychainConfig *_Nullable)keychainConfig
+                lockConfiguration:(LockConfiguration *_Nonnull)lockConfiguration;
 @end
