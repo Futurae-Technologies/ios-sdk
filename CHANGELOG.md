@@ -1,3 +1,8 @@
+# Version 2.3.7
+2023-15-11
++ [Added] a new `FTRAccount.locked_out` field to let SDK know of the account status. It is updated and persisted on SDK launch or on `getAccountsStatus` call. The `getAccounts` call will return the latest known value.
+
+
 # Version 2.3.6
 2023-24-10
 + [Added] Added a new method `checkDataExistsForAppGroup:(NSString *_Nullable)appGroup`. The method checks if SDK data exists for the specified configuration. It may be used to help streamline migration to a new appgroup.

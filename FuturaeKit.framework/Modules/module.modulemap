@@ -1,7 +1,7 @@
 framework module FuturaeKit {
   umbrella header "FuturaeKit.h"
-
   export *
+
   module * { export * }
 }
 

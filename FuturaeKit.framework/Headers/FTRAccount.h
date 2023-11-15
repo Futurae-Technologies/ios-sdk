@@ -29,6 +29,7 @@
 @property (strong, nonatomic) NSString *service_logo;
 @property (strong, nonatomic) NSArray *allowed_factors;
 @property (strong, nonatomic) NSArray *sessions;
+@property (nonatomic) Boolean locked_out;
 @property (nonatomic) Boolean logout_pending;
 @property (strong, nonatomic) NSString *hotp_seed;
 @property (nonatomic) NSNumber *sync_counter;

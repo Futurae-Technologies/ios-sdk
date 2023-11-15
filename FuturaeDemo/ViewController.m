@@ -360,6 +360,26 @@ BOOL operationWithBiometrics = NO;
     }];
 }
 
+- (IBAction)getAccountsStatusOffline:(UIButton *)sender {
+    NSArray<FTRAccount *> *accounts = [[FTRClient sharedClient] getAccounts];
+    NSMutableString* accountsInfo = [NSMutableString string];
+    for (FTRAccount* account in accounts) {
+        [accountsInfo appendString: [self createAccountDescription:account]];
+    }
+
+    __weak __typeof(self) weakSelf = self;
+    [weakSelf _showAlertWithTitle:@"Offline accounts status" message:[NSString stringWithFormat:@"%@", accountsInfo]];
+}
+
+- (NSString*)createAccountDescription:(FTRAccount *)account {
+    NSMutableString *info = [NSMutableString string];
+    [info appendFormat:@"username: %@\n", [account user_id]];
+    [info appendFormat:@"  locked_out: %@\n", [account locked_out] ? @"YES": @"NO"];
+    [info appendFormat:@"  enrolled: %@\n",   [account enrolled] ? @"YES": @"NO"];
+
+    return info;
+}
+
 - (IBAction)adaptiveCollections:(UIButton *)sender {
     AdaptiveViewController *vc = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"AdaptiveViewController"];
     [self presentViewController:vc animated:YES completion:nil];
