@@ -1,3 +1,8 @@
+# Version 2.3.8
+2023-28-12
+- Update to latest FMDB library version
+- Internal improvements around database handling
+
 # Version 2.3.7
 2023-15-11
 + [Added] a new `FTRAccount.locked_out` field to let SDK know of the account status. It is updated and persisted on SDK launch or on `getAccountsStatus` call. The `getAccounts` call will return the latest known value.
