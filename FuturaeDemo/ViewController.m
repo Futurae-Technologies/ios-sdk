@@ -455,7 +455,7 @@ BOOL operationWithBiometrics = NO;
             [self enrollWithQRCode:result];
             break;
         case QRCodeTypeOnlineAuth:
-            [self approveAuthWithQRCode:result];
+            [self showApproveOnlineAlertQRCode:result];
             break;
         case QRCodeTypeOfflineAuth:
             [self offlineAuthWithQRCode:result];
@@ -558,9 +558,53 @@ BOOL operationWithBiometrics = NO;
     }
 }
 
-- (void)approveAuthWithQRCode:(NSString *)QRCodeResult
+- (void)showApproveOnlineAlertQRCode:(NSString *)QRCodeResult {
+    NSString *userId = [FTRUtils userIdFromQrcode:QRCodeResult];
+    NSString *sessionToken = [FTRUtils sessionTokenFromQrcode:QRCodeResult];
+    
+    [FTRClient.sharedClient getSessionInfo:userId sessionToken:sessionToken success:^(id  _Nullable data) {
+        
+        
+        if([data[@"extra_info"] isKindOfClass:[NSArray class]]){
+            NSArray<NSDictionary *> *extras = data[@"extra_info"];
+            
+            if (extras.count > 0) {
+                NSMutableString *mutableFormattedExtraInfo = NSMutableString.new;
+                for (NSDictionary *extraInfo in extras) {
+                    [mutableFormattedExtraInfo appendString:extraInfo[@"key"]];
+                    [mutableFormattedExtraInfo appendString:@": "];
+                    [mutableFormattedExtraInfo appendString:extraInfo[@"value"]];
+                    [mutableFormattedExtraInfo appendString:@"\n"];
+                }
+                
+                NSString *title = @"Approve";
+                NSString *message = [NSString stringWithFormat:@"Request Information\n%@", mutableFormattedExtraInfo.copy];
+                UIAlertController *alert = [UIAlertController alertControllerWithTitle:title
+                                                                               message:message
+                                                                        preferredStyle:UIAlertControllerStyleAlert];
+                [alert addAction:[UIAlertAction actionWithTitle:@"Deny" style:UIAlertActionStyleDestructive handler:nil]];
+                [alert addAction:[UIAlertAction actionWithTitle:@"Approve" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+                    [self approveAuthWithQRCode:QRCodeResult extraInfo:extras];
+                }]];
+                
+                [self dismissViewControllerAnimated:YES completion:^{
+                    [self presentViewController:alert animated:YES completion:nil];
+                }];
+                
+                return;
+            }
+        }
+        
+        [self approveAuthWithQRCode:QRCodeResult extraInfo:nil];
+        
+    } failure:^(NSError * _Nullable error) {
+        [self _showAlertWithTitle:@"Error" message:error.localizedDescription];
+    }];
+}
+
+- (void)approveAuthWithQRCode:(NSString *)QRCodeResult extraInfo:(NSArray *)extraInfo
 {
-    [FTRClient.sharedClient approveAuthWithQrCode:QRCodeResult callback:^(NSError * _Nullable error) {
+    [FTRClient.sharedClient approveAuthWithQrCode:QRCodeResult extraInfo: extraInfo callback:^(NSError * _Nullable error) {
         [self dismissViewControllerAnimated:YES completion:^{
             if (error) {
                 [self _showAlertWithTitle:@"Error" message:error.userInfo[@"msg"]];
@@ -571,7 +615,53 @@ BOOL operationWithBiometrics = NO;
     }];
 }
 
-- (void)approveAuthWithUsernamelessQRCode:(NSString *)QRCodeResult
+- (void)showApproveOnlineAlertUsernamelessQRCode:(NSString *)QRCodeResult {
+    NSString *userId = FTRClient.sharedClient.getAccounts.firstObject.user_id;
+    NSString *sessionToken = [FTRUtils sessionTokenFromQrcode:QRCodeResult];
+    
+    [FTRClient.sharedClient getSessionInfo:userId sessionToken:sessionToken success:^(id  _Nullable data) {
+        
+        
+        if([data[@"extra_info"] isKindOfClass:[NSArray class]]){
+            NSArray<NSDictionary *> *extras = data[@"extra_info"];
+            
+            if (extras.count > 0) {
+                NSMutableString *mutableFormattedExtraInfo = NSMutableString.new;
+                for (NSDictionary *extraInfo in extras) {
+                    [mutableFormattedExtraInfo appendString:extraInfo[@"key"]];
+                    [mutableFormattedExtraInfo appendString:@": "];
+                    [mutableFormattedExtraInfo appendString:extraInfo[@"value"]];
+                    [mutableFormattedExtraInfo appendString:@"\n"];
+                }
+                
+                NSString *title = @"Approve";
+                NSString *message = [NSString stringWithFormat:@"Request Information\n%@", mutableFormattedExtraInfo.copy];
+                UIAlertController *alert = [UIAlertController alertControllerWithTitle:title
+                                                                               message:message
+                                                                        preferredStyle:UIAlertControllerStyleAlert];
+                [alert addAction:[UIAlertAction actionWithTitle:@"Deny" style:UIAlertActionStyleDestructive handler:nil]];
+                [alert addAction:[UIAlertAction actionWithTitle:@"Approve" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+                    [self dismissViewControllerAnimated:YES completion:^{
+                        [self approveAuthWithUsernamelessQRCode:QRCodeResult extraInfo:extras];
+                    }];
+                }]];
+                
+                [self dismissViewControllerAnimated:YES completion:^{
+                    [self presentViewController:alert animated:YES completion:nil];
+                }];
+                
+                return;
+            }
+        }
+        
+        [self approveAuthWithUsernamelessQRCode:QRCodeResult extraInfo:nil];
+        
+    } failure:^(NSError * _Nullable error) {
+        [self _showAlertWithTitle:@"Error" message:error.localizedDescription];
+    }];
+}
+
+- (void)approveAuthWithUsernamelessQRCode:(NSString *)QRCodeResult extraInfo:(NSArray *)extraInfo
 {
     NSArray<FTRAccount *> *accounts = FTRClient.sharedClient.getAccounts;
     UIAlertController *ac = [UIAlertController alertControllerWithTitle:@"Usernameless QR code"
@@ -581,7 +671,7 @@ BOOL operationWithBiometrics = NO;
     __weak __typeof(self) weakSelf = self;
     for (FTRAccount *account in accounts) {
         [ac addAction:[UIAlertAction actionWithTitle:account.username ? account.username : @"Username N/A" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-            [weakSelf approveAuthWithUsernamelessQRCode:QRCodeResult userId:account.user_id];
+            [weakSelf approveAuthWithUsernamelessQRCode:QRCodeResult userId:account.user_id extraInfo:extraInfo];
         }]];
     }
     
@@ -594,9 +684,9 @@ BOOL operationWithBiometrics = NO;
     
 }
 
-- (void)approveAuthWithUsernamelessQRCode:(NSString *)QRCodeResult userId: (NSString *)userId {
+- (void)approveAuthWithUsernamelessQRCode:(NSString *)QRCodeResult userId: (NSString *)userId extraInfo:(NSArray *)extraInfo {
     __weak __typeof(self) weakSelf = self;
-    [FTRClient.sharedClient approveAuthWithUsernamelessQrCode:QRCodeResult userId: userId callback:^(NSError * _Nullable error) {
+    [FTRClient.sharedClient approveAuthWithUsernamelessQrCode:QRCodeResult userId: userId  extraInfo: extraInfo callback:^(NSError * _Nullable error) {
         [weakSelf dismissViewControllerAnimated:YES completion:^{
             if (error) {
                 [self _showAlertWithTitle:@"Error" message:error.userInfo[@"msg"]];
@@ -625,10 +715,10 @@ BOOL operationWithBiometrics = NO;
             [self enrollWithQRCode:QRCodeResult];
             break;
         case FTRQRCodeTypeOnlineAuth:
-            [self approveAuthWithQRCode:QRCodeResult];
+            [self showApproveOnlineAlertQRCode:QRCodeResult];
             break;
         case FTRQRCodeTypeUsernameless:
-            [self approveAuthWithUsernamelessQRCode:QRCodeResult];
+            [self showApproveOnlineAlertUsernamelessQRCode:QRCodeResult];
             break;
         case FTRQRCodeTypeOfflineAuth:
             [self offlineAuthWithQRCode:QRCodeResult];

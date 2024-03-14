@@ -17,18 +17,18 @@ typedef NS_ENUM(NSUInteger, SDKLockStatus) {
 };
 
 typedef NS_ENUM(NSUInteger, SDKLockConfigStatus) {
-    SDKLockConfigStatusValid = 0,
-    SDKLockConfigStatusInvalid = 1,
-    SDKLockConfigStatusInvalidBiometricsMissing = 2,
-    SDKLockConfigStatusInvalidBiometricsChanged = 3,
-    SDKLockConfigStatusInvalidPasscodeMissing = 4,
-    SDKLockConfigStatusInvalidPasscodeChanged = 5
+    SDKLockConfigStatusValid __attribute__((deprecated)) = 0,
+    SDKLockConfigStatusInvalid __attribute__((deprecated)) = 1,
+    SDKLockConfigStatusInvalidBiometricsMissing __attribute__((deprecated)) = 2,
+    SDKLockConfigStatusInvalidBiometricsChanged __attribute__((deprecated)) = 3,
+    SDKLockConfigStatusInvalidPasscodeMissing __attribute__((deprecated)) = 4,
+    SDKLockConfigStatusInvalidPasscodeChanged __attribute__((deprecated)) = 5
 };
 
 @interface SDKState : NSObject
 
 @property (nonatomic) SDKLockStatus lockStatus;
-@property (nonatomic) SDKLockConfigStatus configStatus;
+@property (nonatomic) SDKLockConfigStatus configStatus __attribute__((deprecated));
 @property (nonatomic) NSTimeInterval unlockedRemainingDuration;
 @property (nonatomic, strong) NSError  * _Nullable error;
 
