@@ -352,23 +352,6 @@ typedef void (^FTRRequestDataHandler)(id _Nullable data);
                     extraInfo:(NSArray * _Nullable)extraInfo
                      callback:(nullable FTRRequestHandler)callback;
 
-///  Reject an Approve (aka. One-touch) authentication including `extra_info` data.
-///
-///  This is a protected operation, so the SDK must be unlocked before calling this method.
-///
-/// - Parameters:
-///     - userId: Futurae account's user id which the authentication was created for.
-///     - sessionId: Session identifier returned by the Futurae backend Auth API.
-///     - isFraud: Flag to choose whether to report a fraudulent authentication attempt.
-///     - extraInfo: Session's additional contextual information which is displayed to the user.
-///     - callback: To get notified about success or failure of this operation.
-///
-- (void)rejectAuthWithUserId:(NSString * _Nonnull)userId
-                   sessionId:(NSString * _Nonnull)sessionId
-                     isFraud:(Boolean)isFraud
-                   extraInfo:(NSArray * _Nullable)extraInfo
-                    callback:(nullable FTRRequestHandler)callback;
-
 ///  Approve an online QR Code authentication.
 ///
 ///  This is a protected operation, so the SDK must be unlocked before calling this method.
@@ -451,21 +434,6 @@ typedef void (^FTRRequestDataHandler)(id _Nullable data);
 - (void)approveAuthWithUserId:(NSString * _Nonnull)userId
                     sessionId:(NSString * _Nonnull)sessionId
                      callback:(nullable FTRRequestHandler)callback;
-
-///  Reject an Approve (aka. One-touch) authentication.
-///
-///  This is a protected operation, so the SDK must be unlocked before calling this method.
-///
-/// - Parameters:
-///     - userId: Futurae account's user id which the authentication was created for.
-///     - sessionId: Session identifier returned by the Futurae backend Auth API.
-///     - isFraud: Flag to choose whether to report a fraudulent authentication attempt.
-///     - callback: To get notified about success or failure of this operation.
-///
-- (void)rejectAuthWithUserId:(NSString * _Nonnull)userId
-                   sessionId:(NSString * _Nonnull)sessionId
-                     isFraud:(Boolean)isFraud
-                    callback:(nullable FTRRequestHandler)callback;
 
 ///  Return the current 6 digit used in the TOTP offline authentication, for the provided user id.
 ///

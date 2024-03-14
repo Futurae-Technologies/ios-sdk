@@ -1,3 +1,12 @@
+# Version 2.3.9
+2024-14-03
+- [Added] Authentication type in dictionary data provided via notification delegate method `approveAuthenticationReceived`
+- [Changed] Ensure public key is sent to backend before calling operations that depend on it
+- [Changed] SDKLockConfigStatus has been deprecated.
+- [Added] Add `FTRUtils` class with convenience methods to retrieve user id or session token from QR code or URI.
+- [Changed] Internal improvements
+
+
 # Version 2.3.8
 2023-28-12
 - Update to latest FMDB library version

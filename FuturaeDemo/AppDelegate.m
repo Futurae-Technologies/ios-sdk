@@ -248,9 +248,16 @@ didReceiveNotificationResponse:(UNNotificationResponse *)response
         }
     }
     NSNumber *sessionTimeout = authenticationInfo[@"session_timeout"];
+    NSNumber *timeoutTimestamp = authenticationInfo[@"timeout"];
+    NSDate *date = [NSDate dateWithTimeIntervalSince1970: timeoutTimestamp.doubleValue];
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    [formatter setDateStyle:NSDateFormatterMediumStyle];
+    [formatter setTimeStyle:NSDateFormatterMediumStyle];
+    NSString *timeout = [formatter stringFromDate:date];
+    NSString *authType = authenticationInfo[@"type"];
     NSArray<NSNumber *> *numbersChallenge = authenticationInfo[@"multi_numbered_challenge"];
     UIAlertController *ac = [UIAlertController alertControllerWithTitle:@"Approve"
-                                                                message:[NSString stringWithFormat: @"Would you like to approve the request? %@. \nSession timeout:\n %@ seconds.", extraInfoMsg, sessionTimeout.stringValue]
+                                                                message:[NSString stringWithFormat: @"Would you like to approve the request? %@. \nSession timeout:\n %@ seconds. \n\nTimeout at: %@ \n\nType: %@", extraInfoMsg, sessionTimeout.stringValue, timeout, authType]
                                                          preferredStyle:UIAlertControllerStyleAlert];
     
     [ac addAction:[UIAlertAction actionWithTitle:@"Approve" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
