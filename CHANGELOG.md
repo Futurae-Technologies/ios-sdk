@@ -1,3 +1,9 @@
+# Version 2.3.10
+2024-25-04
+This release focuses on resolving Apple's requirements for usage of private APIs.
+- [Removed] Removed usage of APIs that track disk space. Those were not used by SDK, but the dependency of the SDK.
+- [Updated] Added .xcprivacy declaration for UserPreferences API usage.
+
 # Version 2.3.9
 2024-14-03
 - [Added] Authentication type in dictionary data provided via notification delegate method `approveAuthenticationReceived`
