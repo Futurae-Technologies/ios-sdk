@@ -1,3 +1,10 @@
+# Version 2.3.11
+2024-03-05
+# Version 2.3.11
+2024-03-05
+- [Changed] Condition checks related to migration token
+
+
 # Version 2.3.10
 2024-25-04
 This release focuses on resolving Apple's requirements for usage of private APIs.
