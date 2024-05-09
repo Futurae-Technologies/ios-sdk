@@ -474,7 +474,7 @@
               {
                 "kind": "TypeNominal",
                 "name": "CompactSerializer",
-                "printedName": "FuturaeKit.CompactSerializer",
+                "printedName": "any FuturaeKit.CompactSerializer",
                 "paramValueOwnership": "InOut",
                 "usr": "s:10FuturaeKit17CompactSerializerP"
               }
@@ -547,7 +547,7 @@
               {
                 "kind": "TypeNominal",
                 "name": "CompactDeserializer",
-                "printedName": "FuturaeKit.CompactDeserializer",
+                "printedName": "any FuturaeKit.CompactDeserializer",
                 "usr": "s:10FuturaeKit19CompactDeserializerP"
               }
             ],
@@ -1447,7 +1447,7 @@
               {
                 "kind": "TypeNominal",
                 "name": "CipherModeWorker",
-                "printedName": "FuturaeKit.CipherModeWorker",
+                "printedName": "any FuturaeKit.CipherModeWorker",
                 "usr": "s:10FuturaeKit16CipherModeWorkerP"
               },
               {
@@ -2876,7 +2876,7 @@
               {
                 "kind": "TypeNominal",
                 "name": "BlockMode",
-                "printedName": "FuturaeKit.BlockMode",
+                "printedName": "any FuturaeKit.BlockMode",
                 "hasDefaultArg": true,
                 "usr": "s:10FuturaeKit9BlockModeP"
               },
@@ -5441,7 +5441,7 @@
               {
                 "kind": "TypeNominal",
                 "name": "CipherModeWorker",
-                "printedName": "FuturaeKit.CipherModeWorker",
+                "printedName": "any FuturaeKit.CipherModeWorker",
                 "usr": "s:10FuturaeKit16CipherModeWorkerP"
               },
               {
@@ -7036,7 +7036,7 @@
               {
                 "kind": "TypeNominal",
                 "name": "CipherModeWorker",
-                "printedName": "FuturaeKit.CipherModeWorker",
+                "printedName": "any FuturaeKit.CipherModeWorker",
                 "usr": "s:10FuturaeKit16CipherModeWorkerP"
               },
               {
@@ -9707,12 +9707,12 @@
               {
                 "kind": "TypeNominal",
                 "name": "Optional",
-                "printedName": "FuturaeKit.JWK?",
+                "printedName": "(any FuturaeKit.JWK)?",
                 "children": [
                   {
                     "kind": "TypeNominal",
                     "name": "JWK",
-                    "printedName": "FuturaeKit.JWK",
+                    "printedName": "any FuturaeKit.JWK",
                     "usr": "s:10FuturaeKit3JWKP"
                   }
                 ],
@@ -9733,12 +9733,12 @@
                   {
                     "kind": "TypeNominal",
                     "name": "Optional",
-                    "printedName": "FuturaeKit.JWK?",
+                    "printedName": "(any FuturaeKit.JWK)?",
                     "children": [
                       {
                         "kind": "TypeNominal",
                         "name": "JWK",
-                        "printedName": "FuturaeKit.JWK",
+                        "printedName": "any FuturaeKit.JWK",
                         "usr": "s:10FuturaeKit3JWKP"
                       }
                     ],
@@ -9768,12 +9768,12 @@
                   {
                     "kind": "TypeNominal",
                     "name": "Optional",
-                    "printedName": "FuturaeKit.JWK?",
+                    "printedName": "(any FuturaeKit.JWK)?",
                     "children": [
                       {
                         "kind": "TypeNominal",
                         "name": "JWK",
-                        "printedName": "FuturaeKit.JWK",
+                        "printedName": "any FuturaeKit.JWK",
                         "usr": "s:10FuturaeKit3JWKP"
                       }
                     ],
@@ -11496,7 +11496,7 @@
               {
                 "kind": "TypeNominal",
                 "name": "CipherModeWorker",
-                "printedName": "FuturaeKit.CipherModeWorker",
+                "printedName": "any FuturaeKit.CipherModeWorker",
                 "usr": "s:10FuturaeKit16CipherModeWorkerP"
               }
             ],
@@ -11520,7 +11520,7 @@
                   {
                     "kind": "TypeNominal",
                     "name": "CipherModeWorker",
-                    "printedName": "FuturaeKit.CipherModeWorker",
+                    "printedName": "any FuturaeKit.CipherModeWorker",
                     "usr": "s:10FuturaeKit16CipherModeWorkerP"
                   }
                 ],
@@ -11547,7 +11547,7 @@
                   {
                     "kind": "TypeNominal",
                     "name": "CipherModeWorker",
-                    "printedName": "FuturaeKit.CipherModeWorker",
+                    "printedName": "any FuturaeKit.CipherModeWorker",
                     "usr": "s:10FuturaeKit16CipherModeWorkerP"
                   }
                 ],
@@ -11756,7 +11756,7 @@
               {
                 "kind": "TypeNominal",
                 "name": "CipherModeWorker",
-                "printedName": "FuturaeKit.CipherModeWorker",
+                "printedName": "any FuturaeKit.CipherModeWorker",
                 "usr": "s:10FuturaeKit16CipherModeWorkerP"
               }
             ],
@@ -12716,7 +12716,7 @@
               {
                 "kind": "TypeFunc",
                 "name": "Function",
-                "printedName": "(Swift.Error) -> ()",
+                "printedName": "(any Swift.Error) -> ()",
                 "children": [
                   {
                     "kind": "TypeNominal",
@@ -12726,7 +12726,7 @@
                   {
                     "kind": "TypeNominal",
                     "name": "Error",
-                    "printedName": "Swift.Error",
+                    "printedName": "any Swift.Error",
                     "usr": "s:s5ErrorP"
                   }
                 ]
@@ -12796,7 +12796,7 @@
               {
                 "kind": "TypeFunc",
                 "name": "Function",
-                "printedName": "(Swift.Error) -> ()",
+                "printedName": "(any Swift.Error) -> ()",
                 "children": [
                   {
                     "kind": "TypeNominal",
@@ -12806,7 +12806,7 @@
                   {
                     "kind": "TypeNominal",
                     "name": "Error",
-                    "printedName": "Swift.Error",
+                    "printedName": "any Swift.Error",
                     "usr": "s:s5ErrorP"
                   }
                 ]
@@ -12876,7 +12876,7 @@
               {
                 "kind": "TypeFunc",
                 "name": "Function",
-                "printedName": "(Swift.Error) -> ()",
+                "printedName": "(any Swift.Error) -> ()",
                 "children": [
                   {
                     "kind": "TypeNominal",
@@ -12886,7 +12886,7 @@
                   {
                     "kind": "TypeNominal",
                     "name": "Error",
-                    "printedName": "Swift.Error",
+                    "printedName": "any Swift.Error",
                     "usr": "s:s5ErrorP"
                   }
                 ]
@@ -13106,7 +13106,7 @@
               {
                 "kind": "TypeNominal",
                 "name": "CipherModeWorker",
-                "printedName": "FuturaeKit.CipherModeWorker",
+                "printedName": "any FuturaeKit.CipherModeWorker",
                 "usr": "s:10FuturaeKit16CipherModeWorkerP"
               }
             ],
@@ -13130,7 +13130,7 @@
                   {
                     "kind": "TypeNominal",
                     "name": "CipherModeWorker",
-                    "printedName": "FuturaeKit.CipherModeWorker",
+                    "printedName": "any FuturaeKit.CipherModeWorker",
                     "usr": "s:10FuturaeKit16CipherModeWorkerP"
                   }
                 ],
@@ -13157,7 +13157,7 @@
                   {
                     "kind": "TypeNominal",
                     "name": "CipherModeWorker",
-                    "printedName": "FuturaeKit.CipherModeWorker",
+                    "printedName": "any FuturaeKit.CipherModeWorker",
                     "usr": "s:10FuturaeKit16CipherModeWorkerP"
                   }
                 ],
@@ -13487,7 +13487,7 @@
               {
                 "kind": "TypeNominal",
                 "name": "CipherModeWorker",
-                "printedName": "FuturaeKit.CipherModeWorker",
+                "printedName": "any FuturaeKit.CipherModeWorker",
                 "usr": "s:10FuturaeKit16CipherModeWorkerP"
               }
             ],
@@ -16247,7 +16247,7 @@
               {
                 "kind": "TypeNominal",
                 "name": "CipherModeWorker",
-                "printedName": "FuturaeKit.CipherModeWorker",
+                "printedName": "any FuturaeKit.CipherModeWorker",
                 "usr": "s:10FuturaeKit16CipherModeWorkerP"
               },
               {
@@ -18301,7 +18301,7 @@
               {
                 "kind": "TypeNominal",
                 "name": "CipherModeWorker",
-                "printedName": "FuturaeKit.CipherModeWorker",
+                "printedName": "any FuturaeKit.CipherModeWorker",
                 "usr": "s:10FuturaeKit16CipherModeWorkerP"
               }
             ],
@@ -18323,7 +18323,7 @@
                   {
                     "kind": "TypeNominal",
                     "name": "CipherModeWorker",
-                    "printedName": "FuturaeKit.CipherModeWorker",
+                    "printedName": "any FuturaeKit.CipherModeWorker",
                     "usr": "s:10FuturaeKit16CipherModeWorkerP"
                   }
                 ],
@@ -18347,7 +18347,7 @@
                   {
                     "kind": "TypeNominal",
                     "name": "CipherModeWorker",
-                    "printedName": "FuturaeKit.CipherModeWorker",
+                    "printedName": "any FuturaeKit.CipherModeWorker",
                     "usr": "s:10FuturaeKit16CipherModeWorkerP"
                   }
                 ],
@@ -18514,7 +18514,7 @@
               {
                 "kind": "TypeNominal",
                 "name": "CipherModeWorker",
-                "printedName": "FuturaeKit.CipherModeWorker",
+                "printedName": "any FuturaeKit.CipherModeWorker",
                 "usr": "s:10FuturaeKit16CipherModeWorkerP"
               }
             ],
@@ -19378,7 +19378,7 @@
               {
                 "kind": "TypeNominal",
                 "name": "ProtocolComposition",
-                "printedName": "FuturaeKit.Cryptor & FuturaeKit.Updatable"
+                "printedName": "any FuturaeKit.Cryptor & FuturaeKit.Updatable"
               }
             ],
             "declKind": "Func",
@@ -19401,7 +19401,7 @@
               {
                 "kind": "TypeNominal",
                 "name": "ProtocolComposition",
-                "printedName": "FuturaeKit.Cryptor & FuturaeKit.Updatable"
+                "printedName": "any FuturaeKit.Cryptor & FuturaeKit.Updatable"
               }
             ],
             "declKind": "Func",
@@ -20096,7 +20096,7 @@
               {
                 "kind": "TypeNominal",
                 "name": "CipherModeWorker",
-                "printedName": "FuturaeKit.CipherModeWorker",
+                "printedName": "any FuturaeKit.CipherModeWorker",
                 "usr": "s:10FuturaeKit16CipherModeWorkerP"
               },
               {
@@ -20610,12 +20610,12 @@
               {
                 "kind": "TypeNominal",
                 "name": "Optional",
-                "printedName": "FuturaeKit.JWK?",
+                "printedName": "(any FuturaeKit.JWK)?",
                 "children": [
                   {
                     "kind": "TypeNominal",
                     "name": "JWK",
-                    "printedName": "FuturaeKit.JWK",
+                    "printedName": "any FuturaeKit.JWK",
                     "usr": "s:10FuturaeKit3JWKP"
                   }
                 ],
@@ -20640,12 +20640,12 @@
                   {
                     "kind": "TypeNominal",
                     "name": "Optional",
-                    "printedName": "FuturaeKit.JWK?",
+                    "printedName": "(any FuturaeKit.JWK)?",
                     "children": [
                       {
                         "kind": "TypeNominal",
                         "name": "JWK",
-                        "printedName": "FuturaeKit.JWK",
+                        "printedName": "any FuturaeKit.JWK",
                         "usr": "s:10FuturaeKit3JWKP"
                       }
                     ],
@@ -20672,12 +20672,12 @@
                   {
                     "kind": "TypeNominal",
                     "name": "Optional",
-                    "printedName": "FuturaeKit.JWK?",
+                    "printedName": "(any FuturaeKit.JWK)?",
                     "children": [
                       {
                         "kind": "TypeNominal",
                         "name": "JWK",
-                        "printedName": "FuturaeKit.JWK",
+                        "printedName": "any FuturaeKit.JWK",
                         "usr": "s:10FuturaeKit3JWKP"
                       }
                     ],
@@ -22000,7 +22000,7 @@
               {
                 "kind": "TypeNominal",
                 "name": "CipherModeWorker",
-                "printedName": "FuturaeKit.CipherModeWorker",
+                "printedName": "any FuturaeKit.CipherModeWorker",
                 "usr": "s:10FuturaeKit16CipherModeWorkerP"
               },
               {
@@ -23455,7 +23455,7 @@
               {
                 "kind": "TypeNominal",
                 "name": "CipherModeWorker",
-                "printedName": "FuturaeKit.CipherModeWorker",
+                "printedName": "any FuturaeKit.CipherModeWorker",
                 "usr": "s:10FuturaeKit16CipherModeWorkerP"
               },
               {
@@ -28312,7 +28312,7 @@
               {
                 "kind": "TypeNominal",
                 "name": "CipherModeWorker",
-                "printedName": "FuturaeKit.CipherModeWorker",
+                "printedName": "any FuturaeKit.CipherModeWorker",
                 "usr": "s:10FuturaeKit16CipherModeWorkerP"
               },
               {
@@ -28557,7 +28557,7 @@
               {
                 "kind": "TypeNominal",
                 "name": "CompactSerializer",
-                "printedName": "FuturaeKit.CompactSerializer",
+                "printedName": "any FuturaeKit.CompactSerializer",
                 "paramValueOwnership": "InOut",
                 "usr": "s:10FuturaeKit17CompactSerializerP"
               }
@@ -28594,12 +28594,12 @@
               {
                 "kind": "TypeNominal",
                 "name": "Array",
-                "printedName": "[FuturaeKit.DataConvertible]",
+                "printedName": "[any FuturaeKit.DataConvertible]",
                 "children": [
                   {
                     "kind": "TypeNominal",
                     "name": "DataConvertible",
-                    "printedName": "FuturaeKit.DataConvertible",
+                    "printedName": "any FuturaeKit.DataConvertible",
                     "usr": "s:10FuturaeKit15DataConvertibleP"
                   }
                 ],
@@ -28620,12 +28620,12 @@
                   {
                     "kind": "TypeNominal",
                     "name": "Array",
-                    "printedName": "[FuturaeKit.DataConvertible]",
+                    "printedName": "[any FuturaeKit.DataConvertible]",
                     "children": [
                       {
                         "kind": "TypeNominal",
                         "name": "DataConvertible",
-                        "printedName": "FuturaeKit.DataConvertible",
+                        "printedName": "any FuturaeKit.DataConvertible",
                         "usr": "s:10FuturaeKit15DataConvertibleP"
                       }
                     ],
@@ -31757,7 +31757,7 @@
               {
                 "kind": "TypeNominal",
                 "name": "CipherModeWorker",
-                "printedName": "FuturaeKit.CipherModeWorker",
+                "printedName": "any FuturaeKit.CipherModeWorker",
                 "usr": "s:10FuturaeKit16CipherModeWorkerP"
               },
               {
@@ -33361,7 +33361,7 @@
               {
                 "kind": "TypeNominal",
                 "name": "CipherModeWorker",
-                "printedName": "FuturaeKit.CipherModeWorker",
+                "printedName": "any FuturaeKit.CipherModeWorker",
                 "usr": "s:10FuturaeKit16CipherModeWorkerP"
               }
             ],
@@ -34262,7 +34262,7 @@
                   {
                     "kind": "TypeNominal",
                     "name": "Decoder",
-                    "printedName": "Swift.Decoder",
+                    "printedName": "any Swift.Decoder",
                     "usr": "s:s7DecoderP"
                   }
                 ],
@@ -34290,7 +34290,7 @@
                   {
                     "kind": "TypeNominal",
                     "name": "Encoder",
-                    "printedName": "Swift.Encoder",
+                    "printedName": "any Swift.Encoder",
                     "usr": "s:s7EncoderP"
                   }
                 ],
@@ -40213,7 +40213,7 @@
                   {
                     "kind": "TypeNominal",
                     "name": "Decoder",
-                    "printedName": "Swift.Decoder",
+                    "printedName": "any Swift.Decoder",
                     "usr": "s:s7DecoderP"
                   }
                 ],
@@ -40241,7 +40241,7 @@
                   {
                     "kind": "TypeNominal",
                     "name": "Encoder",
-                    "printedName": "Swift.Encoder",
+                    "printedName": "any Swift.Encoder",
                     "usr": "s:s7EncoderP"
                   }
                 ],
@@ -40964,7 +40964,7 @@
               {
                 "kind": "TypeNominal",
                 "name": "CompactDeserializer",
-                "printedName": "FuturaeKit.CompactDeserializer",
+                "printedName": "any FuturaeKit.CompactDeserializer",
                 "usr": "s:10FuturaeKit19CompactDeserializerP"
               }
             ],
@@ -43164,7 +43164,7 @@
               {
                 "kind": "TypeNominal",
                 "name": "BlockMode",
-                "printedName": "FuturaeKit.BlockMode",
+                "printedName": "any FuturaeKit.BlockMode",
                 "usr": "s:10FuturaeKit9BlockModeP"
               }
             ],
@@ -43188,7 +43188,7 @@
                   {
                     "kind": "TypeNominal",
                     "name": "BlockMode",
-                    "printedName": "FuturaeKit.BlockMode",
+                    "printedName": "any FuturaeKit.BlockMode",
                     "usr": "s:10FuturaeKit9BlockModeP"
                   }
                 ],
@@ -44371,7 +44371,7 @@
               {
                 "kind": "TypeNominal",
                 "name": "BlockMode",
-                "printedName": "FuturaeKit.BlockMode",
+                "printedName": "any FuturaeKit.BlockMode",
                 "usr": "s:10FuturaeKit9BlockModeP"
               },
               {
@@ -44507,7 +44507,7 @@
               {
                 "kind": "TypeNominal",
                 "name": "ProtocolComposition",
-                "printedName": "FuturaeKit.Cryptor & FuturaeKit.Updatable"
+                "printedName": "any FuturaeKit.Cryptor & FuturaeKit.Updatable"
               }
             ],
             "declKind": "Func",
@@ -44531,7 +44531,7 @@
               {
                 "kind": "TypeNominal",
                 "name": "ProtocolComposition",
-                "printedName": "FuturaeKit.Cryptor & FuturaeKit.Updatable"
+                "printedName": "any FuturaeKit.Cryptor & FuturaeKit.Updatable"
               }
             ],
             "declKind": "Func",
@@ -45483,7 +45483,7 @@
               {
                 "kind": "TypeNominal",
                 "name": "ExpressibleAsECPublicKeyComponents",
-                "printedName": "FuturaeKit.ExpressibleAsECPublicKeyComponents",
+                "printedName": "any FuturaeKit.ExpressibleAsECPublicKeyComponents",
                 "usr": "s:10FuturaeKit34ExpressibleAsECPublicKeyComponentsP"
               },
               {
@@ -45627,7 +45627,7 @@
               {
                 "kind": "TypeNominal",
                 "name": "Encoder",
-                "printedName": "Swift.Encoder",
+                "printedName": "any Swift.Encoder",
                 "usr": "s:s7EncoderP"
               }
             ],
@@ -45656,7 +45656,7 @@
               {
                 "kind": "TypeNominal",
                 "name": "Decoder",
-                "printedName": "Swift.Decoder",
+                "printedName": "any Swift.Decoder",
                 "usr": "s:s7DecoderP"
               }
             ],
@@ -46158,7 +46158,7 @@
               {
                 "kind": "TypeNominal",
                 "name": "ExpressibleAsECPrivateKeyComponents",
-                "printedName": "FuturaeKit.ExpressibleAsECPrivateKeyComponents",
+                "printedName": "any FuturaeKit.ExpressibleAsECPrivateKeyComponents",
                 "usr": "s:10FuturaeKit35ExpressibleAsECPrivateKeyComponentsP"
               },
               {
@@ -46302,7 +46302,7 @@
               {
                 "kind": "TypeNominal",
                 "name": "Encoder",
-                "printedName": "Swift.Encoder",
+                "printedName": "any Swift.Encoder",
                 "usr": "s:s7EncoderP"
               }
             ],
@@ -46331,7 +46331,7 @@
               {
                 "kind": "TypeNominal",
                 "name": "Decoder",
-                "printedName": "Swift.Decoder",
+                "printedName": "any Swift.Decoder",
                 "usr": "s:s7DecoderP"
               }
             ],
@@ -56556,7 +56556,7 @@
               {
                 "kind": "TypeNominal",
                 "name": "ExpressibleAsSymmetricKeyComponents",
-                "printedName": "FuturaeKit.ExpressibleAsSymmetricKeyComponents",
+                "printedName": "any FuturaeKit.ExpressibleAsSymmetricKeyComponents",
                 "usr": "s:10FuturaeKit35ExpressibleAsSymmetricKeyComponentsP"
               },
               {
@@ -56701,7 +56701,7 @@
               {
                 "kind": "TypeNominal",
                 "name": "Encoder",
-                "printedName": "Swift.Encoder",
+                "printedName": "any Swift.Encoder",
                 "usr": "s:s7EncoderP"
               }
             ],
@@ -56730,7 +56730,7 @@
               {
                 "kind": "TypeNominal",
                 "name": "Decoder",
-                "printedName": "Swift.Decoder",
+                "printedName": "any Swift.Decoder",
                 "usr": "s:s7DecoderP"
               }
             ],
@@ -57440,7 +57440,7 @@
               {
                 "kind": "TypeNominal",
                 "name": "ExpressibleAsRSAPublicKeyComponents",
-                "printedName": "FuturaeKit.ExpressibleAsRSAPublicKeyComponents",
+                "printedName": "any FuturaeKit.ExpressibleAsRSAPublicKeyComponents",
                 "usr": "s:10FuturaeKit35ExpressibleAsRSAPublicKeyComponentsP"
               },
               {
@@ -57585,7 +57585,7 @@
               {
                 "kind": "TypeNominal",
                 "name": "Encoder",
-                "printedName": "Swift.Encoder",
+                "printedName": "any Swift.Encoder",
                 "usr": "s:s7EncoderP"
               }
             ],
@@ -57614,7 +57614,7 @@
               {
                 "kind": "TypeNominal",
                 "name": "Decoder",
-                "printedName": "Swift.Decoder",
+                "printedName": "any Swift.Decoder",
                 "usr": "s:s7DecoderP"
               }
             ],
@@ -58064,7 +58064,7 @@
               {
                 "kind": "TypeNominal",
                 "name": "ExpressibleAsRSAPrivateKeyComponents",
-                "printedName": "FuturaeKit.ExpressibleAsRSAPrivateKeyComponents",
+                "printedName": "any FuturaeKit.ExpressibleAsRSAPrivateKeyComponents",
                 "usr": "s:10FuturaeKit36ExpressibleAsRSAPrivateKeyComponentsP"
               },
               {
@@ -58209,7 +58209,7 @@
               {
                 "kind": "TypeNominal",
                 "name": "Encoder",
-                "printedName": "Swift.Encoder",
+                "printedName": "any Swift.Encoder",
                 "usr": "s:s7EncoderP"
               }
             ],
@@ -58238,7 +58238,7 @@
               {
                 "kind": "TypeNominal",
                 "name": "Decoder",
-                "printedName": "Swift.Decoder",
+                "printedName": "any Swift.Decoder",
                 "usr": "s:s7DecoderP"
               }
             ],
@@ -59688,12 +59688,12 @@
               {
                 "kind": "TypeNominal",
                 "name": "Optional",
-                "printedName": "FuturaeKit.JWK?",
+                "printedName": "(any FuturaeKit.JWK)?",
                 "children": [
                   {
                     "kind": "TypeNominal",
                     "name": "JWK",
-                    "printedName": "FuturaeKit.JWK",
+                    "printedName": "any FuturaeKit.JWK",
                     "usr": "s:10FuturaeKit3JWKP"
                   }
                 ],
@@ -59718,12 +59718,12 @@
                   {
                     "kind": "TypeNominal",
                     "name": "Optional",
-                    "printedName": "FuturaeKit.JWK?",
+                    "printedName": "(any FuturaeKit.JWK)?",
                     "children": [
                       {
                         "kind": "TypeNominal",
                         "name": "JWK",
-                        "printedName": "FuturaeKit.JWK",
+                        "printedName": "any FuturaeKit.JWK",
                         "usr": "s:10FuturaeKit3JWKP"
                       }
                     ],
@@ -59750,12 +59750,12 @@
                   {
                     "kind": "TypeNominal",
                     "name": "Optional",
-                    "printedName": "FuturaeKit.JWK?",
+                    "printedName": "(any FuturaeKit.JWK)?",
                     "children": [
                       {
                         "kind": "TypeNominal",
                         "name": "JWK",
-                        "printedName": "FuturaeKit.JWK",
+                        "printedName": "any FuturaeKit.JWK",
                         "usr": "s:10FuturaeKit3JWKP"
                       }
                     ],
@@ -62284,7 +62284,7 @@
               {
                 "kind": "TypeNominal",
                 "name": "CompactSerializer",
-                "printedName": "FuturaeKit.CompactSerializer",
+                "printedName": "any FuturaeKit.CompactSerializer",
                 "paramValueOwnership": "InOut",
                 "usr": "s:10FuturaeKit17CompactSerializerP"
               }
@@ -62357,7 +62357,7 @@
               {
                 "kind": "TypeNominal",
                 "name": "CompactDeserializer",
-                "printedName": "FuturaeKit.CompactDeserializer",
+                "printedName": "any FuturaeKit.CompactDeserializer",
                 "usr": "s:10FuturaeKit19CompactDeserializerP"
               }
             ],
@@ -62707,7 +62707,7 @@
               {
                 "kind": "TypeNominal",
                 "name": "Cipher",
-                "printedName": "FuturaeKit.Cipher",
+                "printedName": "any FuturaeKit.Cipher",
                 "usr": "s:10FuturaeKit6CipherP"
               }
             ],
@@ -63422,7 +63422,7 @@
               {
                 "kind": "TypeNominal",
                 "name": "ProtocolComposition",
-                "printedName": "FuturaeKit.Cryptor & FuturaeKit.Updatable"
+                "printedName": "any FuturaeKit.Cryptor & FuturaeKit.Updatable"
               }
             ],
             "declKind": "Func",
@@ -63447,7 +63447,7 @@
               {
                 "kind": "TypeNominal",
                 "name": "ProtocolComposition",
-                "printedName": "FuturaeKit.Cryptor & FuturaeKit.Updatable"
+                "printedName": "any FuturaeKit.Cryptor & FuturaeKit.Updatable"
               }
             ],
             "declKind": "Func",
@@ -63621,7 +63621,7 @@
               {
                 "kind": "TypeNominal",
                 "name": "CipherModeWorker",
-                "printedName": "FuturaeKit.CipherModeWorker",
+                "printedName": "any FuturaeKit.CipherModeWorker",
                 "usr": "s:10FuturaeKit16CipherModeWorkerP"
               },
               {
@@ -64592,12 +64592,12 @@
               {
                 "kind": "TypeNominal",
                 "name": "Array",
-                "printedName": "[FuturaeKit.JWK]",
+                "printedName": "[any FuturaeKit.JWK]",
                 "children": [
                   {
                     "kind": "TypeNominal",
                     "name": "JWK",
-                    "printedName": "FuturaeKit.JWK",
+                    "printedName": "any FuturaeKit.JWK",
                     "usr": "s:10FuturaeKit3JWKP"
                   }
                 ],
@@ -64624,12 +64624,12 @@
                   {
                     "kind": "TypeNominal",
                     "name": "Array",
-                    "printedName": "[FuturaeKit.JWK]",
+                    "printedName": "[any FuturaeKit.JWK]",
                     "children": [
                       {
                         "kind": "TypeNominal",
                         "name": "JWK",
-                        "printedName": "FuturaeKit.JWK",
+                        "printedName": "any FuturaeKit.JWK",
                         "usr": "s:10FuturaeKit3JWKP"
                       }
                     ],
@@ -64659,12 +64659,12 @@
               {
                 "kind": "TypeNominal",
                 "name": "Array",
-                "printedName": "[FuturaeKit.JWK]",
+                "printedName": "[any FuturaeKit.JWK]",
                 "children": [
                   {
                     "kind": "TypeNominal",
                     "name": "JWK",
-                    "printedName": "FuturaeKit.JWK",
+                    "printedName": "any FuturaeKit.JWK",
                     "usr": "s:10FuturaeKit3JWKP"
                   }
                 ],
@@ -64783,7 +64783,7 @@
               {
                 "kind": "TypeNominal",
                 "name": "Encoder",
-                "printedName": "Swift.Encoder",
+                "printedName": "any Swift.Encoder",
                 "usr": "s:s7EncoderP"
               }
             ],
@@ -64812,7 +64812,7 @@
               {
                 "kind": "TypeNominal",
                 "name": "Decoder",
-                "printedName": "Swift.Decoder",
+                "printedName": "any Swift.Decoder",
                 "usr": "s:s7DecoderP"
               }
             ],
@@ -64919,7 +64919,7 @@
               {
                 "kind": "TypeNominal",
                 "name": "JWK",
-                "printedName": "FuturaeKit.JWK",
+                "printedName": "any FuturaeKit.JWK",
                 "usr": "s:10FuturaeKit3JWKP"
               },
               {
@@ -64946,7 +64946,7 @@
                   {
                     "kind": "TypeNominal",
                     "name": "JWK",
-                    "printedName": "FuturaeKit.JWK",
+                    "printedName": "any FuturaeKit.JWK",
                     "usr": "s:10FuturaeKit3JWKP"
                   },
                   {
@@ -65001,17 +65001,17 @@
               {
                 "kind": "TypeNominal",
                 "name": "IndexingIterator",
-                "printedName": "Swift.IndexingIterator<[FuturaeKit.JWK]>",
+                "printedName": "Swift.IndexingIterator<[any FuturaeKit.JWK]>",
                 "children": [
                   {
                     "kind": "TypeNominal",
                     "name": "Array",
-                    "printedName": "[FuturaeKit.JWK]",
+                    "printedName": "[any FuturaeKit.JWK]",
                     "children": [
                       {
                         "kind": "TypeNominal",
                         "name": "JWK",
-                        "printedName": "FuturaeKit.JWK",
+                        "printedName": "any FuturaeKit.JWK",
                         "usr": "s:10FuturaeKit3JWKP"
                       }
                     ],
@@ -65045,12 +65045,12 @@
               {
                 "kind": "TypeNominal",
                 "name": "Array",
-                "printedName": "[FuturaeKit.JWK]",
+                "printedName": "[any FuturaeKit.JWK]",
                 "children": [
                   {
                     "kind": "TypeNominal",
                     "name": "JWK",
-                    "printedName": "FuturaeKit.JWK",
+                    "printedName": "any FuturaeKit.JWK",
                     "usr": "s:10FuturaeKit3JWKP"
                   }
                 ],
@@ -65104,7 +65104,7 @@
                   {
                     "kind": "TypeNominal",
                     "name": "JWK",
-                    "printedName": "FuturaeKit.JWK",
+                    "printedName": "any FuturaeKit.JWK",
                     "usr": "s:10FuturaeKit3JWKP"
                   }
                 ]
@@ -65130,17 +65130,17 @@
                   {
                     "kind": "TypeNominal",
                     "name": "IndexingIterator",
-                    "printedName": "Swift.IndexingIterator<[FuturaeKit.JWK]>",
+                    "printedName": "Swift.IndexingIterator<[any FuturaeKit.JWK]>",
                     "children": [
                       {
                         "kind": "TypeNominal",
                         "name": "Array",
-                        "printedName": "[FuturaeKit.JWK]",
+                        "printedName": "[any FuturaeKit.JWK]",
                         "children": [
                           {
                             "kind": "TypeNominal",
                             "name": "JWK",
-                            "printedName": "FuturaeKit.JWK",
+                            "printedName": "any FuturaeKit.JWK",
                             "usr": "s:10FuturaeKit3JWKP"
                           }
                         ],
@@ -65210,7 +65210,7 @@
                   {
                     "kind": "TypeNominal",
                     "name": "JWK",
-                    "printedName": "FuturaeKit.JWK",
+                    "printedName": "any FuturaeKit.JWK",
                     "usr": "s:10FuturaeKit3JWKP"
                   }
                 ]
@@ -65223,17 +65223,17 @@
                   {
                     "kind": "TypeNominal",
                     "name": "IndexingIterator",
-                    "printedName": "Swift.IndexingIterator<[FuturaeKit.JWK]>",
+                    "printedName": "Swift.IndexingIterator<[any FuturaeKit.JWK]>",
                     "children": [
                       {
                         "kind": "TypeNominal",
                         "name": "Array",
-                        "printedName": "[FuturaeKit.JWK]",
+                        "printedName": "[any FuturaeKit.JWK]",
                         "children": [
                           {
                             "kind": "TypeNominal",
                             "name": "JWK",
-                            "printedName": "FuturaeKit.JWK",
+                            "printedName": "any FuturaeKit.JWK",
                             "usr": "s:10FuturaeKit3JWKP"
                           }
                         ],
@@ -65261,7 +65261,7 @@
                   {
                     "kind": "TypeNominal",
                     "name": "JWK",
-                    "printedName": "FuturaeKit.JWK",
+                    "printedName": "any FuturaeKit.JWK",
                     "usr": "s:10FuturaeKit3JWKP"
                   }
                 ]
@@ -66587,7 +66587,7 @@
               {
                 "kind": "TypeNominal",
                 "name": "Cipher",
-                "printedName": "FuturaeKit.Cipher",
+                "printedName": "any FuturaeKit.Cipher",
                 "usr": "s:10FuturaeKit6CipherP"
               }
             ],
@@ -66625,7 +66625,7 @@
               {
                 "kind": "TypeNominal",
                 "name": "Cipher",
-                "printedName": "FuturaeKit.Cipher",
+                "printedName": "any FuturaeKit.Cipher",
                 "usr": "s:10FuturaeKit6CipherP"
               }
             ],
@@ -66687,6 +66687,7 @@
         "genericSig": "<τ_0_0>",
         "sugared_genericSig": "<Element>",
         "declAttributes": [
+          "EagerMove",
           "Frozen"
         ],
         "isExternal": true,
@@ -67701,7 +67702,7 @@
               {
                 "kind": "TypeNominal",
                 "name": "Cipher",
-                "printedName": "FuturaeKit.Cipher",
+                "printedName": "any FuturaeKit.Cipher",
                 "usr": "s:10FuturaeKit6CipherP"
               }
             ],
@@ -67732,7 +67733,7 @@
               {
                 "kind": "TypeNominal",
                 "name": "Cipher",
-                "printedName": "FuturaeKit.Cipher",
+                "printedName": "any FuturaeKit.Cipher",
                 "usr": "s:10FuturaeKit6CipherP"
               }
             ],
@@ -67909,7 +67910,7 @@
               {
                 "kind": "TypeNominal",
                 "name": "Cipher",
-                "printedName": "FuturaeKit.Cipher",
+                "printedName": "any FuturaeKit.Cipher",
                 "usr": "s:10FuturaeKit6CipherP"
               }
             ],
@@ -67947,7 +67948,7 @@
               {
                 "kind": "TypeNominal",
                 "name": "Cipher",
-                "printedName": "FuturaeKit.Cipher",
+                "printedName": "any FuturaeKit.Cipher",
                 "usr": "s:10FuturaeKit6CipherP"
               }
             ],
@@ -67999,6 +68000,7 @@
         "mangledName": "$sSS",
         "moduleName": "Swift",
         "declAttributes": [
+          "EagerMove",
           "Frozen"
         ],
         "isExternal": true,
@@ -69876,7 +69878,7 @@
               {
                 "kind": "TypeNominal",
                 "name": "Cipher",
-                "printedName": "FuturaeKit.Cipher",
+                "printedName": "any FuturaeKit.Cipher",
                 "usr": "s:10FuturaeKit6CipherP"
               }
             ],
@@ -69905,7 +69907,7 @@
               {
                 "kind": "TypeNominal",
                 "name": "Cipher",
-                "printedName": "FuturaeKit.Cipher",
+                "printedName": "any FuturaeKit.Cipher",
                 "usr": "s:10FuturaeKit6CipherP"
               }
             ],
@@ -69934,7 +69936,7 @@
               {
                 "kind": "TypeNominal",
                 "name": "Authenticator",
-                "printedName": "FuturaeKit.Authenticator",
+                "printedName": "any FuturaeKit.Authenticator",
                 "usr": "s:10FuturaeKit13AuthenticatorP"
               }
             ],

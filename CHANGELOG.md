@@ -1,3 +1,7 @@
+# Version 2.3.12
+2024-09-05
++ [Changed] Privacy manifest file
+
 # Version 2.3.11
 2024-03-05
 # Version 2.3.11
