@@ -1,3 +1,23 @@
+# Version 3.1.8
+2024-15-05
+### Added
+- **Swift Rewrite with Objective-C Compatibility**: Complete rewrite in Swift, offering modern language features while ensuring backward compatibility with Objective-C.
+- **New Data Models**: Introduction of strongly typed data models, replacing loosely defined or dictionary-type data for enhanced type safety and predictability.
+- **AsyncTask and AsyncTaskResult Classes**: New classes introduced to handle asynchronous operations in Swift, providing an efficient alternative to traditional callback patterns.
+- **Enhanced Error Handling**: Robust and informative error handling system implemented. Errors can now be cast to `SDKBaseError` or its subclasses for detailed context and understanding.
+
+### Changed
+- **Method Names and Signatures**: Comprehensive update of method names and signatures to align with the Swift codebase. Developers should update their code to match these changes.
+- **Consolidated Methods**: Optimization of similar methods, such as merging `approve` and `reject` into a single `replyAuth` method.
+
+### Migration Guide
+Users migrating from SDK v2.x.x can follow the detailed step-by-step guide provided. This guide covers acquiring the beta version of the SDK, refactoring application code, and adapting to the significant changes in this version. For more details, check the online iOS SDK guide notes for migrating from SDK v2.x.x to v3.x.x.
+
+### Notes
+This release marks a significant update, focusing on enhancing both performance and the development experience. It is recommended for users to migrate to this version to leverage the latest features and improvements.
+
+For a timeline of changes for SDK v3 while in beta stage, please checkout the following link: https://github.com/Futurae-Technologies/ios-sdk-beta/releases
+
 # Version 2.3.13
 2024-15-05
 + [Changed] Internal security improvements

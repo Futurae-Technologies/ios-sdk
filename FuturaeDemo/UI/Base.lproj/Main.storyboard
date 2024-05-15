@@ -2,7 +2,6 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="22155" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Ibc-J1-55c">
     <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
-        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22131"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -12,9 +11,9 @@
         <!--FUNCTIONS-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="FunctionsViewController" customModule="FuturaeDemo" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="618"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cUi-fR-hOY">
@@ -41,7 +40,7 @@
                                                     </userDefinedRuntimeAttribute>
                                                 </userDefinedRuntimeAttributes>
                                                 <connections>
-                                                    <action selector="enrollWithPinTouchedUpInside:" destination="BYZ-38-t0r" eventType="touchUpInside" id="xVw-Xb-pVx"/>
+                                                    <action selector="enrollWithPinTouchedUpInside:" destination="BYZ-38-t0r" eventType="touchUpInside" id="P5g-CV-Rmo"/>
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="a2Q-xJ-gRs" customClass="CustomDemoButton" customModule="FuturaeDemo" customModuleProvider="target">
@@ -700,14 +699,14 @@
                         <outlet property="messageLabel" destination="gDR-tX-V9e" id="2C0-wJ-rNi"/>
                         <outlet property="serviceLogoImageView" destination="qkn-CG-ake" id="9x0-kT-gtq"/>
                         <outlet property="stackView" destination="ZCm-HJ-efC" id="nwC-sq-M8m"/>
-                        <outletCollection property="pinButtons" destination="opL-80-ACl" id="pRC-Uy-dbF"/>
-                        <outletCollection property="pinButtons" destination="ZE9-cC-fgo" id="K0v-eD-2wK"/>
-                        <outletCollection property="pinButtons" destination="gMv-wT-lt6" id="vey-QV-9A4"/>
-                        <outletCollection property="pinButtons" destination="IJp-DQ-N3R" id="Jh5-ir-NEn"/>
-                        <outletCollection property="pinButtons" destination="bD9-Mr-AGE" id="WDt-Ho-nn0"/>
-                        <outletCollection property="pinButtons" destination="idy-dX-CuG" id="IjI-oY-A04"/>
-                        <outletCollection property="pinButtons" destination="o3k-Hi-SjC" id="aen-vO-zQp"/>
-                        <outletCollection property="pinButtons" destination="a2Q-xJ-gRs" id="Qbr-Xl-aQg"/>
+                        <outletCollection property="pinButtons" destination="opL-80-ACl" collectionClass="NSMutableArray" id="pRC-Uy-dbF"/>
+                        <outletCollection property="pinButtons" destination="ZE9-cC-fgo" collectionClass="NSMutableArray" id="K0v-eD-2wK"/>
+                        <outletCollection property="pinButtons" destination="gMv-wT-lt6" collectionClass="NSMutableArray" id="vey-QV-9A4"/>
+                        <outletCollection property="pinButtons" destination="IJp-DQ-N3R" collectionClass="NSMutableArray" id="Jh5-ir-NEn"/>
+                        <outletCollection property="pinButtons" destination="bD9-Mr-AGE" collectionClass="NSMutableArray" id="WDt-Ho-nn0"/>
+                        <outletCollection property="pinButtons" destination="idy-dX-CuG" collectionClass="NSMutableArray" id="IjI-oY-A04"/>
+                        <outletCollection property="pinButtons" destination="o3k-Hi-SjC" collectionClass="NSMutableArray" id="aen-vO-zQp"/>
+                        <outletCollection property="pinButtons" destination="a2Q-xJ-gRs" collectionClass="NSMutableArray" id="Qbr-Xl-aQg"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -965,9 +964,9 @@
         <!--LOCK CONFIGURATION-->
         <scene sceneID="hTa-2A-Lpi">
             <objects>
-                <viewController id="FqC-QZ-eSk" customClass="KeychainConfigViewController" customModule="FuturaeDemo" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="FqC-QZ-eSk" customClass="ConfigViewController" customModule="FuturaeDemo" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="njb-Vq-t3B">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="618"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FBE-Zd-I8F">
@@ -1442,146 +1441,9 @@
             <point key="canvasLocation" x="1460" y="516"/>
         </scene>
     </scenes>
-    <designables>
-        <designable name="01w-un-XNo">
-            <size key="intrinsicContentSize" width="136" height="37"/>
-        </designable>
-        <designable name="0jo-0t-GFf">
-            <size key="intrinsicContentSize" width="153" height="37"/>
-        </designable>
-        <designable name="1DE-yh-ELl">
-            <size key="intrinsicContentSize" width="99" height="38"/>
-        </designable>
-        <designable name="1SK-9x-4Bj">
-            <size key="intrinsicContentSize" width="129" height="37"/>
-        </designable>
-        <designable name="1pg-tN-20N">
-            <size key="intrinsicContentSize" width="139" height="37"/>
-        </designable>
-        <designable name="2Cr-Ur-Hnk">
-            <size key="intrinsicContentSize" width="144" height="37"/>
-        </designable>
-        <designable name="2GW-rH-IjZ">
-            <size key="intrinsicContentSize" width="183" height="37"/>
-        </designable>
-        <designable name="2pU-VS-K5o">
-            <size key="intrinsicContentSize" width="135" height="37"/>
-        </designable>
-        <designable name="4HE-LQ-lW1">
-            <size key="intrinsicContentSize" width="239" height="37"/>
-        </designable>
-        <designable name="DW9-WM-BQq">
-            <size key="intrinsicContentSize" width="207" height="37"/>
-        </designable>
-        <designable name="Fu1-ck-yQS">
-            <size key="intrinsicContentSize" width="70" height="37"/>
-        </designable>
-        <designable name="GCQ-Tv-3YL">
-            <size key="intrinsicContentSize" width="159" height="37"/>
-        </designable>
-        <designable name="HR1-Au-VaM">
-            <size key="intrinsicContentSize" width="163" height="37"/>
-        </designable>
-        <designable name="IJp-DQ-N3R">
-            <size key="intrinsicContentSize" width="264" height="37"/>
-        </designable>
-        <designable name="Kam-9i-m9A">
-            <size key="intrinsicContentSize" width="172" height="37"/>
-        </designable>
-        <designable name="Kld-g1-e0h">
-            <size key="intrinsicContentSize" width="196" height="37"/>
-        </designable>
-        <designable name="M0a-WQ-c6y">
-            <size key="intrinsicContentSize" width="59" height="37"/>
-        </designable>
-        <designable name="MBP-Zb-yoS">
-            <size key="intrinsicContentSize" width="83" height="38"/>
-        </designable>
-        <designable name="N5M-Eq-mJj">
-            <size key="intrinsicContentSize" width="164" height="37"/>
-        </designable>
-        <designable name="NUG-QO-Bxf">
-            <size key="intrinsicContentSize" width="99" height="37"/>
-        </designable>
-        <designable name="QEB-4V-oPU">
-            <size key="intrinsicContentSize" width="132" height="37"/>
-        </designable>
-        <designable name="QvK-Kr-irh">
-            <size key="intrinsicContentSize" width="174" height="37"/>
-        </designable>
-        <designable name="SVQ-I9-FyT">
-            <size key="intrinsicContentSize" width="144" height="37"/>
-        </designable>
-        <designable name="T5Q-1N-nio">
-            <size key="intrinsicContentSize" width="127" height="37"/>
-        </designable>
-        <designable name="XpZ-wi-7nl">
-            <size key="intrinsicContentSize" width="195" height="37"/>
-        </designable>
-        <designable name="YKd-3A-QvE">
-            <size key="intrinsicContentSize" width="103.5" height="38"/>
-        </designable>
-        <designable name="ZE9-cC-fgo">
-            <size key="intrinsicContentSize" width="344" height="37"/>
-        </designable>
-        <designable name="a2Q-xJ-gRs">
-            <size key="intrinsicContentSize" width="310" height="37"/>
-        </designable>
-        <designable name="bD9-Mr-AGE">
-            <size key="intrinsicContentSize" width="194" height="37"/>
-        </designable>
-        <designable name="d6e-9S-z0F">
-            <size key="intrinsicContentSize" width="297" height="37"/>
-        </designable>
-        <designable name="dQH-JJ-qib">
-            <size key="intrinsicContentSize" width="181" height="37"/>
-        </designable>
-        <designable name="eJL-2h-Bpp">
-            <size key="intrinsicContentSize" width="179" height="37"/>
-        </designable>
-        <designable name="fyS-7w-qUY">
-            <size key="intrinsicContentSize" width="219" height="37"/>
-        </designable>
-        <designable name="gMv-wT-lt6">
-            <size key="intrinsicContentSize" width="166" height="37"/>
-        </designable>
-        <designable name="idy-dX-CuG">
-            <size key="intrinsicContentSize" width="292" height="37"/>
-        </designable>
-        <designable name="kNu-nU-RBE">
-            <size key="intrinsicContentSize" width="173" height="37"/>
-        </designable>
-        <designable name="nNT-gE-imm">
-            <size key="intrinsicContentSize" width="240" height="37"/>
-        </designable>
-        <designable name="nbE-Is-rDu">
-            <size key="intrinsicContentSize" width="262" height="37"/>
-        </designable>
-        <designable name="o3k-Hi-SjC">
-            <size key="intrinsicContentSize" width="209" height="37"/>
-        </designable>
-        <designable name="opL-80-ACl">
-            <size key="intrinsicContentSize" width="247" height="37"/>
-        </designable>
-        <designable name="p1K-S3-N5J">
-            <size key="intrinsicContentSize" width="90" height="37"/>
-        </designable>
-        <designable name="pd0-up-q0i">
-            <size key="intrinsicContentSize" width="185" height="37"/>
-        </designable>
-        <designable name="rzg-JL-Xel">
-            <size key="intrinsicContentSize" width="191" height="37"/>
-        </designable>
-        <designable name="v4j-GO-GWb">
-            <size key="intrinsicContentSize" width="178" height="37"/>
-        </designable>
-        <designable name="vmp-Fi-12E">
-            <size key="intrinsicContentSize" width="222" height="37"/>
-        </designable>
-    </designables>
     <resources>
-        <image name="gear" catalog="system" width="32" height="32"/>
-        <image name="terminal" catalog="system" width="32" height="32"/>
+        <image name="gear" catalog="system" width="128" height="122"/>
+        <image name="terminal" catalog="system" width="128" height="93"/>
         <systemColor name="labelColor">
             <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

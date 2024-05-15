@@ -11,9 +11,7 @@
 #import "SSApplicationInfo.h"
 #import "SSBatteryInfo.h"
 #import "SSCarrierInfo.h"
-#import "SSDiskInfo.h"
 #import "SSHardwareInfo.h"
-#import "SSJailbreakCheck.h"
 #import "SSLocalizationInfo.h"
 #import "SSMemoryInfo.h"
 #import "SSNetworkInfo.h"
@@ -33,8 +31,6 @@
 
 /* Hardware Information */
 
-// System Uptime (dd hh mm)
-@property (nonatomic, readonly, nullable) NSString *systemsUptime;
 
 // Model of Device
 @property (nonatomic, readonly, nullable) NSString *deviceModel;
@@ -86,8 +82,6 @@
 
 /* Jailbreak Check */
 
-// Jailbroken?
-@property (nonatomic, readonly) int jailbroken;
 
 /* Processor Information */
 
@@ -184,29 +178,6 @@
 
 // Process ID
 @property (nonatomic, readonly) int processID;
-
-/* Disk Information */
-
-// Total Disk Space
-@property (nonatomic, readonly, nullable) NSString *diskSpace;
-
-// Total Free Disk Space (Raw)
-@property (nonatomic, readonly, nullable) NSString *freeDiskSpaceinRaw;
-
-// Total Free Disk Space (Percentage)
-@property (nonatomic, readonly, nullable) NSString *freeDiskSpaceinPercent;
-
-// Total Used Disk Space (Raw)
-@property (nonatomic, readonly, nullable) NSString *usedDiskSpaceinRaw;
-
-// Total Used Disk Space (Percentage)
-@property (nonatomic, readonly, nullable) NSString *usedDiskSpaceinPercent;
-
-// Get the total disk space in long format
-@property (nonatomic, readonly) long long longDiskSpace;
-
-// Get the total free disk space in long format
-@property (nonatomic, readonly) long long longFreeDiskSpace;
 
 /* Memory Information */
 
