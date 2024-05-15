@@ -9,14 +9,14 @@
 import UIKit
 import FuturaeKit
 
-@objc
-public final class HistoryTableViewController: UITableViewController {
+
+final class HistoryTableViewController: UITableViewController {
     
-    private let account: FTRAccount
-    private let items: [HistoryItem]
+    let account: FTRAccount
+    let items: [HistoryItem]
     
-    @objc
-    public init(account: FTRAccount, items: [HistoryItem]) {
+    
+    init(account: FTRAccount, items: [HistoryItem]) {
         self.account = account
         self.items = items
         super.init(style: .plain)
@@ -27,16 +27,16 @@ public final class HistoryTableViewController: UITableViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
-    public override func viewDidLoad() {
+    override func viewDidLoad() {
         super.viewDidLoad()
         tableView.register(HistoryCell.self, forCellReuseIdentifier: HistoryCell.identifier)
     }
     
-    public override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         items.count
     }
     
-    public override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: HistoryCell.identifier) as? HistoryCell else {
             return UITableViewCell()
         }
@@ -47,5 +47,5 @@ public final class HistoryTableViewController: UITableViewController {
         return cell
     }
     
-    public override func numberOfSections(in tableView: UITableView) -> Int { 1 }
+    override func numberOfSections(in tableView: UITableView) -> Int { 1 }
 }

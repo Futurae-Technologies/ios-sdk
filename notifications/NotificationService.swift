@@ -25,37 +25,32 @@ class NotificationService: UNNotificationServiceExtension {
             contentHandler(bestAttemptContent)
             return
         }
-
+        
         if let encrypted = bestAttemptContent.userInfo[SDKConstants.EXTRA_INFO_ENC_KEY] as? String,
            let userId = bestAttemptContent.userInfo[SDKConstants.USER_ID_KEY] as? String {
-
+            
             let lockType: LockConfigurationType = .init(rawValue: UserDefaults.custom.integer(forKey: SDKConstants.KEY_CONFIG)) ?? .none
-
-            FTRClient.launch(with: FTRConfig(sdkId: SDKConstants.SDKID,
-                                             sdkKey: SDKConstants.SDKKEY,
-                                             baseUrl: SDKConstants.SDKURL,
-                                             keychain: FTRKeychainConfig(accessGroup: SDKConstants.KEYCHAIN_ACCESS_GROUP),
-                                             lockConfiguration: LockConfiguration(type: lockType,
-                                                                                  unlockDuration: 60,
-                                                                                  invalidatedByBiometricsChange: true)
-                                             ,appGroup: SDKConstants.APP_GROUP
-                                            ), success: {
-
-                if let decrypted = try? FTRClient.shared()?.decryptExtraInfo(encrypted, userId: userId) {
+            
+            do {
+                try FTRClient.launch(config: FTRConfig(sdkId: SDKConstants.SDKID,
+                                                       sdkKey: SDKConstants.SDKKEY,
+                                                       baseUrl: SDKConstants.SDKURL,
+                                                       keychain: FTRKeychainConfig(accessGroup: SDKConstants.KEYCHAIN_ACCESS_GROUP),
+                                                       lockConfiguration: LockConfiguration(type: lockType,
+                                                                                            unlockDuration: 60,
+                                                                                            invalidatedByBiometricsChange: true)
+                                                       ,appGroup: SDKConstants.APP_GROUP
+                                                      ))
+                
+                if let decrypted = try? FTRClient.shared.decryptExtraInfo(encrypted, userId: userId) {
                     bestAttemptContent.categoryIdentifier = "auth"
                     bestAttemptContent.body =  decrypted.compactMap {
-                        if let key = $0["key"] as? String, let value = $0["value"] {
-                          return "\(key): \(value)"
-                        }
-
-                        return nil
+                        "\($0.key): \($0.value)"
                     }.joined(separator: ", ")
                 }
-
-                contentHandler(bestAttemptContent)
-            }) { error in
-                contentHandler(bestAttemptContent)
-            }
+            } catch {}
+            
+            contentHandler(bestAttemptContent)
         } else {
             contentHandler(bestAttemptContent)
         }

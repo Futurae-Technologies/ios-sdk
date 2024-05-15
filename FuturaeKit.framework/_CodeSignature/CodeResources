@@ -4,149 +4,145 @@
 <dict>
 	<key>files</key>
 	<dict>
-		<key>Headers/FTRAccount.h</key>
+		<key>Headers/AGClock.h</key>
 		<data>
-		bqtfsHL6IlQGRvHdTWf33UDrgyw=
+		cUZ+bFIY6/Q9MJbTv3yAo1MJvxk=
+		</data>
+		<key>Headers/AGOtp.h</key>
+		<data>
+		+sX/VpD9nsdqYlYDkQ04joPTdaM=
+		</data>
+		<key>Headers/AGTotp.h</key>
+		<data>
+		uTOXZYajPSBiGv5c3Gnv6rzXm20=
+		</data>
+		<key>Headers/FTRAdaptiveClient.h</key>
+		<data>
+		HI4eOrY9a/gh9Xm1vLYiP1WNuPg=
+		</data>
+		<key>Headers/FTRAdaptiveClientDelegate.h</key>
+		<data>
+		sKGug0SDGuHEFHyOp3Im4Ps89PE=
 		</data>
 		<key>Headers/FTRAdaptiveSDKDelegate.h</key>
 		<data>
 		uwULJvTwsWr2KRWoWXWFnqTq8Yw=
 		</data>
-		<key>Headers/FTRApiError.h</key>
-		<data>
-		66aN8gB/f2Inus2WfpE5gXspNEA=
-		</data>
-		<key>Headers/FTRClient.h</key>
-		<data>
-		ResxzBk4m4hvByTiyXXMnFtHp/k=
-		</data>
-		<key>Headers/FTRConfig.h</key>
-		<data>
-		7ZBhTE1VSE8VsyIW4W9RJdDCzpU=
-		</data>
-		<key>Headers/FTRExtraInfo.h</key>
-		<data>
-		ZHMzomNjs3wAnYMv8u7RXFAG2ko=
-		</data>
-		<key>Headers/FTRKeychainConfig.h</key>
-		<data>
-		v9fwT5qmnKOOCsdihF40wzi63bY=
-		</data>
-		<key>Headers/FTRMigratableAccount.h</key>
-		<data>
-		j3rBKQqSlIHTGOgzyBedvGLAffw=
-		</data>
-		<key>Headers/FTRMigrationCheckData.h</key>
-		<data>
-		A7XxSi32LL76CrMJhQ/1l5ob8vQ=
-		</data>
-		<key>Headers/FTRNotificationDelegate.h</key>
-		<data>
-		YnBy/hbzUBtu1gYx9hj9KK+fwuc=
-		</data>
-		<key>Headers/FTROpenURLDelegate.h</key>
-		<data>
-		8jMdiR54RxdJf51wriccKalTOzI=
-		</data>
-		<key>Headers/FTRPublicConstants.h</key>
-		<data>
-		YN77N2TlWiCdaACTcPdKmJBYf9g=
-		</data>
-		<key>Headers/FTRQRCodeReader.h</key>
-		<data>
-		Isw6B+MeAKRWFXSHOdZbL/pYBu8=
-		</data>
-		<key>Headers/FTRTotp.h</key>
-		<data>
-		m2bQWbcKjUX+rye1fjOE1faU5Ww=
-		</data>
-		<key>Headers/FTRUserPresenceDelegate.h</key>
-		<data>
-		pFcLlcW+0uh39MAp0XCPTQ+DmZw=
-		</data>
-		<key>Headers/FTRUtils.h</key>
-		<data>
-		jlntKRv8Ci7Lao/xn0nF6od+6C4=
-		</data>
 		<key>Headers/FuturaeKit-Swift.h</key>
 		<data>
-		yT5iYw7NCTu4tlDrAedY3H1rMEE=
+		JfLXg7rVB1fLtCqDegQ7pn5RLxQ=
 		</data>
 		<key>Headers/FuturaeKit.h</key>
 		<data>
-		qNRGWxI172srd9w6ZQVLLLqgY60=
+		j58+GdmBwgslNlBCD5J09TgC5JQ=
 		</data>
-		<key>Headers/JailbreakStatus.h</key>
+		<key>Headers/SSAccelerometerInfo.h</key>
 		<data>
-		YWtxAEOQhCnn19s6XAbxeEejPzM=
+		tETs7bQaHFqDLvVzHoe3kTMPOAg=
 		</data>
-		<key>Headers/KeychainAccessibility.h</key>
+		<key>Headers/SSAccessoryInfo.h</key>
 		<data>
-		PW0hiCOQugit798mkUTSdBRt40I=
+		OS5VIp3wX8rk17dIkLgv8jB6wsc=
 		</data>
-		<key>Headers/LockConfiguration.h</key>
+		<key>Headers/SSApplicationInfo.h</key>
 		<data>
-		nCApdRHfSzznLCnqjzsXIgOYgu0=
+		wKIIeYATfq48ycQs8QB+Aan8hn8=
 		</data>
-		<key>Headers/SDKState.h</key>
+		<key>Headers/SSBatteryInfo.h</key>
 		<data>
-		TWGExch256DiQEAVt+9hJlYkSPQ=
+		ygsaYUVx9+UGbuvvZgLMAlRV++k=
 		</data>
-		<key>Headers/UserPresenceVerification.h</key>
+		<key>Headers/SSCarrierInfo.h</key>
 		<data>
-		tXL07HzdvDjA38UUvnuoIQuR6vE=
+		K44zTNugr5btLsJ1RSL12XsmDfI=
+		</data>
+		<key>Headers/SSHardwareInfo.h</key>
+		<data>
+		QBiuDrfXPvl/Tf06J2oO+mPKs2o=
+		</data>
+		<key>Headers/SSLocalizationInfo.h</key>
+		<data>
+		iebfWVksJd7J2xrgRGzGt0G6xcU=
+		</data>
+		<key>Headers/SSMemoryInfo.h</key>
+		<data>
+		/73ATkcq/orhxY2bUTw8j9ttoRo=
+		</data>
+		<key>Headers/SSNetworkInfo.h</key>
+		<data>
+		vXYyV4q37MhKnIkJ0Vxo1mKZ3KU=
+		</data>
+		<key>Headers/SSProcessInfo.h</key>
+		<data>
+		73WWIaSfxQ6Iu2SqGSn14d4ExLU=
+		</data>
+		<key>Headers/SSProcessorInfo.h</key>
+		<data>
+		7ehHhF0mt6pWDYUepCe7BQoOrMA=
+		</data>
+		<key>Headers/SSUUID.h</key>
+		<data>
+		afCcB3RsOPFbemFuwuxb8Ug9TFs=
+		</data>
+		<key>Headers/SystemServices.h</key>
+		<data>
+		9f9NT3A03A8bRQj0JMe/OQvghn0=
+		</data>
+		<key>Headers/route.h</key>
+		<data>
+		H6bo1xC85IrsUNIHD6IcUhIUrQM=
 		</data>
 		<key>Info.plist</key>
 		<data>
-		INhBltS91DThL9EZorR5uB+6lSU=
+		O0HFKuqODXr9glJDsmQ6aCFMz90=
 		</data>
 		<key>Modules/FuturaeKit.swiftmodule/Project/arm64-apple-ios-simulator.swiftsourceinfo</key>
 		<data>
-		EAMtWk9cYRZnFRYUy+jj+F2Fxkg=
+		A11pm1V74odQgUBBzcfjk4yOdKc=
 		</data>
 		<key>Modules/FuturaeKit.swiftmodule/Project/x86_64-apple-ios-simulator.swiftsourceinfo</key>
 		<data>
-		gc51nEF40zixH5V9+qljQz6AAl0=
+		T3c+iqq3MCs/hlkb8WuD8PkzqdM=
 		</data>
 		<key>Modules/FuturaeKit.swiftmodule/arm64-apple-ios-simulator.abi.json</key>
 		<data>
-		D13pcbnmKKy6DLqT+19YQ7pgHlY=
+		2dXtwJlqWSdFBVHQ2VUSuW6D6pM=
 		</data>
 		<key>Modules/FuturaeKit.swiftmodule/arm64-apple-ios-simulator.private.swiftinterface</key>
 		<data>
-		KmvAbzCx89hle/pcSX1MQr3+vn8=
+		q5pVJxJOVfjW4h3K+Ux8KrlMY+Y=
 		</data>
 		<key>Modules/FuturaeKit.swiftmodule/arm64-apple-ios-simulator.swiftdoc</key>
 		<data>
-		oupwCUibNeDAnEzjRWMJgSCTSm8=
+		U7Ip7Box/F7hUqAeE4OLl/ePVcI=
 		</data>
 		<key>Modules/FuturaeKit.swiftmodule/arm64-apple-ios-simulator.swiftinterface</key>
 		<data>
-		KmvAbzCx89hle/pcSX1MQr3+vn8=
+		q5pVJxJOVfjW4h3K+Ux8KrlMY+Y=
 		</data>
 		<key>Modules/FuturaeKit.swiftmodule/arm64-apple-ios-simulator.swiftmodule</key>
 		<data>
-		vfge1lVWhTCx1agUFKXd8F2EDq8=
+		Pj2P1YhxLP4IDYfTbmFxEukEFMQ=
 		</data>
 		<key>Modules/FuturaeKit.swiftmodule/x86_64-apple-ios-simulator.abi.json</key>
 		<data>
-		D13pcbnmKKy6DLqT+19YQ7pgHlY=
+		2dXtwJlqWSdFBVHQ2VUSuW6D6pM=
 		</data>
 		<key>Modules/FuturaeKit.swiftmodule/x86_64-apple-ios-simulator.private.swiftinterface</key>
 		<data>
-		TE3aZ4vtl5tm7DJgtARj0JxKJYc=
+		aTpLGK8mFtvHJas3jNP5ApHXSss=
 		</data>
 		<key>Modules/FuturaeKit.swiftmodule/x86_64-apple-ios-simulator.swiftdoc</key>
 		<data>
-		8LWUvK0tcjWyL7ZQZnlpMMF8sSU=
+		5aaxd4SpVXmaRGRpEgdBvi1/WGE=
 		</data>
 		<key>Modules/FuturaeKit.swiftmodule/x86_64-apple-ios-simulator.swiftinterface</key>
 		<data>
-		TE3aZ4vtl5tm7DJgtARj0JxKJYc=
+		aTpLGK8mFtvHJas3jNP5ApHXSss=
 		</data>
 		<key>Modules/FuturaeKit.swiftmodule/x86_64-apple-ios-simulator.swiftmodule</key>
 		<data>
-		msBEG4e7TlHdCUM1nKWWu//Ph34=
+		lhtxIhK79uSvSZSZ0jOHeyE2hkk=
 		</data>
 		<key>Modules/module.modulemap</key>
 		<data>
@@ -154,16 +150,44 @@
 		</data>
 		<key>PrivacyInfo.xcprivacy</key>
 		<data>
-		WQ/dvhzep2HIwHbv/u629hEGf08=
+		j7KRuN5FKUnXrdbPVowMq0HBGsM=
 		</data>
 	</dict>
 	<key>files2</key>
 	<dict>
-		<key>Headers/FTRAccount.h</key>
+		<key>Headers/AGClock.h</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			MuIWu5iVa+WkrAb+4TD4JmU/9qeifQtFuC9IpqDiNII=
+			G00sgAt0yvVx/b5/KktydfYo2JzMNZ17NOwwwDH51Q0=
+			</data>
+		</dict>
+		<key>Headers/AGOtp.h</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			nrqmO0BOhiFbcEnHTZHn0H5dOP72yyMfr6U4uBNYguY=
+			</data>
+		</dict>
+		<key>Headers/AGTotp.h</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			0e5dGQNo7AzfmFjPdhEMeYsEGPVuuivs/Br7ev+yo9E=
+			</data>
+		</dict>
+		<key>Headers/FTRAdaptiveClient.h</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			/TaYVuYs2AKx31TZqyzCPPfthTRkib1vNUrd3LevGNE=
+			</data>
+		</dict>
+		<key>Headers/FTRAdaptiveClientDelegate.h</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			ysoZfHYZLL6xhP7UBtetXDtX7uJXn/vmiOhe3CvtAZ0=
 			</data>
 		</dict>
 		<key>Headers/FTRAdaptiveSDKDelegate.h</key>
@@ -173,235 +197,200 @@
 			7NsSkTu8umHFrVDNjgxHdDGM+Y4w7JdSGotIJ2uyNUw=
 			</data>
 		</dict>
-		<key>Headers/FTRApiError.h</key>
-		<dict>
-			<key>hash2</key>
-			<data>
-			kJwl/dYs70f0XlX3vmhI8xHertkCS+8vGjrKOEpGdQk=
-			</data>
-		</dict>
-		<key>Headers/FTRClient.h</key>
-		<dict>
-			<key>hash2</key>
-			<data>
-			BkUx0ZuNhthrqN6qRI2g2hFMzEFD3jmHooNd8LjndXg=
-			</data>
-		</dict>
-		<key>Headers/FTRConfig.h</key>
-		<dict>
-			<key>hash2</key>
-			<data>
-			qApYso8erGrAO1DlllDZk4+Wgq3IzvFJ6FoMbXTWaPo=
-			</data>
-		</dict>
-		<key>Headers/FTRExtraInfo.h</key>
-		<dict>
-			<key>hash2</key>
-			<data>
-			PF5ZffKurxxveEKXw9TFJaCzdUPAHieaPcDPUHDu/YE=
-			</data>
-		</dict>
-		<key>Headers/FTRKeychainConfig.h</key>
-		<dict>
-			<key>hash2</key>
-			<data>
-			J9JXFT1EdXlBQ619NJeQex9u/8+o12Nv0a0BotTCQlo=
-			</data>
-		</dict>
-		<key>Headers/FTRMigratableAccount.h</key>
-		<dict>
-			<key>hash2</key>
-			<data>
-			oBVChn1fLifjBv7XSjXryLe01VNk0S0MZBLq5Q/NsDw=
-			</data>
-		</dict>
-		<key>Headers/FTRMigrationCheckData.h</key>
-		<dict>
-			<key>hash2</key>
-			<data>
-			g3tgg/aii+j1slEHRqNdbDl2K62QMFrZDLxI254jslk=
-			</data>
-		</dict>
-		<key>Headers/FTRNotificationDelegate.h</key>
-		<dict>
-			<key>hash2</key>
-			<data>
-			p4msYp9RDdqr+hVhN54F3D+sb+JT9J+CS9hfHu3AkN8=
-			</data>
-		</dict>
-		<key>Headers/FTROpenURLDelegate.h</key>
-		<dict>
-			<key>hash2</key>
-			<data>
-			3HCZfoxyWgSqBehw7LJhy7JQTibGhA6audpHSdkCBOM=
-			</data>
-		</dict>
-		<key>Headers/FTRPublicConstants.h</key>
-		<dict>
-			<key>hash2</key>
-			<data>
-			99zWRMC9I6bfM29ukZCvxpMLo1X5GVcAAGGgruUdaFA=
-			</data>
-		</dict>
-		<key>Headers/FTRQRCodeReader.h</key>
-		<dict>
-			<key>hash2</key>
-			<data>
-			AOtGRGf5KOayrKzNfuVVyKr+VuKoJZw5qGQLnPuSYoA=
-			</data>
-		</dict>
-		<key>Headers/FTRTotp.h</key>
-		<dict>
-			<key>hash2</key>
-			<data>
-			k/cNkU1phN/N7x7kCSWV5O/QX68tbAnK/red++mfJOY=
-			</data>
-		</dict>
-		<key>Headers/FTRUserPresenceDelegate.h</key>
-		<dict>
-			<key>hash2</key>
-			<data>
-			Jv/yTEXvpPMdF4Dre/ypIvDOR1LD7Q9rlbVQG3ePb2U=
-			</data>
-		</dict>
-		<key>Headers/FTRUtils.h</key>
-		<dict>
-			<key>hash2</key>
-			<data>
-			4Mo7OHu6wsDpK+e8qWeXqRJ3hVm38L3FvrEZPrcsRME=
-			</data>
-		</dict>
 		<key>Headers/FuturaeKit-Swift.h</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			FnPB44tl1189OqhPxASZJOrnpk7u7uP2m7nnDrEPBp8=
+			UZKecREkrzbtLLDY72Jl2VMFX2nnE75Fi/fhzxSYvhk=
 			</data>
 		</dict>
 		<key>Headers/FuturaeKit.h</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			Vknon+6Veef543DmHYd8CxMFwnNrx7xiOqKZeDZg1oE=
+			Ha/Q/1M5dfDaa0E75fwWu0oO/c0u7of7r9gDeEm07EI=
 			</data>
 		</dict>
-		<key>Headers/JailbreakStatus.h</key>
+		<key>Headers/SSAccelerometerInfo.h</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			qpkiAa18sh5q9CnbWlj0gHoF0Ed95DsZQQGAZJ8or00=
+			rdNWt04wIch6dWBL55J6FN/k1METglilVzuvMq21Cq8=
 			</data>
 		</dict>
-		<key>Headers/KeychainAccessibility.h</key>
+		<key>Headers/SSAccessoryInfo.h</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			X24crVQYOD3UVl7BLoiz7e9JXJoa7t5wAKBgXn0I+KU=
+			sGusazgCugbsJtq6/JZ1JqS2sSguNr0upVlZHESzQKk=
 			</data>
 		</dict>
-		<key>Headers/LockConfiguration.h</key>
+		<key>Headers/SSApplicationInfo.h</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			ILutaJlG2dzcKripva6PoW7URxVLTCm55y4hEs3iarQ=
+			d6lPNOvx8DNwFtsEanf3uABLcZFu52lkrJqnVixVFG0=
 			</data>
 		</dict>
-		<key>Headers/SDKState.h</key>
+		<key>Headers/SSBatteryInfo.h</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			mCgjkbD8TtL5wMv7SRwGwHsaETTUKewMObSqZz/0dUg=
+			1DugFu+xzWE4gccyIpds4GQX/NLCrW9VeXo9CIsiV0g=
 			</data>
 		</dict>
-		<key>Headers/UserPresenceVerification.h</key>
+		<key>Headers/SSCarrierInfo.h</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			tcjZ/aK1I+EER/PmygnlNmT7V+PAfPirGJSBoo6QtXo=
+			ORu7kuZZ8l9GMBHnf4LFh89IlSNAB2+5PButxGKCDUg=
+			</data>
+		</dict>
+		<key>Headers/SSHardwareInfo.h</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			sbP78CZY9AJWthKqkD6TWT+Vx2g4id5WU5VIokphCY0=
+			</data>
+		</dict>
+		<key>Headers/SSLocalizationInfo.h</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			gATSpv28QTHnz7x38SSzIrxvv4NeD3YOllPFU2ANUXY=
+			</data>
+		</dict>
+		<key>Headers/SSMemoryInfo.h</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			ecGjdA2AdoWfEi4YmWKgB1ZCpwx2pN2fzuUa32/j28g=
+			</data>
+		</dict>
+		<key>Headers/SSNetworkInfo.h</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			RjqqTofpKEzJ0ONQwnY/KFi3dLVYyiSK3X1HqC2jKH4=
+			</data>
+		</dict>
+		<key>Headers/SSProcessInfo.h</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			DBdeCo3hQ6XrSpiemnD5lLWZzl3G1X6d0n2Rapad1Q0=
+			</data>
+		</dict>
+		<key>Headers/SSProcessorInfo.h</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			DZFNEaVKEgJhHSl8CPV2ao/hKdPICWj+Ex2/hFl4dnw=
+			</data>
+		</dict>
+		<key>Headers/SSUUID.h</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			eAs9HYa1SnJOa4RPrALP28VC3g703YdilbxnmBaF4aw=
+			</data>
+		</dict>
+		<key>Headers/SystemServices.h</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			v3z+oBEodsrJIYlKHKx9ZBvoM/P655Oc0g8AbYnNk5E=
+			</data>
+		</dict>
+		<key>Headers/route.h</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			SlyZJ1ydr8uDBSAPrf4vmsTMw724nw3SFQeF/dt5xpU=
 			</data>
 		</dict>
 		<key>Modules/FuturaeKit.swiftmodule/Project/arm64-apple-ios-simulator.swiftsourceinfo</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			JDZ3CmKmbaGELDCG15Nw/DIjcvdBm9rvYfjWPfnIxhk=
+			0EPjOzjC6qSDrYD8a53UtlgoNP4G2U8/v9DhkvAs85Y=
 			</data>
 		</dict>
 		<key>Modules/FuturaeKit.swiftmodule/Project/x86_64-apple-ios-simulator.swiftsourceinfo</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			XOphHSC0o93j7AACgT1meu1Eu0gMEPGIcl9j4RYhiZ8=
+			iu0zmxwQIoMsCXzZnYlV9a88S86nc78l/fE0l0tpbzY=
 			</data>
 		</dict>
 		<key>Modules/FuturaeKit.swiftmodule/arm64-apple-ios-simulator.abi.json</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			LXUrebj/gs3VhVCc72MeZjGrRCtFLk/9I/o7gpv8Ie8=
+			ZLMUX8s9YztRfmOhQCpgDOWhZ+RU3n+t5296Kk9Iljg=
 			</data>
 		</dict>
 		<key>Modules/FuturaeKit.swiftmodule/arm64-apple-ios-simulator.private.swiftinterface</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			xgz8oO5lzV+QOTwdo4GEmWregVn3yhn5Cb7sbP33bZg=
+			Nz+khg5eBhFkLEO94LpXddJ7ELDCCAp8fH/BDTA3cN0=
 			</data>
 		</dict>
 		<key>Modules/FuturaeKit.swiftmodule/arm64-apple-ios-simulator.swiftdoc</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			K8StE8y6DNXbiD2FFHqW8Lt2dXlCMv8xb6fQLZnEmN4=
+			OLJUdpWN5flUqZDIQCn7aVIgrPupCD1m5K90n1FqCjg=
 			</data>
 		</dict>
 		<key>Modules/FuturaeKit.swiftmodule/arm64-apple-ios-simulator.swiftinterface</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			xgz8oO5lzV+QOTwdo4GEmWregVn3yhn5Cb7sbP33bZg=
+			Nz+khg5eBhFkLEO94LpXddJ7ELDCCAp8fH/BDTA3cN0=
 			</data>
 		</dict>
 		<key>Modules/FuturaeKit.swiftmodule/arm64-apple-ios-simulator.swiftmodule</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			bhcgjphZdWcIJ75SADVRdSNg/fiDlPpxhtVkrctcYYE=
+			1m1xgsY4KSgln36bcnq5o1fFDM8qstTV31T3wiNK5a8=
 			</data>
 		</dict>
 		<key>Modules/FuturaeKit.swiftmodule/x86_64-apple-ios-simulator.abi.json</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			LXUrebj/gs3VhVCc72MeZjGrRCtFLk/9I/o7gpv8Ie8=
+			ZLMUX8s9YztRfmOhQCpgDOWhZ+RU3n+t5296Kk9Iljg=
 			</data>
 		</dict>
 		<key>Modules/FuturaeKit.swiftmodule/x86_64-apple-ios-simulator.private.swiftinterface</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			CXSY9bwy+Qh61ZU5ZI6dbuT83zoXgApPJfu3m9JxITo=
+			BD7wPT8WNDWtCbitROkzuJlsKgyoIbhZtS2JkyU4T4Q=
 			</data>
 		</dict>
 		<key>Modules/FuturaeKit.swiftmodule/x86_64-apple-ios-simulator.swiftdoc</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			5lCbyQobIA8RqwgSpjQUrXytdniHw1U+WhDGreMEFmI=
+			av2pEV+JK1vv8BaGLG+Ly/SaAz0N/bWh60by4XdsycQ=
 			</data>
 		</dict>
 		<key>Modules/FuturaeKit.swiftmodule/x86_64-apple-ios-simulator.swiftinterface</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			CXSY9bwy+Qh61ZU5ZI6dbuT83zoXgApPJfu3m9JxITo=
+			BD7wPT8WNDWtCbitROkzuJlsKgyoIbhZtS2JkyU4T4Q=
 			</data>
 		</dict>
 		<key>Modules/FuturaeKit.swiftmodule/x86_64-apple-ios-simulator.swiftmodule</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			NlfqjexJyX+9wOKIzgVFSzerNcR1IMEiHuSVoUoAkBY=
+			ZeGQl+0N5/B7sWLOCYsQ022kN1b58swIJEysVj8BkrE=
 			</data>
 		</dict>
 		<key>Modules/module.modulemap</key>
@@ -415,7 +404,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			PjmH4q5vN5jPFxsShCjRlvaGzkUjN/NotkE0+bR3uz4=
+			WbFZLmEyycFlvuJOVqqKKcA2Sm0+p9oZbh8QUGxiqZQ=
 			</data>
 		</dict>
 	</dict>
