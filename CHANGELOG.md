@@ -1,3 +1,7 @@
+# Version 2.3.13
+2024-15-05
++ [Changed] Internal security improvements
+
 # Version 2.3.12
 2024-09-05
 + [Changed] Privacy manifest file
