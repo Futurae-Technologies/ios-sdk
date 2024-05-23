@@ -1,3 +1,8 @@
+# Version 3.1.9
+2024-23-05
++ [Added] Add jailbreak status to certain requests
++ [Fixed] Fix issue for missing value for `enrolled_at` property of account instance
+
 # Version 3.1.8
 2024-15-05
 ### Added

@@ -37,11 +37,12 @@ final class ConfigViewController: UIViewController {
         }
     }
     
-    var unlockSuccessHandler: FTRSuccessHandler{
+    var unlockSuccessHandler: FTRSuccessHandler {
         return {
             DispatchQueue.main.async { [unowned self] in
                 valueTextView.isHidden = false
                 valueTextView.text = "Last operation: " + "Unlocked"
+                sdkClient?.collectAndSubmitObservations()
             }
         }
     }

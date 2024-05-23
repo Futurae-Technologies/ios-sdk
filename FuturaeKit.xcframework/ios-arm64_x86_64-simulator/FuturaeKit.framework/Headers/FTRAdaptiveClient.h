@@ -18,6 +18,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 -(instancetype)initWithDelegate:(_Nonnull id<FTRAdaptiveClientDelegate>)delegate;
 - (void)startScanningOnce;
+- (void)collectAndSubmitObservations;
 - (void)completeScanning;
 - (void)deleteCollectedData:(NSDictionary<NSString *,id> *)collectedData;
 - (void)enableAdaptiveWithDelegate:(_Nonnull id<FTRAdaptiveSDKDelegate>)delegate;

@@ -812,6 +812,7 @@ extension FuturaeKit.FTRClient {
 @objc extension FuturaeKit.FTRClient {
   @objc dynamic public func disableAdaptive()
   @objc dynamic public func enableAdaptive(delegate: any FuturaeKit.FTRAdaptiveSDKDelegate)
+  @objc dynamic public func collectAndSubmitObservations()
   @objc dynamic public var isAdaptiveEnabled: Swift.Bool {
     @objc get
   }

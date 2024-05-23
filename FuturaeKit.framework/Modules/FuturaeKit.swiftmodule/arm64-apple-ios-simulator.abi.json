@@ -29269,6 +29269,29 @@
             "funcSelfKind": "NonMutating"
           },
           {
+            "kind": "Function",
+            "name": "collectAndSubmitObservations",
+            "printedName": "collectAndSubmitObservations()",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "c:@CM@FuturaeKit@objc(cs)FTRClient(im)collectAndSubmitObservations",
+            "mangledName": "$s10FuturaeKit9FTRClientC28collectAndSubmitObservationsyyF",
+            "moduleName": "FuturaeKit",
+            "declAttributes": [
+              "Dynamic",
+              "ObjC",
+              "RawDocComment"
+            ],
+            "isFromExtension": true,
+            "funcSelfKind": "NonMutating"
+          },
+          {
             "kind": "Var",
             "name": "isAdaptiveEnabled",
             "printedName": "isAdaptiveEnabled",
@@ -30781,6 +30804,16 @@
         "printedName": "RxSwift",
         "declKind": "Import",
         "moduleName": "FuturaeKit"
+      },
+      {
+        "kind": "Import",
+        "name": "Foundation",
+        "printedName": "Foundation",
+        "declKind": "Import",
+        "moduleName": "FuturaeKit",
+        "declAttributes": [
+          "RawDocComment"
+        ]
       },
       {
         "kind": "Import",
@@ -47665,6 +47698,76 @@
     {
       "filePath": "\/Users\/armendh\/repos\/futurae\/futurae-ios-sdk\/FuturaeKit\/Internal\/Models\/FTRDeviceInfoModel.swift",
       "kind": "StringLiteral",
+      "offset": 526,
+      "length": 13,
+      "value": "\"device_type\""
+    },
+    {
+      "filePath": "\/Users\/armendh\/repos\/futurae\/futurae-ios-sdk\/FuturaeKit\/Internal\/Models\/FTRDeviceInfoModel.swift",
+      "kind": "StringLiteral",
+      "offset": 628,
+      "length": 12,
+      "value": "\"os_version\""
+    },
+    {
+      "filePath": "\/Users\/armendh\/repos\/futurae\/futurae-ios-sdk\/FuturaeKit\/Internal\/Models\/FTRDeviceInfoModel.swift",
+      "kind": "StringLiteral",
+      "offset": 667,
+      "length": 13,
+      "value": "\"device_udid\""
+    },
+    {
+      "filePath": "\/Users\/armendh\/repos\/futurae\/futurae-ios-sdk\/FuturaeKit\/Internal\/Models\/FTRDeviceInfoModel.swift",
+      "kind": "StringLiteral",
+      "offset": 708,
+      "length": 14,
+      "value": "\"device_token\""
+    },
+    {
+      "filePath": "\/Users\/armendh\/repos\/futurae\/futurae-ios-sdk\/FuturaeKit\/Internal\/Models\/FTRDeviceInfoModel.swift",
+      "kind": "StringLiteral",
+      "offset": 774,
+      "length": 20,
+      "value": "\"mobile_app_version\""
+    },
+    {
+      "filePath": "\/Users\/armendh\/repos\/futurae\/futurae-ios-sdk\/FuturaeKit\/Internal\/Models\/FTRDeviceInfoModel.swift",
+      "kind": "StringLiteral",
+      "offset": 526,
+      "length": 13,
+      "value": "\"device_type\""
+    },
+    {
+      "filePath": "\/Users\/armendh\/repos\/futurae\/futurae-ios-sdk\/FuturaeKit\/Internal\/Models\/FTRDeviceInfoModel.swift",
+      "kind": "StringLiteral",
+      "offset": 628,
+      "length": 12,
+      "value": "\"os_version\""
+    },
+    {
+      "filePath": "\/Users\/armendh\/repos\/futurae\/futurae-ios-sdk\/FuturaeKit\/Internal\/Models\/FTRDeviceInfoModel.swift",
+      "kind": "StringLiteral",
+      "offset": 667,
+      "length": 13,
+      "value": "\"device_udid\""
+    },
+    {
+      "filePath": "\/Users\/armendh\/repos\/futurae\/futurae-ios-sdk\/FuturaeKit\/Internal\/Models\/FTRDeviceInfoModel.swift",
+      "kind": "StringLiteral",
+      "offset": 708,
+      "length": 14,
+      "value": "\"device_token\""
+    },
+    {
+      "filePath": "\/Users\/armendh\/repos\/futurae\/futurae-ios-sdk\/FuturaeKit\/Internal\/Models\/FTRDeviceInfoModel.swift",
+      "kind": "StringLiteral",
+      "offset": 774,
+      "length": 20,
+      "value": "\"mobile_app_version\""
+    },
+    {
+      "filePath": "\/Users\/armendh\/repos\/futurae\/futurae-ios-sdk\/FuturaeKit\/Internal\/Models\/FTRDeviceInfoModel.swift",
+      "kind": "StringLiteral",
       "offset": 172,
       "length": 18,
       "value": "\"FuturaeKit.FTRDeviceInfoModel\""
@@ -47742,28 +47845,28 @@
     {
       "filePath": "\/Users\/armendh\/repos\/futurae\/futurae-ios-sdk\/FuturaeKit\/Internal\/Services\/AccountMigration\/Store\/AccountMigrationStore.swift",
       "kind": "StringLiteral",
-      "offset": 439,
+      "offset": 485,
       "length": 23,
       "value": "\"migration_device_name\""
     },
     {
       "filePath": "\/Users\/armendh\/repos\/futurae\/futurae-ios-sdk\/FuturaeKit\/Internal\/Services\/AccountMigration\/Store\/AccountMigrationStore.swift",
       "kind": "StringLiteral",
-      "offset": 505,
+      "offset": 551,
       "length": 23,
       "value": "\"migration_device_udid\""
     },
     {
       "filePath": "\/Users\/armendh\/repos\/futurae\/futurae-ios-sdk\/FuturaeKit\/Internal\/Services\/AccountMigration\/Store\/AccountMigrationStore.swift",
       "kind": "StringLiteral",
-      "offset": 568,
+      "offset": 614,
       "length": 19,
       "value": "\"migration_servers\""
     },
     {
       "filePath": "\/Users\/armendh\/repos\/futurae\/futurae-ios-sdk\/FuturaeKit\/Internal\/Services\/AccountMigration\/Store\/AccountMigrationStore.swift",
       "kind": "StringLiteral",
-      "offset": 628,
+      "offset": 674,
       "length": 15,
       "value": "\"migration_key\""
     },
@@ -48561,30 +48664,44 @@
     {
       "filePath": "\/Users\/armendh\/repos\/futurae\/futurae-ios-sdk\/FuturaeKit\/Internal\/Networking\/Params\/AccountsStatusParams.swift",
       "kind": "StringLiteral",
-      "offset": 533,
+      "offset": 652,
       "length": 10,
       "value": "\"user_ids\""
     },
     {
       "filePath": "\/Users\/armendh\/repos\/futurae\/futurae-ios-sdk\/FuturaeKit\/Internal\/Networking\/Params\/AccountsStatusParams.swift",
       "kind": "StringLiteral",
-      "offset": 570,
+      "offset": 689,
       "length": 13,
       "value": "\"device_info\""
     },
     {
       "filePath": "\/Users\/armendh\/repos\/futurae\/futurae-ios-sdk\/FuturaeKit\/Internal\/Networking\/Params\/AccountsStatusParams.swift",
       "kind": "StringLiteral",
-      "offset": 533,
+      "offset": 731,
+      "length": 15,
+      "value": "\"device_status\""
+    },
+    {
+      "filePath": "\/Users\/armendh\/repos\/futurae\/futurae-ios-sdk\/FuturaeKit\/Internal\/Networking\/Params\/AccountsStatusParams.swift",
+      "kind": "StringLiteral",
+      "offset": 652,
       "length": 10,
       "value": "\"user_ids\""
     },
     {
       "filePath": "\/Users\/armendh\/repos\/futurae\/futurae-ios-sdk\/FuturaeKit\/Internal\/Networking\/Params\/AccountsStatusParams.swift",
       "kind": "StringLiteral",
-      "offset": 570,
+      "offset": 689,
       "length": 13,
       "value": "\"device_info\""
+    },
+    {
+      "filePath": "\/Users\/armendh\/repos\/futurae\/futurae-ios-sdk\/FuturaeKit\/Internal\/Networking\/Params\/AccountsStatusParams.swift",
+      "kind": "StringLiteral",
+      "offset": 731,
+      "length": 15,
+      "value": "\"device_status\""
     },
     {
       "filePath": "\/Users\/armendh\/repos\/futurae\/futurae-ios-sdk\/FuturaeKit\/Libraries\/CryptoSwift\/Foundation\/Array+Foundation.swift",
@@ -49786,23 +49903,37 @@
     {
       "filePath": "\/Users\/armendh\/repos\/futurae\/futurae-ios-sdk\/FuturaeKit\/Internal\/Networking\/Params\/ReplyParams.swift",
       "kind": "StringLiteral",
-      "offset": 570,
+      "offset": 558,
       "length": 2,
       "value": "\"\""
     },
     {
       "filePath": "\/Users\/armendh\/repos\/futurae\/futurae-ios-sdk\/FuturaeKit\/Internal\/Networking\/Params\/ReplyParams.swift",
       "kind": "StringLiteral",
-      "offset": 1995,
+      "offset": 1925,
       "length": 28,
       "value": "\"user_presence_verification\""
     },
     {
       "filePath": "\/Users\/armendh\/repos\/futurae\/futurae-ios-sdk\/FuturaeKit\/Internal\/Networking\/Params\/ReplyParams.swift",
       "kind": "StringLiteral",
-      "offset": 1995,
+      "offset": 1982,
+      "length": 15,
+      "value": "\"device_status\""
+    },
+    {
+      "filePath": "\/Users\/armendh\/repos\/futurae\/futurae-ios-sdk\/FuturaeKit\/Internal\/Networking\/Params\/ReplyParams.swift",
+      "kind": "StringLiteral",
+      "offset": 1925,
       "length": 28,
       "value": "\"user_presence_verification\""
+    },
+    {
+      "filePath": "\/Users\/armendh\/repos\/futurae\/futurae-ios-sdk\/FuturaeKit\/Internal\/Networking\/Params\/ReplyParams.swift",
+      "kind": "StringLiteral",
+      "offset": 1982,
+      "length": 15,
+      "value": "\"device_status\""
     },
     {
       "filePath": "\/Users\/armendh\/repos\/futurae\/futurae-ios-sdk\/FuturaeKit\/Internal\/FTRClient\/Parameters\/OfflineQRCodeParameters.swift",
@@ -52488,28 +52619,42 @@
     {
       "filePath": "\/Users\/armendh\/repos\/futurae\/futurae-ios-sdk\/FuturaeKit\/Internal\/Other\/Utils\/DateUtils.swift",
       "kind": "StringLiteral",
-      "offset": 900,
+      "offset": 1517,
+      "length": 23,
+      "value": "\"yyyy-MM-dd HH:mm:ss Z\""
+    },
+    {
+      "filePath": "\/Users\/armendh\/repos\/futurae\/futurae-ios-sdk\/FuturaeKit\/Internal\/Other\/Utils\/DateUtils.swift",
+      "kind": "StringLiteral",
+      "offset": 1702,
+      "length": 26,
+      "value": "\"yyyy-MM-dd'T'HH:mm:ss'Z'\""
+    },
+    {
+      "filePath": "\/Users\/armendh\/repos\/futurae\/futurae-ios-sdk\/FuturaeKit\/Internal\/Other\/Utils\/DateUtils.swift",
+      "kind": "StringLiteral",
+      "offset": 1890,
       "length": 27,
       "value": "\"yyyy-MM-dd'T'HH:mm:ss.SSS\""
     },
     {
       "filePath": "\/Users\/armendh\/repos\/futurae\/futurae-ios-sdk\/FuturaeKit\/Internal\/Other\/Utils\/DateUtils.swift",
       "kind": "StringLiteral",
-      "offset": 974,
+      "offset": 1964,
       "length": 13,
       "value": "\"en_US_POSIX\""
     },
     {
       "filePath": "\/Users\/armendh\/repos\/futurae\/futurae-ios-sdk\/FuturaeKit\/Internal\/Other\/Utils\/DateUtils.swift",
       "kind": "IntegerLiteral",
-      "offset": 1043,
+      "offset": 2033,
       "length": 1,
       "value": "0"
     },
     {
       "filePath": "\/Users\/armendh\/repos\/futurae\/futurae-ios-sdk\/FuturaeKit\/Internal\/Other\/Utils\/DateUtils.swift",
       "kind": "StringLiteral",
-      "offset": 1209,
+      "offset": 2198,
       "length": 12,
       "value": "\"yyyy-MM-dd\""
     },
@@ -53363,7 +53508,7 @@
     {
       "filePath": "\/Users\/armendh\/repos\/futurae\/futurae-ios-sdk\/FuturaeKit\/Internal\/FTRClient\/FTRClient.swift",
       "kind": "BooleanLiteral",
-      "offset": 2427,
+      "offset": 2469,
       "length": 5,
       "value": "false"
     },
@@ -54640,6 +54785,328 @@
       "offset": 1209,
       "length": 1,
       "value": "0"
+    },
+    {
+      "filePath": "\/Users\/armendh\/repos\/futurae\/futurae-ios-sdk\/FuturaeKit\/Internal\/Other\/FTRDeviceStatus.swift",
+      "kind": "StringLiteral",
+      "offset": 1139,
+      "length": 15,
+      "value": "\"system_uptime\""
+    },
+    {
+      "filePath": "\/Users\/armendh\/repos\/futurae\/futurae-ios-sdk\/FuturaeKit\/Internal\/Other\/FTRDeviceStatus.swift",
+      "kind": "StringLiteral",
+      "offset": 1182,
+      "length": 14,
+      "value": "\"device_model\""
+    },
+    {
+      "filePath": "\/Users\/armendh\/repos\/futurae\/futurae-ios-sdk\/FuturaeKit\/Internal\/Other\/FTRDeviceStatus.swift",
+      "kind": "StringLiteral",
+      "offset": 1223,
+      "length": 13,
+      "value": "\"system_name\""
+    },
+    {
+      "filePath": "\/Users\/armendh\/repos\/futurae\/futurae-ios-sdk\/FuturaeKit\/Internal\/Other\/FTRDeviceStatus.swift",
+      "kind": "StringLiteral",
+      "offset": 1266,
+      "length": 16,
+      "value": "\"system_version\""
+    },
+    {
+      "filePath": "\/Users\/armendh\/repos\/futurae\/futurae-ios-sdk\/FuturaeKit\/Internal\/Other\/FTRDeviceStatus.swift",
+      "kind": "StringLiteral",
+      "offset": 1327,
+      "length": 34,
+      "value": "\"system_device_type_not_formatted\""
+    },
+    {
+      "filePath": "\/Users\/armendh\/repos\/futurae\/futurae-ios-sdk\/FuturaeKit\/Internal\/Other\/FTRDeviceStatus.swift",
+      "kind": "StringLiteral",
+      "offset": 1389,
+      "length": 14,
+      "value": "\"screen_width\""
+    },
+    {
+      "filePath": "\/Users\/armendh\/repos\/futurae\/futurae-ios-sdk\/FuturaeKit\/Internal\/Other\/FTRDeviceStatus.swift",
+      "kind": "StringLiteral",
+      "offset": 1432,
+      "length": 15,
+      "value": "\"screen_height\""
+    },
+    {
+      "filePath": "\/Users\/armendh\/repos\/futurae\/futurae-ios-sdk\/FuturaeKit\/Internal\/Other\/FTRDeviceStatus.swift",
+      "kind": "StringLiteral",
+      "offset": 1480,
+      "length": 19,
+      "value": "\"debugger_attached\""
+    },
+    {
+      "filePath": "\/Users\/armendh\/repos\/futurae\/futurae-ios-sdk\/FuturaeKit\/Internal\/Other\/FTRDeviceStatus.swift",
+      "kind": "StringLiteral",
+      "offset": 1525,
+      "length": 12,
+      "value": "\"plugged_in\""
+    },
+    {
+      "filePath": "\/Users\/armendh\/repos\/futurae\/futurae-ios-sdk\/FuturaeKit\/Internal\/Other\/FTRDeviceStatus.swift",
+      "kind": "StringLiteral",
+      "offset": 1594,
+      "length": 19,
+      "value": "\"number_processors\""
+    },
+    {
+      "filePath": "\/Users\/armendh\/repos\/futurae\/futurae-ios-sdk\/FuturaeKit\/Internal\/Other\/FTRDeviceStatus.swift",
+      "kind": "StringLiteral",
+      "offset": 1652,
+      "length": 26,
+      "value": "\"number_active_processors\""
+    },
+    {
+      "filePath": "\/Users\/armendh\/repos\/futurae\/futurae-ios-sdk\/FuturaeKit\/Internal\/Other\/FTRDeviceStatus.swift",
+      "kind": "StringLiteral",
+      "offset": 1714,
+      "length": 22,
+      "value": "\"accessories_attached\""
+    },
+    {
+      "filePath": "\/Users\/armendh\/repos\/futurae\/futurae-ios-sdk\/FuturaeKit\/Internal\/Other\/FTRDeviceStatus.swift",
+      "kind": "StringLiteral",
+      "offset": 1771,
+      "length": 21,
+      "value": "\"headphones_attached\""
+    },
+    {
+      "filePath": "\/Users\/armendh\/repos\/futurae\/futurae-ios-sdk\/FuturaeKit\/Internal\/Other\/FTRDeviceStatus.swift",
+      "kind": "StringLiteral",
+      "offset": 1832,
+      "length": 27,
+      "value": "\"name_attached_accessories\""
+    },
+    {
+      "filePath": "\/Users\/armendh\/repos\/futurae\/futurae-ios-sdk\/FuturaeKit\/Internal\/Other\/FTRDeviceStatus.swift",
+      "kind": "StringLiteral",
+      "offset": 1887,
+      "length": 14,
+      "value": "\"carrier_name\""
+    },
+    {
+      "filePath": "\/Users\/armendh\/repos\/futurae\/futurae-ios-sdk\/FuturaeKit\/Internal\/Other\/FTRDeviceStatus.swift",
+      "kind": "StringLiteral",
+      "offset": 1935,
+      "length": 21,
+      "value": "\"carrier_allows_voip\""
+    },
+    {
+      "filePath": "\/Users\/armendh\/repos\/futurae\/futurae-ios-sdk\/FuturaeKit\/Internal\/Other\/FTRDeviceStatus.swift",
+      "kind": "StringLiteral",
+      "offset": 1987,
+      "length": 17,
+      "value": "\"carrier_country\""
+    },
+    {
+      "filePath": "\/Users\/armendh\/repos\/futurae\/futurae-ios-sdk\/FuturaeKit\/Internal\/Other\/FTRDeviceStatus.swift",
+      "kind": "StringLiteral",
+      "offset": 2033,
+      "length": 15,
+      "value": "\"battery_level\""
+    },
+    {
+      "filePath": "\/Users\/armendh\/repos\/futurae\/futurae-ios-sdk\/FuturaeKit\/Internal\/Other\/FTRDeviceStatus.swift",
+      "kind": "StringLiteral",
+      "offset": 2103,
+      "length": 20,
+      "value": "\"current_ip_address\""
+    },
+    {
+      "filePath": "\/Users\/armendh\/repos\/futurae\/futurae-ios-sdk\/FuturaeKit\/Internal\/Other\/FTRDeviceStatus.swift",
+      "kind": "StringLiteral",
+      "offset": 2155,
+      "length": 19,
+      "value": "\"connected_to_wifi\""
+    },
+    {
+      "filePath": "\/Users\/armendh\/repos\/futurae\/futurae-ios-sdk\/FuturaeKit\/Internal\/Other\/FTRDeviceStatus.swift",
+      "kind": "StringLiteral",
+      "offset": 2213,
+      "length": 27,
+      "value": "\"connected_to_cell_network\""
+    },
+    {
+      "filePath": "\/Users\/armendh\/repos\/futurae\/futurae-ios-sdk\/FuturaeKit\/Internal\/Other\/FTRDeviceStatus.swift",
+      "kind": "StringLiteral",
+      "offset": 2272,
+      "length": 19,
+      "value": "\"cell_network_type\""
+    },
+    {
+      "filePath": "\/Users\/armendh\/repos\/futurae\/futurae-ios-sdk\/FuturaeKit\/Internal\/Other\/FTRDeviceStatus.swift",
+      "kind": "StringLiteral",
+      "offset": 2361,
+      "length": 13,
+      "value": "\"timezone_ss\""
+    },
+    {
+      "filePath": "\/Users\/armendh\/repos\/futurae\/futurae-ios-sdk\/FuturaeKit\/Internal\/Other\/FTRDeviceStatus.swift",
+      "kind": "StringLiteral",
+      "offset": 1139,
+      "length": 15,
+      "value": "\"system_uptime\""
+    },
+    {
+      "filePath": "\/Users\/armendh\/repos\/futurae\/futurae-ios-sdk\/FuturaeKit\/Internal\/Other\/FTRDeviceStatus.swift",
+      "kind": "StringLiteral",
+      "offset": 1182,
+      "length": 14,
+      "value": "\"device_model\""
+    },
+    {
+      "filePath": "\/Users\/armendh\/repos\/futurae\/futurae-ios-sdk\/FuturaeKit\/Internal\/Other\/FTRDeviceStatus.swift",
+      "kind": "StringLiteral",
+      "offset": 1223,
+      "length": 13,
+      "value": "\"system_name\""
+    },
+    {
+      "filePath": "\/Users\/armendh\/repos\/futurae\/futurae-ios-sdk\/FuturaeKit\/Internal\/Other\/FTRDeviceStatus.swift",
+      "kind": "StringLiteral",
+      "offset": 1266,
+      "length": 16,
+      "value": "\"system_version\""
+    },
+    {
+      "filePath": "\/Users\/armendh\/repos\/futurae\/futurae-ios-sdk\/FuturaeKit\/Internal\/Other\/FTRDeviceStatus.swift",
+      "kind": "StringLiteral",
+      "offset": 1327,
+      "length": 34,
+      "value": "\"system_device_type_not_formatted\""
+    },
+    {
+      "filePath": "\/Users\/armendh\/repos\/futurae\/futurae-ios-sdk\/FuturaeKit\/Internal\/Other\/FTRDeviceStatus.swift",
+      "kind": "StringLiteral",
+      "offset": 1389,
+      "length": 14,
+      "value": "\"screen_width\""
+    },
+    {
+      "filePath": "\/Users\/armendh\/repos\/futurae\/futurae-ios-sdk\/FuturaeKit\/Internal\/Other\/FTRDeviceStatus.swift",
+      "kind": "StringLiteral",
+      "offset": 1432,
+      "length": 15,
+      "value": "\"screen_height\""
+    },
+    {
+      "filePath": "\/Users\/armendh\/repos\/futurae\/futurae-ios-sdk\/FuturaeKit\/Internal\/Other\/FTRDeviceStatus.swift",
+      "kind": "StringLiteral",
+      "offset": 1480,
+      "length": 19,
+      "value": "\"debugger_attached\""
+    },
+    {
+      "filePath": "\/Users\/armendh\/repos\/futurae\/futurae-ios-sdk\/FuturaeKit\/Internal\/Other\/FTRDeviceStatus.swift",
+      "kind": "StringLiteral",
+      "offset": 1525,
+      "length": 12,
+      "value": "\"plugged_in\""
+    },
+    {
+      "filePath": "\/Users\/armendh\/repos\/futurae\/futurae-ios-sdk\/FuturaeKit\/Internal\/Other\/FTRDeviceStatus.swift",
+      "kind": "StringLiteral",
+      "offset": 1594,
+      "length": 19,
+      "value": "\"number_processors\""
+    },
+    {
+      "filePath": "\/Users\/armendh\/repos\/futurae\/futurae-ios-sdk\/FuturaeKit\/Internal\/Other\/FTRDeviceStatus.swift",
+      "kind": "StringLiteral",
+      "offset": 1652,
+      "length": 26,
+      "value": "\"number_active_processors\""
+    },
+    {
+      "filePath": "\/Users\/armendh\/repos\/futurae\/futurae-ios-sdk\/FuturaeKit\/Internal\/Other\/FTRDeviceStatus.swift",
+      "kind": "StringLiteral",
+      "offset": 1714,
+      "length": 22,
+      "value": "\"accessories_attached\""
+    },
+    {
+      "filePath": "\/Users\/armendh\/repos\/futurae\/futurae-ios-sdk\/FuturaeKit\/Internal\/Other\/FTRDeviceStatus.swift",
+      "kind": "StringLiteral",
+      "offset": 1771,
+      "length": 21,
+      "value": "\"headphones_attached\""
+    },
+    {
+      "filePath": "\/Users\/armendh\/repos\/futurae\/futurae-ios-sdk\/FuturaeKit\/Internal\/Other\/FTRDeviceStatus.swift",
+      "kind": "StringLiteral",
+      "offset": 1832,
+      "length": 27,
+      "value": "\"name_attached_accessories\""
+    },
+    {
+      "filePath": "\/Users\/armendh\/repos\/futurae\/futurae-ios-sdk\/FuturaeKit\/Internal\/Other\/FTRDeviceStatus.swift",
+      "kind": "StringLiteral",
+      "offset": 1887,
+      "length": 14,
+      "value": "\"carrier_name\""
+    },
+    {
+      "filePath": "\/Users\/armendh\/repos\/futurae\/futurae-ios-sdk\/FuturaeKit\/Internal\/Other\/FTRDeviceStatus.swift",
+      "kind": "StringLiteral",
+      "offset": 1935,
+      "length": 21,
+      "value": "\"carrier_allows_voip\""
+    },
+    {
+      "filePath": "\/Users\/armendh\/repos\/futurae\/futurae-ios-sdk\/FuturaeKit\/Internal\/Other\/FTRDeviceStatus.swift",
+      "kind": "StringLiteral",
+      "offset": 1987,
+      "length": 17,
+      "value": "\"carrier_country\""
+    },
+    {
+      "filePath": "\/Users\/armendh\/repos\/futurae\/futurae-ios-sdk\/FuturaeKit\/Internal\/Other\/FTRDeviceStatus.swift",
+      "kind": "StringLiteral",
+      "offset": 2033,
+      "length": 15,
+      "value": "\"battery_level\""
+    },
+    {
+      "filePath": "\/Users\/armendh\/repos\/futurae\/futurae-ios-sdk\/FuturaeKit\/Internal\/Other\/FTRDeviceStatus.swift",
+      "kind": "StringLiteral",
+      "offset": 2103,
+      "length": 20,
+      "value": "\"current_ip_address\""
+    },
+    {
+      "filePath": "\/Users\/armendh\/repos\/futurae\/futurae-ios-sdk\/FuturaeKit\/Internal\/Other\/FTRDeviceStatus.swift",
+      "kind": "StringLiteral",
+      "offset": 2155,
+      "length": 19,
+      "value": "\"connected_to_wifi\""
+    },
+    {
+      "filePath": "\/Users\/armendh\/repos\/futurae\/futurae-ios-sdk\/FuturaeKit\/Internal\/Other\/FTRDeviceStatus.swift",
+      "kind": "StringLiteral",
+      "offset": 2213,
+      "length": 27,
+      "value": "\"connected_to_cell_network\""
+    },
+    {
+      "filePath": "\/Users\/armendh\/repos\/futurae\/futurae-ios-sdk\/FuturaeKit\/Internal\/Other\/FTRDeviceStatus.swift",
+      "kind": "StringLiteral",
+      "offset": 2272,
+      "length": 19,
+      "value": "\"cell_network_type\""
+    },
+    {
+      "filePath": "\/Users\/armendh\/repos\/futurae\/futurae-ios-sdk\/FuturaeKit\/Internal\/Other\/FTRDeviceStatus.swift",
+      "kind": "StringLiteral",
+      "offset": 2361,
+      "length": 13,
+      "value": "\"timezone_ss\""
     },
     {
       "filePath": "\/Users\/armendh\/repos\/futurae\/futurae-ios-sdk\/FuturaeKit\/Internal\/Models\/Errors\/Base\/SDKErrorDomain.swift",
@@ -58529,7 +58996,7 @@
     {
       "filePath": "\/Users\/armendh\/repos\/futurae\/futurae-ios-sdk\/FuturaeKit\/Internal\/Other\/FTRDeviceInfo.swift",
       "kind": "StringLiteral",
-      "offset": 283,
+      "offset": 599,
       "length": 9,
       "value": "\"Unknown\""
     },
@@ -58634,126 +59101,140 @@
     {
       "filePath": "\/Users\/armendh\/repos\/futurae\/futurae-ios-sdk\/FuturaeKit\/Internal\/Networking\/Params\/MigrationParams.swift",
       "kind": "StringLiteral",
-      "offset": 1906,
+      "offset": 2025,
       "length": 22,
       "value": "\"sdk_lock_config_type\""
     },
     {
       "filePath": "\/Users\/armendh\/repos\/futurae\/futurae-ios-sdk\/FuturaeKit\/Internal\/Networking\/Params\/MigrationParams.swift",
       "kind": "StringLiteral",
-      "offset": 1964,
+      "offset": 2083,
       "length": 23,
       "value": "\"migration_device_udid\""
     },
     {
       "filePath": "\/Users\/armendh\/repos\/futurae\/futurae-ios-sdk\/FuturaeKit\/Internal\/Networking\/Params\/MigrationParams.swift",
       "kind": "StringLiteral",
-      "offset": 2018,
+      "offset": 2137,
       "length": 17,
       "value": "\"migration_token\""
     },
     {
       "filePath": "\/Users\/armendh\/repos\/futurae\/futurae-ios-sdk\/FuturaeKit\/Internal\/Networking\/Params\/MigrationParams.swift",
       "kind": "StringLiteral",
-      "offset": 2106,
+      "offset": 2225,
       "length": 13,
       "value": "\"device_type\""
     },
     {
       "filePath": "\/Users\/armendh\/repos\/futurae\/futurae-ios-sdk\/FuturaeKit\/Internal\/Networking\/Params\/MigrationParams.swift",
       "kind": "StringLiteral",
-      "offset": 2147,
+      "offset": 2266,
       "length": 14,
       "value": "\"device_token\""
     },
     {
       "filePath": "\/Users\/armendh\/repos\/futurae\/futurae-ios-sdk\/FuturaeKit\/Internal\/Networking\/Params\/MigrationParams.swift",
       "kind": "StringLiteral",
-      "offset": 2188,
+      "offset": 2307,
       "length": 13,
       "value": "\"device_udid\""
     },
     {
       "filePath": "\/Users\/armendh\/repos\/futurae\/futurae-ios-sdk\/FuturaeKit\/Internal\/Networking\/Params\/MigrationParams.swift",
       "kind": "StringLiteral",
-      "offset": 2226,
+      "offset": 2349,
+      "length": 15,
+      "value": "\"device_status\""
+    },
+    {
+      "filePath": "\/Users\/armendh\/repos\/futurae\/futurae-ios-sdk\/FuturaeKit\/Internal\/Networking\/Params\/MigrationParams.swift",
+      "kind": "StringLiteral",
+      "offset": 2389,
       "length": 11,
       "value": "\"pns_token\""
     },
     {
       "filePath": "\/Users\/armendh\/repos\/futurae\/futurae-ios-sdk\/FuturaeKit\/Internal\/Networking\/Params\/MigrationParams.swift",
       "kind": "StringLiteral",
-      "offset": 2270,
+      "offset": 2433,
       "length": 20,
       "value": "\"mobile_app_version\""
     },
     {
       "filePath": "\/Users\/armendh\/repos\/futurae\/futurae-ios-sdk\/FuturaeKit\/Internal\/Networking\/Params\/MigrationParams.swift",
       "kind": "StringLiteral",
-      "offset": 2316,
+      "offset": 2479,
       "length": 12,
       "value": "\"public_key\""
     },
     {
       "filePath": "\/Users\/armendh\/repos\/futurae\/futurae-ios-sdk\/FuturaeKit\/Internal\/Networking\/Params\/MigrationParams.swift",
       "kind": "StringLiteral",
-      "offset": 1906,
+      "offset": 2025,
       "length": 22,
       "value": "\"sdk_lock_config_type\""
     },
     {
       "filePath": "\/Users\/armendh\/repos\/futurae\/futurae-ios-sdk\/FuturaeKit\/Internal\/Networking\/Params\/MigrationParams.swift",
       "kind": "StringLiteral",
-      "offset": 1964,
+      "offset": 2083,
       "length": 23,
       "value": "\"migration_device_udid\""
     },
     {
       "filePath": "\/Users\/armendh\/repos\/futurae\/futurae-ios-sdk\/FuturaeKit\/Internal\/Networking\/Params\/MigrationParams.swift",
       "kind": "StringLiteral",
-      "offset": 2018,
+      "offset": 2137,
       "length": 17,
       "value": "\"migration_token\""
     },
     {
       "filePath": "\/Users\/armendh\/repos\/futurae\/futurae-ios-sdk\/FuturaeKit\/Internal\/Networking\/Params\/MigrationParams.swift",
       "kind": "StringLiteral",
-      "offset": 2106,
+      "offset": 2225,
       "length": 13,
       "value": "\"device_type\""
     },
     {
       "filePath": "\/Users\/armendh\/repos\/futurae\/futurae-ios-sdk\/FuturaeKit\/Internal\/Networking\/Params\/MigrationParams.swift",
       "kind": "StringLiteral",
-      "offset": 2147,
+      "offset": 2266,
       "length": 14,
       "value": "\"device_token\""
     },
     {
       "filePath": "\/Users\/armendh\/repos\/futurae\/futurae-ios-sdk\/FuturaeKit\/Internal\/Networking\/Params\/MigrationParams.swift",
       "kind": "StringLiteral",
-      "offset": 2188,
+      "offset": 2307,
       "length": 13,
       "value": "\"device_udid\""
     },
     {
       "filePath": "\/Users\/armendh\/repos\/futurae\/futurae-ios-sdk\/FuturaeKit\/Internal\/Networking\/Params\/MigrationParams.swift",
       "kind": "StringLiteral",
-      "offset": 2226,
+      "offset": 2349,
+      "length": 15,
+      "value": "\"device_status\""
+    },
+    {
+      "filePath": "\/Users\/armendh\/repos\/futurae\/futurae-ios-sdk\/FuturaeKit\/Internal\/Networking\/Params\/MigrationParams.swift",
+      "kind": "StringLiteral",
+      "offset": 2389,
       "length": 11,
       "value": "\"pns_token\""
     },
     {
       "filePath": "\/Users\/armendh\/repos\/futurae\/futurae-ios-sdk\/FuturaeKit\/Internal\/Networking\/Params\/MigrationParams.swift",
       "kind": "StringLiteral",
-      "offset": 2270,
+      "offset": 2433,
       "length": 20,
       "value": "\"mobile_app_version\""
     },
     {
       "filePath": "\/Users\/armendh\/repos\/futurae\/futurae-ios-sdk\/FuturaeKit\/Internal\/Networking\/Params\/MigrationParams.swift",
       "kind": "StringLiteral",
-      "offset": 2316,
+      "offset": 2479,
       "length": 12,
       "value": "\"public_key\""
     },
@@ -58998,28 +59479,42 @@
     {
       "filePath": "\/Users\/armendh\/repos\/futurae\/futurae-ios-sdk\/FuturaeKit\/Internal\/Models\/Response\/AccountsStatus.swift",
       "kind": "StringLiteral",
-      "offset": 351,
+      "offset": 383,
       "length": 15,
       "value": "\"feature_flags\""
     },
     {
       "filePath": "\/Users\/armendh\/repos\/futurae\/futurae-ios-sdk\/FuturaeKit\/Internal\/Models\/Response\/AccountsStatus.swift",
       "kind": "StringLiteral",
-      "offset": 351,
+      "offset": 427,
+      "length": 16,
+      "value": "\"wrong_user_ids\""
+    },
+    {
+      "filePath": "\/Users\/armendh\/repos\/futurae\/futurae-ios-sdk\/FuturaeKit\/Internal\/Models\/Response\/AccountsStatus.swift",
+      "kind": "StringLiteral",
+      "offset": 383,
       "length": 15,
       "value": "\"feature_flags\""
     },
     {
       "filePath": "\/Users\/armendh\/repos\/futurae\/futurae-ios-sdk\/FuturaeKit\/Internal\/Models\/Response\/AccountsStatus.swift",
       "kind": "StringLiteral",
-      "offset": 990,
+      "offset": 427,
+      "length": 16,
+      "value": "\"wrong_user_ids\""
+    },
+    {
+      "filePath": "\/Users\/armendh\/repos\/futurae\/futurae-ios-sdk\/FuturaeKit\/Internal\/Models\/Response\/AccountsStatus.swift",
+      "kind": "StringLiteral",
+      "offset": 1067,
       "length": 13,
       "value": "\"service_ids\""
     },
     {
       "filePath": "\/Users\/armendh\/repos\/futurae\/futurae-ios-sdk\/FuturaeKit\/Internal\/Models\/Response\/AccountsStatus.swift",
       "kind": "StringLiteral",
-      "offset": 990,
+      "offset": 1067,
       "length": 13,
       "value": "\"service_ids\""
     },

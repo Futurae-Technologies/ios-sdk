@@ -1111,32 +1111,6 @@ enum FTRQRCodeType : NSInteger;
 
 
 
-@protocol FTRAdaptiveSDKDelegate;
-
-@interface FTRClient (SWIFT_EXTENSION(FuturaeKit))
-/// Disable adaptive mechanism.
-- (void)disableAdaptive;
-/// Enable adaptive mechanism.
-/// \param delegate An object that conforms to the FTRAdaptiveSDKDelegate protocol.
-///
-- (void)enableAdaptiveWithDelegate:(id <FTRAdaptiveSDKDelegate> _Nonnull)delegate;
-/// Check if adaptive mechanism is enabled.
-///
-/// returns:
-/// A boolean value indicating if adaptive is enabled
-@property (nonatomic, readonly) BOOL isAdaptiveEnabled;
-/// When a collection is requested, set the time in seconds for which the last adaptive collection should be returned until a new collection starts.
-/// \param threshold Threshold in seconds.
-///
-- (BOOL)setAdaptiveTimeThreshold:(NSInteger)threshold error:(NSError * _Nullable * _Nullable)error;
-/// The SDK will send adaptive collections to the backend, if adaptive mechanism is enabled.
-/// If for some reason sending the collections fails, they will move to a pending collection list and the SDK will try to send them again upon next launch.
-///
-/// returns:
-/// Array of adaptive collections that are pending sending to backend
-@property (nonatomic, readonly, copy) NSArray<NSDictionary<NSString *, id> *> * _Nonnull pendingAdaptiveCollections;
-@end
-
 @protocol FTRUserPresenceDelegate;
 @class LockConfiguration;
 
@@ -1161,6 +1135,34 @@ enum FTRQRCodeType : NSInteger;
 /// returns:
 /// The decrypted extra info as an array of key value pairs.
 - (NSArray<FTRExtraInfo *> * _Nullable)decryptExtraInfo:(NSString * _Nonnull)encryptedExtraInfo userId:(NSString * _Nonnull)userId error:(NSError * _Nullable * _Nullable)error SWIFT_WARN_UNUSED_RESULT;
+@end
+
+@protocol FTRAdaptiveSDKDelegate;
+
+@interface FTRClient (SWIFT_EXTENSION(FuturaeKit))
+/// Disable adaptive mechanism.
+- (void)disableAdaptive;
+/// Enable adaptive mechanism.
+/// \param delegate An object that conforms to the FTRAdaptiveSDKDelegate protocol.
+///
+- (void)enableAdaptiveWithDelegate:(id <FTRAdaptiveSDKDelegate> _Nonnull)delegate;
+/// Trigger an adaptive data collection.
+- (void)collectAndSubmitObservations;
+/// Check if adaptive mechanism is enabled.
+///
+/// returns:
+/// A boolean value indicating if adaptive is enabled
+@property (nonatomic, readonly) BOOL isAdaptiveEnabled;
+/// When a collection is requested, set the time in seconds for which the last adaptive collection should be returned until a new collection starts.
+/// \param threshold Threshold in seconds.
+///
+- (BOOL)setAdaptiveTimeThreshold:(NSInteger)threshold error:(NSError * _Nullable * _Nullable)error;
+/// The SDK will send adaptive collections to the backend, if adaptive mechanism is enabled.
+/// If for some reason sending the collections fails, they will move to a pending collection list and the SDK will try to send them again upon next launch.
+///
+/// returns:
+/// Array of adaptive collections that are pending sending to backend
+@property (nonatomic, readonly, copy) NSArray<NSDictionary<NSString *, id> *> * _Nonnull pendingAdaptiveCollections;
 @end
 
 
