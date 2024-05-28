@@ -1,3 +1,7 @@
+# Version 2.3.14
+2024-28-05
++ [Changed] Internal improvements
+
 # Version 3.1.9
 2024-23-05
 + [Added] Add jailbreak status to certain requests
