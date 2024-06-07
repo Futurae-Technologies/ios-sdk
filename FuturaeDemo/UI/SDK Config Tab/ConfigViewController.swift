@@ -47,6 +47,29 @@ final class ConfigViewController: UIViewController {
         }
     }
     
+    var config: FTRConfig {
+        let type = selectedConfigOption ?? options[settingsPickerView.selectedRow(inComponent: 0)]
+        if UserDefaults(suiteName: SDKConstants.APP_GROUP)?.bool(forKey: SDKConstants.APP_GROUP_ENABLED) == true {
+            return FTRConfig(sdkId: SDKConstants.SDKID,
+                                   sdkKey: SDKConstants.SDKKEY,
+                                   baseUrl: SDKConstants.SDKURL,
+                                   keychain: FTRKeychainConfig(accessGroup: SDKConstants.KEYCHAIN_ACCESS_GROUP),
+                                   lockConfiguration: LockConfiguration(type: type,
+                                                                        unlockDuration: 60,
+                                                                        invalidatedByBiometricsChange: true)
+                                   ,appGroup: SDKConstants.APP_GROUP
+            )
+        } else {
+            return FTRConfig(sdkId: SDKConstants.SDKID,
+                                   sdkKey: SDKConstants.SDKKEY,
+                                   baseUrl: SDKConstants.SDKURL,
+                                   lockConfiguration: LockConfiguration(type: type,
+                                                                        unlockDuration: 60,
+                                                                        invalidatedByBiometricsChange: true)
+            )
+        }
+    }
+    
     var timer: Timer?
     
     var selectedConfigOption: LockConfigurationType?
@@ -105,28 +128,7 @@ final class ConfigViewController: UIViewController {
     }
     
     func setupConfig(){
-        let type = selectedConfigOption!
         
-        var config: FTRConfig
-        if UserDefaults(suiteName: SDKConstants.APP_GROUP)?.bool(forKey: SDKConstants.APP_GROUP_ENABLED) == true {
-            config = FTRConfig(sdkId: SDKConstants.SDKID,
-                                   sdkKey: SDKConstants.SDKKEY,
-                                   baseUrl: SDKConstants.SDKURL,
-                                   keychain: FTRKeychainConfig(accessGroup: SDKConstants.KEYCHAIN_ACCESS_GROUP),
-                                   lockConfiguration: LockConfiguration(type: type,
-                                                                        unlockDuration: 60,
-                                                                        invalidatedByBiometricsChange: true)
-                                   ,appGroup: SDKConstants.APP_GROUP
-            )
-        } else {
-            config = FTRConfig(sdkId: SDKConstants.SDKID,
-                                   sdkKey: SDKConstants.SDKKEY,
-                                   baseUrl: SDKConstants.SDKURL,
-                                   lockConfiguration: LockConfiguration(type: type,
-                                                                        unlockDuration: 60,
-                                                                        invalidatedByBiometricsChange: true)
-            )
-        }
         
         do {
             try FTRClient.launch(config: config)
@@ -215,8 +217,8 @@ final class ConfigViewController: UIViewController {
     @IBAction func reset(_ sender: Any) {
         timer?.invalidate()
         timer = nil
-        FTRClient.reset(appGroup: UserDefaults(suiteName: SDKConstants.APP_GROUP)?
-            .bool(forKey: "app_group_enabled") == true ? SDKConstants.KEYCHAIN_ACCESS_GROUP : nil)
+        let configuration = config
+        FTRClient.reset(appGroup: configuration.appGroup, keychain: configuration.keychain, lockConfiguration: configuration.lockConfiguration)
         UserDefaults.custom.set(0,
                                   forKey: SDKConstants.KEY_CONFIG)
         

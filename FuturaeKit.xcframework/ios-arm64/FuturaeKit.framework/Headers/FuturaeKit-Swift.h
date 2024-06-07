@@ -277,9 +277,13 @@ typedef unsigned int swift_uint4  __attribute__((__ext_vector_type__(4)));
 #if __has_warning("-Watimport-in-framework-header")
 #pragma clang diagnostic ignored "-Watimport-in-framework-header"
 #endif
+@import AVFoundation;
 @import Foundation;
 @import ObjectiveC;
+@import UIKit;
 #endif
+
+#import <FuturaeKit/FuturaeKit.h>
 
 #endif
 #pragma clang diagnostic ignored "-Wproperty-attribute-mismatch"
@@ -299,60 +303,2403 @@ typedef unsigned int swift_uint4  __attribute__((__ext_vector_type__(4)));
 #endif
 
 #if defined(__OBJC__)
-@class NSData;
-
-SWIFT_CLASS("_TtC10FuturaeKit14ASN1DERParsing")
-@interface ASN1DERParsing : NSObject
-+ (NSData * _Nullable)unpackBERencodedASN1formatToRawWithSignature:(NSData * _Nonnull)signature error:(NSError * _Nullable * _Nullable)error SWIFT_WARN_UNUSED_RESULT;
-- (nonnull instancetype)init OBJC_DESIGNATED_INITIALIZER;
-@end
-
 @class NSString;
-enum AppAttestError : NSInteger;
-@class NSError;
 
-SWIFT_CLASS("_TtC10FuturaeKit9AppAttest") SWIFT_AVAILABILITY(ios,introduced=14.0)
-@interface AppAttest : NSObject
-SWIFT_CLASS_PROPERTY(@property (nonatomic, class, readonly, copy) NSString * _Nonnull keyIdDefaults;)
-+ (NSString * _Nonnull)keyIdDefaults SWIFT_WARN_UNUSED_RESULT;
-SWIFT_CLASS_PROPERTY(@property (nonatomic, class, readonly, copy) NSString * _Nonnull attestationType;)
-+ (NSString * _Nonnull)attestationType SWIFT_WARN_UNUSED_RESULT;
-SWIFT_CLASS_PROPERTY(@property (nonatomic, class, readonly, copy) NSString * _Nonnull assertionType;)
-+ (NSString * _Nonnull)assertionType SWIFT_WARN_UNUSED_RESULT;
-+ (void)getAttestOrAssertWithType:(NSString * _Nonnull)type challenge:(NSString * _Nonnull)challenge success:(void (^ _Nonnull)(NSString * _Nonnull, NSString * _Nonnull))success failure:(void (^ _Nonnull)(NSError * _Nonnull))failure SWIFT_AVAILABILITY(ios,introduced=14.0);
-+ (void)getAttestationWithChallenge:(NSString * _Nonnull)challenge success:(void (^ _Nonnull)(NSString * _Nonnull, NSString * _Nonnull))success failure:(void (^ _Nonnull)(NSError * _Nonnull))failure SWIFT_AVAILABILITY(ios,introduced=14.0);
-+ (void)getAssertionWithChallenge:(NSString * _Nonnull)challenge success:(void (^ _Nonnull)(NSString * _Nonnull, NSString * _Nonnull))success failure:(void (^ _Nonnull)(NSError * _Nonnull))failure SWIFT_AVAILABILITY(ios,introduced=14.0);
-+ (NSError * _Nonnull)errorForType:(enum AppAttestError)type rawError:(NSError * _Nullable)rawError SWIFT_WARN_UNUSED_RESULT;
-- (nonnull instancetype)init OBJC_DESIGNATED_INITIALIZER;
+SWIFT_CLASS("_TtC10FuturaeKit17ActivationURLData")
+@interface ActivationURLData : NSObject
+@property (nonatomic, readonly, copy) NSString * _Nonnull activationCode;
+@property (nonatomic, readonly, copy) NSString * _Nullable userId;
+- (nonnull instancetype)initWithActivationCode:(NSString * _Nonnull)activationCode userId:(NSString * _Nullable)userId OBJC_DESIGNATED_INITIALIZER;
+- (nonnull instancetype)init SWIFT_UNAVAILABLE;
++ (nonnull instancetype)new SWIFT_UNAVAILABLE_MSG("-init is unavailable");
 @end
 
-typedef SWIFT_ENUM(NSInteger, AppAttestError, open) {
-  AppAttestErrorServiceNotSupported = 0,
-  AppAttestErrorKeyIdFailure = 1,
-  AppAttestErrorKeyIdDefaultsNotFound = 2,
-  AppAttestErrorAttestationFailure = 3,
-  AppAttestErrorAssertionFailure = 4,
-  AppAttestErrorRetrieveChallengeFailure = 5,
-  AppAttestErrorAppIntegrityNotVerified = 6,
-  AppAttestErrorResponseError = 7,
-  AppAttestErrorNoAccountsEnrolled = 8,
-};
-static NSString * _Nonnull const AppAttestErrorDomain = @"FuturaeKit.AppAttestError";
 
+SWIFT_CLASS("_TtC10FuturaeKit8ApiError")
+@interface ApiError : NSObject
+@end
+
+@class FTRExtraInfo;
+enum AuthReplyType : NSInteger;
+@class ApproveAuthQRCode;
+@class ApproveAuthUsernameless;
+@class ApproveAuthPush;
+@class ApproveAuthMultiNumber;
+@class RejectAuthQRCode;
+@class RejectAuthUsernameless;
+@class RejectAuthPush;
+
+/// Encapsulates parameters required for an authentication reply.
+SWIFT_CLASS("_TtC10FuturaeKit19AuthReplyParameters")
+@interface AuthReplyParameters : NSObject
+@property (nonatomic, readonly, copy) NSString * _Nonnull qrCode;
+@property (nonatomic, readonly, copy) NSString * _Nonnull userId;
+@property (nonatomic, readonly, copy) NSString * _Nonnull sessionId;
+@property (nonatomic, readonly) NSInteger multiNumberChoice;
+@property (nonatomic, readonly, copy) NSArray<FTRExtraInfo *> * _Nullable extraInfo;
+@property (nonatomic, readonly) enum AuthReplyType reply;
+/// Creates an <code>AuthReplyParameters</code> instance for a push authentication reply.
+/// \param reply The type of reply (<code>approve</code>, <code>reject</code>, or <code>fraud</code>).
+///
+/// \param sessionId The session identifier for the authentication request.
+///
+/// \param userId The user identifier.
+///
+/// \param extraInfo Additional information as an array of <code>FTRExtraInfo</code>, optional.
+///
+///
+/// returns:
+/// An <code>AuthReplyParameters</code> instance corresponding to the specified reply type.
++ (AuthReplyParameters * _Nonnull)replyPush:(enum AuthReplyType)reply sessionId:(NSString * _Nonnull)sessionId userId:(NSString * _Nonnull)userId extraInfo:(NSArray<FTRExtraInfo *> * _Nullable)extraInfo SWIFT_WARN_UNUSED_RESULT;
+/// Creates an <code>AuthReplyParameters</code> instance for a QR code authentication reply.
+/// \param reply The type of reply (<code>approve</code>, <code>reject</code>, or <code>fraud</code>).
+///
+/// \param qrCode The QR code string associated with the authentication request.
+///
+/// \param extraInfo Additional information as an array of <code>FTRExtraInfo</code>, optional.
+///
+///
+/// returns:
+/// An <code>AuthReplyParameters</code> instance corresponding to the specified reply type.
++ (AuthReplyParameters * _Nonnull)replyQRCode:(enum AuthReplyType)reply qrCode:(NSString * _Nonnull)qrCode extraInfo:(NSArray<FTRExtraInfo *> * _Nullable)extraInfo SWIFT_WARN_UNUSED_RESULT;
+/// Creates an <code>AuthReplyParameters</code> instance for a usernameless QR code authentication reply.
+/// \param reply The type of reply (<code>approve</code>, <code>reject</code>, or <code>fraud</code>).
+///
+/// \param qrCode The QR code string associated with the authentication request.
+///
+/// \param userId The user identifier.
+///
+/// \param extraInfo Additional information as an array of <code>FTRExtraInfo</code>, optional.
+///
+///
+/// returns:
+/// An <code>AuthReplyParameters</code> instance corresponding to the specified reply type.
++ (AuthReplyParameters * _Nonnull)replyUsernamelessQRCode:(enum AuthReplyType)reply qrCode:(NSString * _Nonnull)qrCode userId:(NSString * _Nonnull)userId extraInfo:(NSArray<FTRExtraInfo *> * _Nullable)extraInfo SWIFT_WARN_UNUSED_RESULT;
+/// Creates an <code>AuthReplyParameters</code> instance for a multi-number choice authentication reply.
+/// \param reply The type of reply (<code>approve</code>, <code>reject</code>, or <code>fraud</code>).
+///
+/// \param multiNumberChoice The selected value for multi-number authentication.
+///
+/// \param sessionId The session identifier for the authentication request.
+///
+/// \param userId The user identifier.
+///
+/// \param extraInfo Additional information as an array of <code>FTRExtraInfo</code>, optional.
+///
+///
+/// returns:
+/// An <code>AuthReplyParameters</code> instance corresponding to the specified reply type.
++ (AuthReplyParameters * _Nonnull)replyMultiNumber:(enum AuthReplyType)reply multiNumberChoice:(NSInteger)multiNumberChoice sessionId:(NSString * _Nonnull)sessionId userId:(NSString * _Nonnull)userId extraInfo:(NSArray<FTRExtraInfo *> * _Nullable)extraInfo SWIFT_WARN_UNUSED_RESULT;
+/// Creates an instance for approving an authentication request with a QR code.
+/// \param qrCode The QR code string associated with the authentication request.
+///
+/// \param extraInfo Additional information as an array of <code>FTRExtraInfo</code>, optional.
+///
+///
+/// returns:
+/// An instance of <code>ApproveAuthQRCode</code> with the provided parameters.
++ (ApproveAuthQRCode * _Nonnull)approveQRCode:(NSString * _Nonnull)qrCode extraInfo:(NSArray<FTRExtraInfo *> * _Nullable)extraInfo SWIFT_WARN_UNUSED_RESULT;
+/// Creates an instance for approving a usernameless authentication request with a QR code.
+/// \param qrCode The QR code string associated with the authentication request.
+///
+/// \param userId The user identifier.
+///
+/// \param extraInfo Additional information as an array of <code>FTRExtraInfo</code>, optional.
+///
+///
+/// returns:
+/// An instance of <code>ApproveAuthUsernameless</code> with the provided parameters.
++ (ApproveAuthUsernameless * _Nonnull)approveUsernamelessQRCode:(NSString * _Nonnull)qrCode userId:(NSString * _Nonnull)userId extraInfo:(NSArray<FTRExtraInfo *> * _Nullable)extraInfo SWIFT_WARN_UNUSED_RESULT;
+/// Creates an instance for approving a push notification based authentication request.
+/// \param sessionId The session identifier for the authentication request.
+///
+/// \param userId The user identifier.
+///
+/// \param extraInfo Additional information as an array of <code>FTRExtraInfo</code>, optional.
+///
+///
+/// returns:
+/// An instance of <code>ApproveAuthPush</code> with the provided parameters.
++ (ApproveAuthPush * _Nonnull)approvePush:(NSString * _Nonnull)sessionId userId:(NSString * _Nonnull)userId extraInfo:(NSArray<FTRExtraInfo *> * _Nullable)extraInfo SWIFT_WARN_UNUSED_RESULT;
+/// Creates an instance for approving a multi-number choice based authentication request.
+/// \param multiNumberChoice The selected value for multi-number authentication.
+///
+/// \param sessionId The session identifier for the authentication request.
+///
+/// \param userId The user identifier.
+///
+/// \param extraInfo Additional information as an array of <code>FTRExtraInfo</code>, optional.
+///
+///
+/// returns:
+/// An instance of <code>ApproveAuthMultiNumber</code> with the provided parameters.
++ (ApproveAuthMultiNumber * _Nonnull)approvePushMultiNumber:(NSInteger)multiNumberChoice sessionId:(NSString * _Nonnull)sessionId userId:(NSString * _Nonnull)userId extraInfo:(NSArray<FTRExtraInfo *> * _Nullable)extraInfo SWIFT_WARN_UNUSED_RESULT;
+/// Creates an instance for rejecting an authentication request with a QR code.
+/// \param qrCode The QR code string associated with the authentication request.
+///
+/// \param isFraud A Boolean value indicating whether the rejection is due to fraud.
+///
+/// \param extraInfo Additional information as an array of <code>FTRExtraInfo</code>, optional.
+///
+///
+/// returns:
+/// An instance of <code>RejectAuthQRCode</code> with the provided parameters.
++ (RejectAuthQRCode * _Nonnull)rejectQRCode:(NSString * _Nonnull)qrCode isFraud:(BOOL)isFraud extraInfo:(NSArray<FTRExtraInfo *> * _Nullable)extraInfo SWIFT_WARN_UNUSED_RESULT;
+/// Creates an instance for rejecting a usernameless authentication request with a QR code.
+/// \param qrCode The QR code string associated with the authentication request.
+///
+/// \param userId The user identifier.
+///
+/// \param isFraud A Boolean value indicating whether the rejection is due to fraud.
+///
+/// \param extraInfo Additional information as an array of <code>FTRExtraInfo</code>, optional.
+///
+///
+/// returns:
+/// An instance of <code>RejectAuthUsernameless</code> with the provided parameters.
++ (RejectAuthUsernameless * _Nonnull)rejectUsernamelessQRCode:(NSString * _Nonnull)qrCode userId:(NSString * _Nonnull)userId isFraud:(BOOL)isFraud extraInfo:(NSArray<FTRExtraInfo *> * _Nullable)extraInfo SWIFT_WARN_UNUSED_RESULT;
+/// Creates an instance for rejecting a push notification based authentication request.
+/// \param sessionId The session identifier for the authentication request.
+///
+/// \param userId The user identifier.
+///
+/// \param isFraud A Boolean value indicating whether the rejection is due to fraud.
+///
+/// \param extraInfo Additional information as an array of <code>FTRExtraInfo</code>, optional.
+///
+///
+/// returns:
+/// An instance of <code>RejectAuthPush</code> with the provided parameters.
++ (RejectAuthPush * _Nonnull)rejectPush:(NSString * _Nonnull)sessionId userId:(NSString * _Nonnull)userId isFraud:(BOOL)isFraud extraInfo:(NSArray<FTRExtraInfo *> * _Nullable)extraInfo SWIFT_WARN_UNUSED_RESULT;
+- (nonnull instancetype)init SWIFT_UNAVAILABLE;
++ (nonnull instancetype)new SWIFT_UNAVAILABLE_MSG("-init is unavailable");
+@end
+
+
+/// Represents parameters for approving a multi-number choice based authentication request.
+SWIFT_CLASS("_TtC10FuturaeKit22ApproveAuthMultiNumber")
+@interface ApproveAuthMultiNumber : AuthReplyParameters
+/// Initializes a new instance of <code>ApproveAuthMultiNumber</code>.
+/// \param multiNumberChoice The selected value for multi-number authentication.
+///
+/// \param sessionId The session identifier for the authentication request.
+///
+/// \param userId The user identifier.
+///
+/// \param extraInfo Additional information as an array of <code>FTRExtraInfo</code>, optional.
+///
+- (nonnull instancetype)init:(NSInteger)multiNumberChoice sessionId:(NSString * _Nonnull)sessionId userId:(NSString * _Nonnull)userId extraInfo:(NSArray<FTRExtraInfo *> * _Nullable)extraInfo OBJC_DESIGNATED_INITIALIZER;
+@end
+
+
+/// Represents parameters for approving a push notification based authentication request.
+SWIFT_CLASS("_TtC10FuturaeKit15ApproveAuthPush")
+@interface ApproveAuthPush : AuthReplyParameters
+/// Initializes a new instance of <code>ApproveAuthPush</code>.
+/// \param sessionId The session identifier for the authentication request.
+///
+/// \param userId The user identifier.
+///
+/// \param extraInfo Additional information as an array of <code>FTRExtraInfo</code>, optional.
+///
+- (nonnull instancetype)init:(NSString * _Nonnull)sessionId userId:(NSString * _Nonnull)userId extraInfo:(NSArray<FTRExtraInfo *> * _Nullable)extraInfo OBJC_DESIGNATED_INITIALIZER;
+@end
+
+
+/// Represents parameters for approving an authentication via QR code.
+SWIFT_CLASS("_TtC10FuturaeKit17ApproveAuthQRCode")
+@interface ApproveAuthQRCode : AuthReplyParameters
+/// Initializes a new instance of <code>ApproveAuthQRCode</code>.
+/// \param qrCode QR code string for authentication.
+///
+/// \param extraInfo Additional information as an array of <code>FTRExtraInfo</code>.
+///
+- (nonnull instancetype)init:(NSString * _Nonnull)qrCode extraInfo:(NSArray<FTRExtraInfo *> * _Nullable)extraInfo OBJC_DESIGNATED_INITIALIZER;
+@end
+
+
+/// Represents parameters for approving a usernameless authentication request.
+SWIFT_CLASS("_TtC10FuturaeKit23ApproveAuthUsernameless")
+@interface ApproveAuthUsernameless : AuthReplyParameters
+/// Initializes a new instance of <code>ApproveAuthUsernameless</code>.
+/// \param qrCode The QR code string associated with the authentication request.
+///
+/// \param userId The user identifier.
+///
+/// \param extraInfo Additional information as an array of <code>FTRExtraInfo</code>, optional.
+///
+- (nonnull instancetype)init:(NSString * _Nonnull)qrCode userId:(NSString * _Nonnull)userId extraInfo:(NSArray<FTRExtraInfo *> * _Nullable)extraInfo OBJC_DESIGNATED_INITIALIZER;
+@end
+
+
+/// Represents types of authentication replies.
+typedef SWIFT_ENUM(NSInteger, AuthReplyType, open) {
+  AuthReplyTypeApprove = 0,
+  AuthReplyTypeReject = 1,
+  AuthReplyTypeFraud = 2,
+};
+
+
+SWIFT_CLASS("_TtC10FuturaeKit21AuthenticationURLData")
+@interface AuthenticationURLData : NSObject
+@property (nonatomic, readonly, copy) NSString * _Nonnull userId;
+@property (nonatomic, readonly, copy) NSString * _Nonnull sessionToken;
+@property (nonatomic, readonly, copy) NSString * _Nullable mobileAuthRedirectUri;
+- (nonnull instancetype)initWithUserId:(NSString * _Nonnull)userId sessionToken:(NSString * _Nonnull)sessionToken mobileAuthRedirectUri:(NSString * _Nullable)mobileAuthRedirectUri OBJC_DESIGNATED_INITIALIZER;
+- (nonnull instancetype)init SWIFT_UNAVAILABLE;
++ (nonnull instancetype)new SWIFT_UNAVAILABLE_MSG("-init is unavailable");
+@end
+
+@class EnrollActivationCode;
+@class EnrollShortCode;
+@class EnrollActivationCodeSDKPin;
+@class EnrollShortCodeSDKPin;
+
+/// <code>EnrollParameters</code> class encapsulates the parameters required for enrolling a user.
+SWIFT_CLASS("_TtC10FuturaeKit16EnrollParameters")
+@interface EnrollParameters : NSObject
+/// The enrollment code as a string.
+@property (nonatomic, readonly, copy) NSString * _Nonnull code;
+/// Optional SDK pin used during enrollment.
+@property (nonatomic, copy) NSString * _Nonnull sdkPin;
+/// Optional flow binding token  used during enrollment.
+@property (nonatomic, copy) NSString * _Nullable bindingToken;
+/// Creates <code>EnrollActivationCode</code> with an activation code.
+/// \param activationCode The activation code for enrollment.
+///
+///
+/// returns:
+/// An instance of <code>EnrollActivationCode</code>.
++ (EnrollActivationCode * _Nonnull)withActivationCode:(NSString * _Nonnull)activationCode SWIFT_WARN_UNUSED_RESULT;
+/// Creates <code>EnrollActivationCode</code> with an activation code.
+/// \param activationCode The activation code for enrollment.
+///
+/// \param bindingToken The token for the flow binding.
+///
+///
+/// returns:
+/// An instance of <code>EnrollActivationCode</code>.
++ (EnrollActivationCode * _Nonnull)withActivationCode:(NSString * _Nonnull)activationCode bindingToken:(NSString * _Nonnull)bindingToken SWIFT_WARN_UNUSED_RESULT;
+/// Creates <code>EnrollShortCode</code> with a short code.
+/// \param shortCode The short code for enrollment.
+///
+///
+/// returns:
+/// An instance of <code>EnrollShortCode</code>.
++ (EnrollShortCode * _Nonnull)withShortCode:(NSString * _Nonnull)shortCode SWIFT_WARN_UNUSED_RESULT;
+/// Creates <code>EnrollShortCode</code> with a short code.
+/// \param shortCode The short code for enrollment.
+///
+/// \param bindingToken The token for the flow binding.
+///
+///
+/// returns:
+/// An instance of <code>EnrollShortCode</code>.
++ (EnrollShortCode * _Nonnull)withShortCode:(NSString * _Nonnull)shortCode bindingToken:(NSString * _Nonnull)bindingToken SWIFT_WARN_UNUSED_RESULT;
+/// Creates <code>EnrollActivationCodeSDKPin</code> with an activation code and SDK pin.
+/// \param activationCode The activation code for enrollment.
+///
+/// \param sdkPin An SDK pin used for enrollment.
+///
+///
+/// returns:
+/// An instance of <code>EnrollActivationCodeSDKPin</code>.
++ (EnrollActivationCodeSDKPin * _Nonnull)withActivationCode:(NSString * _Nonnull)activationCode sdkPin:(NSString * _Nonnull)sdkPin SWIFT_WARN_UNUSED_RESULT;
+/// Creates <code>EnrollActivationCodeSDKPin</code> with an activation code and SDK pin.
+/// \param activationCode The activation code for enrollment.
+///
+/// \param sdkPin An SDK pin used for enrollment.
+///
+/// \param bindingToken The token for the flow binding.
+///
+///
+/// returns:
+/// An instance of <code>EnrollActivationCodeSDKPin</code>.
++ (EnrollActivationCodeSDKPin * _Nonnull)withActivationCode:(NSString * _Nonnull)activationCode sdkPin:(NSString * _Nonnull)sdkPin bindingToken:(NSString * _Nonnull)bindingToken SWIFT_WARN_UNUSED_RESULT;
+/// Creates <code>EnrollShortCodeSDKPin</code> with a short code and SDK pin.
+/// \param shortCode The short code for enrollment.
+///
+/// \param sdkPin An SDK pin used for enrollment.
+///
+/// \param bindingToken The token for the flow binding.
+///
+///
+/// returns:
+/// An instance of <code>EnrollShortCodeSDKPin</code>.
++ (EnrollShortCodeSDKPin * _Nonnull)withShortCode:(NSString * _Nonnull)shortCode sdkPin:(NSString * _Nonnull)sdkPin bindingToken:(NSString * _Nonnull)bindingToken SWIFT_WARN_UNUSED_RESULT;
+/// Creates <code>EnrollShortCodeSDKPin</code> with a short code and SDK pin.
+/// \param shortCode The short code for enrollment.
+///
+/// \param sdkPin An SDK pin used for enrollment.
+///
+///
+/// returns:
+/// An instance of <code>EnrollShortCodeSDKPin</code>.
++ (EnrollShortCodeSDKPin * _Nonnull)withShortCode:(NSString * _Nonnull)shortCode sdkPin:(NSString * _Nonnull)sdkPin SWIFT_WARN_UNUSED_RESULT;
+- (nonnull instancetype)init SWIFT_UNAVAILABLE;
++ (nonnull instancetype)new SWIFT_UNAVAILABLE_MSG("-init is unavailable");
+@end
+
+
+/// Represents enrollment parameters using an activation code.
+SWIFT_CLASS("_TtC10FuturaeKit20EnrollActivationCode")
+@interface EnrollActivationCode : EnrollParameters
+/// Initializes a new instance with the provided activation code.
+/// \param code The activation code for enrollment.
+///
+- (nonnull instancetype)initWithCode:(NSString * _Nonnull)code OBJC_DESIGNATED_INITIALIZER;
+/// Initializes a new instance with the provided activation code and binding token..
+/// \param code The activation code for enrollment.
+///
+/// \param bindingToken The token for the flow binding.
+///
+- (nonnull instancetype)initWithCode:(NSString * _Nonnull)code bindingToken:(NSString * _Nonnull)bindingToken OBJC_DESIGNATED_INITIALIZER;
+@end
+
+
+/// Represents enrollment parameters using an activation code and an SDK pin.
+SWIFT_CLASS("_TtC10FuturaeKit26EnrollActivationCodeSDKPin")
+@interface EnrollActivationCodeSDKPin : EnrollParameters
+/// Initializes a new instance with the provided activation code and SDK pin.
+/// \param code The activation code for enrollment.
+///
+/// \param sdkPin An SDK pin used for enrollment.
+///
+- (nonnull instancetype)initWithCode:(NSString * _Nonnull)code sdkPin:(NSString * _Nonnull)sdkPin OBJC_DESIGNATED_INITIALIZER;
+/// Initializes a new instance with the provided activation code, SDK pin and binding token.
+/// \param code The activation code for enrollment.
+///
+/// \param sdkPin An SDK pin used for enrollment.
+///
+/// \param bindingToken The token for the flow binding.
+///
+- (nonnull instancetype)initWithCode:(NSString * _Nonnull)code sdkPin:(NSString * _Nonnull)sdkPin bindingToken:(NSString * _Nonnull)bindingToken OBJC_DESIGNATED_INITIALIZER;
+@end
+
+
+
+/// Represents enrollment parameters using a short code.
+SWIFT_CLASS("_TtC10FuturaeKit15EnrollShortCode")
+@interface EnrollShortCode : EnrollParameters
+/// Initializes a new instance with the provided short code.
+/// \param code The short code for enrollment.
+///
+- (nonnull instancetype)initWithCode:(NSString * _Nonnull)code OBJC_DESIGNATED_INITIALIZER;
+/// Initializes a new instance with the provided short code and binding token.
+/// \param code The activation code for enrollment.
+///
+/// \param bindingToken The token for the flow binding.
+///
+- (nonnull instancetype)initWithCode:(NSString * _Nonnull)code bindingToken:(NSString * _Nonnull)bindingToken OBJC_DESIGNATED_INITIALIZER;
+@end
+
+
+/// Represents enrollment parameters using a short code and an SDK pin.
+SWIFT_CLASS("_TtC10FuturaeKit21EnrollShortCodeSDKPin")
+@interface EnrollShortCodeSDKPin : EnrollParameters
+/// Initializes a new instance with the provided short code and SDK pin.
+/// \param code The short code for enrollment.
+///
+/// \param sdkPin An SDK pin for enrollment.
+///
+- (nonnull instancetype)initWithCode:(NSString * _Nonnull)code sdkPin:(NSString * _Nonnull)sdkPin OBJC_DESIGNATED_INITIALIZER;
+/// Initializes a new instance with the provided short code, SDK pin and binding token..
+/// \param code The short code for enrollment.
+///
+/// \param sdkPin An SDK pin for enrollment.
+///
+/// \param bindingToken The token for the flow binding.
+///
+- (nonnull instancetype)initWithCode:(NSString * _Nonnull)code sdkPin:(NSString * _Nonnull)sdkPin bindingToken:(NSString * _Nonnull)bindingToken OBJC_DESIGNATED_INITIALIZER;
+@end
+
+@class NSDate;
+@class FTRSession;
+
+/// <code>FTRAccount</code> class represents an account within the SDK, encapsulating various details about the user and their enrollment status.
+SWIFT_CLASS("_TtC10FuturaeKit10FTRAccount")
+@interface FTRAccount : NSObject
+/// A unique identifier for the user associated with this account.
+@property (nonatomic, copy) NSString * _Nonnull userId;
+/// The username of the user, if available.
+@property (nonatomic, copy) NSString * _Nullable username;
+/// The base URL of the API server associated with this account, if applicable.
+@property (nonatomic, copy) NSString * _Nullable ftApiServerBaseUrl;
+/// A Boolean value indicating whether the user is enrolled or not.
+@property (nonatomic) BOOL enrolled;
+/// The service identifier associated with this account, if available.
+@property (nonatomic, copy) NSString * _Nullable serviceId;
+/// The device identifier for the user’s device, if applicable.
+@property (nonatomic, copy) NSString * _Nullable deviceId;
+/// The name of the service associated with this account, if available.
+@property (nonatomic, copy) NSString * _Nullable serviceName;
+/// The date and time when the account information was last updated.
+@property (nonatomic, copy) NSDate * _Nullable updatedAt;
+/// The URL string of the service logo, if available.
+@property (nonatomic, copy) NSString * _Nullable serviceLogo;
+/// An array of strings representing the allowed factors for authentication for this account.
+@property (nonatomic, copy) NSArray<NSString *> * _Nullable allowedFactors;
+/// A Boolean value indicating whether the account is locked out from the service.
+@property (nonatomic) BOOL lockedOut;
+/// An array of <code>FTRSession</code> objects representing sessions associated with this account, if available.
+@property (nonatomic, copy) NSArray<FTRSession *> * _Nullable sessions;
+/// The date and time when the account was enrolled.
+@property (nonatomic, copy) NSDate * _Nullable enrolledAt;
+- (nonnull instancetype)initWithUserId:(NSString * _Nonnull)userId username:(NSString * _Nullable)username ftApiServerBaseUrl:(NSString * _Nullable)ftApiServerBaseUrl enrolled:(BOOL)enrolled serviceId:(NSString * _Nullable)serviceId deviceId:(NSString * _Nullable)deviceId serviceName:(NSString * _Nullable)serviceName updatedAt:(NSDate * _Nullable)updatedAt serviceLogo:(NSString * _Nullable)serviceLogo allowedFactors:(NSArray<NSString *> * _Nullable)allowedFactors lockedOut:(BOOL)lockedOut sessions:(NSArray<FTRSession *> * _Nullable)sessions enrolledAt:(NSDate * _Nullable)enrolledAt OBJC_DESIGNATED_INITIALIZER;
++ (FTRAccount * _Nullable)fromDictionary:(NSDictionary<NSString *, id> * _Nonnull)dictionary SWIFT_WARN_UNUSED_RESULT;
+@property (nonatomic, readonly, copy) NSDictionary<NSString *, id> * _Nonnull asDictionary;
+- (nonnull instancetype)init SWIFT_UNAVAILABLE;
++ (nonnull instancetype)new SWIFT_UNAVAILABLE_MSG("-init is unavailable");
+@end
+
+@class FTRActivityDetails;
+
+/// <code>FTRAccountActivity</code> class provides detailed information about a specific activity in an account’s history.
+SWIFT_CLASS("_TtC10FuturaeKit18FTRAccountActivity")
+@interface FTRAccountActivity : NSObject
+/// Detailed information about the activity, encapsulated in an <code>FTRActivityDetails</code> object.
+@property (nonatomic, readonly, strong) FTRActivityDetails * _Nonnull details;
+/// The identifier of the device associated with this activity, if applicable.
+@property (nonatomic, readonly, copy) NSString * _Nullable deviceId;
+/// The country code associated with the device used for the login, if available.
+@property (nonatomic, readonly, copy) NSString * _Nullable loginDevCountry;
+/// The timestamp representing when the activity occurred.
+@property (nonatomic, readonly) NSInteger timestamp;
+/// The user identifier associated with this activity, if applicable.
+@property (nonatomic, readonly, copy) NSString * _Nullable userId;
+@end
+
+
+/// <code>FTRAccountHistory</code> class represents the activity history associated with an account.
+SWIFT_CLASS("_TtC10FuturaeKit17FTRAccountHistory")
+@interface FTRAccountHistory : NSObject
+/// An array of <code>FTRAccountActivity</code> objects, each detailing an individual activity in the account’s history.
+@property (nonatomic, readonly, copy) NSArray<FTRAccountActivity *> * _Nonnull activity;
+/// The total count of activities in the account’s history.
+@property (nonatomic, readonly) NSInteger count;
+@property (nonatomic, readonly, copy) NSDictionary<NSString *, id> * _Nonnull asDictionary;
+@end
+
+@class FTRFeatureFlag;
+
+/// <code>FTRAccountsStatus</code> class encapsulates the status of multiple accounts along with associated feature flags.
+SWIFT_CLASS("_TtC10FuturaeKit17FTRAccountsStatus")
+@interface FTRAccountsStatus : NSObject
+/// An array of <code>FTRAccount</code> objects, each representing an account with its detailed information.
+@property (nonatomic, readonly, copy) NSArray<FTRAccount *> * _Nonnull accounts;
+/// An array of <code>FTRFeatureFlag</code> objects, each indicating the status and details of a specific feature flag.
+@property (nonatomic, readonly, copy) NSArray<FTRFeatureFlag *> * _Nonnull featureFlags;
+@property (nonatomic, readonly, copy) NSDictionary<NSString *, id> * _Nonnull asDictionary;
+- (nonnull instancetype)init SWIFT_UNAVAILABLE;
++ (nonnull instancetype)new SWIFT_UNAVAILABLE_MSG("-init is unavailable");
+@end
+
+
+/// <code>FTRActivityDetails</code> class encapsulates the fine-grained details of an individual activity within an account’s history.
+SWIFT_CLASS("_TtC10FuturaeKit18FTRActivityDetails")
+@interface FTRActivityDetails : NSObject
+/// The factor associated with the activity.
+@property (nonatomic, readonly, copy) NSString * _Nonnull factor;
+/// The type of activity, if specified.
+@property (nonatomic, readonly, copy) NSString * _Nullable type;
+/// The result of the activity,  if available.
+@property (nonatomic, readonly, copy) NSString * _Nullable result;
+/// The type of device used in the activity, if available.
+@property (nonatomic, readonly, copy) NSString * _Nullable deviceType;
+/// The backend IP address associated with the activity, if available.
+@property (nonatomic, readonly, copy) NSString * _Nullable backendIp;
+/// The trusted device IP address involved in the activity, if available.
+@property (nonatomic, readonly, copy) NSString * _Nullable trustedDeviceIp;
+@end
+
+enum SDKStatus : NSInteger;
+
+SWIFT_CLASS("_TtC10FuturaeKit9FTRClient")
+@interface FTRClient : NSObject
+SWIFT_CLASS_PROPERTY(@property (nonatomic, class, readonly, strong) FTRClient * _Nonnull shared;)
++ (FTRClient * _Nonnull)shared SWIFT_WARN_UNUSED_RESULT;
+/// Query the SDK to find out the current SDK  status.
+///
+/// returns:
+/// <code>SDKStatus</code>type, can be <code>launched</code>, <code>launching</code>, <code>notLaunched</code>, <code>needsReset</code>.
+SWIFT_CLASS_PROPERTY(@property (nonatomic, class, readonly) enum SDKStatus sdkStatus;)
++ (enum SDKStatus)sdkStatus SWIFT_WARN_UNUSED_RESULT;
+- (nonnull instancetype)init SWIFT_UNAVAILABLE;
++ (nonnull instancetype)new SWIFT_UNAVAILABLE_MSG("-init is unavailable");
+@end
+
+@class FTRConfig;
+
+@interface FTRClient (SWIFT_EXTENSION(FuturaeKit))
+/// Launches the SDK with the provided configuration.
+/// This method initializes the SDK with the given <code>FTRConfig</code> instance, setting up necessary parameters and configurations. It should be called before using any SDK functionality. The method can throw an error if the configuration is invalid or if there’s an issue during the initialization process.
+/// \param config An <code>FTRConfig</code> object containing the configuration settings for the SDK.
+///
+///
+/// throws:
+/// An error if the SDK fails to launch due to invalid configuration or other initialization issues.
++ (BOOL)launchWithConfig:(FTRConfig * _Nonnull)config error:(NSError * _Nullable * _Nullable)error;
+@end
+
+
+
+@interface FTRClient (SWIFT_EXTENSION(FuturaeKit))
+/// Retrieves a synchronous authentication token for a specified user.
+/// \param userId The user identifier for whom the authentication token is retrieved.
+///
+///
+/// throws:
+/// An error if there is an issue in retrieving the token.
+///
+/// returns:
+/// A string representing the synchronous authentication token.
+- (NSString * _Nullable)getSynchronousAuthTokenWithUserId:(NSString * _Nonnull)userId error:(NSError * _Nullable * _Nullable)error SWIFT_WARN_UNUSED_RESULT;
+@end
+
+@class NSURL;
+@protocol FTROpenURLDelegate;
+
+@interface FTRClient (SWIFT_EXTENSION(FuturaeKit))
+/// Handle URI scheme calls, which can be used either to enroll or authenticate.
+/// \param url valid url string to be handled by the SDK.
+///
+/// \param options options to open the URL
+///
+/// \param delegate delegate to be notified about the operation result.
+///
+- (void)openURL:(NSURL * _Nonnull)url options:(NSDictionary<UIApplicationOpenURLOptionsKey, id> * _Nonnull)options delegate:(id <FTROpenURLDelegate> _Nullable)delegate;
+@end
+
+
+
+
+
+
+@class SessionParameters;
+
+@interface FTRClient (SWIFT_EXTENSION(FuturaeKit))
+/// Retrieves information for a specific session based on the given parameters.
+/// This method fetches the details of a session identified by <code>SessionParameters</code>. Upon successful retrieval, the <code>success</code> closure is called with an <code>FTRSession</code> object containing the session details. In case of failure during the retrieval process, the <code>failure</code> closure is executed with an error providing details about the failure reason.
+/// \param parameters An instance of <code>SessionParameters</code> containing the session ID or token and associated user ID for which the session information is requested.
+///
+/// \param success A closure to be called upon successful retrieval of session information. It provides an <code>FTRSession</code> object containing the session details.
+///
+/// \param failure A closure to be called in case of a failure in retrieving session information, providing an error describing the failure reason.
+///
+- (void)getSessionInfo:(SessionParameters * _Nonnull)parameters success:(void (^ _Nonnull)(FTRSession * _Nonnull))success failure:(void (^ _Nonnull)(NSError * _Nonnull))failure;
+@end
+
+
+
+
+@interface FTRClient (SWIFT_EXTENSION(FuturaeKit))
+/// Method using Apple’s App Attest service to certify that  a valid instance of the app is installed. Upon completion, it calls the appropriate success or failure closure based on the outcome.
+/// \param appId Team ID + App bundle identifier For example: T82Z6XGNMX.com.futurae.FuturaeDemo.
+///
+/// \param production A boolean value which indicates whether the app is in production mode (if built for testflight, app store)
+///
+/// \param success A closure called upon successful configuration switch.
+///
+/// \param failure A closure called in case of a failure in switching the lock configuration, providing an error describing the failure reason.
+///
+- (void)appAttestationWithAppId:(NSString * _Nonnull)appId production:(BOOL)production success:(void (^ _Nonnull)(void))success failure:(void (^ _Nonnull)(NSError * _Nonnull))failure SWIFT_AVAILABILITY(ios,introduced=14.0);
+@end
+
+
+@interface FTRClient (SWIFT_EXTENSION(FuturaeKit))
+/// Enrolls a user with the provided parameters.
+/// This method initiates the enrollment process using the given <code>EnrollParameters</code>. On completion, either the <code>success</code> or <code>failure</code> callback is executed based on the outcome of the enrollment process.
+/// \param parameters An instance of <code>EnrollParameters</code> containing the necessary details for enrollment.
+///
+/// \param success A closure to be called upon successful enrollment.
+///
+/// \param failure A closure to be called in case of an enrollment failure, providing an error describing the failure reason.
+///
+- (void)enroll:(EnrollParameters * _Nonnull)parameters success:(void (^ _Nonnull)(void))success failure:(void (^ _Nonnull)(NSError * _Nonnull))failure;
+@end
+
+
+
+
+@class TOTPParameters;
+@class FTRTotp;
+
+@interface FTRClient (SWIFT_EXTENSION(FuturaeKit))
+/// Retrieves a Time-based One-Time Password (TOTP) based on the specified parameters.
+/// This method generates a TOTP using the provided <code>TOTPParameters</code>. Upon successful generation, the <code>success</code> closure is called with an <code>FTRTotp</code> object containing the TOTP and its remaining validity period. In case of failure during the TOTP generation process, the <code>failure</code> closure is executed with an error detailing the reason for failure.
+/// \param parameters An instance of <code>TOTPParameters</code> containing the necessary details for TOTP generation.
+///
+/// \param success A closure to be called upon successful TOTP generation. It provides an <code>FTRTotp</code> object containing the TOTP and its remaining validity period.
+///
+/// \param failure A closure to be called in case of a failure in generating the TOTP, providing an error describing the failure reason.
+///
+- (void)getTOTP:(TOTPParameters * _Nonnull)parameters success:(void (^ _Nonnull)(FTRTotp * _Nonnull))success failure:(void (^ _Nonnull)(NSError * _Nonnull))failure;
+@end
+
+
+
+
+@interface FTRClient (SWIFT_EXTENSION(FuturaeKit))
+/// Reply with approve or reject to an authentication using the provided parameters with success and failure callbacks.
+/// \param parameters The authentication parameters.
+///
+/// \param success A closure called on successful reply operation.
+///
+/// \param failure A closure called if an error occurs during reply operation..
+///
+- (void)replyAuth:(AuthReplyParameters * _Nonnull)parameters success:(void (^ _Nonnull)(void))success failure:(void (^ _Nonnull)(NSError * _Nonnull))failure;
+@end
+
+
+@interface FTRClient (SWIFT_EXTENSION(FuturaeKit)) <FTRAdaptiveClientDelegate>
+- (void)logCollectedData:(NSDictionary<NSString *, id> * _Nonnull)collectedData retry:(BOOL)retry;
+@end
+
+
+@class FTRKeychainConfig;
+@class LockConfiguration;
+
+@interface FTRClient (SWIFT_EXTENSION(FuturaeKit))
+/// This method is deprecated.
+/// warning:
+/// Deprecated. Use <code>reset(appGroup:keychain:lockConfiguration)</code> instead.
+/// Reset the SDK to a clean installation state. This will irreversibly reset the configuration and remove all accounts, keys, secrets, credentials and lock configurations from the SDK.
+/// \param appGroup The app group parameter used when previously launching the SDK.
+///
++ (void)resetWithAppGroup:(NSString * _Nullable)appGroup SWIFT_DEPRECATED_MSG("Use reset(appGroup:keychain:lockConfiguration) instead.");
+/// Reset the SDK to a clean installation state. This will irreversibly reset the configuration and remove all accounts, keys, secrets, credentials and lock configurations from the SDK.
+/// \param appGroup The app group parameter used when previously launching the SDK.
+///
+/// \param keychain Configuration settings for keychain access, defaulting to default configuration.
+///
+/// \param lockConfiguration Lock configuration settings.
+///
++ (void)resetWithAppGroup:(NSString * _Nullable)appGroup keychain:(FTRKeychainConfig * _Nullable)keychain lockConfiguration:(LockConfiguration * _Nonnull)lockConfiguration;
+- (void)clearDataFromDB:(BOOL)fromDB fromKeychain:(BOOL)fromKeychain;
+@end
+
+
+
+@class UnlockParameters;
+
+@interface FTRClient (SWIFT_EXTENSION(FuturaeKit))
+/// Unlocks using the specified unlocking method and parameters.
+/// This method initiates the unlock process using the given <code>UnlockParameters</code>. Upon completion, it calls the appropriate success or failure closure based on the outcome.
+/// \param parameters An instance of <code>UnlockParameters</code> containing the necessary details for the unlocking process.
+///
+/// \param success A closure to be called upon successful unlocking.
+///
+/// \param failure A closure to be called in case of an unlocking failure, providing an error describing the failure reason.
+///
+- (void)unlock:(UnlockParameters * _Nonnull)parameters success:(void (^ _Nonnull)(void))success failure:(void (^ _Nonnull)(NSError * _Nonnull))failure;
+/// Locks the SDK, throwing an error if the locking process fails.
+///
+/// throws:
+/// An error if the SDK or the component fails to lock.
+- (BOOL)lockAndReturnError:(NSError * _Nullable * _Nullable)error;
+@end
+
+@class NSData;
+@protocol FTRNotificationDelegate;
+
+@interface FTRClient (SWIFT_EXTENSION(FuturaeKit))
+/// Register push notifications token.
+/// \param deviceToken push notification token obtained from APN.
+///
+- (void)registerPushToken:(NSData * _Nonnull)deviceToken success:(void (^ _Nonnull)(void))success failure:(void (^ _Nonnull)(NSError * _Nonnull))failure;
+/// Handle a received push notification, and perform the required action.
+/// This method is protected if the session contains <code>extra_info</code>. If that’s the case, the SDK needs to be unlocked by verifying the user presence, prior to handling the push notification.
+/// \param payload received push notification payload.
+///
+/// \param delegate delegate to be notified about the operation result.
+///
+- (void)handleNotification:(NSDictionary * _Nonnull)payload delegate:(id <FTRNotificationDelegate> _Nullable)delegate;
+@end
+
+@class SwitchLockParameters;
+
+@interface FTRClient (SWIFT_EXTENSION(FuturaeKit))
+/// Switches to a new lock configuration based on the provided parameters.
+/// This method allows changing the current lock configuration of the SDK to a new one as specified in <code>SwitchLockParameters</code>. This could involve switching to biometrics, passcode, SDK pin, or no lock at all. Upon completion, it calls the appropriate success or failure closure based on the outcome.
+/// \param parameters An instance of <code>SwitchLockParameters</code> containing the new lock configuration and related details.
+///
+/// \param success A closure called upon successful configuration switch.
+///
+/// \param failure A closure called in case of a failure in switching the lock configuration, providing an error describing the failure reason.
+///
+- (void)switchToLockConfiguration:(SwitchLockParameters * _Nonnull)parameters success:(void (^ _Nonnull)(void))success failure:(void (^ _Nonnull)(NSError * _Nonnull))failure;
+/// Updates the SDK configuration with new settings for the app group and/or keychain.
+/// This method allows updating the SDK’s operational settings, such as the app group identifier and keychain configuration. It’s useful for dynamically adjusting these settings post-initialization. The method executes either the success or failure closure based on the outcome of the update process.
+/// \param appGroup An optional new app group identifier.
+///
+/// \param keychainConfig An optional new keychain configuration.
+///
+/// \param success A closure to be called upon successful configuration update. It may provide additional success-related information.
+///
+/// \param failure A closure to be called in case of a failure in updating the configuration, providing an error describing the failure reason.
+///
+- (void)updateSDKConfigWithAppGroup:(NSString * _Nullable)appGroup keychainConfig:(FTRKeychainConfig * _Nullable)keychainConfig success:(void (^ _Nonnull)(void))success failure:(void (^ _Nonnull)(NSError * _Nonnull))failure;
+@end
+
+enum FTRQRCodeType : NSInteger;
+@class OfflineQRCodeParameters;
+
+@interface FTRClient (SWIFT_EXTENSION(FuturaeKit))
+/// Determines the type of a given QR code.
+/// This method analyzes the provided QR code string and returns the corresponding <code>FTRQRCodeType</code>.
+/// \param qrCode The QR code string to be analyzed.
+///
+///
+/// returns:
+/// The <code>FTRQRCodeType</code> corresponding to the QR code.
++ (enum FTRQRCodeType)qrCodeTypeFrom:(NSString * _Nonnull)qrCode SWIFT_WARN_UNUSED_RESULT;
+/// Retrieves a verification code for an offline QR code based on the specified parameters.
+/// This method generates a verification code using the provided <code>OfflineQRCodeParameters</code>. Upon successful generation, the <code>success</code> closure is called with the verification code. In case of failure during the process, the <code>failure</code> closure is executed with an error detailing the reason for failure.
+/// \param parameters An instance of <code>OfflineQRCodeParameters</code> containing the necessary details for generating the verification code.
+///
+/// \param success A closure to be called upon successful generation of the verification code.
+///
+/// \param failure A closure to be called in case of a failure in generating the verification code, providing an error describing the failure reason.
+///
+- (void)getOfflineQRVerificationCode:(OfflineQRCodeParameters * _Nonnull)parameters success:(void (^ _Nonnull)(NSString * _Nonnull))success failure:(void (^ _Nonnull)(NSError * _Nonnull))failure;
+/// Extracts extra information from an offline QR code.
+/// This method analyzes an offline QR code string and extracts additional information encoded within it. The extracted information is returned as an array of <code>FTRExtraInfo</code> objects, each representing a key-value pair of the extra data contained in the QR code.
+/// \param QRCode The offline QR code string to be analyzed.
+///
+///
+/// returns:
+/// An array of <code>FTRExtraInfo</code> objects representing the additional information extracted from the QR code.
+- (NSArray<FTRExtraInfo *> * _Nonnull)extraInfoFromOfflineQRCode:(NSString * _Nonnull)QRCode SWIFT_WARN_UNUSED_RESULT;
+@end
+
+@class FTRMigrationCheckData;
+@class MigrationParameters;
+
+@interface FTRClient (SWIFT_EXTENSION(FuturaeKit))
+/// Retrieves a list of accounts that are eligible for migration.
+/// This method checks for accounts that can be migrated and returns the results through the <code>success</code> closure. If there is an error or issue in fetching the migratable accounts, the <code>failure</code> closure is called with an error detailing the issue.
+/// \param success A closure called with <code>FTRMigrationCheckData</code> upon successful retrieval of migratable accounts. This data includes details about the accounts that can be migrated.
+///
+/// \param failure A closure called in case of a failure in retrieving migratable accounts, providing an error describing the failure reason.
+///
+- (void)getMigratableAccountsWithSuccess:(void (^ _Nonnull)(FTRMigrationCheckData * _Nonnull))success failure:(void (^ _Nonnull)(NSError * _Nonnull))failure;
+/// Function to execute the Automatic Account Migration, and recover accounts enrolled in a previous installation or device.
+/// For this method to succeed, the device must have valid migration data and no accounts were enrolled before calling this method.
+/// This method initiates the migration of accounts using the given <code>MigrationParameters</code>. Upon successful migration, the <code>success</code> closure is executed with relevant data or confirmation. In case of failure during the migration process, the <code>failure</code> closure is called with an error providing details about the failure reason.
+/// \param parameters An instance of <code>MigrationParameters</code> containing the necessary details for the migration process. Defaults to standard parameters if not specified.
+///
+/// \param success A closure to be called upon successful migration of accounts. It may provide additional success-related information or confirmation.
+///
+/// \param failure A closure to be called in case of a migration failure, providing an error describing the failure reason.
+///
+- (void)migrateAccounts:(MigrationParameters * _Nonnull)parameters success:(void (^ _Nonnull)(NSArray<FTRAccount *> * _Nonnull))success failure:(void (^ _Nonnull)(NSError * _Nonnull))failure;
+@end
+
+
+
+@interface FTRClient (SWIFT_EXTENSION(FuturaeKit))
+/// Activate the biometric authentication as a means of convenience to verify the user presence, so that the user doesn’t have to enter the Pin to unlock the SDK.
+/// This method is only availble when the SDK lock configuration type is <code>LockConfigurationTypeSDKPinWithBiometricsOptional</code>.
+///
+/// throws:
+/// An error if the activation of biometrics fails.
+- (BOOL)activateBiometricsAndReturnError:(NSError * _Nullable * _Nullable)error;
+/// Deactivate biometrics as an authentication method.
+/// This function revokes the biometric authentication capability for unlocking the SDK. This method is only availble when the SDK lock configuration type is <code>LockConfigurationTypeSDKPinWithBiometricsOptional</code>.
+///
+/// throws:
+/// An error if the deactivation of biometrics fails.
+- (BOOL)deactivateBiometricsAndReturnError:(NSError * _Nullable * _Nullable)error;
+/// Changes the SDK-specific pin.
+/// This method allows the user to change the SDK-specific pin. On completion, either the <code>success</code> or <code>failure</code> callback is executed based on the outcome of the  process.
+/// \param newSDKPin The new SDK pin to be set.
+///
+/// \param success A closure to be called upon successful change of the SDK pin.
+///
+/// \param failure A closure to be called in case of a failure in changing the SDK pin, providing an error describing the failure reason.
+///
+- (void)changeSDKPinWithNewSDKPin:(NSString * _Nonnull)newSDKPin success:(void (^ _Nonnull)(void))success failure:(void (^ _Nonnull)(NSError * _Nonnull))failure;
+@end
+
+
+@protocol FTRUserPresenceDelegate;
+
+@interface FTRClient (SWIFT_EXTENSION(FuturaeKit))
+@property (nonatomic, readonly, copy) NSString * _Nonnull baseURL;
+- (void)logAnalyticsData:(NSDictionary<NSString *, id> * _Nonnull)analyticsData success:(void (^ _Nonnull)(void))success failure:(void (^ _Nonnull)(NSError * _Nonnull))failure;
+- (void)setUserPresenceDelegate:(id <FTRUserPresenceDelegate> _Nullable)delegate;
+/// Check if SDK data exists for the specified configuration
+/// \param appGroup The app group parameter.
+///
+/// \param keychainConfig The keychain configuration object. If nil is passed default keychain configuration will be applied.
+///
+/// \param lockConfiguration The lock configuration object.
+///
++ (BOOL)checkDataExistsForAppGroup:(NSString * _Nullable)appGroup keychainConfig:(FTRKeychainConfig * _Nullable)keychainConfig lockConfiguration:(LockConfiguration * _Nonnull)lockConfiguration SWIFT_WARN_UNUSED_RESULT;
+/// Decrypt extra info that is encrypted and provided from the push notification content
+/// \param encryptedExtraInfo value of <code>extra_info_enc</code> key from the notification user info dictionary.
+///
+/// \param userId The account’s Futurae user id.
+///
+///
+/// returns:
+/// The decrypted extra info as an array of key value pairs.
+- (NSArray<FTRExtraInfo *> * _Nullable)decryptExtraInfo:(NSString * _Nonnull)encryptedExtraInfo userId:(NSString * _Nonnull)userId error:(NSError * _Nullable * _Nullable)error SWIFT_WARN_UNUSED_RESULT;
+@end
+
+
+
+@protocol FTRAdaptiveSDKDelegate;
+
+@interface FTRClient (SWIFT_EXTENSION(FuturaeKit))
+/// Disable adaptive mechanism.
+- (void)disableAdaptive;
+/// Enable adaptive mechanism.
+/// \param delegate An object that conforms to the FTRAdaptiveSDKDelegate protocol.
+///
+- (void)enableAdaptiveWithDelegate:(id <FTRAdaptiveSDKDelegate> _Nonnull)delegate;
+/// Trigger an adaptive data collection.
+- (void)collectAndSubmitObservations;
+/// Check if adaptive mechanism is enabled.
+///
+/// returns:
+/// A boolean value indicating if adaptive is enabled
+@property (nonatomic, readonly) BOOL isAdaptiveEnabled;
+/// When a collection is requested, set the time in seconds for which the last adaptive collection should be returned until a new collection starts.
+/// \param threshold Threshold in seconds.
+///
+- (BOOL)setAdaptiveTimeThreshold:(NSInteger)threshold error:(NSError * _Nullable * _Nullable)error;
+/// The SDK will send adaptive collections to the backend, if adaptive mechanism is enabled.
+/// If for some reason sending the collections fails, they will move to a pending collection list and the SDK will try to send them again upon next launch.
+///
+/// returns:
+/// Array of adaptive collections that are pending sending to backend
+@property (nonatomic, readonly, copy) NSArray<NSDictionary<NSString *, id> *> * _Nonnull pendingAdaptiveCollections;
+@end
+
+
+@interface FTRClient (SWIFT_EXTENSION(FuturaeKit))
+/// Retrieves all accounts.
+/// This method fetches all accounts stored locally and returns them as an array of <code>FTRAccount</code> objects.
+///
+/// throws:
+/// An error if there is an issue in fetching the accounts.
+///
+/// returns:
+/// An array of <code>FTRAccount</code> objects representing all accounts.
+- (NSArray<FTRAccount *> * _Nullable)getAccountsAndReturnError:(NSError * _Nullable * _Nullable)error SWIFT_WARN_UNUSED_RESULT;
+/// Retrieves a specific account by its user identifier.
+/// This method fetches the account associated with the provided user identifier and returns it as an <code>FTRAccount</code> object.
+/// \param userId The user identifier of the account to retrieve.
+///
+///
+/// throws:
+/// An error if the account cannot be found or if there is an issue in fetching the account.
+///
+/// returns:
+/// An <code>FTRAccount</code> object representing the requested account.
+- (FTRAccount * _Nullable)getAccountByUserId:(NSString * _Nonnull)userId error:(NSError * _Nullable * _Nullable)error SWIFT_WARN_UNUSED_RESULT;
+/// Logs out the specified account.
+/// This method performs the necessary actions to log out the specified <code>FTRAccount</code>.
+/// \param account The <code>FTRAccount</code> to be logged out.
+///
+/// \param success A closure called on successful logout.
+///
+/// \param failure A closure called if an error occurs during logout.
+///
+- (void)logoutAccount:(FTRAccount * _Nonnull)account success:(void (^ _Nonnull)(void))success failure:(void (^ _Nonnull)(NSError * _Nonnull))failure;
+/// Delete user account from the SDK.
+/// This is a method that forcefully removes account from the SDK DB.
+/// To perform logout under the normal circumstances, please use the designated method <code>logoutUser:callback:</code>.
+/// The reason to use this method might be case when account is remotely unenrolled but treated as enrolled by the SDK.
+/// \param account The <code>FTRAccount</code> to be deleted.
+///
+///
+/// throws:
+/// An error if there is an issue in deleting the account.
+- (BOOL)deleteAccount:(FTRAccount * _Nonnull)account error:(NSError * _Nullable * _Nullable)error;
+/// Retrieves the status of multiple accounts.
+/// This method fetches the status for an array of <code>FTRAccount</code> objects. The result is provided through the <code>success</code> closure. If there is an error or issue in fetching the accounts’ status, the <code>failure</code> closure is called with an error detailing the issue.
+/// \param accounts An array of <code>FTRAccount</code> objects whose status needs to be retrieved.
+///
+/// \param success A closure called with <code>FTRAccountsStatus</code> upon successful retrieval of accounts’ status.
+///
+/// \param failure A closure called in case of a failure in retrieving the accounts’ status, providing an error describing the failure reason.
+///
+- (void)getAccountsStatus:(NSArray<FTRAccount *> * _Nonnull)accounts success:(void (^ _Nonnull)(FTRAccountsStatus * _Nonnull))success failure:(void (^ _Nonnull)(NSError * _Nonnull))failure;
+/// Retrieves the history of a specific account.
+/// This method fetches the historical activities for the specified <code>FTRAccount</code>. The history is provided through the <code>success</code> closure. In case of a failure or issue in fetching the account history, the <code>failure</code> closure is called with an error detailing the issue.
+/// \param account The <code>FTRAccount</code> whose history needs to be retrieved.
+///
+/// \param success A closure called with <code>FTRAccountHistory</code> upon successful retrieval of the account’s history.
+///
+/// \param failure A closure called in case of a failure in retrieving the account’s history, providing an error describing the failure reason.
+///
+- (void)getAccountHistory:(FTRAccount * _Nonnull)account success:(void (^ _Nonnull)(FTRAccountHistory * _Nonnull))success failure:(void (^ _Nonnull)(NSError * _Nonnull))failure;
+@end
+
+@protocol FTRClientDelegate;
+@class SDKState;
 @class JailbreakStatus;
 
-SWIFT_CLASS("_TtC10FuturaeKit14DeviceSecurity")
-@interface DeviceSecurity : NSObject
-+ (JailbreakStatus * _Nonnull)jailbreakStatus SWIFT_WARN_UNUSED_RESULT;
+@interface FTRClient (SWIFT_EXTENSION(FuturaeKit))
+/// Query the SDK to find out whether it has launched.
+///
+/// returns:
+/// <code>true</code> if the SDK has launched, otherwise returns <code>false</code>.
+SWIFT_CLASS_PROPERTY(@property (nonatomic, class, readonly) BOOL sdkIsLaunched;)
++ (BOOL)sdkIsLaunched SWIFT_WARN_UNUSED_RESULT;
+/// Set delegate for receving SDK updates such as SDK status change.
+/// \param delegate An object that conforms to the FTRClientDelegate protocol.
+///
++ (void)setDelegate:(id <FTRClientDelegate> _Nullable)delegate;
+/// Query the SDK to find out whether it is unlocked.
+///
+/// returns:
+/// <code>true</code> if the SDK is locked, otherwise returns <code>false</code>.
+@property (nonatomic, readonly) BOOL isLocked;
+/// Returns a list of <code>UnlockMethodType</code> enum values that the SDK can currently be unlocked with.
+/// The mapping of the returned numbers is:
+/// <ul>
+///   <li>
+///     UnlockMethodType.biometrics = 1
+///   </li>
+///   <li>
+///     UnlockMethodType.biometricsOrPasscode = 2
+///   </li>
+///   <li>
+///     UnlockMethodType.sdkPin = 3
+///   </li>
+///   <li>
+///     UnlockMethodType.none = 4
+///   </li>
+/// </ul>
+///
+/// returns:
+/// An array of <code>Int</code> values for the currently active unlock methods, which can be used to verify the user presence and therefore unlock the SDK.
+@property (nonatomic, readonly, copy) NSArray<NSNumber *> * _Nonnull activeUnlockMethodsValues;
+///
+/// returns:
+/// The currently set lock configuration for the SDK
+@property (nonatomic, readonly, strong) LockConfiguration * _Nonnull currentLockConfiguration;
+/// Get information about the state of the SDK , such as lock status and remaining unlocked duration.
+///
+/// returns:
+/// <code>SDKState</code> object
+@property (nonatomic, readonly, strong) SDKState * _Nonnull sdkState;
+/// Check if the device’s biometrics settings have been changed, which renders the SDK biometrics invalid.
+///
+/// returns:
+/// <code>true</code> if the biometrics keys have been changed, othewise returns <code>false</code>.
+@property (nonatomic, readonly) BOOL haveBiometricsChanged;
+/// Method used to determine the jailbreak status of the device
+///
+/// returns:
+/// <code>JailbreakStatus</code> object with the jailbreak status and a message for which jailbreak indicator was detected
+@property (nonatomic, readonly, strong) JailbreakStatus * _Nonnull jailbreakStatus;
+SWIFT_CLASS_PROPERTY(@property (nonatomic, class, readonly, copy) NSString * _Nonnull clientVersion;)
++ (NSString * _Nonnull)clientVersion SWIFT_WARN_UNUSED_RESULT;
+///
+/// returns:
+/// true if current build is beta and false otherwise.
+@property (nonatomic, readonly) BOOL isBeta;
+@end
+
+
+SWIFT_PROTOCOL("_TtP10FuturaeKit17FTRClientDelegate_")
+@protocol FTRClientDelegate
+- (void)didUpdateStatusWithStatus:(enum SDKStatus)status;
+@end
+
+
+/// <code>FTRConfig</code> is a class that encapsulates the configuration settings for the SDK.
+SWIFT_CLASS("_TtC10FuturaeKit9FTRConfig")
+@interface FTRConfig : NSObject
+@property (nonatomic, readonly, copy) NSString * _Nonnull sdkKey;
+@property (nonatomic, readonly, copy) NSString * _Nonnull sdkId;
+@property (nonatomic, readonly, copy) NSString * _Nonnull baseUrl;
+@property (nonatomic, readonly, copy) NSString * _Nonnull locale;
+@property (nonatomic, readonly, copy) NSString * _Nullable appGroup;
+@property (nonatomic, readonly, copy) NSArray<NSString *> * _Nonnull capabilities;
+@property (nonatomic, readonly, strong) FTRKeychainConfig * _Nonnull keychain;
+@property (nonatomic, readonly, strong) LockConfiguration * _Nonnull lockConfiguration;
+SWIFT_CLASS_PROPERTY(@property (nonatomic, class, readonly, copy) NSString * _Nonnull defaultBaseUrl;)
++ (NSString * _Nonnull)defaultBaseUrl SWIFT_WARN_UNUSED_RESULT;
+/// Initializes a new <code>FTRConfig</code> instance with the specified parameters.
+/// \param sdkId The unique identifier for the SDK.
+///
+/// \param sdkKey The key associated with the SDK.
+///
+/// \param baseUrl The base URL for network requests, defaulting to <code>FTRConfig.defaultBaseUrl</code>.
+///
+/// \param keychain Configuration settings for keychain access, defaulting to default configuration.
+///
+/// \param lockConfiguration Lock configuration settings.
+///
+/// \param appGroup The app group identifier, optional.
+///
+- (nonnull instancetype)initWithSdkId:(NSString * _Nonnull)sdkId sdkKey:(NSString * _Nonnull)sdkKey baseUrl:(NSString * _Nonnull)baseUrl keychain:(FTRKeychainConfig * _Nonnull)keychain lockConfiguration:(LockConfiguration * _Nonnull)lockConfiguration appGroup:(NSString * _Nullable)appGroup OBJC_DESIGNATED_INITIALIZER;
+/// Validates the current configuration.
+///
+/// returns:
+/// <code>true</code> if the configuration is valid, <code>false</code> otherwise.
+- (BOOL)isValid SWIFT_WARN_UNUSED_RESULT;
+- (nonnull instancetype)init SWIFT_UNAVAILABLE;
++ (nonnull instancetype)new SWIFT_UNAVAILABLE_MSG("-init is unavailable");
+@end
+
+
+/// <code>FTRExtraInfo</code> class represents a key-value pair for additional information.
+SWIFT_CLASS("_TtC10FuturaeKit12FTRExtraInfo")
+@interface FTRExtraInfo : NSObject
+@property (nonatomic, readonly, copy) NSString * _Nonnull key;
+@property (nonatomic, readonly, copy) NSString * _Nonnull value;
+/// Initializes a new <code>FTRExtraInfo</code> instance with the provided key and value.
+/// \param key The key for the extra information.
+///
+/// \param value The value associated with the key.
+///
+- (nonnull instancetype)initWithKey:(NSString * _Nonnull)key value:(NSString * _Nonnull)value OBJC_DESIGNATED_INITIALIZER;
+/// Converts a dictionary into an array of <code>FTRExtraInfo</code> objects.
+/// \param dictionary A dictionary, typically containing key-value pairs.
+///
+///
+/// returns:
+/// An array of <code>FTRExtraInfo</code> objects created from the dictionary.
++ (NSArray<FTRExtraInfo *> * _Nonnull)extraInfoArrayFromDictionary:(id _Nonnull)dictionary SWIFT_WARN_UNUSED_RESULT;
+- (nonnull instancetype)init SWIFT_UNAVAILABLE;
++ (nonnull instancetype)new SWIFT_UNAVAILABLE_MSG("-init is unavailable");
+@end
+
+@class FTRParam;
+
+/// <code>FTRFeatureFlag</code> class represents a feature flag, providing its status and additional parameters.
+SWIFT_CLASS("_TtC10FuturaeKit14FTRFeatureFlag")
+@interface FTRFeatureFlag : NSObject
+/// A unique identifier for the feature flag.
+@property (nonatomic, readonly) NSInteger id;
+/// A Boolean value indicating whether the feature flag is enabled.
+@property (nonatomic, readonly) BOOL enabled;
+/// The name of the feature flag.
+@property (nonatomic, readonly, copy) NSString * _Nonnull name;
+/// An optional array of <code>FTRParam</code> objects providing additional parameters related to the feature flag.
+/// This may be nil if there are no additional parameters.
+@property (nonatomic, readonly, copy) NSArray<FTRParam *> * _Nullable params;
+@property (nonatomic, readonly, copy) NSDictionary<NSString *, id> * _Nonnull asDictionary;
+- (nonnull instancetype)init SWIFT_UNAVAILABLE;
++ (nonnull instancetype)new SWIFT_UNAVAILABLE_MSG("-init is unavailable");
+@end
+
+enum FTRKeychainItemAccessibility : NSInteger;
+
+/// <code>FTRKeychainConfig</code> class represents the configuration settings for keychain access in the SDK.
+SWIFT_CLASS("_TtC10FuturaeKit17FTRKeychainConfig")
+@interface FTRKeychainConfig : NSObject
+/// The access group attribute for the keychain items, used to share keychain items among different applications.
+@property (nonatomic, readonly, copy) NSString * _Nullable accessGroup;
+/// The accessibility level for the keychain items, defining when the keychain items can be accessed.
+@property (nonatomic, readonly) enum FTRKeychainItemAccessibility itemsAccessibility;
+/// Initializes a new <code>FTRKeychainConfig</code> with specified parameters.
+/// \param accessGroup The access group attribute for the keychain items. Default is nil.
+///
+/// \param itemsAccessibility The accessibility level for the keychain items. Defaults to the value returned by <code>defaultAccessibility()</code>.
+///
+- (nonnull instancetype)initWithAccessGroup:(NSString * _Nullable)accessGroup itemsAccessibility:(enum FTRKeychainItemAccessibility)itemsAccessibility OBJC_DESIGNATED_INITIALIZER;
+/// Creates a default keychain configuration.
+///
+/// returns:
+/// A default <code>FTRKeychainConfig</code> instance.
++ (FTRKeychainConfig * _Nonnull)defaultConfig SWIFT_WARN_UNUSED_RESULT;
+/// Returns the default accessibility level for keychain items.
+///
+/// returns:
+/// The default <code>FTRKeychainItemAccessibility</code> value.
++ (enum FTRKeychainItemAccessibility)defaultAccessibility SWIFT_WARN_UNUSED_RESULT;
+- (nonnull instancetype)init SWIFT_UNAVAILABLE;
++ (nonnull instancetype)new SWIFT_UNAVAILABLE_MSG("-init is unavailable");
+@end
+
+/// Enumerates the accessibility levels for keychain items in the SDK.
+typedef SWIFT_ENUM(NSInteger, FTRKeychainItemAccessibility, open) {
+  FTRKeychainItemAccessibilityWhenPasscodeSetThisDeviceOnly = 0,
+  FTRKeychainItemAccessibilityWhenUnlockedThisDeviceOnly = 1,
+  FTRKeychainItemAccessibilityAfterFirstUnlockThisDeviceOnly = 2,
+};
+
+
+/// <code>FTRMigratableAccount</code> class represents an individual account that is eligible for migration.
+SWIFT_CLASS("_TtC10FuturaeKit20FTRMigratableAccount")
+@interface FTRMigratableAccount : NSObject
+/// The user identifier for the account.
+@property (nonatomic, readonly, copy) NSString * _Nonnull userId;
+/// The username associated with the account. This may be nil if the username is not available.
+@property (nonatomic, readonly, copy) NSString * _Nullable username;
+/// If account has trusted session binding requirement for account migration.
+@property (nonatomic, readonly) BOOL accountRecoveryFlowBindingEnabled;
+/// User device id
+@property (nonatomic, readonly, copy) NSString * _Nonnull deviceId;
+- (nonnull instancetype)init SWIFT_UNAVAILABLE;
++ (nonnull instancetype)new SWIFT_UNAVAILABLE_MSG("-init is unavailable");
+@end
+
+
+/// <code>FTRMigrationCheckData</code> class provides information about the accounts that are eligible for migration.
+SWIFT_CLASS("_TtC10FuturaeKit21FTRMigrationCheckData")
+@interface FTRMigrationCheckData : NSObject
+/// The total number of accounts that are eligible for migration.
+@property (nonatomic, readonly) NSInteger numberOfAccountsToMigrate;
+/// A Boolean value indicating whether the migration process is protected by a pin.
+@property (nonatomic, readonly) BOOL pinProtected;
+/// A Boolean value indicating whether adaptive migration is enabled for the migration process.
+@property (nonatomic, readonly) BOOL adaptiveMigrationEnabled;
+/// An array of <code>FTRMigratableAccount</code> objects representing the accounts that can be migrated. Each object contains details about an individual account eligible for migration.
+@property (nonatomic, readonly, copy) NSArray<FTRMigratableAccount *> * _Nonnull migratableAccounts;
+- (nonnull instancetype)init SWIFT_UNAVAILABLE;
++ (nonnull instancetype)new SWIFT_UNAVAILABLE_MSG("-init is unavailable");
+@end
+
+@class NSNumber;
+
+/// <code>FTRNotificationAuth</code> class represents a notification-based authentication request.
+SWIFT_CLASS("_TtC10FuturaeKit19FTRNotificationAuth")
+@interface FTRNotificationAuth : NSObject
+/// A unique identifier for the session associated with this authentication request.
+@property (nonatomic, readonly, copy) NSString * _Nonnull sessionId;
+/// The user identifier for whom the authentication request is intended.
+@property (nonatomic, readonly, copy) NSString * _Nonnull userId;
+/// An optional array of integers representing a multi-numbered challenge for authentication.
+/// This is used in scenarios where multi-numbered challenge authentication is required.
+@property (nonatomic, readonly, copy) NSArray<NSNumber *> * _Nullable multiNumberedChallenge;
+/// An optional array of <code>FTRExtraInfo</code> objects providing additional information related to the authentication request.
+@property (nonatomic, copy) NSArray<FTRExtraInfo *> * _Nullable extraInfo;
+/// The authentication type
+@property (nonatomic, copy) NSString * _Nullable type;
+/// An optional timeout value (as an <code>NSNumber</code>) indicating the time within which the authentication request should be addressed.
+@property (nonatomic, readonly, strong) NSNumber * _Nullable timeout;
+/// An optional session timeout value (as an <code>NSNumber</code>) indicating the maximum duration for which the session is valid.
+@property (nonatomic, readonly, strong) NSNumber * _Nullable sessionTimeout;
+@property (nonatomic, readonly, copy) NSDictionary<NSString *, id> * _Nonnull asDictionary;
+- (nonnull instancetype)init SWIFT_UNAVAILABLE;
++ (nonnull instancetype)new SWIFT_UNAVAILABLE_MSG("-init is unavailable");
+@end
+
+
+/// The <code>FTRNotificationDelegate</code>’s methods allow the delegate to be informed when approve authentication attempts or user unenrolled actions are received via Push Notifications.
+SWIFT_PROTOCOL("_TtP10FuturaeKit23FTRNotificationDelegate_")
+@protocol FTRNotificationDelegate <NSObject>
+/// Notifies the delegate that an approve authentication attempt has been received.
+/// \param authenticationInfo An object with the respective info for the authentication.
+///
+- (void)approveAuthenticationReceived:(FTRNotificationAuth * _Nonnull)authenticationInfo;
+/// Notifies the delegate that a user account was unenrolled.
+/// \param userId Id of the unenrolled user.
+///
+- (void)unenrollUserReceived:(NSString * _Nonnull)userId;
+/// Notifies the delegate that an error occurred when processing the push notification payload.
+/// \param error An <code>Error</code> object describing the error.
+///
+- (void)notificationError:(NSError * _Nonnull)error;
+/// Notifies the delegate that a QR code authentication has been requested for an enrolled account.
+- (void)qrCodeScanRequested:(NSString * _Nonnull)sessionId :(NSString * _Nonnull)userId :(NSTimeInterval)timeout;
+@end
+
+@class FTRURLAuth;
+
+/// The <code>FTROpenURLDelegate</code>’s methods allow the delegate to be informed when authentication or
+/// activation URLs are opened.
+SWIFT_PROTOCOL("_TtP10FuturaeKit18FTROpenURLDelegate_")
+@protocol FTROpenURLDelegate <NSObject>
+/// Notifies the delegate that an authentication URL was just opened.
+/// \param authenticationInfo An object with the respective authentication info.
+///
+- (void)authenticationURLOpened:(FTRURLAuth * _Nonnull)authenticationInfo;
+/// Notifies the delegate that an activation URL was just opened.
+/// \param userId A user id used for the activation.
+///
+- (void)activationURLOpened:(NSString * _Nonnull)userId;
+/// Notifies the delegate that an error occurred when processing the URL just opened.
+/// \param error An <code>Error</code> object describing the error.
+///
+- (void)openURLError:(NSError * _Nonnull)error;
+@end
+
+
+/// <code>FTRParam</code> class represents additional parameters for a feature flag.
+SWIFT_CLASS("_TtC10FuturaeKit8FTRParam")
+@interface FTRParam : NSObject
+/// A Boolean value indicating whether the parameter is enabled.
+@property (nonatomic, readonly) BOOL enabled;
+/// An array of service identifiers to which this parameter is applicable.
+@property (nonatomic, readonly, copy) NSArray<NSString *> * _Nonnull serviceIds;
+- (nonnull instancetype)init SWIFT_UNAVAILABLE;
++ (nonnull instancetype)new SWIFT_UNAVAILABLE_MSG("-init is unavailable");
+@end
+
+@class AVCaptureVideoPreviewLayer;
+@class AVCaptureDeviceInput;
+@class AVCaptureMetadataOutput;
+@class AVMetadataObject;
+@class AVCaptureConnection;
+
+SWIFT_CLASS("_TtC10FuturaeKit15FTRQRCodeReader")
+@interface FTRQRCodeReader : NSObject <AVCaptureMetadataOutputObjectsDelegate>
+@property (nonatomic, copy) NSArray<NSString *> * _Nonnull metadataObjectTypes;
+@property (nonatomic, strong) AVCaptureVideoPreviewLayer * _Nonnull previewLayer;
+@property (nonatomic, strong) AVCaptureDeviceInput * _Nullable defaultDeviceInput;
+@property (nonatomic, strong) AVCaptureDeviceInput * _Nullable frontDeviceInput;
+@property (nonatomic, strong) AVCaptureMetadataOutput * _Nonnull metadataOutput;
++ (FTRQRCodeReader * _Nonnull)reader SWIFT_WARN_UNUSED_RESULT;
++ (FTRQRCodeReader * _Nonnull)readerWithMetadataObjectTypes:(NSArray<NSString *> * _Nonnull)metadataObjectTypes SWIFT_WARN_UNUSED_RESULT;
++ (BOOL)isAvailable SWIFT_WARN_UNUSED_RESULT;
++ (BOOL)supportsMetadataObjectTypes:(NSArray<NSString *> * _Nonnull)metadataObjectTypes SWIFT_WARN_UNUSED_RESULT;
++ (AVCaptureVideoOrientation)videoOrientationFromInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation SWIFT_WARN_UNUSED_RESULT;
+- (nonnull instancetype)init OBJC_DESIGNATED_INITIALIZER;
+- (nonnull instancetype)initWithMetadataObjectTypes:(NSArray<NSString *> * _Nonnull)metadataObjectTypes OBJC_DESIGNATED_INITIALIZER;
+- (void)startScanning;
+- (void)stopScanning;
+- (BOOL)running SWIFT_WARN_UNUSED_RESULT;
+- (void)switchDeviceInput;
+- (BOOL)hasFrontDevice SWIFT_WARN_UNUSED_RESULT;
+- (BOOL)isTorchAvailable SWIFT_WARN_UNUSED_RESULT;
+- (void)toggleTorch;
+- (void)setCompletionWithBlock:(void (^ _Nonnull)(NSString * _Nullable))completionBlock;
+- (void)captureOutput:(AVCaptureMetadataOutput * _Nonnull)output didOutputMetadataObjects:(NSArray<AVMetadataObject *> * _Nonnull)metadataObjects fromConnection:(AVCaptureConnection * _Nonnull)connection;
+@end
+
+/// Enumerates the types of QR codes recognized by the SDK.
+typedef SWIFT_ENUM(NSInteger, FTRQRCodeType, open) {
+  FTRQRCodeTypeEnrollment = 0,
+  FTRQRCodeTypeOnlineAuth = 1,
+  FTRQRCodeTypeOfflineAuth = 2,
+  FTRQRCodeTypeInvalid = 3,
+  FTRQRCodeTypeUsernameless = 4,
+};
+
+
+/// <code>FTRSession</code> class represents a session with various parameters including the authentication factor, user and session identifiers, and additional information.
+SWIFT_CLASS("_TtC10FuturaeKit10FTRSession")
+@interface FTRSession : NSObject
+/// The authentication factor used in the session.
+@property (nonatomic, readonly, copy) NSString * _Nonnull factor;
+/// The user identifier associated with the session, if available.
+@property (nonatomic, readonly, copy) NSString * _Nullable userId;
+/// An array of <code>FTRExtraInfo</code> objects providing additional information related to the session.
+@property (nonatomic, readonly, copy) NSArray<FTRExtraInfo *> * _Nullable extraInfo;
+/// The service identifier associated with the session, if available.
+@property (nonatomic, readonly, copy) NSString * _Nullable serviceId;
+/// A unique identifier for the session.
+@property (nonatomic, readonly, copy) NSString * _Nullable sessionId;
+/// The timeout for the session in seconds.
+@property (nonatomic, readonly) NSInteger sessionTimeout;
+/// A token unique to this session.
+@property (nonatomic, readonly, copy) NSString * _Nullable sessionToken;
+/// The duration of the session in seconds.
+@property (nonatomic, readonly) NSInteger timeout;
+/// Indicates whether approve-combo is enabled for the session.
+@property (nonatomic, readonly) BOOL approveCombo;
+/// The type of session, if specified.
+@property (nonatomic, readonly, copy) NSString * _Nullable type;
+/// An array of integers representing a multi-numbered challenge for the session, if used.
+@property (nonatomic, readonly, copy) NSArray<NSNumber *> * _Nullable multiNumberedChallenge;
+- (nonnull instancetype)initWithFactor:(NSString * _Nonnull)factor userId:(NSString * _Nullable)userId extraInfo:(NSArray<FTRExtraInfo *> * _Nullable)extraInfo serviceId:(NSString * _Nullable)serviceId sessionId:(NSString * _Nullable)sessionId sessionTimeout:(NSInteger)sessionTimeout sessionToken:(NSString * _Nullable)sessionToken timeout:(NSInteger)timeout approveCombo:(BOOL)approveCombo type:(NSString * _Nullable)type multiNumberedChallenge:(NSArray<NSNumber *> * _Nullable)multiNumberedChallenge OBJC_DESIGNATED_INITIALIZER;
+@property (nonatomic, readonly, copy) NSDictionary<NSString *, id> * _Nonnull asDictionary;
+- (nonnull instancetype)init SWIFT_UNAVAILABLE;
++ (nonnull instancetype)new SWIFT_UNAVAILABLE_MSG("-init is unavailable");
+@end
+
+
+/// <code>FTRTotp</code> class represents a Time-based One-Time Password (TOTP) along with its remaining validity period.
+SWIFT_CLASS("_TtC10FuturaeKit7FTRTotp")
+@interface FTRTotp : NSObject
+/// The TOTP value as a string.
+@property (nonatomic, readonly, copy) NSString * _Nonnull totp;
+/// A string representing the number of seconds remaining before the current TOTP expires.
+/// This is useful for displaying a countdown or refreshing the TOTP after expiration.
+@property (nonatomic, readonly, copy) NSString * _Nonnull remainingSecs;
+- (nonnull instancetype)init SWIFT_UNAVAILABLE;
++ (nonnull instancetype)new SWIFT_UNAVAILABLE_MSG("-init is unavailable");
+@end
+
+
+/// <code>FTRURLAuth</code> class represents an authentication request initiated via a URL.
+SWIFT_CLASS("_TtC10FuturaeKit10FTRURLAuth")
+@interface FTRURLAuth : NSObject
+/// The user identifier associated with the URL authentication request.
+@property (nonatomic, readonly, copy) NSString * _Nonnull userId;
+/// A session token unique to this URL authentication request.
+@property (nonatomic, readonly, copy) NSString * _Nonnull sessionToken;
+/// The username associated with the request, if available.
+@property (nonatomic, readonly, copy) NSString * _Nullable username;
+/// The name of the service for which the authentication is requested, if available.
+@property (nonatomic, readonly, copy) NSString * _Nullable serviceName;
+@property (nonatomic, copy) NSString * _Nullable successUrlCallback;
+/// A URL to be called upon failed authentication.
+@property (nonatomic, copy) NSString * _Nullable failureUrlCallback;
+- (nonnull instancetype)init SWIFT_UNAVAILABLE;
++ (nonnull instancetype)new SWIFT_UNAVAILABLE_MSG("-init is unavailable");
+@end
+
+typedef SWIFT_ENUM(NSInteger, FTRURLType, open) {
+  FTRURLTypeActivation = 0,
+  FTRURLTypeAuthentication = 1,
+  FTRURLTypeUnknown = 2,
+};
+
+enum UserPresenceVerificationType : NSInteger;
+
+SWIFT_PROTOCOL("_TtP10FuturaeKit23FTRUserPresenceDelegate_")
+@protocol FTRUserPresenceDelegate
+- (enum UserPresenceVerificationType)userPresenceVerificationType SWIFT_WARN_UNUSED_RESULT;
+@end
+
+
+/// A utility class to parse values from QR codes and URIs.
+SWIFT_CLASS("_TtC10FuturaeKit8FTRUtils")
+@interface FTRUtils : NSObject
+/// Extracts the user ID from a QR code string.
+/// \param qrCode The QR code string from which to extract the user ID.
+///
+///
+/// returns:
+/// The user ID as a string if found, otherwise <code>nil</code>.
++ (NSString * _Nullable)userIdFromQRCode:(NSString * _Nonnull)qrCode SWIFT_WARN_UNUSED_RESULT;
+/// Extracts the session token from a QR code string.
+/// \param qrCode The QR code string from which to extract the session token.
+///
+///
+/// returns:
+/// The session token as a string if found, otherwise <code>nil</code>.
++ (NSString * _Nullable)sessionTokenFromQRCode:(NSString * _Nonnull)qrCode SWIFT_WARN_UNUSED_RESULT;
+/// Extracts the user ID from a URI string.
+/// \param uri The URI string from which to extract the user ID.
+///
+///
+/// returns:
+/// The user ID as a string if found, otherwise <code>nil</code>.
++ (NSString * _Nullable)userIdFromUri:(NSString * _Nonnull)uri SWIFT_WARN_UNUSED_RESULT;
+/// Extracts the session token from a URI string.
+/// \param uri The URI string from which to extract the session token.
+///
+///
+/// returns:
+/// The session token as a string if found, otherwise <code>nil</code>.
++ (NSString * _Nullable)sessionTokenFromUri:(NSString * _Nonnull)uri SWIFT_WARN_UNUSED_RESULT;
+/// Determines the type of URL being handled.
+/// This method analyzes the given URL to determine whether it’s related to activation, authentication, or an unknown type. Useful for deciding how to process the URL.
+/// \param url The URL to analyze.
+///
+///
+/// returns:
+/// The determined <code>FTRURLType</code> (<code>.activation</code>, <code>.authentication</code>, or <code>.unknown</code>).
++ (enum FTRURLType)typeFromURL:(NSURL * _Nonnull)url SWIFT_WARN_UNUSED_RESULT;
+/// Extracts activation data from a given URL.
+/// If the URL is an activation URL, this method parses it to extract the activation code and optionally a user ID, if present.
+/// \param url The activation URL to parse.
+///
+///
+/// returns:
+/// An <code>ActivationURLData</code> object containing the activation code and user ID, or <code>nil</code> if the URL is invalid or the required information is missing.
++ (ActivationURLData * _Nullable)activationDataFromURL:(NSURL * _Nonnull)url SWIFT_WARN_UNUSED_RESULT;
+/// Extracts authentication data from a given URL.
+/// If the URL is an authentication URL, this method parses it to extract the user ID and session token, which are needed to authenticate the user. Optionally, a redirect URI for mobile authentication may also be included.
+/// \param url The authentication URL to parse.
+///
+///
+/// returns:
+/// An <code>AuthenticationURLData</code> object containing the user ID, session token, and optionally a mobile auth redirect URI, or <code>nil</code> if the URL is invalid or the required information is missing.
++ (AuthenticationURLData * _Nullable)authenticationDataFromURL:(NSURL * _Nonnull)url SWIFT_WARN_UNUSED_RESULT;
 - (nonnull instancetype)init OBJC_DESIGNATED_INITIALIZER;
 @end
 
 
-SWIFT_CLASS("_TtC10FuturaeKit13JWEDecryption")
-@interface JWEDecryption : NSObject
-+ (NSArray<NSDictionary<NSString *, id> *> * _Nullable)decryptWithKey:(NSData * _Nonnull)key encryptedData:(NSString * _Nonnull)encryptedData SWIFT_WARN_UNUSED_RESULT;
+/// <code>JailbreakStatus</code> class represents the jailbreak status of the device.
+SWIFT_CLASS("_TtC10FuturaeKit15JailbreakStatus")
+@interface JailbreakStatus : NSObject
+/// A Boolean indicating whether the device is jailbroken.
+@property (nonatomic, readonly) BOOL jailbroken;
+/// An optional message providing additional information about the jailbreak status.
+@property (nonatomic, readonly, copy) NSString * _Nullable message;
+- (nonnull instancetype)init SWIFT_UNAVAILABLE;
++ (nonnull instancetype)new SWIFT_UNAVAILABLE_MSG("-init is unavailable");
+@end
+
+enum LockConfigurationType : NSInteger;
+
+/// <code>LockConfiguration</code> class represents the configuration settings for locking mechanisms in the SDK.
+SWIFT_CLASS("_TtC10FuturaeKit17LockConfiguration")
+@interface LockConfiguration : NSObject
+/// The type of lock configuration.
+@property (nonatomic, readonly) enum LockConfigurationType type;
+/// The duration for which the SDK or resource remains unlocked.
+@property (nonatomic, readonly) NSTimeInterval unlockDuration;
+/// A Boolean indicating whether the lock should be invalidated by biometric changes.
+@property (nonatomic, readonly) BOOL invalidatedByBiometricsChange;
+/// \param type The type of lock configuration.
+///
+/// \param unlockDuration The duration for which the lock remains open.
+///
+/// \param invalidatedByBiometricsChange Indicates if lock is invalidated by biometrics change.
+///
+- (nonnull instancetype)initWithType:(enum LockConfigurationType)type unlockDuration:(NSTimeInterval)unlockDuration invalidatedByBiometricsChange:(BOOL)invalidatedByBiometricsChange OBJC_DESIGNATED_INITIALIZER;
+- (nonnull instancetype)init SWIFT_UNAVAILABLE;
++ (nonnull instancetype)new SWIFT_UNAVAILABLE_MSG("-init is unavailable");
+@end
+
+/// Enumerates the types of lock configurations available in the SDK.
+typedef SWIFT_ENUM(NSInteger, LockConfigurationType, open) {
+  LockConfigurationTypeNone = 1,
+  LockConfigurationTypeBiometricsOnly = 2,
+  LockConfigurationTypeBiometricsOrPasscode = 3,
+  LockConfigurationTypeSdkPinWithBiometricsOptional = 4,
+};
+
+@class MigrationDefault;
+@class MigrationSDKPin;
+
+/// <code>MigrationParameters</code> class encapsulates the parameters required for migration processes.
+SWIFT_CLASS("_TtC10FuturaeKit19MigrationParameters")
+@interface MigrationParameters : NSObject
+/// The SDK-specific pin, used if the migration process involves an SDK-specific pin.
+@property (nonatomic, readonly, copy) NSString * _Nonnull sdkPin;
+/// Optional flow binding token  used during migration.
+@property (nonatomic, copy) NSString * _Nullable bindingToken;
+/// Creates default migration parameters.
+///
+/// returns:
+/// An instance of <code>MigrationDefault</code>.
++ (MigrationDefault * _Nonnull)default SWIFT_WARN_UNUSED_RESULT;
+/// Creates migration parameters with an SDK-specific pin.
+/// \param sdkPin The SDK-specific pin for the migration process.
+///
+///
+/// returns:
+/// An instance of <code>MigrationSDKPin</code>.
++ (MigrationSDKPin * _Nonnull)withSdkPin:(NSString * _Nonnull)sdkPin SWIFT_WARN_UNUSED_RESULT;
+/// Creates default migration parameters.
+/// \param bindingToken The token for the flow binding.
+///
+///
+/// returns:
+/// An instance of <code>MigrationDefault</code>.
++ (MigrationDefault * _Nonnull)defaultWithBindingToken:(NSString * _Nonnull)bindingToken SWIFT_WARN_UNUSED_RESULT;
+/// Creates migration parameters with an SDK-specific pin.
+/// \param sdkPin The SDK-specific pin for the migration process.
+///
+/// \param bindingToken The token for the flow binding.
+///
+///
+/// returns:
+/// An instance of <code>MigrationSDKPin</code>.
++ (MigrationSDKPin * _Nonnull)withSdkPin:(NSString * _Nonnull)sdkPin bindingToken:(NSString * _Nonnull)bindingToken SWIFT_WARN_UNUSED_RESULT;
+- (nonnull instancetype)init SWIFT_UNAVAILABLE;
++ (nonnull instancetype)new SWIFT_UNAVAILABLE_MSG("-init is unavailable");
+@end
+
+
+/// Represents default migration parameters.
+SWIFT_CLASS("_TtC10FuturaeKit16MigrationDefault")
+@interface MigrationDefault : MigrationParameters
+/// Initializes a new instance of <code>MigrationDefault</code> with default parameters.
+- (nonnull instancetype)init OBJC_DESIGNATED_INITIALIZER;
++ (nonnull instancetype)new;
+/// Initializes a new instance of <code>MigrationDefault</code> with a binding token.
+/// \param bindingToken The token for the flow binding.
+///
+- (nonnull instancetype)initWithBindingToken:(NSString * _Nonnull)bindingToken OBJC_DESIGNATED_INITIALIZER;
+@end
+
+
+
+/// Represents migration parameters that include an SDK-specific pin.
+SWIFT_CLASS("_TtC10FuturaeKit15MigrationSDKPin")
+@interface MigrationSDKPin : MigrationParameters
+/// Initializes a new instance with the provided SDK-specific pin for the migration process.
+/// \param sdkPin The SDK-specific pin for the migration process.
+///
+- (nonnull instancetype)initWithSdkPin:(NSString * _Nonnull)sdkPin OBJC_DESIGNATED_INITIALIZER;
+/// Initializes a new instance with the provided SDK-specific pin for the migration process.
+/// \param sdkPin The SDK-specific pin for the migration process.
+///
+/// \param bindingToken The token for the flow binding.
+///
+- (nonnull instancetype)initWithSdkPin:(NSString * _Nonnull)sdkPin bindingToken:(NSString * _Nonnull)bindingToken OBJC_DESIGNATED_INITIALIZER;
+@end
+
+
+
+
+
+@class OfflineQRCodeDefault;
+@class OfflineQRCodeSDKPin;
+@class OfflineQRCodeSDKPinWithBiometrics;
+
+/// <code>OfflineQRCodeParameters</code> class encapsulates the parameters required for processing an offline QR code.
+SWIFT_CLASS("_TtC10FuturaeKit23OfflineQRCodeParameters")
+@interface OfflineQRCodeParameters : NSObject
+@property (nonatomic, readonly, copy) NSString * _Nonnull qrCode;
+@property (nonatomic, readonly, copy) NSString * _Nonnull sdkPin;
+@property (nonatomic, readonly, copy) NSString * _Nonnull promptReason;
+/// Creates default offline QR code parameters with the provided QR code.
+/// \param qrCode The QR code string to be processed.
+///
+///
+/// returns:
+/// An instance of <code>OfflineQRCodeDefault</code>.
++ (OfflineQRCodeDefault * _Nonnull)withQrCode:(NSString * _Nonnull)qrCode SWIFT_WARN_UNUSED_RESULT;
+/// Creates offline QR code parameters with the provided QR code and SDK-specific pin.
+/// \param qrCode The QR code string to be processed.
+///
+/// \param sdkPin The SDK-specific pin for processing the QR code.
+///
+///
+/// returns:
+/// An instance of <code>OfflineQRCodeSDKPin</code>.
++ (OfflineQRCodeSDKPin * _Nonnull)withQrCode:(NSString * _Nonnull)qrCode sdkPin:(NSString * _Nonnull)sdkPin SWIFT_WARN_UNUSED_RESULT;
+/// Creates offline QR code parameters with the provided QR code and a prompt message for biometric authentication.
+/// \param qrCode The QR code string to be processed.
+///
+/// \param promptReason A message or reason for prompting the user’s biometric authentication.
+///
+///
+/// returns:
+/// An instance of <code>OfflineQRCodeSDKPinWithBiometrics</code>.
++ (OfflineQRCodeSDKPinWithBiometrics * _Nonnull)withQrCode:(NSString * _Nonnull)qrCode promptReason:(NSString * _Nonnull)promptReason SWIFT_WARN_UNUSED_RESULT;
+- (nonnull instancetype)init SWIFT_UNAVAILABLE;
++ (nonnull instancetype)new SWIFT_UNAVAILABLE_MSG("-init is unavailable");
+@end
+
+
+/// Represents default parameters for processing an offline QR code.
+SWIFT_CLASS("_TtC10FuturaeKit20OfflineQRCodeDefault")
+@interface OfflineQRCodeDefault : OfflineQRCodeParameters
+/// Initializes a new instance with the provided QR code.
+/// \param qrCode The QR code string to be processed.
+///
+- (nonnull instancetype)initWithQrCode:(NSString * _Nonnull)qrCode OBJC_DESIGNATED_INITIALIZER;
+@end
+
+
+
+/// Represents offline QR code parameters that include an SDK-specific pin.
+SWIFT_CLASS("_TtC10FuturaeKit19OfflineQRCodeSDKPin")
+@interface OfflineQRCodeSDKPin : OfflineQRCodeParameters
+/// Initializes a new instance with the provided QR code and SDK-specific pin.
+/// \param qrCode The QR code string to be processed.
+///
+/// \param sdkPin The SDK-specific pin for processing the QR code.
+///
+- (nonnull instancetype)initWithQrCode:(NSString * _Nonnull)qrCode sdkPin:(NSString * _Nonnull)sdkPin OBJC_DESIGNATED_INITIALIZER;
+@end
+
+
+/// Represents offline QR code parameters that include a prompt message for biometric authentication.
+SWIFT_CLASS("_TtC10FuturaeKit33OfflineQRCodeSDKPinWithBiometrics")
+@interface OfflineQRCodeSDKPinWithBiometrics : OfflineQRCodeParameters
+/// Initializes a new instance with the provided QR code and prompt message for biometric authentication.
+/// \param qrCode The QR code string to be processed.
+///
+/// \param promptReason A message or reason for prompting the user’s biometric authentication.
+///
+- (nonnull instancetype)initWithQrCode:(NSString * _Nonnull)qrCode promptReason:(NSString * _Nonnull)promptReason OBJC_DESIGNATED_INITIALIZER;
+@end
+
+
+/// Represents parameters for rejecting a push notification based authentication request.
+SWIFT_CLASS("_TtC10FuturaeKit14RejectAuthPush")
+@interface RejectAuthPush : AuthReplyParameters
+/// Initializes a new instance of <code>RejectAuthPush</code>.
+/// \param sessionId The session identifier for the authentication request.
+///
+/// \param userId The user identifier.
+///
+/// \param isFraud A Boolean value indicating whether the rejection is due to fraud, defaulting to false.
+///
+/// \param extraInfo Additional information as an array of <code>FTRExtraInfo</code>, optional.
+///
+- (nonnull instancetype)init:(NSString * _Nonnull)sessionId userId:(NSString * _Nonnull)userId isFraud:(BOOL)isFraud extraInfo:(NSArray<FTRExtraInfo *> * _Nullable)extraInfo OBJC_DESIGNATED_INITIALIZER;
+@end
+
+
+/// Represents parameters for rejecting an authentication request via QR code.
+SWIFT_CLASS("_TtC10FuturaeKit16RejectAuthQRCode")
+@interface RejectAuthQRCode : AuthReplyParameters
+/// Initializes a new instance of <code>RejectAuthQRCode</code>.
+/// \param qrCode The QR code string associated with the authentication request.
+///
+/// \param isFraud A Boolean value indicating whether the rejection is due to fraud.
+///
+/// \param extraInfo Additional information as an array of <code>FTRExtraInfo</code>, optional.
+///
+- (nonnull instancetype)init:(NSString * _Nonnull)qrCode isFraud:(BOOL)isFraud extraInfo:(NSArray<FTRExtraInfo *> * _Nullable)extraInfo OBJC_DESIGNATED_INITIALIZER;
+@end
+
+
+/// Represents parameters for rejecting a usernameless authentication request.
+SWIFT_CLASS("_TtC10FuturaeKit22RejectAuthUsernameless")
+@interface RejectAuthUsernameless : AuthReplyParameters
+/// Initializes a new instance of <code>RejectAuthUsernameless</code>.
+/// \param qrCode The QR code string associated with the authentication request.
+///
+/// \param userId The user identifier.
+///
+/// \param isFraud A Boolean value indicating whether the rejection is due to fraud, defaulting to false.
+///
+/// \param extraInfo Additional information as an array of <code>FTRExtraInfo</code>, optional.
+///
+- (nonnull instancetype)init:(NSString * _Nonnull)qrCode userId:(NSString * _Nonnull)userId isFraud:(BOOL)isFraud extraInfo:(NSArray<FTRExtraInfo *> * _Nullable)extraInfo OBJC_DESIGNATED_INITIALIZER;
+@end
+
+
+SWIFT_CLASS("_TtC10FuturaeKit12SDKBaseError")
+@interface SDKBaseError : NSObject
+@property (nonatomic, readonly, copy) NSString * _Nullable errorDescription;
+@property (nonatomic, readonly, copy) NSString * _Nullable recoverySuggestion;
+@property (nonatomic, readonly, copy) NSString * _Nullable failureReason;
+SWIFT_CLASS_PROPERTY(@property (nonatomic, class, readonly, copy) NSString * _Nonnull errorDomain;)
++ (NSString * _Nonnull)errorDomain SWIFT_WARN_UNUSED_RESULT;
+@property (nonatomic, readonly) NSInteger errorCode;
+@property (nonatomic, readonly, copy) NSDictionary<NSString *, id> * _Nonnull errorUserInfo;
+SWIFT_CLASS_PROPERTY(@property (nonatomic, class, readonly, copy) NSString * _Nonnull sdkDomainError;)
++ (NSString * _Nonnull)sdkDomainError SWIFT_WARN_UNUSED_RESULT;
+@property (nonatomic, readonly, copy) NSString * _Nonnull domain;
+@property (nonatomic, readonly, copy) NSString * _Nonnull message;
+@property (nonatomic, readonly) NSInteger code;
+@property (nonatomic, readonly, copy) NSString * _Nullable recoveryHint;
+@property (nonatomic, readonly, copy) NSString * _Nullable failureHint;
+- (nonnull instancetype)init SWIFT_UNAVAILABLE;
++ (nonnull instancetype)new SWIFT_UNAVAILABLE_MSG("-init is unavailable");
+@end
+
+enum SDKAccountsErrorCode : NSInteger;
+
+SWIFT_CLASS("_TtC10FuturaeKit16SDKAccountsError")
+@interface SDKAccountsError : SDKBaseError
+SWIFT_CLASS_PROPERTY(@property (nonatomic, class, readonly, copy) NSString * _Nonnull sdkDomainError;)
++ (NSString * _Nonnull)sdkDomainError SWIFT_WARN_UNUSED_RESULT;
+@property (nonatomic, readonly, copy) NSString * _Nonnull domain;
+@property (nonatomic, readonly) enum SDKAccountsErrorCode sdkCode;
+@property (nonatomic, readonly) NSError * _Nullable underlyingError;
+@end
+
+typedef SWIFT_ENUM(NSInteger, SDKAccountsErrorCode, open) {
+  SDKAccountsErrorCodeUnknown = 1,
+  SDKAccountsErrorCodeNotFound = 2,
+  SDKAccountsErrorCodeAccountsEmpty = 3,
+  SDKAccountsErrorCodeAccountsRetrieveFail = 5,
+};
+
+enum SDKApiErrorCode : NSInteger;
+@class NSHTTPURLResponse;
+
+SWIFT_CLASS("_TtC10FuturaeKit11SDKApiError")
+@interface SDKApiError : SDKBaseError
+SWIFT_CLASS_PROPERTY(@property (nonatomic, class, readonly, copy) NSString * _Nonnull sdkDomainError;)
++ (NSString * _Nonnull)sdkDomainError SWIFT_WARN_UNUSED_RESULT;
+@property (nonatomic, readonly, copy) NSString * _Nonnull domain;
+@property (nonatomic, readonly) enum SDKApiErrorCode sdkCode;
+@property (nonatomic, readonly, strong) ApiError * _Nullable apiError;
+@property (nonatomic, readonly, strong) NSHTTPURLResponse * _Nonnull httpResponse;
+@property (nonatomic, readonly, copy) NSData * _Nullable responseData;
+@property (nonatomic, readonly, copy) NSString * _Nullable responseString;
+@property (nonatomic, readonly, strong) NSNumber * _Nullable pinAttemptsLeft;
+@end
+
+typedef SWIFT_ENUM(NSInteger, SDKApiErrorCode, open) {
+  SDKApiErrorCodeUnhandledError = 0,
+  SDKApiErrorCodeIncorrectPin = 1,
+  SDKApiErrorCodeIncorrectPinArchivedDevice = 2,
+  SDKApiErrorCodePinNotNeeded = 3,
+  SDKApiErrorCodeMissingPin = 4,
+  SDKApiErrorCodeNoContent = 5,
+  SDKApiErrorCodeContentNotModified = 6,
+  SDKApiErrorCodeBadRequest = 7,
+  SDKApiErrorCodeOperationForbidden = 8,
+  SDKApiErrorCodeRouteNotFound = 9,
+  SDKApiErrorCodePreconditionFailed = 10,
+  SDKApiErrorCodeAuthorizationFailed = 11,
+  SDKApiErrorCodeInternalServerException = 12,
+  SDKApiErrorCodeDeviceArchived = 13,
+  SDKApiErrorCodeAdaptiveMigrationFailed = 14,
+  SDKApiErrorCodeBindingTokenCheckFailed = 15,
+};
+
+enum SDKAppAttestErrorCode : NSInteger;
+
+SWIFT_CLASS("_TtC10FuturaeKit17SDKAppAttestError")
+@interface SDKAppAttestError : SDKBaseError
+SWIFT_CLASS_PROPERTY(@property (nonatomic, class, readonly, copy) NSString * _Nonnull sdkDomainError;)
++ (NSString * _Nonnull)sdkDomainError SWIFT_WARN_UNUSED_RESULT;
+@property (nonatomic, readonly, copy) NSString * _Nonnull domain;
+@property (nonatomic, readonly) enum SDKAppAttestErrorCode sdkCode;
+@property (nonatomic, readonly) NSError * _Nullable underlyingError;
+@end
+
+typedef SWIFT_ENUM(NSInteger, SDKAppAttestErrorCode, open) {
+  SDKAppAttestErrorCodeUnknown = 1,
+  SDKAppAttestErrorCodeServiceNotSupported = 2,
+  SDKAppAttestErrorCodeKeyIdFailure = 3,
+  SDKAppAttestErrorCodeKeyIdDefaultsNotFound = 4,
+  SDKAppAttestErrorCodeAttestationFailure = 5,
+  SDKAppAttestErrorCodeAssertionFailure = 6,
+  SDKAppAttestErrorCodeRetrieveChallengeFailure = 7,
+  SDKAppAttestErrorCodeAppIntegrityNotVerified = 8,
+};
+
+
+
+@interface SDKBaseError (SWIFT_EXTENSION(FuturaeKit))
+@property (nonatomic, readonly, copy) NSString * _Nonnull description;
+@end
+
+enum SDKErrorType : NSInteger;
+
+@interface SDKBaseError (SWIFT_EXTENSION(FuturaeKit))
+@property (nonatomic, readonly) enum SDKErrorType errorType;
+@end
+
+enum SDKBiometricsStateErrorCode : NSInteger;
+
+SWIFT_CLASS("_TtC10FuturaeKit23SDKBiometricsStateError")
+@interface SDKBiometricsStateError : SDKBaseError
+SWIFT_CLASS_PROPERTY(@property (nonatomic, class, readonly, copy) NSString * _Nonnull sdkDomainError;)
++ (NSString * _Nonnull)sdkDomainError SWIFT_WARN_UNUSED_RESULT;
+@property (nonatomic, readonly, copy) NSString * _Nonnull domain;
+@property (nonatomic, readonly) enum SDKBiometricsStateErrorCode sdkCode;
+@end
+
+typedef SWIFT_ENUM(NSInteger, SDKBiometricsStateErrorCode, open) {
+  SDKBiometricsStateErrorCodeUnknown = 1,
+  SDKBiometricsStateErrorCodeBiometricsChanged = 2,
+  SDKBiometricsStateErrorCodeBiometricsChangedPin = 3,
+};
+
+enum SDKConnectionErrorCode : NSInteger;
+@class NSURLResponse;
+
+SWIFT_CLASS("_TtC10FuturaeKit18SDKConnectionError")
+@interface SDKConnectionError : SDKBaseError
+SWIFT_CLASS_PROPERTY(@property (nonatomic, class, readonly, copy) NSString * _Nonnull sdkDomainError;)
++ (NSString * _Nonnull)sdkDomainError SWIFT_WARN_UNUSED_RESULT;
+@property (nonatomic, readonly, copy) NSString * _Nonnull domain;
+@property (nonatomic, readonly) enum SDKConnectionErrorCode sdkCode;
+@property (nonatomic, readonly, strong) NSURLResponse * _Nullable urlResponse;
+@property (nonatomic, readonly) NSError * _Nullable underlyingError;
+@end
+
+
+typedef SWIFT_ENUM(NSInteger, SDKConnectionErrorCode, open) {
+  SDKConnectionErrorCodeCancelled = 0,
+  SDKConnectionErrorCodeBadURL = 1,
+  SDKConnectionErrorCodeTimedOut = 2,
+  SDKConnectionErrorCodeUnsupportedURL = 3,
+  SDKConnectionErrorCodeCannotFindHost = 4,
+  SDKConnectionErrorCodeCannotConnectToHost = 5,
+  SDKConnectionErrorCodeNetworkConnectionLost = 6,
+  SDKConnectionErrorCodeNotConnectedToInternet = 7,
+  SDKConnectionErrorCodeDataNotAllowed = 8,
+  SDKConnectionErrorCodeSecureConnectionFailed = 9,
+  SDKConnectionErrorCodeOther = 10,
+};
+
+enum SDKCryptoErrorCode : NSInteger;
+
+SWIFT_CLASS("_TtC10FuturaeKit14SDKCryptoError")
+@interface SDKCryptoError : SDKBaseError
+SWIFT_CLASS_PROPERTY(@property (nonatomic, class, readonly, copy) NSString * _Nonnull sdkDomainError;)
++ (NSString * _Nonnull)sdkDomainError SWIFT_WARN_UNUSED_RESULT;
+@property (nonatomic, readonly, copy) NSString * _Nonnull domain;
+@property (nonatomic, readonly) enum SDKCryptoErrorCode sdkCode;
+@property (nonatomic, readonly) NSError * _Nullable underlyingError;
+@end
+
+typedef SWIFT_ENUM(NSInteger, SDKCryptoErrorCode, open) {
+  SDKCryptoErrorCodeUnknown = 1,
+  SDKCryptoErrorCodeDeleteSymmetricKeyFail = 2,
+  SDKCryptoErrorCodeRetrieveSymmetricKeyFail = 3,
+  SDKCryptoErrorCodeCreateSymmetricKeyFail = 4,
+  SDKCryptoErrorCodeDeleteAsymmetricKeysFail = 5,
+  SDKCryptoErrorCodeRetrieveAsymmetricPublicKeyFail = 6,
+  SDKCryptoErrorCodeRetrieveAsymmetricPrivateKeyFail = 7,
+  SDKCryptoErrorCodeCreateAsymmetricKeysFail = 8,
+  SDKCryptoErrorCodeDecryptAES256CTREncodedStringFail = 9,
+  SDKCryptoErrorCodeEncryptAES256CTRFail = 10,
+  SDKCryptoErrorCodeSignECDSAFail = 11,
+};
+
+enum SDKDatabaseErrorCode : NSInteger;
+
+SWIFT_CLASS("_TtC10FuturaeKit16SDKDatabaseError")
+@interface SDKDatabaseError : SDKBaseError
+SWIFT_CLASS_PROPERTY(@property (nonatomic, class, readonly, copy) NSString * _Nonnull sdkDomainError;)
++ (NSString * _Nonnull)sdkDomainError SWIFT_WARN_UNUSED_RESULT;
+@property (nonatomic, readonly, copy) NSString * _Nonnull domain;
+@property (nonatomic, readonly) enum SDKDatabaseErrorCode sdkCode;
+@property (nonatomic, readonly) NSError * _Nullable underlyingError;
+@end
+
+typedef SWIFT_ENUM(NSInteger, SDKDatabaseErrorCode, open) {
+  SDKDatabaseErrorCodeUnknown = 1,
+  SDKDatabaseErrorCodeColumnsToUpdateEmpty = 2,
+  SDKDatabaseErrorCodeColumnNotFound = 3,
+  SDKDatabaseErrorCodeInitFail = 4,
+};
+
+enum SDKErrorCode : NSInteger;
+
+SWIFT_CLASS("_TtC10FuturaeKit8SDKError")
+@interface SDKError : SDKBaseError
+SWIFT_CLASS_PROPERTY(@property (nonatomic, class, readonly, copy) NSString * _Nonnull sdkDomainError;)
++ (NSString * _Nonnull)sdkDomainError SWIFT_WARN_UNUSED_RESULT;
+@property (nonatomic, readonly, copy) NSString * _Nonnull domain;
+@property (nonatomic, readonly) enum SDKErrorCode sdkCode;
+@property (nonatomic, readonly) NSError * _Nullable underlyingError;
+@end
+
+typedef SWIFT_ENUM(NSInteger, SDKErrorCode, open) {
+  SDKErrorCodeUnknown = 1,
+  SDKErrorCodeMigrationInfoMissing = 2,
+  SDKErrorCodeDeviceTokenMissing = 3,
+  SDKErrorCodeDeviceUDIDMissing = 4,
+  SDKErrorCodeDecodeObjectFailed = 5,
+  SDKErrorCodeInvalidQRCode = 6,
+  SDKErrorCodeInvalidConfiguration = 7,
+  SDKErrorCodeMultipleEnrollDisallowed = 8,
+  SDKErrorCodeBaseURLDisallowed = 9,
+  SDKErrorCodeMultiplePinEnrollDisallowed = 10,
+  SDKErrorCodeInvalidQRCodeEnroll = 11,
+  SDKErrorCodeAccountActive = 12,
+  SDKErrorCodeGenerateTotpFail = 13,
+  SDKErrorCodeNotificationInvalid = 14,
+  SDKErrorCodeDecryptExtraFail = 15,
+  SDKErrorCodeOCRANumberOfDigitsTooLargeError = 16,
+  SDKErrorCodeDecodeAPIResponseFail = 17,
+  SDKErrorCodeDecryptAccountFail = 18,
+  SDKErrorCodeEnrollUrlInvalid = 19,
+};
+
+
+SWIFT_CLASS("_TtC10FuturaeKit14SDKErrorDomain")
+@interface SDKErrorDomain : NSObject
+SWIFT_CLASS_PROPERTY(@property (nonatomic, class, readonly, copy) NSString * _Nonnull sdk;)
++ (NSString * _Nonnull)sdk SWIFT_WARN_UNUSED_RESULT;
+SWIFT_CLASS_PROPERTY(@property (nonatomic, class, readonly, copy) NSString * _Nonnull api;)
++ (NSString * _Nonnull)api SWIFT_WARN_UNUSED_RESULT;
+SWIFT_CLASS_PROPERTY(@property (nonatomic, class, readonly, copy) NSString * _Nonnull connection;)
++ (NSString * _Nonnull)connection SWIFT_WARN_UNUSED_RESULT;
+SWIFT_CLASS_PROPERTY(@property (nonatomic, class, readonly, copy) NSString * _Nonnull system;)
++ (NSString * _Nonnull)system SWIFT_WARN_UNUSED_RESULT;
+SWIFT_CLASS_PROPERTY(@property (nonatomic, class, readonly, copy) NSString * _Nonnull sdkLock;)
++ (NSString * _Nonnull)sdkLock SWIFT_WARN_UNUSED_RESULT;
+SWIFT_CLASS_PROPERTY(@property (nonatomic, class, readonly, copy) NSString * _Nonnull sdkBiometricsState;)
++ (NSString * _Nonnull)sdkBiometricsState SWIFT_WARN_UNUSED_RESULT;
+SWIFT_CLASS_PROPERTY(@property (nonatomic, class, readonly, copy) NSString * _Nonnull sdkPin;)
++ (NSString * _Nonnull)sdkPin SWIFT_WARN_UNUSED_RESULT;
+SWIFT_CLASS_PROPERTY(@property (nonatomic, class, readonly, copy) NSString * _Nonnull sdkCrypto;)
++ (NSString * _Nonnull)sdkCrypto SWIFT_WARN_UNUSED_RESULT;
+SWIFT_CLASS_PROPERTY(@property (nonatomic, class, readonly, copy) NSString * _Nonnull sdkAppAttest;)
++ (NSString * _Nonnull)sdkAppAttest SWIFT_WARN_UNUSED_RESULT;
+SWIFT_CLASS_PROPERTY(@property (nonatomic, class, readonly, copy) NSString * _Nonnull sdkMigration;)
++ (NSString * _Nonnull)sdkMigration SWIFT_WARN_UNUSED_RESULT;
+SWIFT_CLASS_PROPERTY(@property (nonatomic, class, readonly, copy) NSString * _Nonnull sdkURL;)
++ (NSString * _Nonnull)sdkURL SWIFT_WARN_UNUSED_RESULT;
+SWIFT_CLASS_PROPERTY(@property (nonatomic, class, readonly, copy) NSString * _Nonnull sdkSwitchLock;)
++ (NSString * _Nonnull)sdkSwitchLock SWIFT_WARN_UNUSED_RESULT;
+SWIFT_CLASS_PROPERTY(@property (nonatomic, class, readonly, copy) NSString * _Nonnull sdkDatabase;)
++ (NSString * _Nonnull)sdkDatabase SWIFT_WARN_UNUSED_RESULT;
+SWIFT_CLASS_PROPERTY(@property (nonatomic, class, readonly, copy) NSString * _Nonnull sdkAccounts;)
++ (NSString * _Nonnull)sdkAccounts SWIFT_WARN_UNUSED_RESULT;
 - (nonnull instancetype)init OBJC_DESIGNATED_INITIALIZER;
 @end
+
+typedef SWIFT_ENUM(NSInteger, SDKErrorType, open) {
+  SDKErrorTypeBase = 0,
+  SDKErrorTypeSdk = 1,
+  SDKErrorTypeSdkLock = 2,
+  SDKErrorTypeSdkBiometricsState = 3,
+  SDKErrorTypeSdkPin = 4,
+  SDKErrorTypeSdkCrypto = 5,
+  SDKErrorTypeSdkAppAttest = 6,
+  SDKErrorTypeSdkMigration = 7,
+  SDKErrorTypeSdkURL = 8,
+  SDKErrorTypeSdkSwitchLock = 9,
+  SDKErrorTypeSdkDatabase = 10,
+  SDKErrorTypeSdkAccounts = 11,
+  SDKErrorTypeApi = 12,
+  SDKErrorTypeConnection = 13,
+  SDKErrorTypeSystem = 14,
+};
+
+enum SDKLockErrorCode : NSInteger;
+
+SWIFT_CLASS("_TtC10FuturaeKit12SDKLockError")
+@interface SDKLockError : SDKBaseError
+SWIFT_CLASS_PROPERTY(@property (nonatomic, class, readonly, copy) NSString * _Nonnull sdkDomainError;)
++ (NSString * _Nonnull)sdkDomainError SWIFT_WARN_UNUSED_RESULT;
+@property (nonatomic, readonly, copy) NSString * _Nonnull domain;
+@property (nonatomic, readonly) enum SDKLockErrorCode sdkCode;
+@property (nonatomic, readonly) NSError * _Nullable underlyingError;
+@end
+
+typedef SWIFT_ENUM(NSInteger, SDKLockErrorCode, open) {
+  SDKLockErrorCodeUnknown = 1,
+  SDKLockErrorCodeLockNotEnabled = 2,
+  SDKLockErrorCodeLocked = 3,
+  SDKLockErrorCodeAccessControlConfigFail = 4,
+  SDKLockErrorCodeAccessControlLockFail = 5,
+  SDKLockErrorCodeAccessControlEvaluateFail = 6,
+  SDKLockErrorCodeUnlockNotAvailable = 7,
+  SDKLockErrorCodeBiometricsNotAvailableForPIN = 8,
+  SDKLockErrorCodeSdkPinEmpty = 9,
+  SDKLockErrorCodeSdkPinNotAvailable = 10,
+  SDKLockErrorCodeSdkPinEnrollRequired = 11,
+  SDKLockErrorCodeUnlockNotAvailableDuringMigration = 12,
+  SDKLockErrorCodeInvalidUnlockDuration = 13,
+};
+
+/// Enumerates the possible lock statuses of the SDK.
+typedef SWIFT_ENUM(NSInteger, SDKLockStatus, open) {
+  SDKLockStatusLocked = 0,
+  SDKLockStatusUnlocked = 1,
+};
+
+enum SDKMigrationErrorCode : NSInteger;
+
+SWIFT_CLASS("_TtC10FuturaeKit17SDKMigrationError")
+@interface SDKMigrationError : SDKBaseError
+SWIFT_CLASS_PROPERTY(@property (nonatomic, class, readonly, copy) NSString * _Nonnull sdkDomainError;)
++ (NSString * _Nonnull)sdkDomainError SWIFT_WARN_UNUSED_RESULT;
+@property (nonatomic, readonly, copy) NSString * _Nonnull domain;
+@property (nonatomic, readonly) enum SDKMigrationErrorCode sdkCode;
+@end
+
+typedef SWIFT_ENUM(NSInteger, SDKMigrationErrorCode, open) {
+  SDKMigrationErrorCodeUnknown = 1,
+  SDKMigrationErrorCodeMigrationInfoMissing = 2,
+  SDKMigrationErrorCodeAccountsExistError = 3,
+  SDKMigrationErrorCodeAccountPreviouslyEnrolledError = 4,
+  SDKMigrationErrorCodePinRequired = 5,
+  SDKMigrationErrorCodeNoDeviceUDID = 6,
+  SDKMigrationErrorCodeNoMigrationToken = 7,
+};
+
+enum SDKPinErrorCode : NSInteger;
+
+SWIFT_CLASS("_TtC10FuturaeKit11SDKPinError")
+@interface SDKPinError : SDKBaseError
+SWIFT_CLASS_PROPERTY(@property (nonatomic, class, readonly, copy) NSString * _Nonnull sdkDomainError;)
++ (NSString * _Nonnull)sdkDomainError SWIFT_WARN_UNUSED_RESULT;
+@property (nonatomic, readonly, copy) NSString * _Nonnull domain;
+@property (nonatomic, readonly) enum SDKPinErrorCode sdkCode;
+@property (nonatomic, readonly) NSError * _Nullable underlyingError;
+@end
+
+typedef SWIFT_ENUM(NSInteger, SDKPinErrorCode, open) {
+  SDKPinErrorCodeUnknown = 1,
+  SDKPinErrorCodePinNotAvailable = 2,
+  SDKPinErrorCodeSetPinSecureFail = 3,
+  SDKPinErrorCodePinNotAvailableSecure = 4,
+  SDKPinErrorCodeRemovePinSecureFail = 5,
+  SDKPinErrorCodeRetrievePinSecureFail = 6,
+  SDKPinErrorCodeBiometricsPinOnly = 7,
+  SDKPinErrorCodePinIsEmpty = 8,
+  SDKPinErrorCodeNewPinIsEmpty = 9,
+  SDKPinErrorCodePinOnlyOperation = 10,
+  SDKPinErrorCodeEnrollPinFirst = 11,
+  SDKPinErrorCodePinUnlockFirst = 12,
+};
+
+
+/// <code>SDKState</code> class represents the current state of the SDK, including lock status and configuration.
+SWIFT_CLASS("_TtC10FuturaeKit8SDKState")
+@interface SDKState : NSObject
+/// The current lock status of the SDK.
+@property (nonatomic, readonly) enum SDKLockStatus lockStatus;
+/// The remaining duration for which the SDK will stay unlocked.
+@property (nonatomic, readonly) NSTimeInterval unlockedRemainingDuration;
+/// An error object representing any error state within the SDK.
+@property (nonatomic, readonly) NSError * _Nullable error;
+/// Check if the device’s biometrics settings have been changed, which renders the SDK biometrics invalid.
+@property (nonatomic, readonly) BOOL haveBiometricsChanged;
+- (nonnull instancetype)init SWIFT_UNAVAILABLE;
++ (nonnull instancetype)new SWIFT_UNAVAILABLE_MSG("-init is unavailable");
+@end
+
+/// Enumerates the possible lock statuses of the SDK.
+typedef SWIFT_ENUM(NSInteger, SDKStatus, open) {
+  SDKStatusNotLaunched = 0,
+  SDKStatusLaunched = 1,
+  SDKStatusLaunching = 2,
+  SDKStatusNeedsReset = 3,
+};
+
+enum SDKSwitchLockErrorCode : NSInteger;
+
+SWIFT_CLASS("_TtC10FuturaeKit18SDKSwitchLockError")
+@interface SDKSwitchLockError : SDKBaseError
+SWIFT_CLASS_PROPERTY(@property (nonatomic, class, readonly, copy) NSString * _Nonnull sdkDomainError;)
++ (NSString * _Nonnull)sdkDomainError SWIFT_WARN_UNUSED_RESULT;
+@property (nonatomic, readonly, copy) NSString * _Nonnull domain;
+@property (nonatomic, readonly) enum SDKSwitchLockErrorCode sdkCode;
+@property (nonatomic, readonly) NSError * _Nullable underlyingError;
+@end
+
+typedef SWIFT_ENUM(NSInteger, SDKSwitchLockErrorCode, open) {
+  SDKSwitchLockErrorCodeUnknown = 1,
+  SDKSwitchLockErrorCodeExpectedNone = 2,
+  SDKSwitchLockErrorCodeExpectedBiometricsOnly = 3,
+  SDKSwitchLockErrorCodeExpectedBiometricsOrPasscode = 4,
+  SDKSwitchLockErrorCodeExpectedSDKPin = 5,
+};
+
+enum SDKSystemErrorCode : NSInteger;
+
+SWIFT_CLASS("_TtC10FuturaeKit14SDKSystemError")
+@interface SDKSystemError : SDKBaseError
+SWIFT_CLASS_PROPERTY(@property (nonatomic, class, readonly, copy) NSString * _Nonnull sdkDomainError;)
++ (NSString * _Nonnull)sdkDomainError SWIFT_WARN_UNUSED_RESULT;
+@property (nonatomic, readonly, copy) NSString * _Nonnull domain;
+@property (nonatomic, readonly) enum SDKSystemErrorCode sdkCode;
+@property (nonatomic, readonly) NSError * _Nullable underlyingError;
+@end
+
+typedef SWIFT_ENUM(NSInteger, SDKSystemErrorCode, open) {
+  SDKSystemErrorCodeUnknown = 1,
+};
+
+enum SDKURLErrorCode : NSInteger;
+
+SWIFT_CLASS("_TtC10FuturaeKit11SDKURLError")
+@interface SDKURLError : SDKBaseError
+SWIFT_CLASS_PROPERTY(@property (nonatomic, class, readonly, copy) NSString * _Nonnull sdkDomainError;)
++ (NSString * _Nonnull)sdkDomainError SWIFT_WARN_UNUSED_RESULT;
+@property (nonatomic, readonly, copy) NSString * _Nonnull domain;
+@property (nonatomic, readonly) enum SDKURLErrorCode sdkCode;
+@property (nonatomic, readonly) NSError * _Nullable underlyingError;
+@end
+
+typedef SWIFT_ENUM(NSInteger, SDKURLErrorCode, open) {
+  SDKURLErrorCodeUnknown = 1,
+  SDKURLErrorCodeActivationCodeNotFound = 2,
+  SDKURLErrorCodeInvalidActivationCode = 3,
+  SDKURLErrorCodeInvalidSessionToken = 4,
+  SDKURLErrorCodeInvalidEncodingActivationCode = 5,
+  SDKURLErrorCodeUnknownURLType = 6,
+  SDKURLErrorCodeInvalidUrlLink = 7,
+};
+
+@class SessionId;
+@class SessionToken;
+
+/// <code>SessionParameters</code> class encapsulates the parameters required for session-related operations.
+SWIFT_CLASS("_TtC10FuturaeKit17SessionParameters")
+@interface SessionParameters : NSObject
+/// The user identifier associated with the session.
+@property (nonatomic, readonly, copy) NSString * _Nonnull userId;
+/// The session-specific value, which could be a session ID or token.
+@property (nonatomic, readonly, copy) NSString * _Nonnull value;
+/// Creates session parameters with a specific session ID.
+/// \param id The session ID.
+///
+/// \param userId The user identifier associated with the session.
+///
+///
+/// returns:
+/// An instance of <code>SessionId</code>.
++ (SessionId * _Nonnull)withId:(NSString * _Nonnull)id userId:(NSString * _Nonnull)userId SWIFT_WARN_UNUSED_RESULT;
+/// Creates session parameters with a specific session token.
+/// \param token The session token.
+///
+/// \param userId The user identifier associated with the session.
+///
+///
+/// returns:
+/// An instance of <code>SessionToken</code>.
++ (SessionToken * _Nonnull)withToken:(NSString * _Nonnull)token userId:(NSString * _Nonnull)userId SWIFT_WARN_UNUSED_RESULT;
+- (nonnull instancetype)init SWIFT_UNAVAILABLE;
++ (nonnull instancetype)new SWIFT_UNAVAILABLE_MSG("-init is unavailable");
+@end
+
+
+/// <code>SessionId</code> class represents session parameters specifically for a session identified by an ID.
+SWIFT_CLASS("_TtC10FuturaeKit9SessionId")
+@interface SessionId : SessionParameters
+/// Initializes a new instance of <code>SessionId</code> with the provided session ID and user identifier.
+/// \param value The session ID.
+///
+/// \param userId The user identifier associated with the session.
+///
+- (nonnull instancetype)init:(NSString * _Nonnull)value userId:(NSString * _Nonnull)userId OBJC_DESIGNATED_INITIALIZER;
+@end
+
+
+
+/// <code>SessionToken</code> class represents session parameters specifically for a session identified by a token.
+SWIFT_CLASS("_TtC10FuturaeKit12SessionToken")
+@interface SessionToken : SessionParameters
+/// Initializes a new instance of <code>SessionToken</code> with the provided session token and user identifier.
+/// \param value The session token.
+///
+/// \param userId The user identifier associated with the session.
+///
+- (nonnull instancetype)init:(NSString * _Nonnull)value userId:(NSString * _Nonnull)userId OBJC_DESIGNATED_INITIALIZER;
+@end
+
+@class SwitchToLockNone;
+@class SwitchToLockBiometrics;
+@class SwitchToLockBiometricsOrPasscode;
+@class SwitchToLockSDKPin;
+
+/// <code>SwitchLockParameters</code> class encapsulates the parameters required for switching the locking mechanism.
+SWIFT_CLASS("_TtC10FuturaeKit20SwitchLockParameters")
+@interface SwitchLockParameters : NSObject
+/// A message or reason prompting the user for the biometrics use.
+@property (nonatomic, readonly, copy) NSString * _Nonnull promptReason;
+/// The SDK pin used for the locking mechanism, if applicable.
+@property (nonatomic, readonly, copy) NSString * _Nonnull sdkPin;
+/// The new lock configuration to be applied.
+@property (nonatomic, readonly, strong) LockConfiguration * _Nonnull lockConfiguration;
+/// Creates parameters for switching to no lock.
+/// \param newLockConfiguration The new lock configuration.
+///
+///
+/// returns:
+/// An instance of <code>SwitchToLockNone</code>.
++ (SwitchToLockNone * _Nonnull)withNewLockConfiguration:(LockConfiguration * _Nonnull)newLockConfiguration SWIFT_WARN_UNUSED_RESULT;
+/// Creates parameters for switching to biometric authentication.
+/// \param biometricsPrompt A message or reason prompting the user for biometric authentication.
+///
+/// \param newLockConfiguration The new lock configuration.
+///
+///
+/// returns:
+/// An instance of <code>SwitchToLockBiometrics</code>.
++ (SwitchToLockBiometrics * _Nonnull)withBiometricsPrompt:(NSString * _Nonnull)biometricsPrompt newLockConfiguration:(LockConfiguration * _Nonnull)newLockConfiguration SWIFT_WARN_UNUSED_RESULT;
+/// Creates parameters for switching to biometric or passcode authentication.
+/// \param biometricsOrPasscodePrompt A message or reason prompting the user for biometric or passcode authentication.
+///
+/// \param newLockConfiguration The new lock configuration.
+///
+///
+/// returns:
+/// An instance of <code>SwitchToLockBiometricsOrPasscode</code>.
++ (SwitchToLockBiometricsOrPasscode * _Nonnull)withBiometricsOrPasscodePrompt:(NSString * _Nonnull)biometricsOrPasscodePrompt newLockConfiguration:(LockConfiguration * _Nonnull)newLockConfiguration SWIFT_WARN_UNUSED_RESULT;
+/// Creates parameters for switching to SDK pin-based authentication.
+/// \param sdkPin The SDK pin for authentication.
+///
+/// \param newLockConfiguration The new lock configuration.
+///
+///
+/// returns:
+/// An instance of <code>SwitchToLockSDKPin</code>.
++ (SwitchToLockSDKPin * _Nonnull)withSdkPin:(NSString * _Nonnull)sdkPin newLockConfiguration:(LockConfiguration * _Nonnull)newLockConfiguration SWIFT_WARN_UNUSED_RESULT;
+- (nonnull instancetype)init SWIFT_UNAVAILABLE;
++ (nonnull instancetype)new SWIFT_UNAVAILABLE_MSG("-init is unavailable");
+@end
+
+
+/// Represents parameters for switching to biometric-based locking mechanism.
+SWIFT_CLASS("_TtC10FuturaeKit22SwitchToLockBiometrics")
+@interface SwitchToLockBiometrics : SwitchLockParameters
+/// Initializes a new instance with the provided prompt reason and lock configuration.
+/// \param promptReason A message or reason prompting the user for biometric authentication.
+///
+/// \param lockConfiguration The lock configuration to switch to.
+///
+- (nonnull instancetype)initWithPromptReason:(NSString * _Nonnull)promptReason lockConfiguration:(LockConfiguration * _Nonnull)lockConfiguration OBJC_DESIGNATED_INITIALIZER;
+@end
+
+
+/// Represents parameters for switching to biometric or passcode-based locking mechanism.
+SWIFT_CLASS("_TtC10FuturaeKit32SwitchToLockBiometricsOrPasscode")
+@interface SwitchToLockBiometricsOrPasscode : SwitchLockParameters
+/// Initializes a new instance with the provided prompt reason and lock configuration.
+/// \param promptReason A message or reason prompting the user for biometric or passcode authentication.
+///
+/// \param lockConfiguration The lock configuration to switch to.
+///
+- (nonnull instancetype)initWithPromptReason:(NSString * _Nonnull)promptReason lockConfiguration:(LockConfiguration * _Nonnull)lockConfiguration OBJC_DESIGNATED_INITIALIZER;
+@end
+
+
+/// Represents parameters for switching to a state with no lock.
+SWIFT_CLASS("_TtC10FuturaeKit16SwitchToLockNone")
+@interface SwitchToLockNone : SwitchLockParameters
+/// Initializes a new instance with the provided lock configuration.
+/// \param lockConfiguration The lock configuration to switch to.
+///
+- (nonnull instancetype)initWithLockConfiguration:(LockConfiguration * _Nonnull)lockConfiguration OBJC_DESIGNATED_INITIALIZER;
+@end
+
+
+/// Represents parameters for switching to SDK pin-based locking mechanism.
+SWIFT_CLASS("_TtC10FuturaeKit18SwitchToLockSDKPin")
+@interface SwitchToLockSDKPin : SwitchLockParameters
+/// Initializes a new instance with the provided SDK pin and lock configuration.
+/// \param sdkPin The SDK pin for the locking mechanism.
+///
+/// \param lockConfiguration The lock configuration to switch to.
+///
+- (nonnull instancetype)initWithSdkPin:(NSString * _Nonnull)sdkPin lockConfiguration:(LockConfiguration * _Nonnull)lockConfiguration OBJC_DESIGNATED_INITIALIZER;
+@end
+
+@class TOTPDefault;
+@class TOTPSDKPin;
+@class TOTPSDKPinWithBiometrics;
+
+/// <code>TOTPParameters</code> class encapsulates the parameters required for TOTP (Time-based One-Time Password) operations.
+SWIFT_CLASS("_TtC10FuturaeKit14TOTPParameters")
+@interface TOTPParameters : NSObject
+@property (nonatomic, readonly, copy) NSString * _Nonnull userId;
+@property (nonatomic, readonly, copy) NSString * _Nonnull sdkPin;
+@property (nonatomic, readonly, copy) NSString * _Nonnull promptReason;
+/// Creates default TOTP parameters for a given user.
+/// \param userId The user identifier for whom the TOTP is generated.
+///
+///
+/// returns:
+/// An instance of <code>TOTPDefault</code>.
++ (TOTPDefault * _Nonnull)withUserId:(NSString * _Nonnull)userId SWIFT_WARN_UNUSED_RESULT;
+/// Creates TOTP parameters for a given user with an SDK-specific pin.
+/// \param userId The user identifier for whom the TOTP is generated.
+///
+/// \param sdkPin The SDK-specific pin for TOTP generation.
+///
+///
+/// returns:
+/// An instance of <code>TOTPSDKPin</code>.
++ (TOTPSDKPin * _Nonnull)withUserId:(NSString * _Nonnull)userId sdkPin:(NSString * _Nonnull)sdkPin SWIFT_WARN_UNUSED_RESULT;
+/// Creates TOTP parameters for a given user with a prompt message for biometric authentication.
+/// \param userId The user identifier for whom the TOTP is generated.
+///
+/// \param promptReason A message or reason for prompting the user’s biometric authentication.
+///
+///
+/// returns:
+/// An instance of <code>TOTPSDKPinWithBiometrics</code>.
++ (TOTPSDKPinWithBiometrics * _Nonnull)withUserId:(NSString * _Nonnull)userId promptReason:(NSString * _Nonnull)promptReason SWIFT_WARN_UNUSED_RESULT;
+- (nonnull instancetype)init SWIFT_UNAVAILABLE;
++ (nonnull instancetype)new SWIFT_UNAVAILABLE_MSG("-init is unavailable");
+@end
+
+
+/// Represents default TOTP parameters for a user.
+SWIFT_CLASS("_TtC10FuturaeKit11TOTPDefault")
+@interface TOTPDefault : TOTPParameters
+/// Initializes a new instance with the provided user identifier.
+/// \param userId The user identifier for whom the TOTP is generated.
+///
+- (nonnull instancetype)initWithUserId:(NSString * _Nonnull)userId OBJC_DESIGNATED_INITIALIZER;
+@end
+
+
+
+/// Represents TOTP parameters for a user with an SDK-specific pin.
+SWIFT_CLASS("_TtC10FuturaeKit10TOTPSDKPin")
+@interface TOTPSDKPin : TOTPParameters
+/// Initializes a new instance with the provided user identifier and SDK-specific pin.
+/// \param userId The user identifier for whom the TOTP is generated.
+///
+/// \param sdkPin The SDK-specific pin for TOTP generation.
+///
+- (nonnull instancetype)initWithUserId:(NSString * _Nonnull)userId sdkPin:(NSString * _Nonnull)sdkPin OBJC_DESIGNATED_INITIALIZER;
+@end
+
+
+/// Represents TOTP parameters for a user with a prompt message for biometric authentication.
+SWIFT_CLASS("_TtC10FuturaeKit24TOTPSDKPinWithBiometrics")
+@interface TOTPSDKPinWithBiometrics : TOTPParameters
+/// Initializes a new instance with the provided user identifier and prompt message for biometric authentication.
+/// \param userId The user identifier for whom the TOTP is generated.
+///
+/// \param promptReason A message or reason for prompting the user’s biometric authentication.
+///
+- (nonnull instancetype)initWithUserId:(NSString * _Nonnull)userId promptReason:(NSString * _Nonnull)promptReason OBJC_DESIGNATED_INITIALIZER;
+@end
+
+@class UnlockBiometrics;
+@class UnlockBiometricsOrPasscode;
+@class UnlockSDKPin;
+
+/// <code>UnlockParameters</code> class encapsulates the parameters required for different unlocking methods.
+SWIFT_CLASS("_TtC10FuturaeKit16UnlockParameters")
+@interface UnlockParameters : NSObject
+/// The SDK pin, used if the unlocking method involves an SDK-specific pin.
+@property (nonatomic, readonly, copy) NSString * _Nonnull sdkPin;
+/// A message or reason used for biometrics or passcode prompts.
+@property (nonatomic, readonly, copy) NSString * _Nonnull promptReason;
+/// Creates parameters for unlocking using biometrics with a custom prompt message.
+/// \param biometricsPrompt A custom message to display for biometric authentication.
+///
+///
+/// returns:
+/// An instance of <code>UnlockBiometrics</code>.
++ (UnlockBiometrics * _Nonnull)withBiometricsPrompt:(NSString * _Nonnull)biometricsPrompt SWIFT_WARN_UNUSED_RESULT;
+/// Creates parameters for unlocking using either biometrics or passcode with a custom prompt message.
+/// \param biometricsOrPasscodePrompt A custom message to display for biometric or passcode authentication.
+///
+///
+/// returns:
+/// An instance of <code>UnlockBiometricsOrPasscode</code>.
++ (UnlockBiometricsOrPasscode * _Nonnull)withBiometricsOrPasscodePrompt:(NSString * _Nonnull)biometricsOrPasscodePrompt SWIFT_WARN_UNUSED_RESULT;
+/// Creates parameters for unlocking using an SDK-specific pin.
+/// \param sdkPin The SDK-specific pin for unlocking.
+///
+///
+/// returns:
+/// An instance of <code>UnlockSDKPin</code>.
++ (UnlockSDKPin * _Nonnull)withSdkPin:(NSString * _Nonnull)sdkPin SWIFT_WARN_UNUSED_RESULT;
+- (nonnull instancetype)init SWIFT_UNAVAILABLE;
++ (nonnull instancetype)new SWIFT_UNAVAILABLE_MSG("-init is unavailable");
+@end
+
+
+/// Represents parameters for unlocking using biometrics with a custom prompt message.
+SWIFT_CLASS("_TtC10FuturaeKit16UnlockBiometrics")
+@interface UnlockBiometrics : UnlockParameters
+/// Initializes a new instance with the provided prompt message for biometric authentication.
+/// \param promptReason A custom message to display for biometric authentication.
+///
+- (nonnull instancetype)initWithPromptReason:(NSString * _Nonnull)promptReason OBJC_DESIGNATED_INITIALIZER;
+@end
+
+
+/// Represents parameters for unlocking using either biometrics or passcode with a custom prompt message.
+SWIFT_CLASS("_TtC10FuturaeKit26UnlockBiometricsOrPasscode")
+@interface UnlockBiometricsOrPasscode : UnlockParameters
+/// Initializes a new instance with the provided prompt message for biometric or passcode authentication.
+/// \param promptReason A custom message to display for biometric or passcode authentication.
+///
+- (nonnull instancetype)initWithPromptReason:(NSString * _Nonnull)promptReason OBJC_DESIGNATED_INITIALIZER;
+@end
+
+typedef SWIFT_ENUM(NSInteger, UnlockMethodType, open) {
+  UnlockMethodTypeBiometrics = 1,
+  UnlockMethodTypeBiometricsOrPasscode = 2,
+  UnlockMethodTypeSdkPin = 3,
+  UnlockMethodTypeNone = 4,
+};
+
+
+
+/// Represents parameters for unlocking using an SDK-specific pin.
+SWIFT_CLASS("_TtC10FuturaeKit12UnlockSDKPin")
+@interface UnlockSDKPin : UnlockParameters
+/// Initializes a new instance with the provided SDK-specific pin for unlocking.
+/// \param sdkPin The SDK-specific pin for unlocking.
+///
+- (nonnull instancetype)initWithSdkPin:(NSString * _Nonnull)sdkPin OBJC_DESIGNATED_INITIALIZER;
+@end
+
+/// Enumerates the types of user presence verification methods supported in the SDK.
+typedef SWIFT_ENUM(NSInteger, UserPresenceVerificationType, open) {
+  UserPresenceVerificationTypeBiometricsIosTouchId = 0,
+  UserPresenceVerificationTypeBiometricsIosFaceId = 1,
+  UserPresenceVerificationTypeAppSpecificPin = 2,
+  UserPresenceVerificationTypeDeviceCredentialsIosPasscode = 3,
+  UserPresenceVerificationTypePasscodeOrBiometrics = 4,
+  UserPresenceVerificationTypeNone = 5,
+  UserPresenceVerificationTypeUnknown = 6,
+};
 
 #endif
 #if __has_attribute(external_source_symbol)

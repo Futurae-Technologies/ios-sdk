@@ -1,3 +1,8 @@
+# Version 3.2.0
+2024-07-06
++ [Fixed] Resolved SDK issues occurring after device backup restoration.
++ [Changed] Deprecated the old `reset` method and introduced a new `reset` method with additional parameters.
+
 # Version 2.3.14
 2024-28-05
 + [Changed] Internal improvements
