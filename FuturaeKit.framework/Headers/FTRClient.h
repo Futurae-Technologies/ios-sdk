@@ -464,7 +464,7 @@ typedef void (^FTRRequestDataHandler)(id _Nullable data);
 ///
 /// - Returns: Current 6 digit TOTP.
 ///
-- (FTRTotp * _Nonnull)nextTotpForUser:(NSString * _Nonnull)userId error:(NSError *_Nullable*_Nullable)error;
+- (FTRTotp * _Nullable)nextTotpForUser:(NSString * _Nonnull)userId error:(NSError *_Nullable*_Nullable)error;
 
 ///  Return the current 6 digit used in the TOTP offline authentication, for the provided user id.
 ///
@@ -479,7 +479,7 @@ typedef void (^FTRRequestDataHandler)(id _Nullable data);
 ///     - SDKPIn: The SDK Pin inserted by the user
 ///     - error: A pointer to an error object. If an error occurs, this pointer is set to an actual error object containing the error information. You may specify nil for this parameter if you do not want the error information.
 /// - Returns: Current 6 digit TOTP.
-- (FTRTotp * _Nonnull)nextTotpForUser:(NSString * _Nonnull)userId
+- (FTRTotp * _Nullable)nextTotpForUser:(NSString * _Nonnull)userId
                                SDKPin:(NSString* _Nullable)SDKPin
                                 error:(NSError *_Nullable*_Nullable)error;
 
@@ -604,7 +604,19 @@ typedef void (^FTRRequestDataHandler)(id _Nullable data);
                                   failure:(void (^_Nonnull)(NSError * _Nonnull))failure;
 
 /// Reset the SDK to a clean installation state. This will irreversibly reset the configuration and remove all accounts, keys, secrets, credentials and lock configurations from the SDK.
-+ (void)reset;
++ (void)reset __deprecated_msg("Use resetWithAppGroup:keychainConfig:lockConfiguration instead");
+
+
+/// Reset the SDK to a clean installation state. This will irreversibly reset the configuration and remove all accounts, keys, secrets, credentials and lock configurations from the SDK.
+///
+/// - Parameters:
+///   - appGroup: The app group parameter.
+///   - keychainConfig: The keychain configuration object. If nil is passed default keychain configuration will be applied.
+///   - lockConfiguration: The lock configuration object.
+///
++ (void)resetWithAppGroup:(NSString *_Nullable)appGroup
+           keychainConfig:(FTRKeychainConfig *_Nullable)keychainConfig
+        lockConfiguration:(LockConfiguration *_Nonnull)lockConfiguration;
 
 /// Enrolls the user's first account when the SDK lock configuration type is `LockConfigurationTypeSDKPinWithBiometricsOptional`, and will result in an error when used with any other lock configuration type.
 ///
