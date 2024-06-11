@@ -1,0 +1,1 @@
+// This file is required by SPM to create a composite (umbrella) target.
