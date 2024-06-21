@@ -7,30 +7,30 @@
 
 import Foundation
 
-@objc
+
 class AdaptiveDebugStorage: NSObject {
-    private static let instance = AdaptiveDebugStorage()
-    private let directoryPath = "adaptive-collections"
-    private let timestampKey = "timestamp"
+    static let instance = AdaptiveDebugStorage()
+    let directoryPath = "adaptive-collections"
+    let timestampKey = "timestamp"
         
-    @objc
+    
     class func shared() -> AdaptiveDebugStorage {
         return instance
     }
 
-    private func documentsPath() -> String! {
+    func documentsPath() -> String! {
         NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true).first ?? ""
     }
 
-    private func pathForDirectory(directory:String) -> String {
+    func pathForDirectory(directory:String) -> String {
         documentsPath().appending("/\(directory)")
     }
 
-    private func pathForDirectory(directory:String, withName name:String) -> String {
+    func pathForDirectory(directory:String, withName name:String) -> String {
         documentsPath().appending("/\(directory)/\(name)")
     }
 
-    @objc
+    
     func save(_ collection: [String: Any]) {
         guard let timestamp = (collection[timestampKey] as? Double)?.description else { return }
         
@@ -46,7 +46,7 @@ class AdaptiveDebugStorage: NSObject {
         }
     }
 
-    @objc
+    
     func delete(_ collection: [String: Any]) {
         guard let timestamp = (collection[timestampKey] as? Double)?.description else { return }
         
@@ -57,7 +57,7 @@ class AdaptiveDebugStorage: NSObject {
         }
     }
 
-    @objc
+    
     func savedCollections() -> [[String: Any]] {
         do {
             return try FileManager.default
@@ -69,7 +69,7 @@ class AdaptiveDebugStorage: NSObject {
         }
     }
     
-    private func getInDirectory(withName name:String!) -> [String: Any]? {
+    func getInDirectory(withName name:String!) -> [String: Any]? {
         do {
             let data = try Data(contentsOf: URL(fileURLWithPath: pathForDirectory(directory: directoryPath, withName: name)))
             let collection = try JSONSerialization.jsonObject(with: data) as? [String: Any]

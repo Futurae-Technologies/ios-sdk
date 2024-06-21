@@ -1,3 +1,8 @@
+# Version 3.2.1
+2024-21-06
+- [Fixed] Fixes a bug that prevented some users from authenticating and approving transactions in rare migration cases.
+
+
 # Version 2.4.0
 2024-07-06
 + [Fixed] Resolved SDK issues occurring after device backup restoration.

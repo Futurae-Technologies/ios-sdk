@@ -7,15 +7,15 @@
 //
 import UIKit
 
-public enum PinMode: String {
+enum PinMode: String {
     case set
     case update
     case input
     case shortCode
 }
 
-public class PinViewController: UIViewController {
-    public static func create(pinMode: PinMode, title: String, pinCompletionHandler: ((String?) -> Void)? = nil) -> PinViewController{
+class PinViewController: UIViewController {
+    static func create(pinMode: PinMode, title: String, pinCompletionHandler: ((String?) -> Void)? = nil) -> PinViewController{
         let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "pinViewController") as! PinViewController
         vc.pinMode = pinMode
         vc.title = title
@@ -27,17 +27,17 @@ public class PinViewController: UIViewController {
     @IBOutlet var titleLabel: UILabel!
     @IBOutlet var subtitleLabel: UILabel!
     
-    public var didFinishWithPin: ((String?) -> Void)?
-    public var pinMode: PinMode!
+    var didFinishWithPin: ((String?) -> Void)?
+    var pinMode: PinMode!
     var pinLength = 4
     var secureText = true
     
-    public override func viewDidLoad() {
+    override func viewDidLoad() {
         super.viewDidLoad()
         configurePinView()
     }
     
-    public override func viewWillLayoutSubviews() {
+    override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
         
         // Setup background gradient
@@ -46,19 +46,19 @@ public class PinViewController: UIViewController {
         setGradientBackground(view: self.view, colorTop: valenciaColor, colorBottom: discoColor)
     }
     
-    @objc public func setPinMode(_ mode: String){
+    func setPinMode(_ mode: String){
         pinMode = PinMode(rawValue: mode)
     }
     
-    @objc public func setPinLength(_ length: Int){
+    func setPinLength(_ length: Int){
         pinLength = length
     }
     
-    @objc public func setSecureText(_ secure: Bool){
+    func setSecureText(_ secure: Bool){
         secureText = secure
     }
     
-    @objc public func setDidFinishWithPin(callback: ((String?) -> Void)?){
+    func setDidFinishWithPin(callback: ((String?) -> Void)?){
         didFinishWithPin = callback
     }
     
@@ -167,14 +167,5 @@ public class PinViewController: UIViewController {
         gradientLayer.frame = view.bounds
         gradientLayer.name = "gradientLayer"
         view.layer.insertSublayer(gradientLayer, at: 0)
-    }
-}
-
-extension UIViewController {
-    // MARK: Helper Functions
-    func showAlert(title:String, message:String) {
-        let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertController.Style.alert)
-        alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil))
-        self.present(alert, animated: true, completion: nil)
     }
 }

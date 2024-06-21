@@ -27,7 +27,7 @@ class AdaptiveViewController: UIViewController {
             
             return true
         })
-        pendingCollections = FTRClient.shared()?.pendingAdaptiveCollections() ?? []
+        pendingCollections = FTRClient.shared.pendingAdaptiveCollections
         tableView.reloadData()
     }
     
