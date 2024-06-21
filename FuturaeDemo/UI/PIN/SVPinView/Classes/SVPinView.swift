@@ -8,15 +8,15 @@
 
 import UIKit
 
-@objc
-public enum SVPinViewStyle: Int {
+
+enum SVPinViewStyle: Int {
     case none = 0
     case underline
     case box
 }
 
-@objc
-public enum SVPinViewDeleteButtonAction: Int {
+
+enum SVPinViewDeleteButtonAction: Int {
     /// Deletes the contents of the current field and moves the cursor to the previous field.
     case deleteCurrentAndMoveToPrevious = 0
     
@@ -29,78 +29,76 @@ public enum SVPinViewDeleteButtonAction: Int {
     case moveToPreviousAndDelete
 }
 
-private class SVPinViewFlowLayout: UICollectionViewFlowLayout {
+class SVPinViewFlowLayout: UICollectionViewFlowLayout {
     override var developmentLayoutDirection: UIUserInterfaceLayoutDirection { return .leftToRight }
     override var flipsHorizontallyInOppositeLayoutDirection: Bool { return true }
 }
 
-@objcMembers
-public class SVPinView: UIView {
+class SVPinView: UIView {
     
-    // MARK: - Private Properties -
-    @IBOutlet fileprivate var collectionView: UICollectionView!
-    @IBOutlet fileprivate var errorView: UIView!
+    @IBOutlet var collectionView: UICollectionView!
+    @IBOutlet var errorView: UIView!
     
-    fileprivate var flowLayout: UICollectionViewFlowLayout {
+    var flowLayout: UICollectionViewFlowLayout {
         self.collectionView.collectionViewLayout = SVPinViewFlowLayout()
         return self.collectionView?.collectionViewLayout as! UICollectionViewFlowLayout
     }
     
-    fileprivate var view: UIView!
-    fileprivate var reuseIdentifier = "SVPinCell"
-    fileprivate var isLoading = true
-    fileprivate var password = [String]()
+    var view: UIView!
+    var reuseIdentifier = "SVPinCell"
+    var isLoading = true
+    var password = [String]()
     
-    // MARK: - Public Properties -
-    @IBInspectable public var pinLength: Int = 5
-    @IBInspectable public var secureCharacter: String = "\u{25CF}"
-    @IBInspectable public var interSpace: CGFloat = 5
-    @IBInspectable public var textColor: UIColor = UIColor.black
-    @IBInspectable public var shouldSecureText: Bool = true
-    @IBInspectable public var secureTextDelay: Int = 500
-    @IBInspectable public var allowsWhitespaces: Bool = true
-    @IBInspectable public var placeholder: String = ""
+    // MARK: - Properties -
+    @IBInspectable var pinLength: Int = 5
+    @IBInspectable var secureCharacter: String = "\u{25CF}"
+    @IBInspectable var interSpace: CGFloat = 5
+    @IBInspectable var textColor: UIColor = UIColor.black
+    @IBInspectable var shouldSecureText: Bool = true
+    @IBInspectable var secureTextDelay: Int = 500
+    @IBInspectable var allowsWhitespaces: Bool = true
+    @IBInspectable var placeholder: String = ""
     
-    @IBInspectable public var borderLineColor: UIColor = UIColor.black
-    @IBInspectable public var activeBorderLineColor: UIColor = UIColor.black
+    @IBInspectable var borderLineColor: UIColor = UIColor.black
+    @IBInspectable var activeBorderLineColor: UIColor = UIColor.black
     
-    @IBInspectable public var borderLineThickness: CGFloat = 2
-    @IBInspectable public var activeBorderLineThickness: CGFloat = 4
+    @IBInspectable var borderLineThickness: CGFloat = 2
+    @IBInspectable var activeBorderLineThickness: CGFloat = 4
     
-    @IBInspectable public var fieldBackgroundColor: UIColor = UIColor.clear
-    @IBInspectable public var activeFieldBackgroundColor: UIColor = UIColor.clear
+    @IBInspectable var fieldBackgroundColor: UIColor = UIColor.clear
+    @IBInspectable var activeFieldBackgroundColor: UIColor = UIColor.clear
     
-    @IBInspectable public var fieldCornerRadius: CGFloat = 0
-    @IBInspectable public var activeFieldCornerRadius: CGFloat = 0
+    @IBInspectable var fieldCornerRadius: CGFloat = 0
+    @IBInspectable var activeFieldCornerRadius: CGFloat = 0
     
-    public var style: SVPinViewStyle = .underline
-    public var deleteButtonAction: SVPinViewDeleteButtonAction = .deleteCurrentAndMoveToPrevious
+    var style: SVPinViewStyle = .underline
+    var deleteButtonAction: SVPinViewDeleteButtonAction = .deleteCurrentAndMoveToPrevious
     
-    public var font: UIFont = UIFont.systemFont(ofSize: 15)
-    public var keyboardType: UIKeyboardType = UIKeyboardType.phonePad
-    public var keyboardAppearance: UIKeyboardAppearance = .default
-    public var becomeFirstResponderAtIndex: Int? = nil
-    public var isContentTypeOneTimeCode: Bool = true
-    public var shouldDismissKeyboardOnEmptyFirstField: Bool = false
-    public var pinInputAccessoryView: UIView? {
+    var font: UIFont = UIFont.systemFont(ofSize: 15)
+    var keyboardType: UIKeyboardType = UIKeyboardType.phonePad
+    var keyboardAppearance: UIKeyboardAppearance = .default
+    var becomeFirstResponderAtIndex: Int? = nil
+    var isContentTypeOneTimeCode: Bool = true
+    var shouldDismissKeyboardOnEmptyFirstField: Bool = false
+    var pinInputAccessoryView: UIView? {
         didSet { refreshPinView() }
     }
     
-    public var didFinishCallback: ((String)->())?
-    public var didChangeCallback: ((String)->())?
+    var didFinishCallback: ((String)->())?
+    var didChangeCallback: ((String)->())?
     
     // MARK: - Init methods -
-    required public init?(coder aDecoder: NSCoder) {
+    required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         loadView()
     }
     
-    public override init(frame: CGRect) {
+    override init(frame: CGRect) {
         super.init(frame: frame)
         loadView()
     }
     
-    private func loadView(completionHandler: (()->())? = nil) {
+    func loadView(completionHandler: (()->())? = nil) {
         let podBundle = Bundle(for: SVPinView.self)
         let nib = UINib(nibName: "SVPinView", bundle: podBundle)
         view = nib.instantiate(withOwner: self, options: nil)[0] as? UIView
@@ -120,8 +118,8 @@ public class SVPinView: UIView {
         }
     }
     
-    // MARK: - Private methods -
-    @objc fileprivate func textFieldDidChange(_ textField: UITextField) {
+    // MARK: - methods -
+    @objc func textFieldDidChange(_ textField: UITextField) {
         var nextTag = textField.tag
         let index = nextTag - 100
         guard let placeholderLabel = textField.superview?.viewWithTag(400) as? UILabel else {
@@ -185,7 +183,7 @@ public class SVPinView: UIView {
         validateAndSendCallback()
     }
     
-    fileprivate func validateAndSendCallback() {
+    func validateAndSendCallback() {
         didChangeCallback?(password.joined())
         
         let pin = getPin()
@@ -193,7 +191,7 @@ public class SVPinView: UIView {
         didFinishCallback?(pin)
     }
     
-    fileprivate func setPlaceholder() {
+    func setPlaceholder() {
         for (index, char) in placeholder.enumerated() {
             guard index < pinLength else { return }
             
@@ -203,7 +201,7 @@ public class SVPinView: UIView {
         }
     }
     
-    fileprivate func stylePinField(containerView: UIView, underLine: UIView, isActive: Bool) {
+    func stylePinField(containerView: UIView, underLine: UIView, isActive: Bool) {
         
         containerView.backgroundColor = isActive ? activeFieldBackgroundColor : fieldBackgroundColor
         containerView.layer.cornerRadius = isActive ? activeFieldCornerRadius : fieldCornerRadius
@@ -230,7 +228,7 @@ public class SVPinView: UIView {
         }
      }
     
-    @IBAction fileprivate func refreshPinView(completionHandler: (()->())? = nil) {
+    @IBAction func refreshPinView(completionHandler: (()->())? = nil) {
         view.removeFromSuperview()
         view = nil
         isLoading = true
@@ -238,19 +236,19 @@ public class SVPinView: UIView {
         loadView(completionHandler: completionHandler)
     }
     
-    fileprivate func showPinError(error: String) {
+    func showPinError(error: String) {
         errorView.isHidden = false
         print("\n----------SVPinView Error----------")
         print(error)
         print("-----------------------------------")
     }
     
-    // MARK: - Public methods -
+    // MARK: - methods -
     
     /// Returns the entered PIN; returns empty string if incomplete
     /// - Returns: The entered PIN.
-    @objc
-    public func getPin() -> String {
+    
+    func getPin() -> String {
         
         guard !isLoading else { return "" }
         guard password.count == pinLength && password.joined().trimmingCharacters(in: CharacterSet(charactersIn: " ")).count == pinLength else {
@@ -261,8 +259,8 @@ public class SVPinView: UIView {
         
     /// Clears the entered PIN and refreshes the view
     /// - Parameter completionHandler: Called after the pin is cleared the view is re-rendered.
-    @objc
-    public func clearPin(completionHandler: (()->())? = nil) {
+    
+    func clearPin(completionHandler: (()->())? = nil) {
         
         guard !isLoading else { return }
         
@@ -273,15 +271,15 @@ public class SVPinView: UIView {
     /// Clears the entered PIN and refreshes the view.
     /// (internally calls the clearPin method; re-declared since the name is more intuitive)
     /// - Parameter completionHandler: Called after the pin is cleared the view is re-rendered.
-    @objc
-    public func refreshView(completionHandler: (()->())? = nil) {
+    
+    func refreshView(completionHandler: (()->())? = nil) {
         clearPin(completionHandler: completionHandler)
     }
     
     /// Pastes the PIN onto the PinView
     /// - Parameter pin: The pin which is to be entered onto the PinView.
-    @objc
-    public func pastePin(pin: String) {
+    
+    func pastePin(pin: String) {
         
         password = []
         for (index,char) in pin.enumerated() {
@@ -316,11 +314,11 @@ public class SVPinView: UIView {
 // MARK: - CollectionView methods -
 extension SVPinView : UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout
 {
-    public func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return pinLength
     }
     
-    public func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath)
         
         guard let textField = cell.viewWithTag(100) as? SVPinField,
@@ -370,7 +368,7 @@ extension SVPinView : UICollectionViewDataSource, UICollectionViewDelegate, UICo
         return cell
     }
     
-    public func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         if UIDevice.current.orientation == .landscapeLeft || UIDevice.current.orientation == .landscapeRight {
             let width = (collectionView.bounds.width - (interSpace * CGFloat(max(pinLength, 1) - 1)))/CGFloat(pinLength)
             return CGSize(width: width, height: collectionView.frame.height)
@@ -380,11 +378,11 @@ extension SVPinView : UICollectionViewDataSource, UICollectionViewDelegate, UICo
         return CGSize(width: min(width, height), height: min(width, height))
     }
     
-    public func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
         return interSpace
     }
     
-    public func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
         
         if UIDevice.current.orientation == .landscapeLeft || UIDevice.current.orientation == .landscapeRight {
             return UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
@@ -402,14 +400,14 @@ extension SVPinView : UICollectionViewDataSource, UICollectionViewDelegate, UICo
         return UIEdgeInsets(top: top, left: 0, bottom: 0, right: 0)
     }
     
-    public override func layoutSubviews() {
+    override func layoutSubviews() {
         flowLayout.invalidateLayout()
     }
 }
 // MARK: - TextField Methods -
 extension SVPinView : UITextFieldDelegate
 {
-    public func textFieldDidBeginEditing(_ textField: UITextField) {
+    func textFieldDidBeginEditing(_ textField: UITextField) {
         let text = textField.text ?? ""
         if let placeholderLabel = textField.superview?.viewWithTag(400) as? UILabel {
             placeholderLabel.isHidden = true
@@ -434,14 +432,14 @@ extension SVPinView : UITextFieldDelegate
         } else { showPinError(error: "ERR-106: Type Mismatch") }
     }
     
-    public func textFieldDidEndEditing(_ textField: UITextField) {
+    func textFieldDidEndEditing(_ textField: UITextField) {
         if let containerView = textField.superview?.viewWithTag(51),
         let underLine = textField.superview?.viewWithTag(50) {
             self.stylePinField(containerView: containerView, underLine: underLine, isActive: false)
         } else { showPinError(error: "ERR-107: Type Mismatch") }
     }
     
-    public func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         if (string.count >= pinLength) && (string == UIPasteboard.general.string || isContentTypeOneTimeCode) {
             textField.resignFirstResponder()
             DispatchQueue.main.async { self.pastePin(pin: string) }
