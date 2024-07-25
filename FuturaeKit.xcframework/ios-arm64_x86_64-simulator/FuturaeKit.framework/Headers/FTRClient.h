@@ -785,6 +785,12 @@ typedef void (^FTRRequestDataHandler)(id _Nullable data);
 ///
 - (SDKState * _Nonnull)getSdkState;
 
+/// Get report about the state of the SDK for debugging purposes
+///
+/// - Returns: An SDK report in string format
+///
+- (NSString * _Nonnull)sdkStateReport;
+
 /// Check if the device's biometrics settings have been changed, which renders the SDK biometrics invalid.
 ///
 /// - Returns: `true` if the biometrics keys have been changed, othewise returns `false`.

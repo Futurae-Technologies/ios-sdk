@@ -1,3 +1,7 @@
+# Version 2.4.1
+2024-25-07
++ [Added] SDK method `sdkStateReport` to generate a report that includes details about the SDK internals. Include this report in your error logging (Firebase Crashlytics etc.) and share it with the Futurae Customer Support team to help with debugging issues.
+
 # Version 3.2.1
 2024-21-06
 - [Fixed] Fixes a bug that prevented some users from authenticating and approving transactions in rare migration cases.
