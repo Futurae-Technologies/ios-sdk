@@ -1,3 +1,17 @@
+# Version 3.2.2
+2024-31-07
++ [Fixed] Issue where display name and service name were not updated has been fixed.
++ [Fixed] Issue where SDK PIN error for invalid attempt returned 0 for `attemptsLeft` key when there were more than three attempts left has been fixed.
++ [Added] SDK provides new method to generate an SDK report for debugging purposes. When the SDK returns any errors the report can be retrieved to log it to your provider (Firebase etc.) and then provide it to our Customer Support to help us with debugging the issue.
++ [Added] SDK provides new methods to enable or disable specific Adaptive behavior, such as data collection, adaptive authentication and account migration.
++ [Added] SDK returns specific error when user selects wrong choice for multi number authentication: SDKApiError.wrongMultiNumberChoice
++ [Removed] Expired certificate for SSL pinning has been removed.
++ [Changed] SDK does not perform operations sequentially anymore to avoid delays in execution.
++ [Changed] SDK performs keychain cleanup on fresh install to clear any items from previous installs.
++ [Changed] SDK error descriptions include the description returned from system errors where applicable.
++ [Changed] Other internal improvements
+
+
 # Version 2.4.2
 2024-31-07
 + [Changed] Security enhancements.
