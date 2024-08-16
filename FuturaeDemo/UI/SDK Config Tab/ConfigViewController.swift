@@ -432,7 +432,9 @@ final class ConfigViewController: UIViewController {
         
         do {
             let report = try client.sdkStateReport()
-            showAlert(title: "SDK report", message: report.report)
+            let text = "\(report.report) \n\n \(report.logs)"
+            print(text)
+            showAlert(title: "SDK report", message: text)
         } catch {
             valueTextView.text = "Last operation: " + error.localizedDescription
         }

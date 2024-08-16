@@ -828,18 +828,14 @@ SWIFT_CLASS_PROPERTY(@property (nonatomic, class, readonly) enum SDKStatus sdkSt
 + (nonnull instancetype)new SWIFT_UNAVAILABLE_MSG("-init is unavailable");
 @end
 
-
-@class FTRConfig;
+@class SDKReport;
 
 @interface FTRClient (SWIFT_EXTENSION(FuturaeKit))
-/// Launches the SDK with the provided configuration.
-/// This method initializes the SDK with the given <code>FTRConfig</code> instance, setting up necessary parameters and configurations. It should be called before using any SDK functionality. The method can throw an error if the configuration is invalid or if there’s an issue during the initialization process.
-/// \param config An <code>FTRConfig</code> object containing the configuration settings for the SDK.
+/// Get report about the state of the SDK
 ///
-///
-/// throws:
-/// An error if the SDK fails to launch due to invalid configuration or other initialization issues.
-+ (BOOL)launchWithConfig:(FTRConfig * _Nonnull)config error:(NSError * _Nullable * _Nullable)error;
+/// returns:
+/// <code>SDKReport</code> which contains a report in string format and an error count
+- (SDKReport * _Nullable)sdkStateReportAndReturnError:(NSError * _Nullable * _Nullable)error SWIFT_WARN_UNUSED_RESULT;
 @end
 
 
@@ -858,8 +854,18 @@ SWIFT_CLASS_PROPERTY(@property (nonatomic, class, readonly) enum SDKStatus sdkSt
 @end
 
 
+@class FTRConfig;
 
-
+@interface FTRClient (SWIFT_EXTENSION(FuturaeKit))
+/// Launches the SDK with the provided configuration.
+/// This method initializes the SDK with the given <code>FTRConfig</code> instance, setting up necessary parameters and configurations. It should be called before using any SDK functionality. The method can throw an error if the configuration is invalid or if there’s an issue during the initialization process.
+/// \param config An <code>FTRConfig</code> object containing the configuration settings for the SDK.
+///
+///
+/// throws:
+/// An error if the SDK fails to launch due to invalid configuration or other initialization issues.
++ (BOOL)launchWithConfig:(FTRConfig * _Nonnull)config error:(NSError * _Nullable * _Nullable)error;
+@end
 
 @class NSURL;
 @protocol FTROpenURLDelegate;
@@ -875,15 +881,10 @@ SWIFT_CLASS_PROPERTY(@property (nonatomic, class, readonly) enum SDKStatus sdkSt
 - (void)openURL:(NSURL * _Nonnull)url options:(NSDictionary<UIApplicationOpenURLOptionsKey, id> * _Nonnull)options delegate:(id <FTROpenURLDelegate> _Nullable)delegate;
 @end
 
-@class SDKReport;
 
-@interface FTRClient (SWIFT_EXTENSION(FuturaeKit))
-/// Get report about the state of the SDK
-///
-/// returns:
-/// <code>SDKReport</code> which contains a report in string format and an error count
-- (SDKReport * _Nullable)sdkStateReportAndReturnError:(NSError * _Nullable * _Nullable)error SWIFT_WARN_UNUSED_RESULT;
-@end
+
+
+
 
 
 @interface FTRClient (SWIFT_EXTENSION(FuturaeKit))
@@ -910,7 +911,6 @@ SWIFT_CLASS_PROPERTY(@property (nonatomic, class, readonly) enum SDKStatus sdkSt
 ///
 - (void)getSessionInfo:(SessionParameters * _Nonnull)parameters success:(void (^ _Nonnull)(FTRSession * _Nonnull))success failure:(void (^ _Nonnull)(NSError * _Nonnull))failure;
 @end
-
 
 
 
@@ -2352,6 +2352,7 @@ SWIFT_CLASS("_TtC10FuturaeKit9SDKReport")
 @interface SDKReport : NSObject
 @property (nonatomic, readonly, copy) NSString * _Nonnull report;
 @property (nonatomic, readonly) NSInteger errors;
+@property (nonatomic, readonly, copy) NSString * _Nonnull logs;
 - (nonnull instancetype)init SWIFT_UNAVAILABLE;
 + (nonnull instancetype)new SWIFT_UNAVAILABLE_MSG("-init is unavailable");
 @end

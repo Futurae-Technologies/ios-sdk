@@ -746,6 +746,7 @@ extension FuturaeKit.FTRClient {
 @_hasMissingDesignatedInitializers @objc public class SDKReport : ObjectiveC.NSObject {
   @objc final public let report: Swift.String
   @objc final public let errors: Swift.Int
+  @objc final public let logs: Swift.String
   @objc deinit
 }
 @objc public class LockConfiguration : ObjectiveC.NSObject {

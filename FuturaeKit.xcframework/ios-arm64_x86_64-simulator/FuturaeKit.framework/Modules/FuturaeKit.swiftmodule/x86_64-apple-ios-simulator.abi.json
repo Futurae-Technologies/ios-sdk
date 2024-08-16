@@ -6730,6 +6730,13 @@
       },
       {
         "kind": "Import",
+        "name": "CommonCrypto",
+        "printedName": "CommonCrypto",
+        "declKind": "Import",
+        "moduleName": "FuturaeKit"
+      },
+      {
+        "kind": "Import",
         "name": "Foundation",
         "printedName": "Foundation",
         "declKind": "Import",
@@ -24986,6 +24993,56 @@
                 "declKind": "Accessor",
                 "usr": "c:@M@FuturaeKit@objc(cs)SDKReport(im)errors",
                 "mangledName": "$s10FuturaeKit9SDKReportC6errorsSivg",
+                "moduleName": "FuturaeKit",
+                "implicit": true,
+                "declAttributes": [
+                  "Final",
+                  "ObjC"
+                ],
+                "accessorKind": "get"
+              }
+            ]
+          },
+          {
+            "kind": "Var",
+            "name": "logs",
+            "printedName": "logs",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "String",
+                "printedName": "Swift.String",
+                "usr": "s:SS"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "c:@M@FuturaeKit@objc(cs)SDKReport(py)logs",
+            "mangledName": "$s10FuturaeKit9SDKReportC4logsSSvp",
+            "moduleName": "FuturaeKit",
+            "declAttributes": [
+              "Final",
+              "HasStorage",
+              "AccessControl",
+              "ObjC"
+            ],
+            "isLet": true,
+            "hasStorage": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "String",
+                    "printedName": "Swift.String",
+                    "usr": "s:SS"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "c:@M@FuturaeKit@objc(cs)SDKReport(im)logs",
+                "mangledName": "$s10FuturaeKit9SDKReportC4logsSSvg",
                 "moduleName": "FuturaeKit",
                 "implicit": true,
                 "declAttributes": [
@@ -48304,6 +48361,48 @@
       "value": "[]"
     },
     {
+      "filePath": "\/Users\/armendh\/repos\/futurae\/futurae-ios-sdk\/FuturaeKit\/Internal\/Models\/Enums\/KeychainGenericPasswordAccountName.swift",
+      "kind": "IntegerLiteral",
+      "offset": 263,
+      "length": 11,
+      "value": "1"
+    },
+    {
+      "filePath": "\/Users\/armendh\/repos\/futurae\/futurae-ios-sdk\/FuturaeKit\/Internal\/Models\/Enums\/KeychainGenericPasswordAccountName.swift",
+      "kind": "IntegerLiteral",
+      "offset": 284,
+      "length": 10,
+      "value": "2"
+    },
+    {
+      "filePath": "\/Users\/armendh\/repos\/futurae\/futurae-ios-sdk\/FuturaeKit\/Internal\/Models\/Enums\/KeychainGenericPasswordAccountName.swift",
+      "kind": "IntegerLiteral",
+      "offset": 263,
+      "length": 11,
+      "value": "1"
+    },
+    {
+      "filePath": "\/Users\/armendh\/repos\/futurae\/futurae-ios-sdk\/FuturaeKit\/Internal\/Models\/Enums\/KeychainGenericPasswordAccountName.swift",
+      "kind": "IntegerLiteral",
+      "offset": 284,
+      "length": 10,
+      "value": "2"
+    },
+    {
+      "filePath": "\/Users\/armendh\/repos\/futurae\/futurae-ios-sdk\/FuturaeKit\/Internal\/Models\/Enums\/KeychainGenericPasswordAccountName.swift",
+      "kind": "IntegerLiteral",
+      "offset": 263,
+      "length": 11,
+      "value": "1"
+    },
+    {
+      "filePath": "\/Users\/armendh\/repos\/futurae\/futurae-ios-sdk\/FuturaeKit\/Internal\/Models\/Enums\/KeychainGenericPasswordAccountName.swift",
+      "kind": "IntegerLiteral",
+      "offset": 284,
+      "length": 10,
+      "value": "2"
+    },
+    {
       "filePath": "\/Users\/armendh\/repos\/futurae\/futurae-ios-sdk\/FuturaeKit\/Internal\/Models\/Response\/Enroll.swift",
       "kind": "StringLiteral",
       "offset": 443,
@@ -49107,6 +49206,20 @@
       "offset": 285,
       "length": 7,
       "value": "\"FuturaeKit.FTRTotp\""
+    },
+    {
+      "filePath": "\/Users\/armendh\/repos\/futurae\/futurae-ios-sdk\/FuturaeKit\/Internal\/Other\/HealthCheck\/KeychainHealthCheck.swift",
+      "kind": "StringLiteral",
+      "offset": 3134,
+      "length": 7,
+      "value": "\"DEBUG\""
+    },
+    {
+      "filePath": "\/Users\/armendh\/repos\/futurae\/futurae-ios-sdk\/FuturaeKit\/Internal\/Other\/HealthCheck\/KeychainHealthCheck.swift",
+      "kind": "IntegerLiteral",
+      "offset": 3157,
+      "length": 1,
+      "value": "6"
     },
     {
       "filePath": "\/Users\/armendh\/repos\/futurae\/futurae-ios-sdk\/FuturaeKit\/Internal\/Services\/AccountMigration\/Services\/AccountMigrationService.swift",
@@ -52870,44 +52983,72 @@
     {
       "filePath": "\/Users\/armendh\/repos\/futurae\/futurae-ios-sdk\/FuturaeKit\/Internal\/Other\/Utils\/DateUtils.swift",
       "kind": "StringLiteral",
-      "offset": 1517,
+      "offset": 1580,
       "length": 23,
       "value": "\"yyyy-MM-dd HH:mm:ss Z\""
     },
     {
       "filePath": "\/Users\/armendh\/repos\/futurae\/futurae-ios-sdk\/FuturaeKit\/Internal\/Other\/Utils\/DateUtils.swift",
-      "kind": "StringLiteral",
-      "offset": 1702,
-      "length": 26,
-      "value": "\"yyyy-MM-dd'T'HH:mm:ss'Z'\""
-    },
-    {
-      "filePath": "\/Users\/armendh\/repos\/futurae\/futurae-ios-sdk\/FuturaeKit\/Internal\/Other\/Utils\/DateUtils.swift",
-      "kind": "StringLiteral",
-      "offset": 1890,
-      "length": 27,
-      "value": "\"yyyy-MM-dd'T'HH:mm:ss.SSS\""
-    },
-    {
-      "filePath": "\/Users\/armendh\/repos\/futurae\/futurae-ios-sdk\/FuturaeKit\/Internal\/Other\/Utils\/DateUtils.swift",
-      "kind": "StringLiteral",
-      "offset": 1964,
-      "length": 13,
-      "value": "\"en_US_POSIX\""
-    },
-    {
-      "filePath": "\/Users\/armendh\/repos\/futurae\/futurae-ios-sdk\/FuturaeKit\/Internal\/Other\/Utils\/DateUtils.swift",
       "kind": "IntegerLiteral",
-      "offset": 2033,
+      "offset": 1658,
       "length": 1,
       "value": "0"
     },
     {
       "filePath": "\/Users\/armendh\/repos\/futurae\/futurae-ios-sdk\/FuturaeKit\/Internal\/Other\/Utils\/DateUtils.swift",
       "kind": "StringLiteral",
-      "offset": 2198,
+      "offset": 1822,
+      "length": 26,
+      "value": "\"yyyy-MM-dd'T'HH:mm:ss'Z'\""
+    },
+    {
+      "filePath": "\/Users\/armendh\/repos\/futurae\/futurae-ios-sdk\/FuturaeKit\/Internal\/Other\/Utils\/DateUtils.swift",
+      "kind": "IntegerLiteral",
+      "offset": 1903,
+      "length": 1,
+      "value": "0"
+    },
+    {
+      "filePath": "\/Users\/armendh\/repos\/futurae\/futurae-ios-sdk\/FuturaeKit\/Internal\/Other\/Utils\/DateUtils.swift",
+      "kind": "StringLiteral",
+      "offset": 2067,
+      "length": 27,
+      "value": "\"yyyy-MM-dd'T'HH:mm:ss.SSS\""
+    },
+    {
+      "filePath": "\/Users\/armendh\/repos\/futurae\/futurae-ios-sdk\/FuturaeKit\/Internal\/Other\/Utils\/DateUtils.swift",
+      "kind": "IntegerLiteral",
+      "offset": 2149,
+      "length": 1,
+      "value": "0"
+    },
+    {
+      "filePath": "\/Users\/armendh\/repos\/futurae\/futurae-ios-sdk\/FuturaeKit\/Internal\/Other\/Utils\/DateUtils.swift",
+      "kind": "StringLiteral",
+      "offset": 2314,
       "length": 12,
       "value": "\"yyyy-MM-dd\""
+    },
+    {
+      "filePath": "\/Users\/armendh\/repos\/futurae\/futurae-ios-sdk\/FuturaeKit\/Internal\/Other\/Utils\/DateUtils.swift",
+      "kind": "IntegerLiteral",
+      "offset": 2381,
+      "length": 1,
+      "value": "0"
+    },
+    {
+      "filePath": "\/Users\/armendh\/repos\/futurae\/futurae-ios-sdk\/FuturaeKit\/Internal\/Other\/Utils\/DateUtils.swift",
+      "kind": "StringLiteral",
+      "offset": 2551,
+      "length": 34,
+      "value": "\"yyyy-MM-dd'T'HH:mm:ss.SSSSSSSSSZ\""
+    },
+    {
+      "filePath": "\/Users\/armendh\/repos\/futurae\/futurae-ios-sdk\/FuturaeKit\/Internal\/Other\/Utils\/DateUtils.swift",
+      "kind": "IntegerLiteral",
+      "offset": 2640,
+      "length": 1,
+      "value": "0"
     },
     {
       "filePath": "\/Users\/armendh\/repos\/futurae\/futurae-ios-sdk\/FuturaeKit\/Internal\/Models\/Response\/AccountHistory.swift",
@@ -55001,6 +55142,20 @@
       "offset": 2146,
       "length": 1,
       "value": "0"
+    },
+    {
+      "filePath": "\/Users\/armendh\/repos\/futurae\/futurae-ios-sdk\/FuturaeKit\/Internal\/Other\/CallStackLogger.swift",
+      "kind": "Array",
+      "offset": 207,
+      "length": 2,
+      "value": "[]"
+    },
+    {
+      "filePath": "\/Users\/armendh\/repos\/futurae\/futurae-ios-sdk\/FuturaeKit\/Internal\/Other\/CallStackLogger.swift",
+      "kind": "StringLiteral",
+      "offset": 247,
+      "length": 19,
+      "value": "\"callstack_log.txt\""
     },
     {
       "filePath": "\/Users\/armendh\/repos\/futurae\/futurae-ios-sdk\/FuturaeKit\/Libraries\/CryptoSwift\/SHA2.swift",

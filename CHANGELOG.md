@@ -1,3 +1,9 @@
+# Version 3.2.3
+2024-16-08
++ [Fixed] Issue where upgrading from SDK v2.3.14 and above to SDK v3 resulted in a missing device token/udid error.
++ [Fixed] Issue where `enrolledAt` property of account instance did not provide the exact time.
++ [Added] `SDKReport` instance retrieved via `sdkStateReport` function provides a new property `logs` which contains a log history of internal operations performed by SDK, such as the creation or deletion of keychain items. This log history can be useful for debugging, so it is recommended to share it to us when reporting SDK issues.
+
 # Version 3.2.2
 2024-31-07
 + [Fixed] Issue where display name and service name were not updated has been fixed.

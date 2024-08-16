@@ -93,11 +93,28 @@ extension FunctionsViewController {
     }
 
     func createAccountDescription(_ account: FTRAccount) -> String {
+        var dateString = ""
+        
+        if let date = account.enrolledAt {
+            // Create another DateFormatter for converting to local time
+            let localDateFormatter = DateFormatter()
+            localDateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
+            localDateFormatter.timeZone = TimeZone.current
+            
+            // Convert the Date object to a string in local time
+            let localDateString = localDateFormatter.string(from: date)
+            dateString = localDateString
+            print("Local Time: \(localDateString)")
+        } else {
+            print("Failed to parse date.")
+        }
+        
         var info = "userid: \(account.userId)\n"
         info += "usename: \(account.username ?? "N/A")\n"
         info += "service name: \(account.serviceName ?? "N/A")\n"
-        info += "  locked_out: \(account.lockedOut ? "YES" : "NO")\n"
-        info += "  enrolled: \(account.enrolled ? "YES" : "NO")\n"
+        info += "locked_out: \(account.lockedOut ? "YES" : "NO")\n"
+        info += "enrolled: \(account.enrolled ? "YES" : "NO")\n"
+        info += "enrolled at: \(dateString)\n"
         return info
     }
     
