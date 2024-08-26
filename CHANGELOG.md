@@ -1,3 +1,11 @@
+# Version 3.2.4
+2024-26-08
++ [Changed] Package.swift file has been updated to use forked version of third party libraries RxSwift and SQLite.swift, which now provide them as dynamic libraries.
++ [Changed] FTRUtils.userId(fromQRCode:) now returns user id from enrollment QR code too besides authentication code.
++ [Changed] Changing SDK PIN is now possible when unlock state is achieved via biometrics
++ [Changed] Changing SDK PIN does not deaactivate biometrics for SDK PIN unlock
++ [Fixed] Issue where `getTOTP` and `getOfflineQRVerificationCode` for SDK PIN lock configuration did not return valid result when used with default parameters
+
 # Version 3.2.3
 2024-16-08
 + [Fixed] Issue where upgrading from SDK v2.3.14 and above to SDK v3 resulted in a missing device token/udid error.

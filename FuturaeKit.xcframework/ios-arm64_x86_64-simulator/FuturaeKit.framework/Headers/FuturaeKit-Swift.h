@@ -1027,6 +1027,63 @@ SWIFT_CLASS_PROPERTY(@property (nonatomic, class, readonly) enum SDKStatus sdkSt
 @end
 
 
+@class SwitchLockParameters;
+
+@interface FTRClient (SWIFT_EXTENSION(FuturaeKit))
+/// Switches to a new lock configuration based on the provided parameters.
+/// This method allows changing the current lock configuration of the SDK to a new one as specified in <code>SwitchLockParameters</code>. This could involve switching to biometrics, passcode, SDK pin, or no lock at all. Upon completion, it calls the appropriate success or failure closure based on the outcome.
+/// \param parameters An instance of <code>SwitchLockParameters</code> containing the new lock configuration and related details.
+///
+/// \param success A closure called upon successful configuration switch.
+///
+/// \param failure A closure called in case of a failure in switching the lock configuration, providing an error describing the failure reason.
+///
+- (void)switchToLockConfiguration:(SwitchLockParameters * _Nonnull)parameters success:(void (^ _Nonnull)(void))success failure:(void (^ _Nonnull)(NSError * _Nonnull))failure;
+/// Updates the SDK configuration with new settings for the app group and/or keychain.
+/// This method allows updating the SDK’s operational settings, such as the app group identifier and keychain configuration. It’s useful for dynamically adjusting these settings post-initialization. The method executes either the success or failure closure based on the outcome of the update process.
+/// \param appGroup An optional new app group identifier.
+///
+/// \param keychainConfig An optional new keychain configuration.
+///
+/// \param success A closure to be called upon successful configuration update. It may provide additional success-related information.
+///
+/// \param failure A closure to be called in case of a failure in updating the configuration, providing an error describing the failure reason.
+///
+- (void)updateSDKConfigWithAppGroup:(NSString * _Nullable)appGroup keychainConfig:(FTRKeychainConfig * _Nullable)keychainConfig success:(void (^ _Nonnull)(void))success failure:(void (^ _Nonnull)(NSError * _Nonnull))failure;
+@end
+
+enum FTRQRCodeType : NSInteger;
+@class OfflineQRCodeParameters;
+
+@interface FTRClient (SWIFT_EXTENSION(FuturaeKit))
+/// Determines the type of a given QR code.
+/// This method analyzes the provided QR code string and returns the corresponding <code>FTRQRCodeType</code>.
+/// \param qrCode The QR code string to be analyzed.
+///
+///
+/// returns:
+/// The <code>FTRQRCodeType</code> corresponding to the QR code.
++ (enum FTRQRCodeType)qrCodeTypeFrom:(NSString * _Nonnull)qrCode SWIFT_WARN_UNUSED_RESULT;
+/// Retrieves a verification code for an offline QR code based on the specified parameters.
+/// This method generates a verification code using the provided <code>OfflineQRCodeParameters</code>. Upon successful generation, the <code>success</code> closure is called with the verification code. In case of failure during the process, the <code>failure</code> closure is executed with an error detailing the reason for failure.
+/// \param parameters An instance of <code>OfflineQRCodeParameters</code> containing the necessary details for generating the verification code.
+///
+/// \param success A closure to be called upon successful generation of the verification code.
+///
+/// \param failure A closure to be called in case of a failure in generating the verification code, providing an error describing the failure reason.
+///
+- (void)getOfflineQRVerificationCode:(OfflineQRCodeParameters * _Nonnull)parameters success:(void (^ _Nonnull)(NSString * _Nonnull))success failure:(void (^ _Nonnull)(NSError * _Nonnull))failure;
+/// Extracts extra information from an offline QR code.
+/// This method analyzes an offline QR code string and extracts additional information encoded within it. The extracted information is returned as an array of <code>FTRExtraInfo</code> objects, each representing a key-value pair of the extra data contained in the QR code.
+/// \param QRCode The offline QR code string to be analyzed.
+///
+///
+/// returns:
+/// An array of <code>FTRExtraInfo</code> objects representing the additional information extracted from the QR code.
+- (NSArray<FTRExtraInfo *> * _Nonnull)extraInfoFromOfflineQRCode:(NSString * _Nonnull)QRCode SWIFT_WARN_UNUSED_RESULT;
+@end
+
+
 @interface FTRClient (SWIFT_EXTENSION(FuturaeKit))
 /// Activate the biometric authentication as a means of convenience to verify the user presence, so that the user doesn’t have to enter the Pin to unlock the SDK.
 /// This method is only availble when the SDK lock configuration type is <code>LockConfigurationTypeSDKPinWithBiometricsOptional</code>.
@@ -1074,65 +1131,41 @@ SWIFT_CLASS_PROPERTY(@property (nonatomic, class, readonly) enum SDKStatus sdkSt
 - (void)migrateAccounts:(MigrationParameters * _Nonnull)parameters success:(void (^ _Nonnull)(NSArray<FTRAccount *> * _Nonnull))success failure:(void (^ _Nonnull)(NSError * _Nonnull))failure;
 @end
 
-enum FTRQRCodeType : NSInteger;
-@class OfflineQRCodeParameters;
+
+
+
+@protocol FTRUserPresenceDelegate;
 
 @interface FTRClient (SWIFT_EXTENSION(FuturaeKit))
-/// Determines the type of a given QR code.
-/// This method analyzes the provided QR code string and returns the corresponding <code>FTRQRCodeType</code>.
-/// \param qrCode The QR code string to be analyzed.
+@property (nonatomic, readonly, copy) NSString * _Nonnull baseURL;
+- (void)logAnalyticsData:(NSDictionary<NSString *, id> * _Nonnull)analyticsData success:(void (^ _Nonnull)(void))success failure:(void (^ _Nonnull)(NSError * _Nonnull))failure;
+- (void)setUserPresenceDelegate:(id <FTRUserPresenceDelegate> _Nullable)delegate;
+/// Check if SDK data exists for the specified configuration
+/// \param appGroup The app group parameter.
+///
+/// \param keychainConfig The keychain configuration object. If nil is passed default keychain configuration will be applied.
+///
+/// \param lockConfiguration The lock configuration object.
+///
++ (BOOL)checkDataExistsForAppGroup:(NSString * _Nullable)appGroup keychainConfig:(FTRKeychainConfig * _Nullable)keychainConfig lockConfiguration:(LockConfiguration * _Nonnull)lockConfiguration SWIFT_WARN_UNUSED_RESULT;
+/// Decrypt extra info that is encrypted and provided from the push notification content
+/// \param encryptedExtraInfo value of <code>extra_info_enc</code> key from the notification user info dictionary.
+///
+/// \param userId The account’s Futurae user id.
 ///
 ///
 /// returns:
-/// The <code>FTRQRCodeType</code> corresponding to the QR code.
-+ (enum FTRQRCodeType)qrCodeTypeFrom:(NSString * _Nonnull)qrCode SWIFT_WARN_UNUSED_RESULT;
-/// Retrieves a verification code for an offline QR code based on the specified parameters.
-/// This method generates a verification code using the provided <code>OfflineQRCodeParameters</code>. Upon successful generation, the <code>success</code> closure is called with the verification code. In case of failure during the process, the <code>failure</code> closure is executed with an error detailing the reason for failure.
-/// \param parameters An instance of <code>OfflineQRCodeParameters</code> containing the necessary details for generating the verification code.
+/// The decrypted extra info as an array of key value pairs.
+- (NSArray<FTRExtraInfo *> * _Nullable)decryptExtraInfo:(NSString * _Nonnull)encryptedExtraInfo userId:(NSString * _Nonnull)userId error:(NSError * _Nullable * _Nullable)error SWIFT_WARN_UNUSED_RESULT;
+/// Submit public key of this SDK to futurae service
+/// This function is not intended for use under normal circumstances.
+/// It can be used to repair very specific SDK to webapp communication errors.
+/// \param success callback for successful PK submission
 ///
-/// \param success A closure to be called upon successful generation of the verification code.
+/// \param failure callback for failed PK submission
 ///
-/// \param failure A closure to be called in case of a failure in generating the verification code, providing an error describing the failure reason.
-///
-- (void)getOfflineQRVerificationCode:(OfflineQRCodeParameters * _Nonnull)parameters success:(void (^ _Nonnull)(NSString * _Nonnull))success failure:(void (^ _Nonnull)(NSError * _Nonnull))failure;
-/// Extracts extra information from an offline QR code.
-/// This method analyzes an offline QR code string and extracts additional information encoded within it. The extracted information is returned as an array of <code>FTRExtraInfo</code> objects, each representing a key-value pair of the extra data contained in the QR code.
-/// \param QRCode The offline QR code string to be analyzed.
-///
-///
-/// returns:
-/// An array of <code>FTRExtraInfo</code> objects representing the additional information extracted from the QR code.
-- (NSArray<FTRExtraInfo *> * _Nonnull)extraInfoFromOfflineQRCode:(NSString * _Nonnull)QRCode SWIFT_WARN_UNUSED_RESULT;
+- (void)submitPublicKeyWithSuccess:(void (^ _Nonnull)(void))success failure:(void (^ _Nonnull)(NSError * _Nonnull))failure;
 @end
-
-@class SwitchLockParameters;
-
-@interface FTRClient (SWIFT_EXTENSION(FuturaeKit))
-/// Switches to a new lock configuration based on the provided parameters.
-/// This method allows changing the current lock configuration of the SDK to a new one as specified in <code>SwitchLockParameters</code>. This could involve switching to biometrics, passcode, SDK pin, or no lock at all. Upon completion, it calls the appropriate success or failure closure based on the outcome.
-/// \param parameters An instance of <code>SwitchLockParameters</code> containing the new lock configuration and related details.
-///
-/// \param success A closure called upon successful configuration switch.
-///
-/// \param failure A closure called in case of a failure in switching the lock configuration, providing an error describing the failure reason.
-///
-- (void)switchToLockConfiguration:(SwitchLockParameters * _Nonnull)parameters success:(void (^ _Nonnull)(void))success failure:(void (^ _Nonnull)(NSError * _Nonnull))failure;
-/// Updates the SDK configuration with new settings for the app group and/or keychain.
-/// This method allows updating the SDK’s operational settings, such as the app group identifier and keychain configuration. It’s useful for dynamically adjusting these settings post-initialization. The method executes either the success or failure closure based on the outcome of the update process.
-/// \param appGroup An optional new app group identifier.
-///
-/// \param keychainConfig An optional new keychain configuration.
-///
-/// \param success A closure to be called upon successful configuration update. It may provide additional success-related information.
-///
-/// \param failure A closure to be called in case of a failure in updating the configuration, providing an error describing the failure reason.
-///
-- (void)updateSDKConfigWithAppGroup:(NSString * _Nullable)appGroup keychainConfig:(FTRKeychainConfig * _Nullable)keychainConfig success:(void (^ _Nonnull)(void))success failure:(void (^ _Nonnull)(NSError * _Nonnull))failure;
-@end
-
-
-
-
 
 
 @interface FTRClient (SWIFT_EXTENSION(FuturaeKit))
@@ -1193,39 +1226,6 @@ enum FTRQRCodeType : NSInteger;
 /// \param failure A closure called in case of a failure in retrieving the account’s history, providing an error describing the failure reason.
 ///
 - (void)getAccountHistory:(FTRAccount * _Nonnull)account success:(void (^ _Nonnull)(FTRAccountHistory * _Nonnull))success failure:(void (^ _Nonnull)(NSError * _Nonnull))failure;
-@end
-
-@protocol FTRUserPresenceDelegate;
-
-@interface FTRClient (SWIFT_EXTENSION(FuturaeKit))
-@property (nonatomic, readonly, copy) NSString * _Nonnull baseURL;
-- (void)logAnalyticsData:(NSDictionary<NSString *, id> * _Nonnull)analyticsData success:(void (^ _Nonnull)(void))success failure:(void (^ _Nonnull)(NSError * _Nonnull))failure;
-- (void)setUserPresenceDelegate:(id <FTRUserPresenceDelegate> _Nullable)delegate;
-/// Check if SDK data exists for the specified configuration
-/// \param appGroup The app group parameter.
-///
-/// \param keychainConfig The keychain configuration object. If nil is passed default keychain configuration will be applied.
-///
-/// \param lockConfiguration The lock configuration object.
-///
-+ (BOOL)checkDataExistsForAppGroup:(NSString * _Nullable)appGroup keychainConfig:(FTRKeychainConfig * _Nullable)keychainConfig lockConfiguration:(LockConfiguration * _Nonnull)lockConfiguration SWIFT_WARN_UNUSED_RESULT;
-/// Decrypt extra info that is encrypted and provided from the push notification content
-/// \param encryptedExtraInfo value of <code>extra_info_enc</code> key from the notification user info dictionary.
-///
-/// \param userId The account’s Futurae user id.
-///
-///
-/// returns:
-/// The decrypted extra info as an array of key value pairs.
-- (NSArray<FTRExtraInfo *> * _Nullable)decryptExtraInfo:(NSString * _Nonnull)encryptedExtraInfo userId:(NSString * _Nonnull)userId error:(NSError * _Nullable * _Nullable)error SWIFT_WARN_UNUSED_RESULT;
-/// Submit public key of this SDK to futurae service
-/// This function is not intended for use under normal circumstances.
-/// It can be used to repair very specific SDK to webapp communication errors.
-/// \param success callback for successful PK submission
-///
-/// \param failure callback for failed PK submission
-///
-- (void)submitPublicKeyWithSuccess:(void (^ _Nonnull)(void))success failure:(void (^ _Nonnull)(NSError * _Nonnull))failure;
 @end
 
 @protocol FTRAdaptiveSDKDelegate;
@@ -1866,6 +1866,7 @@ SWIFT_CLASS("_TtC10FuturaeKit15MigrationSDKPin")
 ///
 - (nonnull instancetype)initWithSdkPin:(NSString * _Nonnull)sdkPin bindingToken:(NSString * _Nonnull)bindingToken OBJC_DESIGNATED_INITIALIZER;
 @end
+
 
 
 
@@ -3784,6 +3785,63 @@ SWIFT_CLASS_PROPERTY(@property (nonatomic, class, readonly) enum SDKStatus sdkSt
 @end
 
 
+@class SwitchLockParameters;
+
+@interface FTRClient (SWIFT_EXTENSION(FuturaeKit))
+/// Switches to a new lock configuration based on the provided parameters.
+/// This method allows changing the current lock configuration of the SDK to a new one as specified in <code>SwitchLockParameters</code>. This could involve switching to biometrics, passcode, SDK pin, or no lock at all. Upon completion, it calls the appropriate success or failure closure based on the outcome.
+/// \param parameters An instance of <code>SwitchLockParameters</code> containing the new lock configuration and related details.
+///
+/// \param success A closure called upon successful configuration switch.
+///
+/// \param failure A closure called in case of a failure in switching the lock configuration, providing an error describing the failure reason.
+///
+- (void)switchToLockConfiguration:(SwitchLockParameters * _Nonnull)parameters success:(void (^ _Nonnull)(void))success failure:(void (^ _Nonnull)(NSError * _Nonnull))failure;
+/// Updates the SDK configuration with new settings for the app group and/or keychain.
+/// This method allows updating the SDK’s operational settings, such as the app group identifier and keychain configuration. It’s useful for dynamically adjusting these settings post-initialization. The method executes either the success or failure closure based on the outcome of the update process.
+/// \param appGroup An optional new app group identifier.
+///
+/// \param keychainConfig An optional new keychain configuration.
+///
+/// \param success A closure to be called upon successful configuration update. It may provide additional success-related information.
+///
+/// \param failure A closure to be called in case of a failure in updating the configuration, providing an error describing the failure reason.
+///
+- (void)updateSDKConfigWithAppGroup:(NSString * _Nullable)appGroup keychainConfig:(FTRKeychainConfig * _Nullable)keychainConfig success:(void (^ _Nonnull)(void))success failure:(void (^ _Nonnull)(NSError * _Nonnull))failure;
+@end
+
+enum FTRQRCodeType : NSInteger;
+@class OfflineQRCodeParameters;
+
+@interface FTRClient (SWIFT_EXTENSION(FuturaeKit))
+/// Determines the type of a given QR code.
+/// This method analyzes the provided QR code string and returns the corresponding <code>FTRQRCodeType</code>.
+/// \param qrCode The QR code string to be analyzed.
+///
+///
+/// returns:
+/// The <code>FTRQRCodeType</code> corresponding to the QR code.
++ (enum FTRQRCodeType)qrCodeTypeFrom:(NSString * _Nonnull)qrCode SWIFT_WARN_UNUSED_RESULT;
+/// Retrieves a verification code for an offline QR code based on the specified parameters.
+/// This method generates a verification code using the provided <code>OfflineQRCodeParameters</code>. Upon successful generation, the <code>success</code> closure is called with the verification code. In case of failure during the process, the <code>failure</code> closure is executed with an error detailing the reason for failure.
+/// \param parameters An instance of <code>OfflineQRCodeParameters</code> containing the necessary details for generating the verification code.
+///
+/// \param success A closure to be called upon successful generation of the verification code.
+///
+/// \param failure A closure to be called in case of a failure in generating the verification code, providing an error describing the failure reason.
+///
+- (void)getOfflineQRVerificationCode:(OfflineQRCodeParameters * _Nonnull)parameters success:(void (^ _Nonnull)(NSString * _Nonnull))success failure:(void (^ _Nonnull)(NSError * _Nonnull))failure;
+/// Extracts extra information from an offline QR code.
+/// This method analyzes an offline QR code string and extracts additional information encoded within it. The extracted information is returned as an array of <code>FTRExtraInfo</code> objects, each representing a key-value pair of the extra data contained in the QR code.
+/// \param QRCode The offline QR code string to be analyzed.
+///
+///
+/// returns:
+/// An array of <code>FTRExtraInfo</code> objects representing the additional information extracted from the QR code.
+- (NSArray<FTRExtraInfo *> * _Nonnull)extraInfoFromOfflineQRCode:(NSString * _Nonnull)QRCode SWIFT_WARN_UNUSED_RESULT;
+@end
+
+
 @interface FTRClient (SWIFT_EXTENSION(FuturaeKit))
 /// Activate the biometric authentication as a means of convenience to verify the user presence, so that the user doesn’t have to enter the Pin to unlock the SDK.
 /// This method is only availble when the SDK lock configuration type is <code>LockConfigurationTypeSDKPinWithBiometricsOptional</code>.
@@ -3831,65 +3889,41 @@ SWIFT_CLASS_PROPERTY(@property (nonatomic, class, readonly) enum SDKStatus sdkSt
 - (void)migrateAccounts:(MigrationParameters * _Nonnull)parameters success:(void (^ _Nonnull)(NSArray<FTRAccount *> * _Nonnull))success failure:(void (^ _Nonnull)(NSError * _Nonnull))failure;
 @end
 
-enum FTRQRCodeType : NSInteger;
-@class OfflineQRCodeParameters;
+
+
+
+@protocol FTRUserPresenceDelegate;
 
 @interface FTRClient (SWIFT_EXTENSION(FuturaeKit))
-/// Determines the type of a given QR code.
-/// This method analyzes the provided QR code string and returns the corresponding <code>FTRQRCodeType</code>.
-/// \param qrCode The QR code string to be analyzed.
+@property (nonatomic, readonly, copy) NSString * _Nonnull baseURL;
+- (void)logAnalyticsData:(NSDictionary<NSString *, id> * _Nonnull)analyticsData success:(void (^ _Nonnull)(void))success failure:(void (^ _Nonnull)(NSError * _Nonnull))failure;
+- (void)setUserPresenceDelegate:(id <FTRUserPresenceDelegate> _Nullable)delegate;
+/// Check if SDK data exists for the specified configuration
+/// \param appGroup The app group parameter.
+///
+/// \param keychainConfig The keychain configuration object. If nil is passed default keychain configuration will be applied.
+///
+/// \param lockConfiguration The lock configuration object.
+///
++ (BOOL)checkDataExistsForAppGroup:(NSString * _Nullable)appGroup keychainConfig:(FTRKeychainConfig * _Nullable)keychainConfig lockConfiguration:(LockConfiguration * _Nonnull)lockConfiguration SWIFT_WARN_UNUSED_RESULT;
+/// Decrypt extra info that is encrypted and provided from the push notification content
+/// \param encryptedExtraInfo value of <code>extra_info_enc</code> key from the notification user info dictionary.
+///
+/// \param userId The account’s Futurae user id.
 ///
 ///
 /// returns:
-/// The <code>FTRQRCodeType</code> corresponding to the QR code.
-+ (enum FTRQRCodeType)qrCodeTypeFrom:(NSString * _Nonnull)qrCode SWIFT_WARN_UNUSED_RESULT;
-/// Retrieves a verification code for an offline QR code based on the specified parameters.
-/// This method generates a verification code using the provided <code>OfflineQRCodeParameters</code>. Upon successful generation, the <code>success</code> closure is called with the verification code. In case of failure during the process, the <code>failure</code> closure is executed with an error detailing the reason for failure.
-/// \param parameters An instance of <code>OfflineQRCodeParameters</code> containing the necessary details for generating the verification code.
+/// The decrypted extra info as an array of key value pairs.
+- (NSArray<FTRExtraInfo *> * _Nullable)decryptExtraInfo:(NSString * _Nonnull)encryptedExtraInfo userId:(NSString * _Nonnull)userId error:(NSError * _Nullable * _Nullable)error SWIFT_WARN_UNUSED_RESULT;
+/// Submit public key of this SDK to futurae service
+/// This function is not intended for use under normal circumstances.
+/// It can be used to repair very specific SDK to webapp communication errors.
+/// \param success callback for successful PK submission
 ///
-/// \param success A closure to be called upon successful generation of the verification code.
+/// \param failure callback for failed PK submission
 ///
-/// \param failure A closure to be called in case of a failure in generating the verification code, providing an error describing the failure reason.
-///
-- (void)getOfflineQRVerificationCode:(OfflineQRCodeParameters * _Nonnull)parameters success:(void (^ _Nonnull)(NSString * _Nonnull))success failure:(void (^ _Nonnull)(NSError * _Nonnull))failure;
-/// Extracts extra information from an offline QR code.
-/// This method analyzes an offline QR code string and extracts additional information encoded within it. The extracted information is returned as an array of <code>FTRExtraInfo</code> objects, each representing a key-value pair of the extra data contained in the QR code.
-/// \param QRCode The offline QR code string to be analyzed.
-///
-///
-/// returns:
-/// An array of <code>FTRExtraInfo</code> objects representing the additional information extracted from the QR code.
-- (NSArray<FTRExtraInfo *> * _Nonnull)extraInfoFromOfflineQRCode:(NSString * _Nonnull)QRCode SWIFT_WARN_UNUSED_RESULT;
+- (void)submitPublicKeyWithSuccess:(void (^ _Nonnull)(void))success failure:(void (^ _Nonnull)(NSError * _Nonnull))failure;
 @end
-
-@class SwitchLockParameters;
-
-@interface FTRClient (SWIFT_EXTENSION(FuturaeKit))
-/// Switches to a new lock configuration based on the provided parameters.
-/// This method allows changing the current lock configuration of the SDK to a new one as specified in <code>SwitchLockParameters</code>. This could involve switching to biometrics, passcode, SDK pin, or no lock at all. Upon completion, it calls the appropriate success or failure closure based on the outcome.
-/// \param parameters An instance of <code>SwitchLockParameters</code> containing the new lock configuration and related details.
-///
-/// \param success A closure called upon successful configuration switch.
-///
-/// \param failure A closure called in case of a failure in switching the lock configuration, providing an error describing the failure reason.
-///
-- (void)switchToLockConfiguration:(SwitchLockParameters * _Nonnull)parameters success:(void (^ _Nonnull)(void))success failure:(void (^ _Nonnull)(NSError * _Nonnull))failure;
-/// Updates the SDK configuration with new settings for the app group and/or keychain.
-/// This method allows updating the SDK’s operational settings, such as the app group identifier and keychain configuration. It’s useful for dynamically adjusting these settings post-initialization. The method executes either the success or failure closure based on the outcome of the update process.
-/// \param appGroup An optional new app group identifier.
-///
-/// \param keychainConfig An optional new keychain configuration.
-///
-/// \param success A closure to be called upon successful configuration update. It may provide additional success-related information.
-///
-/// \param failure A closure to be called in case of a failure in updating the configuration, providing an error describing the failure reason.
-///
-- (void)updateSDKConfigWithAppGroup:(NSString * _Nullable)appGroup keychainConfig:(FTRKeychainConfig * _Nullable)keychainConfig success:(void (^ _Nonnull)(void))success failure:(void (^ _Nonnull)(NSError * _Nonnull))failure;
-@end
-
-
-
-
 
 
 @interface FTRClient (SWIFT_EXTENSION(FuturaeKit))
@@ -3950,39 +3984,6 @@ enum FTRQRCodeType : NSInteger;
 /// \param failure A closure called in case of a failure in retrieving the account’s history, providing an error describing the failure reason.
 ///
 - (void)getAccountHistory:(FTRAccount * _Nonnull)account success:(void (^ _Nonnull)(FTRAccountHistory * _Nonnull))success failure:(void (^ _Nonnull)(NSError * _Nonnull))failure;
-@end
-
-@protocol FTRUserPresenceDelegate;
-
-@interface FTRClient (SWIFT_EXTENSION(FuturaeKit))
-@property (nonatomic, readonly, copy) NSString * _Nonnull baseURL;
-- (void)logAnalyticsData:(NSDictionary<NSString *, id> * _Nonnull)analyticsData success:(void (^ _Nonnull)(void))success failure:(void (^ _Nonnull)(NSError * _Nonnull))failure;
-- (void)setUserPresenceDelegate:(id <FTRUserPresenceDelegate> _Nullable)delegate;
-/// Check if SDK data exists for the specified configuration
-/// \param appGroup The app group parameter.
-///
-/// \param keychainConfig The keychain configuration object. If nil is passed default keychain configuration will be applied.
-///
-/// \param lockConfiguration The lock configuration object.
-///
-+ (BOOL)checkDataExistsForAppGroup:(NSString * _Nullable)appGroup keychainConfig:(FTRKeychainConfig * _Nullable)keychainConfig lockConfiguration:(LockConfiguration * _Nonnull)lockConfiguration SWIFT_WARN_UNUSED_RESULT;
-/// Decrypt extra info that is encrypted and provided from the push notification content
-/// \param encryptedExtraInfo value of <code>extra_info_enc</code> key from the notification user info dictionary.
-///
-/// \param userId The account’s Futurae user id.
-///
-///
-/// returns:
-/// The decrypted extra info as an array of key value pairs.
-- (NSArray<FTRExtraInfo *> * _Nullable)decryptExtraInfo:(NSString * _Nonnull)encryptedExtraInfo userId:(NSString * _Nonnull)userId error:(NSError * _Nullable * _Nullable)error SWIFT_WARN_UNUSED_RESULT;
-/// Submit public key of this SDK to futurae service
-/// This function is not intended for use under normal circumstances.
-/// It can be used to repair very specific SDK to webapp communication errors.
-/// \param success callback for successful PK submission
-///
-/// \param failure callback for failed PK submission
-///
-- (void)submitPublicKeyWithSuccess:(void (^ _Nonnull)(void))success failure:(void (^ _Nonnull)(NSError * _Nonnull))failure;
 @end
 
 @protocol FTRAdaptiveSDKDelegate;
@@ -4623,6 +4624,7 @@ SWIFT_CLASS("_TtC10FuturaeKit15MigrationSDKPin")
 ///
 - (nonnull instancetype)initWithSdkPin:(NSString * _Nonnull)sdkPin bindingToken:(NSString * _Nonnull)bindingToken OBJC_DESIGNATED_INITIALIZER;
 @end
+
 
 
 

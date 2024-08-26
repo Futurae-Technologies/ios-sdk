@@ -29,6 +29,11 @@ extension FunctionsViewController {
     }
     
     func enrollWithQRCode(_ QRCodeResult: String) {
+        guard let userId = FTRUtils.userId(fromQRCode: QRCodeResult) else {
+            self.showAlert(title: "Error", message: "Invalid Enroll QR Code")
+            return
+        }
+        
         promptForBindingToken { [unowned self] bindingToken in
             if enrollWithPin {
                 guard let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "pinViewController") as? PinViewController else { return }

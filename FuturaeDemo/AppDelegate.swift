@@ -275,6 +275,11 @@ extension AppDelegate: FTROpenURLDelegate {
 
         switch FTRUtils.typeFromURL(url){
         case .activation:
+            guard let userId = FTRUtils.userId(fromUri: url.absoluteString) else {
+                self.showAlert(title: "Error", message: "Invalid URL")
+                return true
+            }
+            
             if let code = FTRUtils.activationDataFromURL(url)?.activationCode {
                 vc.promptForBindingToken(callback: { token in
                     FTRClient.shared.enroll(token != nil ? EnrollParameters.with(activationCode: code, bindingToken: token!)
@@ -285,8 +290,16 @@ extension AppDelegate: FTROpenURLDelegate {
                     })
                 })
             }
-        default:
+        case .authentication:
+            guard let userId = FTRUtils.userId(fromUri: url.absoluteString),
+                  let sessionToken = FTRUtils.sessionToken(fromUri: url.absoluteString) else {
+                vc.showAlert(title: "Error", message: "Invalid URL")
+                return true
+            }
+            
             FTRClient.shared.openURL(url, options: options, delegate: self)
+        default:
+            break;
         }
         
         return true
