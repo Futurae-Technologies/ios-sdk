@@ -3,7 +3,7 @@
     <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22684"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22685"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -1014,7 +1014,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FBE-Zd-I8F">
-                                <rect key="frame" x="0.0" y="30" width="375" height="344.5"/>
+                                <rect key="frame" x="0.0" y="30" width="375" height="267.5"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" alignment="center" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="ex8-cS-kWs">
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="225"/>
@@ -1348,7 +1348,7 @@
                                 </constraints>
                             </scrollView>
                             <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Status" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="D4p-4s-dTw">
-                                <rect key="frame" x="16" y="384.5" width="343" height="20.5"/>
+                                <rect key="frame" x="16" y="307.5" width="343" height="20.5"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
@@ -1359,7 +1359,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="natural" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lnb-uK-4FM">
-                                <rect key="frame" x="16" y="405" width="343" height="70"/>
+                                <rect key="frame" x="16" y="328" width="343" height="70"/>
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="70" id="MED-0G-INJ"/>
@@ -1369,12 +1369,46 @@
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="pRe-4N-bzo">
-                                <rect key="frame" x="16" y="475" width="343" height="143"/>
+                                <rect key="frame" x="16" y="398" width="343" height="220"/>
                                 <subviews>
-                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="86J-tq-D4g">
-                                        <rect key="frame" x="0.0" y="0.0" width="343" height="38"/>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="86J-tq-D4g" userLabel="Pin Config">
+                                        <rect key="frame" x="0.0" y="0.0" width="343" height="72"/>
                                         <subviews>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YKd-3A-QvE" customClass="CustomDemoButton" customModule="FuturaeDemo" customModuleProvider="target">
+                                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" translatesAutoresizingMaskIntoConstraints="NO" id="ubw-Je-oRd">
+                                                <rect key="frame" x="0.0" y="0.0" width="343" height="31"/>
+                                                <subviews>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="allowPinChangeWithBiometricUnlock" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lHL-qB-Vw2">
+                                                        <rect key="frame" x="0.0" y="0.0" width="284.5" height="31"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="JsF-Sw-dg0">
+                                                        <rect key="frame" x="284.5" y="0.0" width="60.5" height="31"/>
+                                                    </switch>
+                                                </subviews>
+                                            </stackView>
+                                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" translatesAutoresizingMaskIntoConstraints="NO" id="Mkw-Oh-wCy">
+                                                <rect key="frame" x="0.0" y="41" width="343" height="31"/>
+                                                <subviews>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="deactivateBiometricsAfterPinChange" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0Gs-nu-mkF">
+                                                        <rect key="frame" x="0.0" y="0.0" width="284.5" height="31"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="miE-y5-Ijn">
+                                                        <rect key="frame" x="284.5" y="0.0" width="60.5" height="31"/>
+                                                    </switch>
+                                                </subviews>
+                                            </stackView>
+                                        </subviews>
+                                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </stackView>
+                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="90R-h5-6RX">
+                                        <rect key="frame" x="0.0" y="77" width="343" height="38"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MkP-PQ-hwy" customClass="CustomDemoButton" customModule="FuturaeDemo" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="0.0" width="114.5" height="38"/>
                                                 <state key="normal" title="Button"/>
                                                 <buttonConfiguration key="configuration" style="plain" title="LAUNCH">
@@ -1393,10 +1427,10 @@
                                                     </userDefinedRuntimeAttribute>
                                                 </userDefinedRuntimeAttributes>
                                                 <connections>
-                                                    <action selector="saveSettings:" destination="FqC-QZ-eSk" eventType="touchUpInside" id="x62-O8-nS1"/>
+                                                    <action selector="saveSettings:" destination="FqC-QZ-eSk" eventType="touchUpInside" id="JMl-Fe-6eS"/>
                                                 </connections>
                                             </button>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MBP-Zb-yoS" customClass="CustomDemoButton" customModule="FuturaeDemo" customModuleProvider="target">
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7km-BT-PSH" customClass="CustomDemoButton" customModule="FuturaeDemo" customModuleProvider="target">
                                                 <rect key="frame" x="114.5" y="0.0" width="114" height="38"/>
                                                 <state key="normal" title="Button"/>
                                                 <buttonConfiguration key="configuration" style="plain" title="RESET">
@@ -1415,10 +1449,10 @@
                                                     </userDefinedRuntimeAttribute>
                                                 </userDefinedRuntimeAttributes>
                                                 <connections>
-                                                    <action selector="reset:" destination="FqC-QZ-eSk" eventType="touchUpInside" id="6Fw-pT-eLm"/>
+                                                    <action selector="reset:" destination="FqC-QZ-eSk" eventType="touchUpInside" id="3Yw-4q-bn8"/>
                                                 </connections>
                                             </button>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1DE-yh-ELl" customClass="CustomDemoButton" customModule="FuturaeDemo" customModuleProvider="target">
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3i8-xT-eJE" customClass="CustomDemoButton" customModule="FuturaeDemo" customModuleProvider="target">
                                                 <rect key="frame" x="228.5" y="0.0" width="114.5" height="38"/>
                                                 <state key="normal" title="Button"/>
                                                 <buttonConfiguration key="configuration" style="plain" title="SWITCH">
@@ -1437,14 +1471,14 @@
                                                     </userDefinedRuntimeAttribute>
                                                 </userDefinedRuntimeAttributes>
                                                 <connections>
-                                                    <action selector="switchConfig:" destination="FqC-QZ-eSk" eventType="touchUpInside" id="Eyf-qw-TpQ"/>
+                                                    <action selector="switchConfig:" destination="FqC-QZ-eSk" eventType="touchUpInside" id="KpS-n4-AnR"/>
                                                 </connections>
                                             </button>
                                         </subviews>
                                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </stackView>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Bfr-Bm-fYm">
-                                        <rect key="frame" x="0.0" y="43" width="343" height="100"/>
+                                        <rect key="frame" x="0.0" y="120" width="343" height="100"/>
                                         <subviews>
                                             <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lUr-hb-Tha">
                                                 <rect key="frame" x="0.0" y="0.0" width="343" height="100"/>
@@ -1491,10 +1525,13 @@
                     <tabBarItem key="tabBarItem" title="LOCK CONFIGURATION" image="gear" catalog="system" selectedImage="gear" id="6te-Ru-kXM"/>
                     <connections>
                         <outlet property="activatePinBiometricsBtn" destination="HR1-Au-VaM" id="5sf-zl-Jtg"/>
+                        <outlet property="allowChangePin" destination="JsF-Sw-dg0" id="qKf-pO-oLk"/>
                         <outlet property="changePinBtn" destination="SVQ-I9-FyT" id="44a-A1-27X"/>
                         <outlet property="checkBiometricsBtn" destination="vmp-Fi-12E" id="FC9-GW-FdP"/>
+                        <outlet property="deactivateBiometricsAfterChangePin" destination="miE-y5-Ijn" id="fwB-dY-iBg"/>
                         <outlet property="deactivatePinBiometricsBtn" destination="2GW-rH-IjZ" id="Gdb-7z-ylo"/>
                         <outlet property="lockSDKBtn" destination="p1K-S3-N5J" id="74k-MF-rUZ"/>
+                        <outlet property="pinConfigStack" destination="86J-tq-D4g" id="gK4-i5-m2i"/>
                         <outlet property="pinStack" destination="nBD-4Q-ClI" id="j4f-49-Aey"/>
                         <outlet property="settingsPickerView" destination="lUr-hb-Tha" id="ps7-I3-NJh"/>
                         <outlet property="statusLabel" destination="D4p-4s-dTw" id="3rR-Fo-TCB"/>
@@ -1516,9 +1553,6 @@
         <designable name="0jo-0t-GFf">
             <size key="intrinsicContentSize" width="153" height="37"/>
         </designable>
-        <designable name="1DE-yh-ELl">
-            <size key="intrinsicContentSize" width="99" height="38"/>
-        </designable>
         <designable name="1SK-9x-4Bj">
             <size key="intrinsicContentSize" width="129" height="37"/>
         </designable>
@@ -1534,8 +1568,14 @@
         <designable name="2pU-VS-K5o">
             <size key="intrinsicContentSize" width="135" height="37"/>
         </designable>
+        <designable name="3i8-xT-eJE">
+            <size key="intrinsicContentSize" width="99" height="38"/>
+        </designable>
         <designable name="4HE-LQ-lW1">
             <size key="intrinsicContentSize" width="239" height="37"/>
+        </designable>
+        <designable name="7km-BT-PSH">
+            <size key="intrinsicContentSize" width="83" height="38"/>
         </designable>
         <designable name="DW9-WM-BQq">
             <size key="intrinsicContentSize" width="207" height="37"/>
@@ -1561,8 +1601,8 @@
         <designable name="M0a-WQ-c6y">
             <size key="intrinsicContentSize" width="59" height="37"/>
         </designable>
-        <designable name="MBP-Zb-yoS">
-            <size key="intrinsicContentSize" width="83" height="38"/>
+        <designable name="MkP-PQ-hwy">
+            <size key="intrinsicContentSize" width="103.5" height="38"/>
         </designable>
         <designable name="N5M-Eq-mJj">
             <size key="intrinsicContentSize" width="164" height="37"/>
@@ -1587,9 +1627,6 @@
         </designable>
         <designable name="XpZ-wi-7nl">
             <size key="intrinsicContentSize" width="195" height="37"/>
-        </designable>
-        <designable name="YKd-3A-QvE">
-            <size key="intrinsicContentSize" width="103.5" height="38"/>
         </designable>
         <designable name="ZE9-cC-fgo">
             <size key="intrinsicContentSize" width="344" height="37"/>
@@ -1665,13 +1702,13 @@
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
         <systemColor name="systemGreenColor">
-            <color red="0.20392156862745098" green="0.7803921568627451" blue="0.34901960784313724" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.20392156859999999" green="0.78039215689999997" blue="0.34901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemMintColor">
-            <color red="0.0" green="0.7803921568627451" blue="0.74509803921568629" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.0" green="0.78039215689999997" blue="0.74509803919999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemPinkColor">
-            <color red="1" green="0.17647058823529413" blue="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="1" green="0.1764705882" blue="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

@@ -28,6 +28,10 @@ final class ConfigViewController: UIViewController {
     @IBOutlet weak var deactivatePinBiometricsBtn: UIButton!
     @IBOutlet weak var changePinBtn: UIButton!
     
+    @IBOutlet weak var pinConfigStack: UIStackView!
+    @IBOutlet weak var allowChangePin: UISwitch!
+    @IBOutlet weak var deactivateBiometricsAfterChangePin: UISwitch!
+    
     var unlockFailureHandler: FTRFailureHandler {
         return { error in
             DispatchQueue.main.async { [unowned self] in
@@ -56,17 +60,17 @@ final class ConfigViewController: UIViewController {
                                    keychain: FTRKeychainConfig(accessGroup: SDKConstants.KEYCHAIN_ACCESS_GROUP),
                                    lockConfiguration: LockConfiguration(type: type,
                                                                         unlockDuration: 60,
-                                                                        invalidatedByBiometricsChange: true)
-                                   ,appGroup: SDKConstants.APP_GROUP
-            )
+                                                                        invalidatedByBiometricsChange: true,
+                                                                        pinConfiguration: .init(allowPinChangeWithBiometricUnlock: allowChangePin.isOn, deactivateBiometricsAfterPinChange: deactivateBiometricsAfterChangePin.isOn))
+                                   ,appGroup: SDKConstants.APP_GROUP)
         } else {
             return FTRConfig(sdkId: SDKConstants.SDKID,
                                    sdkKey: SDKConstants.SDKKEY,
                                    baseUrl: SDKConstants.SDKURL,
                                    lockConfiguration: LockConfiguration(type: type,
                                                                         unlockDuration: 60,
-                                                                        invalidatedByBiometricsChange: true)
-            )
+                                                                        invalidatedByBiometricsChange: true,
+                                                                        pinConfiguration: .init(allowPinChangeWithBiometricUnlock: allowChangePin.isOn, deactivateBiometricsAfterPinChange: deactivateBiometricsAfterChangePin.isOn)))
         }
     }
     
@@ -120,16 +124,20 @@ final class ConfigViewController: UIViewController {
         let savedOption = UserDefaults.custom.integer(forKey: SDKConstants.KEY_CONFIG)
         if(savedOption > 0) {
             selectedConfigOption = .init(rawValue: savedOption)
+            
+            allowChangePin.isOn = UserDefaults.custom.bool(forKey: "allowChangePin")
+            deactivateBiometricsAfterChangePin.isOn = UserDefaults.custom.bool(forKey: "deactivateBiometricsAfterChangePin")
+            
             setupConfig()
         } else if(FTRClient.sdkIsLaunched){
             selectedConfigOption = FTRClient.shared.currentLockConfiguration.type
             setupSdkView()
         }
+        
+        pinConfigStack.isHidden = selectedConfigOption != .sdkPinWithBiometricsOptional
     }
     
     func setupConfig(){
-        
-        
         do {
             try FTRClient.launch(config: config)
             
@@ -229,6 +237,12 @@ final class ConfigViewController: UIViewController {
         
         UserDefaults.custom.set(selectedConfigOption?.rawValue ?? 0,
                                   forKey: SDKConstants.KEY_CONFIG)
+        
+        UserDefaults.custom.set(allowChangePin.isOn,
+                                  forKey: "allowChangePin")
+        
+        UserDefaults.custom.set(deactivateBiometricsAfterChangePin.isOn,
+                                  forKey: "deactivateBiometricsAfterChangePin")
         
         setupConfig()
     }
@@ -496,7 +510,9 @@ extension ConfigViewController: FTRClientDelegate {
 }
 
 extension ConfigViewController: UIPickerViewDelegate {
-    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {}
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        pinConfigStack.isHidden = options[row] != .sdkPinWithBiometricsOptional
+    }
 }
 
 extension ConfigViewController: UIPickerViewDataSource {

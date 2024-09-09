@@ -1,3 +1,11 @@
+# Version 3.3.0
+2024-09-09
++ [Fixed] Fixed issue where FTRUtils.qrCodeType(from:) would not identify `enrollment` type from scanned enroll QR code
++ [Changed] Configure behaviour for changing SDK PIN with new `LockConfiguration` parameter `pinConfiguration` of type `SDKPinConfiguration` which provides two properties: `allowPinChangeWithBiometricUnlock` (false by default) and `deactivateBiometricsAfterPinChange` (true by default).
++ [Fixed] Fixed issue where SDK would become invalid (failure to decrypt account data) if SDK was launched under one of the following conditions:
+1. Keychain configuration accessibility is set to `whenUnlockedThisDeviceOnly` and device is locked
+2. Keychain configuration accessibility is set to `afterFirstUnlockThisDeviceOnly` and device has not been unlocked once since device boot
+
 # Version 3.2.4
 2024-26-08
 + [Changed] Package.swift file has been updated to use forked version of third party libraries RxSwift and SQLite.swift, which now provide them as dynamic libraries.

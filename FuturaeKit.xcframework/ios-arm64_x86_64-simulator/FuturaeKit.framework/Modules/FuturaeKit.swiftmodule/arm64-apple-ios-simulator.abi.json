@@ -25385,9 +25385,59 @@
             ]
           },
           {
+            "kind": "Var",
+            "name": "pinConfiguration",
+            "printedName": "pinConfiguration",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "SDKPinConfiguration",
+                "printedName": "FuturaeKit.SDKPinConfiguration",
+                "usr": "c:@M@FuturaeKit@objc(cs)SDKPinConfiguration"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "c:@M@FuturaeKit@objc(cs)LockConfiguration(py)pinConfiguration",
+            "mangledName": "$s10FuturaeKit17LockConfigurationC03pinD0AA06SDKPinD0Cvp",
+            "moduleName": "FuturaeKit",
+            "declAttributes": [
+              "HasInitialValue",
+              "HasStorage",
+              "SetterAccess",
+              "AccessControl",
+              "ObjC",
+              "RawDocComment"
+            ],
+            "hasStorage": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "SDKPinConfiguration",
+                    "printedName": "FuturaeKit.SDKPinConfiguration",
+                    "usr": "c:@M@FuturaeKit@objc(cs)SDKPinConfiguration"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "c:@M@FuturaeKit@objc(cs)LockConfiguration(im)pinConfiguration",
+                "mangledName": "$s10FuturaeKit17LockConfigurationC03pinD0AA06SDKPinD0Cvg",
+                "moduleName": "FuturaeKit",
+                "implicit": true,
+                "declAttributes": [
+                  "ObjC"
+                ],
+                "accessorKind": "get"
+              }
+            ]
+          },
+          {
             "kind": "Constructor",
             "name": "init",
-            "printedName": "init(type:unlockDuration:invalidatedByBiometricsChange:)",
+            "printedName": "init(type:unlockDuration:invalidatedByBiometricsChange:pinConfiguration:)",
             "children": [
               {
                 "kind": "TypeNominal",
@@ -25414,13 +25464,20 @@
                 "printedName": "Swift.Bool",
                 "hasDefaultArg": true,
                 "usr": "s:Sb"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "SDKPinConfiguration",
+                "printedName": "FuturaeKit.SDKPinConfiguration",
+                "hasDefaultArg": true,
+                "usr": "c:@M@FuturaeKit@objc(cs)SDKPinConfiguration"
               }
             ],
             "declKind": "Constructor",
-            "usr": "c:@M@FuturaeKit@objc(cs)LockConfiguration(im)initWithType:unlockDuration:invalidatedByBiometricsChange:",
-            "mangledName": "$s10FuturaeKit17LockConfigurationC4type14unlockDuration29invalidatedByBiometricsChangeAcA0cD4TypeO_SdSbtcfc",
+            "usr": "c:@M@FuturaeKit@objc(cs)LockConfiguration(im)initWithType:unlockDuration:invalidatedByBiometricsChange:pinConfiguration:",
+            "mangledName": "$s10FuturaeKit17LockConfigurationC4type14unlockDuration29invalidatedByBiometricsChange03pinD0AcA0cD4TypeO_SdSbAA06SDKPinD0Ctcfc",
             "moduleName": "FuturaeKit",
-            "objc_name": "initWithType:unlockDuration:invalidatedByBiometricsChange:",
+            "objc_name": "initWithType:unlockDuration:invalidatedByBiometricsChange:pinConfiguration:",
             "declAttributes": [
               "AccessControl",
               "Required",
@@ -37029,6 +37086,297 @@
         "printedName": "RxSwift",
         "declKind": "Import",
         "moduleName": "FuturaeKit"
+      },
+      {
+        "kind": "Import",
+        "name": "Foundation",
+        "printedName": "Foundation",
+        "declKind": "Import",
+        "moduleName": "FuturaeKit",
+        "declAttributes": [
+          "RawDocComment"
+        ]
+      },
+      {
+        "kind": "TypeDecl",
+        "name": "SDKPinConfiguration",
+        "printedName": "SDKPinConfiguration",
+        "children": [
+          {
+            "kind": "Var",
+            "name": "allowPinChangeWithBiometricUnlock",
+            "printedName": "allowPinChangeWithBiometricUnlock",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Bool",
+                "printedName": "Swift.Bool",
+                "usr": "s:Sb"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "c:@M@FuturaeKit@objc(cs)SDKPinConfiguration(py)allowPinChangeWithBiometricUnlock",
+            "mangledName": "$s10FuturaeKit19SDKPinConfigurationC33allowPinChangeWithBiometricUnlockSbvp",
+            "moduleName": "FuturaeKit",
+            "declAttributes": [
+              "HasInitialValue",
+              "HasStorage",
+              "SetterAccess",
+              "AccessControl",
+              "ObjC",
+              "RawDocComment"
+            ],
+            "hasStorage": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Bool",
+                    "printedName": "Swift.Bool",
+                    "usr": "s:Sb"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "c:@M@FuturaeKit@objc(cs)SDKPinConfiguration(im)allowPinChangeWithBiometricUnlock",
+                "mangledName": "$s10FuturaeKit19SDKPinConfigurationC33allowPinChangeWithBiometricUnlockSbvg",
+                "moduleName": "FuturaeKit",
+                "implicit": true,
+                "declAttributes": [
+                  "ObjC"
+                ],
+                "accessorKind": "get"
+              }
+            ]
+          },
+          {
+            "kind": "Var",
+            "name": "deactivateBiometricsAfterPinChange",
+            "printedName": "deactivateBiometricsAfterPinChange",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Bool",
+                "printedName": "Swift.Bool",
+                "usr": "s:Sb"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "c:@M@FuturaeKit@objc(cs)SDKPinConfiguration(py)deactivateBiometricsAfterPinChange",
+            "mangledName": "$s10FuturaeKit19SDKPinConfigurationC34deactivateBiometricsAfterPinChangeSbvp",
+            "moduleName": "FuturaeKit",
+            "declAttributes": [
+              "HasInitialValue",
+              "HasStorage",
+              "SetterAccess",
+              "AccessControl",
+              "ObjC",
+              "RawDocComment"
+            ],
+            "hasStorage": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Bool",
+                    "printedName": "Swift.Bool",
+                    "usr": "s:Sb"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "c:@M@FuturaeKit@objc(cs)SDKPinConfiguration(im)deactivateBiometricsAfterPinChange",
+                "mangledName": "$s10FuturaeKit19SDKPinConfigurationC34deactivateBiometricsAfterPinChangeSbvg",
+                "moduleName": "FuturaeKit",
+                "implicit": true,
+                "declAttributes": [
+                  "ObjC"
+                ],
+                "accessorKind": "get"
+              }
+            ]
+          },
+          {
+            "kind": "Constructor",
+            "name": "init",
+            "printedName": "init(allowPinChangeWithBiometricUnlock:deactivateBiometricsAfterPinChange:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "SDKPinConfiguration",
+                "printedName": "FuturaeKit.SDKPinConfiguration",
+                "usr": "c:@M@FuturaeKit@objc(cs)SDKPinConfiguration"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Bool",
+                "printedName": "Swift.Bool",
+                "hasDefaultArg": true,
+                "usr": "s:Sb"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Bool",
+                "printedName": "Swift.Bool",
+                "hasDefaultArg": true,
+                "usr": "s:Sb"
+              }
+            ],
+            "declKind": "Constructor",
+            "usr": "c:@M@FuturaeKit@objc(cs)SDKPinConfiguration(im)initWithAllowPinChangeWithBiometricUnlock:deactivateBiometricsAfterPinChange:",
+            "mangledName": "$s10FuturaeKit19SDKPinConfigurationC33allowPinChangeWithBiometricUnlock025deactivateBiometricsAfterfG0ACSb_Sbtcfc",
+            "moduleName": "FuturaeKit",
+            "objc_name": "initWithAllowPinChangeWithBiometricUnlock:deactivateBiometricsAfterPinChange:",
+            "declAttributes": [
+              "AccessControl",
+              "Required",
+              "ObjC",
+              "RawDocComment"
+            ],
+            "init_kind": "Designated"
+          },
+          {
+            "kind": "Function",
+            "name": "defaultConfig",
+            "printedName": "defaultConfig()",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "SDKPinConfiguration",
+                "printedName": "FuturaeKit.SDKPinConfiguration",
+                "usr": "c:@M@FuturaeKit@objc(cs)SDKPinConfiguration"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "c:@M@FuturaeKit@objc(cs)SDKPinConfiguration(cm)defaultConfig",
+            "mangledName": "$s10FuturaeKit19SDKPinConfigurationC13defaultConfigACyFZ",
+            "moduleName": "FuturaeKit",
+            "static": true,
+            "declAttributes": [
+              "AccessControl",
+              "ObjC"
+            ],
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Constructor",
+            "name": "init",
+            "printedName": "init()",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "SDKPinConfiguration",
+                "printedName": "FuturaeKit.SDKPinConfiguration",
+                "usr": "c:@M@FuturaeKit@objc(cs)SDKPinConfiguration"
+              }
+            ],
+            "declKind": "Constructor",
+            "usr": "c:@M@FuturaeKit@objc(cs)SDKPinConfiguration(im)init",
+            "mangledName": "$s10FuturaeKit19SDKPinConfigurationCACycfc",
+            "moduleName": "FuturaeKit",
+            "overriding": true,
+            "implicit": true,
+            "objc_name": "init",
+            "declAttributes": [
+              "Dynamic",
+              "ObjC",
+              "Override"
+            ],
+            "init_kind": "Designated"
+          }
+        ],
+        "declKind": "Class",
+        "usr": "c:@M@FuturaeKit@objc(cs)SDKPinConfiguration",
+        "mangledName": "$s10FuturaeKit19SDKPinConfigurationC",
+        "moduleName": "FuturaeKit",
+        "declAttributes": [
+          "AccessControl",
+          "ObjC",
+          "RawDocComment"
+        ],
+        "superclassUsr": "c:objc(cs)NSObject",
+        "superclassNames": [
+          "ObjectiveC.NSObject"
+        ],
+        "conformances": [
+          {
+            "kind": "Conformance",
+            "name": "Equatable",
+            "printedName": "Equatable",
+            "usr": "s:SQ",
+            "mangledName": "$sSQ"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Hashable",
+            "printedName": "Hashable",
+            "usr": "s:SH",
+            "mangledName": "$sSH"
+          },
+          {
+            "kind": "Conformance",
+            "name": "CVarArg",
+            "printedName": "CVarArg",
+            "usr": "s:s7CVarArgP",
+            "mangledName": "$ss7CVarArgP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "_KeyValueCodingAndObservingPublishing",
+            "printedName": "_KeyValueCodingAndObservingPublishing",
+            "usr": "s:10Foundation37_KeyValueCodingAndObservingPublishingP",
+            "mangledName": "$s10Foundation37_KeyValueCodingAndObservingPublishingP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "_KeyValueCodingAndObserving",
+            "printedName": "_KeyValueCodingAndObserving",
+            "usr": "s:10Foundation27_KeyValueCodingAndObservingP",
+            "mangledName": "$s10Foundation27_KeyValueCodingAndObservingP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "CustomStringConvertible",
+            "printedName": "CustomStringConvertible",
+            "usr": "s:s23CustomStringConvertibleP",
+            "mangledName": "$ss23CustomStringConvertibleP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "CustomDebugStringConvertible",
+            "printedName": "CustomDebugStringConvertible",
+            "usr": "s:s28CustomDebugStringConvertibleP",
+            "mangledName": "$ss28CustomDebugStringConvertibleP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "ReactiveCompatible",
+            "printedName": "ReactiveCompatible",
+            "children": [
+              {
+                "kind": "TypeWitness",
+                "name": "ReactiveBase",
+                "printedName": "ReactiveBase",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "NSObject",
+                    "printedName": "ObjectiveC.NSObject",
+                    "usr": "c:objc(cs)NSObject"
+                  }
+                ]
+              }
+            ],
+            "usr": "s:7RxSwift18ReactiveCompatibleP",
+            "mangledName": "$s7RxSwift18ReactiveCompatibleP"
+          }
+        ]
       },
       {
         "kind": "Import",
@@ -53634,14 +53982,14 @@
     {
       "filePath": "\/Users\/armendh\/repos\/futurae\/futurae-ios-sdk\/FuturaeKit\/Internal\/Models\/Configuration\/LockConfiguration.swift",
       "kind": "IntegerLiteral",
-      "offset": 1189,
+      "offset": 1407,
       "length": 2,
       "value": "60"
     },
     {
       "filePath": "\/Users\/armendh\/repos\/futurae\/futurae-ios-sdk\/FuturaeKit\/Internal\/Models\/Configuration\/LockConfiguration.swift",
       "kind": "BooleanLiteral",
-      "offset": 1262,
+      "offset": 1480,
       "length": 5,
       "value": "false"
     },
@@ -59293,6 +59641,41 @@
       "offset": 2205,
       "length": 18,
       "value": "\"plain_text_array\""
+    },
+    {
+      "filePath": "\/Users\/armendh\/repos\/futurae\/futurae-ios-sdk\/FuturaeKit\/Internal\/Models\/Configuration\/SDKPinConfiguration.swift",
+      "kind": "BooleanLiteral",
+      "offset": 508,
+      "length": 5,
+      "value": "false"
+    },
+    {
+      "filePath": "\/Users\/armendh\/repos\/futurae\/futurae-ios-sdk\/FuturaeKit\/Internal\/Models\/Configuration\/SDKPinConfiguration.swift",
+      "kind": "BooleanLiteral",
+      "offset": 696,
+      "length": 4,
+      "value": "true"
+    },
+    {
+      "filePath": "\/Users\/armendh\/repos\/futurae\/futurae-ios-sdk\/FuturaeKit\/Internal\/Models\/Configuration\/SDKPinConfiguration.swift",
+      "kind": "BooleanLiteral",
+      "offset": 1159,
+      "length": 5,
+      "value": "false"
+    },
+    {
+      "filePath": "\/Users\/armendh\/repos\/futurae\/futurae-ios-sdk\/FuturaeKit\/Internal\/Models\/Configuration\/SDKPinConfiguration.swift",
+      "kind": "BooleanLiteral",
+      "offset": 1240,
+      "length": 4,
+      "value": "true"
+    },
+    {
+      "filePath": "\/Users\/armendh\/repos\/futurae\/futurae-ios-sdk\/FuturaeKit\/Internal\/Models\/Configuration\/SDKPinConfiguration.swift",
+      "kind": "StringLiteral",
+      "offset": 278,
+      "length": 19,
+      "value": "\"FuturaeKit.SDKPinConfiguration\""
     },
     {
       "filePath": "\/Users\/armendh\/repos\/futurae\/futurae-ios-sdk\/FuturaeKit\/Libraries\/JOSESwift\/Sources\/JWEHeader.swift",

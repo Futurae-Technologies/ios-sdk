@@ -29,7 +29,7 @@ extension FunctionsViewController {
     }
     
     func enrollWithQRCode(_ QRCodeResult: String) {
-        guard let userId = FTRUtils.userId(fromQRCode: QRCodeResult) else {
+        guard let userId = FTRUtils.userId(fromQRCode: QRCodeResult), FTRClient.qrCodeType(from: QRCodeResult) == .enrollment else {
             self.showAlert(title: "Error", message: "Invalid Enroll QR Code")
             return
         }

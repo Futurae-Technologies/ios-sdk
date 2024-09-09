@@ -838,6 +838,19 @@ SWIFT_CLASS_PROPERTY(@property (nonatomic, class, readonly) enum SDKStatus sdkSt
 - (SDKReport * _Nullable)sdkStateReportAndReturnError:(NSError * _Nullable * _Nullable)error SWIFT_WARN_UNUSED_RESULT;
 @end
 
+@class FTRConfig;
+
+@interface FTRClient (SWIFT_EXTENSION(FuturaeKit))
+/// Launches the SDK with the provided configuration.
+/// This method initializes the SDK with the given <code>FTRConfig</code> instance, setting up necessary parameters and configurations. It should be called before using any SDK functionality. The method can throw an error if the configuration is invalid or if there’s an issue during the initialization process.
+/// \param config An <code>FTRConfig</code> object containing the configuration settings for the SDK.
+///
+///
+/// throws:
+/// An error if the SDK fails to launch due to invalid configuration or other initialization issues.
++ (BOOL)launchWithConfig:(FTRConfig * _Nonnull)config error:(NSError * _Nullable * _Nullable)error;
+@end
+
 
 
 @interface FTRClient (SWIFT_EXTENSION(FuturaeKit))
@@ -854,18 +867,9 @@ SWIFT_CLASS_PROPERTY(@property (nonatomic, class, readonly) enum SDKStatus sdkSt
 @end
 
 
-@class FTRConfig;
 
-@interface FTRClient (SWIFT_EXTENSION(FuturaeKit))
-/// Launches the SDK with the provided configuration.
-/// This method initializes the SDK with the given <code>FTRConfig</code> instance, setting up necessary parameters and configurations. It should be called before using any SDK functionality. The method can throw an error if the configuration is invalid or if there’s an issue during the initialization process.
-/// \param config An <code>FTRConfig</code> object containing the configuration settings for the SDK.
-///
-///
-/// throws:
-/// An error if the SDK fails to launch due to invalid configuration or other initialization issues.
-+ (BOOL)launchWithConfig:(FTRConfig * _Nonnull)config error:(NSError * _Nullable * _Nullable)error;
-@end
+
+
 
 @class NSURL;
 @protocol FTROpenURLDelegate;
@@ -884,18 +888,19 @@ SWIFT_CLASS_PROPERTY(@property (nonatomic, class, readonly) enum SDKStatus sdkSt
 
 
 
-
-
+@class TOTPParameters;
+@class FTRTotp;
 
 @interface FTRClient (SWIFT_EXTENSION(FuturaeKit))
-/// Reply with approve or reject to an authentication using the provided parameters with success and failure callbacks.
-/// \param parameters The authentication parameters.
+/// Retrieves a Time-based One-Time Password (TOTP) based on the specified parameters.
+/// This method generates a TOTP using the provided <code>TOTPParameters</code>. Upon successful generation, the <code>success</code> closure is called with an <code>FTRTotp</code> object containing the TOTP and its remaining validity period. In case of failure during the TOTP generation process, the <code>failure</code> closure is executed with an error detailing the reason for failure.
+/// \param parameters An instance of <code>TOTPParameters</code> containing the necessary details for TOTP generation.
 ///
-/// \param success A closure called on successful reply operation.
+/// \param success A closure to be called upon successful TOTP generation. It provides an <code>FTRTotp</code> object containing the TOTP and its remaining validity period.
 ///
-/// \param failure A closure called if an error occurs during reply operation..
+/// \param failure A closure to be called in case of a failure in generating the TOTP, providing an error describing the failure reason.
 ///
-- (void)replyAuth:(AuthReplyParameters * _Nonnull)parameters success:(void (^ _Nonnull)(void))success failure:(void (^ _Nonnull)(NSError * _Nonnull))failure;
+- (void)getTOTP:(TOTPParameters * _Nonnull)parameters success:(void (^ _Nonnull)(FTRTotp * _Nonnull))success failure:(void (^ _Nonnull)(NSError * _Nonnull))failure;
 @end
 
 @class SessionParameters;
@@ -913,36 +918,17 @@ SWIFT_CLASS_PROPERTY(@property (nonatomic, class, readonly) enum SDKStatus sdkSt
 @end
 
 
-
-@class TOTPParameters;
-@class FTRTotp;
-
 @interface FTRClient (SWIFT_EXTENSION(FuturaeKit))
-/// Retrieves a Time-based One-Time Password (TOTP) based on the specified parameters.
-/// This method generates a TOTP using the provided <code>TOTPParameters</code>. Upon successful generation, the <code>success</code> closure is called with an <code>FTRTotp</code> object containing the TOTP and its remaining validity period. In case of failure during the TOTP generation process, the <code>failure</code> closure is executed with an error detailing the reason for failure.
-/// \param parameters An instance of <code>TOTPParameters</code> containing the necessary details for TOTP generation.
+/// Reply with approve or reject to an authentication using the provided parameters with success and failure callbacks.
+/// \param parameters The authentication parameters.
 ///
-/// \param success A closure to be called upon successful TOTP generation. It provides an <code>FTRTotp</code> object containing the TOTP and its remaining validity period.
+/// \param success A closure called on successful reply operation.
 ///
-/// \param failure A closure to be called in case of a failure in generating the TOTP, providing an error describing the failure reason.
+/// \param failure A closure called if an error occurs during reply operation..
 ///
-- (void)getTOTP:(TOTPParameters * _Nonnull)parameters success:(void (^ _Nonnull)(FTRTotp * _Nonnull))success failure:(void (^ _Nonnull)(NSError * _Nonnull))failure;
+- (void)replyAuth:(AuthReplyParameters * _Nonnull)parameters success:(void (^ _Nonnull)(void))success failure:(void (^ _Nonnull)(NSError * _Nonnull))failure;
 @end
 
-
-
-
-@interface FTRClient (SWIFT_EXTENSION(FuturaeKit))
-/// Enrolls a user with the provided parameters.
-/// This method initiates the enrollment process using the given <code>EnrollParameters</code>. On completion, either the <code>success</code> or <code>failure</code> callback is executed based on the outcome of the enrollment process.
-/// \param parameters An instance of <code>EnrollParameters</code> containing the necessary details for enrollment.
-///
-/// \param success A closure to be called upon successful enrollment.
-///
-/// \param failure A closure to be called in case of an enrollment failure, providing an error describing the failure reason.
-///
-- (void)enroll:(EnrollParameters * _Nonnull)parameters success:(void (^ _Nonnull)(void))success failure:(void (^ _Nonnull)(NSError * _Nonnull))failure;
-@end
 
 
 
@@ -961,10 +947,41 @@ SWIFT_CLASS_PROPERTY(@property (nonatomic, class, readonly) enum SDKStatus sdkSt
 @end
 
 
+@interface FTRClient (SWIFT_EXTENSION(FuturaeKit))
+/// Enrolls a user with the provided parameters.
+/// This method initiates the enrollment process using the given <code>EnrollParameters</code>. On completion, either the <code>success</code> or <code>failure</code> callback is executed based on the outcome of the enrollment process.
+/// \param parameters An instance of <code>EnrollParameters</code> containing the necessary details for enrollment.
+///
+/// \param success A closure to be called upon successful enrollment.
+///
+/// \param failure A closure to be called in case of an enrollment failure, providing an error describing the failure reason.
+///
+- (void)enroll:(EnrollParameters * _Nonnull)parameters success:(void (^ _Nonnull)(void))success failure:(void (^ _Nonnull)(NSError * _Nonnull))failure;
+@end
+
+
+
 @interface FTRClient (SWIFT_EXTENSION(FuturaeKit)) <FTRAdaptiveClientDelegate>
 - (void)logCollectedData:(NSDictionary<NSString *, id> * _Nonnull)collectedData retry:(BOOL)retry;
 @end
 
+
+@class NSData;
+@protocol FTRNotificationDelegate;
+
+@interface FTRClient (SWIFT_EXTENSION(FuturaeKit))
+/// Register push notifications token.
+/// \param deviceToken push notification token obtained from APN.
+///
+- (void)registerPushToken:(NSData * _Nonnull)deviceToken success:(void (^ _Nonnull)(void))success failure:(void (^ _Nonnull)(NSError * _Nonnull))failure;
+/// Handle a received push notification, and perform the required action.
+/// This method is protected if the session contains <code>extra_info</code>. If that’s the case, the SDK needs to be unlocked by verifying the user presence, prior to handling the push notification.
+/// \param payload received push notification payload.
+///
+/// \param delegate delegate to be notified about the operation result.
+///
+- (void)handleNotification:(NSDictionary * _Nonnull)payload delegate:(id <FTRNotificationDelegate> _Nullable)delegate;
+@end
 
 
 @class UnlockParameters;
@@ -985,24 +1002,6 @@ SWIFT_CLASS_PROPERTY(@property (nonatomic, class, readonly) enum SDKStatus sdkSt
 /// An error if the SDK or the component fails to lock.
 - (BOOL)lockAndReturnError:(NSError * _Nullable * _Nullable)error;
 @end
-
-@class NSData;
-@protocol FTRNotificationDelegate;
-
-@interface FTRClient (SWIFT_EXTENSION(FuturaeKit))
-/// Register push notifications token.
-/// \param deviceToken push notification token obtained from APN.
-///
-- (void)registerPushToken:(NSData * _Nonnull)deviceToken success:(void (^ _Nonnull)(void))success failure:(void (^ _Nonnull)(NSError * _Nonnull))failure;
-/// Handle a received push notification, and perform the required action.
-/// This method is protected if the session contains <code>extra_info</code>. If that’s the case, the SDK needs to be unlocked by verifying the user presence, prior to handling the push notification.
-/// \param payload received push notification payload.
-///
-/// \param delegate delegate to be notified about the operation result.
-///
-- (void)handleNotification:(NSDictionary * _Nonnull)payload delegate:(id <FTRNotificationDelegate> _Nullable)delegate;
-@end
-
 
 @class FTRKeychainConfig;
 @class LockConfiguration;
@@ -1026,6 +1025,55 @@ SWIFT_CLASS_PROPERTY(@property (nonatomic, class, readonly) enum SDKStatus sdkSt
 - (void)clearDataFromDB:(BOOL)fromDB fromKeychain:(BOOL)fromKeychain;
 @end
 
+
+@class FTRMigrationCheckData;
+@class MigrationParameters;
+
+@interface FTRClient (SWIFT_EXTENSION(FuturaeKit))
+/// Retrieves a list of accounts that are eligible for migration.
+/// This method checks for accounts that can be migrated and returns the results through the <code>success</code> closure. If there is an error or issue in fetching the migratable accounts, the <code>failure</code> closure is called with an error detailing the issue.
+/// \param success A closure called with <code>FTRMigrationCheckData</code> upon successful retrieval of migratable accounts. This data includes details about the accounts that can be migrated.
+///
+/// \param failure A closure called in case of a failure in retrieving migratable accounts, providing an error describing the failure reason.
+///
+- (void)getMigratableAccountsWithSuccess:(void (^ _Nonnull)(FTRMigrationCheckData * _Nonnull))success failure:(void (^ _Nonnull)(NSError * _Nonnull))failure;
+/// Function to execute the Automatic Account Migration, and recover accounts enrolled in a previous installation or device.
+/// For this method to succeed, the device must have valid migration data and no accounts were enrolled before calling this method.
+/// This method initiates the migration of accounts using the given <code>MigrationParameters</code>. Upon successful migration, the <code>success</code> closure is executed with relevant data or confirmation. In case of failure during the migration process, the <code>failure</code> closure is called with an error providing details about the failure reason.
+/// \param parameters An instance of <code>MigrationParameters</code> containing the necessary details for the migration process. Defaults to standard parameters if not specified.
+///
+/// \param success A closure to be called upon successful migration of accounts. It may provide additional success-related information or confirmation.
+///
+/// \param failure A closure to be called in case of a migration failure, providing an error describing the failure reason.
+///
+- (void)migrateAccounts:(MigrationParameters * _Nonnull)parameters success:(void (^ _Nonnull)(NSArray<FTRAccount *> * _Nonnull))success failure:(void (^ _Nonnull)(NSError * _Nonnull))failure;
+@end
+
+
+
+@interface FTRClient (SWIFT_EXTENSION(FuturaeKit))
+/// Activate the biometric authentication as a means of convenience to verify the user presence, so that the user doesn’t have to enter the Pin to unlock the SDK.
+/// This method is only availble when the SDK lock configuration type is <code>LockConfigurationTypeSDKPinWithBiometricsOptional</code>.
+///
+/// throws:
+/// An error if the activation of biometrics fails.
+- (BOOL)activateBiometricsAndReturnError:(NSError * _Nullable * _Nullable)error;
+/// Deactivate biometrics as an authentication method.
+/// This function revokes the biometric authentication capability for unlocking the SDK. This method is only availble when the SDK lock configuration type is <code>LockConfigurationTypeSDKPinWithBiometricsOptional</code>.
+///
+/// throws:
+/// An error if the deactivation of biometrics fails.
+- (BOOL)deactivateBiometricsAndReturnError:(NSError * _Nullable * _Nullable)error;
+/// Changes the SDK-specific pin.
+/// This method allows the user to change the SDK-specific pin. On completion, either the <code>success</code> or <code>failure</code> callback is executed based on the outcome of the  process.
+/// \param newSDKPin The new SDK pin to be set.
+///
+/// \param success A closure to be called upon successful change of the SDK pin.
+///
+/// \param failure A closure to be called in case of a failure in changing the SDK pin, providing an error describing the failure reason.
+///
+- (void)changeSDKPinWithNewSDKPin:(NSString * _Nonnull)newSDKPin success:(void (^ _Nonnull)(void))success failure:(void (^ _Nonnull)(NSError * _Nonnull))failure;
+@end
 
 @class SwitchLockParameters;
 
@@ -1084,88 +1132,7 @@ enum FTRQRCodeType : NSInteger;
 @end
 
 
-@interface FTRClient (SWIFT_EXTENSION(FuturaeKit))
-/// Activate the biometric authentication as a means of convenience to verify the user presence, so that the user doesn’t have to enter the Pin to unlock the SDK.
-/// This method is only availble when the SDK lock configuration type is <code>LockConfigurationTypeSDKPinWithBiometricsOptional</code>.
-///
-/// throws:
-/// An error if the activation of biometrics fails.
-- (BOOL)activateBiometricsAndReturnError:(NSError * _Nullable * _Nullable)error;
-/// Deactivate biometrics as an authentication method.
-/// This function revokes the biometric authentication capability for unlocking the SDK. This method is only availble when the SDK lock configuration type is <code>LockConfigurationTypeSDKPinWithBiometricsOptional</code>.
-///
-/// throws:
-/// An error if the deactivation of biometrics fails.
-- (BOOL)deactivateBiometricsAndReturnError:(NSError * _Nullable * _Nullable)error;
-/// Changes the SDK-specific pin.
-/// This method allows the user to change the SDK-specific pin. On completion, either the <code>success</code> or <code>failure</code> callback is executed based on the outcome of the  process.
-/// \param newSDKPin The new SDK pin to be set.
-///
-/// \param success A closure to be called upon successful change of the SDK pin.
-///
-/// \param failure A closure to be called in case of a failure in changing the SDK pin, providing an error describing the failure reason.
-///
-- (void)changeSDKPinWithNewSDKPin:(NSString * _Nonnull)newSDKPin success:(void (^ _Nonnull)(void))success failure:(void (^ _Nonnull)(NSError * _Nonnull))failure;
-@end
 
-@class FTRMigrationCheckData;
-@class MigrationParameters;
-
-@interface FTRClient (SWIFT_EXTENSION(FuturaeKit))
-/// Retrieves a list of accounts that are eligible for migration.
-/// This method checks for accounts that can be migrated and returns the results through the <code>success</code> closure. If there is an error or issue in fetching the migratable accounts, the <code>failure</code> closure is called with an error detailing the issue.
-/// \param success A closure called with <code>FTRMigrationCheckData</code> upon successful retrieval of migratable accounts. This data includes details about the accounts that can be migrated.
-///
-/// \param failure A closure called in case of a failure in retrieving migratable accounts, providing an error describing the failure reason.
-///
-- (void)getMigratableAccountsWithSuccess:(void (^ _Nonnull)(FTRMigrationCheckData * _Nonnull))success failure:(void (^ _Nonnull)(NSError * _Nonnull))failure;
-/// Function to execute the Automatic Account Migration, and recover accounts enrolled in a previous installation or device.
-/// For this method to succeed, the device must have valid migration data and no accounts were enrolled before calling this method.
-/// This method initiates the migration of accounts using the given <code>MigrationParameters</code>. Upon successful migration, the <code>success</code> closure is executed with relevant data or confirmation. In case of failure during the migration process, the <code>failure</code> closure is called with an error providing details about the failure reason.
-/// \param parameters An instance of <code>MigrationParameters</code> containing the necessary details for the migration process. Defaults to standard parameters if not specified.
-///
-/// \param success A closure to be called upon successful migration of accounts. It may provide additional success-related information or confirmation.
-///
-/// \param failure A closure to be called in case of a migration failure, providing an error describing the failure reason.
-///
-- (void)migrateAccounts:(MigrationParameters * _Nonnull)parameters success:(void (^ _Nonnull)(NSArray<FTRAccount *> * _Nonnull))success failure:(void (^ _Nonnull)(NSError * _Nonnull))failure;
-@end
-
-
-
-
-@protocol FTRUserPresenceDelegate;
-
-@interface FTRClient (SWIFT_EXTENSION(FuturaeKit))
-@property (nonatomic, readonly, copy) NSString * _Nonnull baseURL;
-- (void)logAnalyticsData:(NSDictionary<NSString *, id> * _Nonnull)analyticsData success:(void (^ _Nonnull)(void))success failure:(void (^ _Nonnull)(NSError * _Nonnull))failure;
-- (void)setUserPresenceDelegate:(id <FTRUserPresenceDelegate> _Nullable)delegate;
-/// Check if SDK data exists for the specified configuration
-/// \param appGroup The app group parameter.
-///
-/// \param keychainConfig The keychain configuration object. If nil is passed default keychain configuration will be applied.
-///
-/// \param lockConfiguration The lock configuration object.
-///
-+ (BOOL)checkDataExistsForAppGroup:(NSString * _Nullable)appGroup keychainConfig:(FTRKeychainConfig * _Nullable)keychainConfig lockConfiguration:(LockConfiguration * _Nonnull)lockConfiguration SWIFT_WARN_UNUSED_RESULT;
-/// Decrypt extra info that is encrypted and provided from the push notification content
-/// \param encryptedExtraInfo value of <code>extra_info_enc</code> key from the notification user info dictionary.
-///
-/// \param userId The account’s Futurae user id.
-///
-///
-/// returns:
-/// The decrypted extra info as an array of key value pairs.
-- (NSArray<FTRExtraInfo *> * _Nullable)decryptExtraInfo:(NSString * _Nonnull)encryptedExtraInfo userId:(NSString * _Nonnull)userId error:(NSError * _Nullable * _Nullable)error SWIFT_WARN_UNUSED_RESULT;
-/// Submit public key of this SDK to futurae service
-/// This function is not intended for use under normal circumstances.
-/// It can be used to repair very specific SDK to webapp communication errors.
-/// \param success callback for successful PK submission
-///
-/// \param failure callback for failed PK submission
-///
-- (void)submitPublicKeyWithSuccess:(void (^ _Nonnull)(void))success failure:(void (^ _Nonnull)(NSError * _Nonnull))failure;
-@end
 
 
 @interface FTRClient (SWIFT_EXTENSION(FuturaeKit))
@@ -1226,6 +1193,39 @@ enum FTRQRCodeType : NSInteger;
 /// \param failure A closure called in case of a failure in retrieving the account’s history, providing an error describing the failure reason.
 ///
 - (void)getAccountHistory:(FTRAccount * _Nonnull)account success:(void (^ _Nonnull)(FTRAccountHistory * _Nonnull))success failure:(void (^ _Nonnull)(NSError * _Nonnull))failure;
+@end
+
+@protocol FTRUserPresenceDelegate;
+
+@interface FTRClient (SWIFT_EXTENSION(FuturaeKit))
+@property (nonatomic, readonly, copy) NSString * _Nonnull baseURL;
+- (void)logAnalyticsData:(NSDictionary<NSString *, id> * _Nonnull)analyticsData success:(void (^ _Nonnull)(void))success failure:(void (^ _Nonnull)(NSError * _Nonnull))failure;
+- (void)setUserPresenceDelegate:(id <FTRUserPresenceDelegate> _Nullable)delegate;
+/// Check if SDK data exists for the specified configuration
+/// \param appGroup The app group parameter.
+///
+/// \param keychainConfig The keychain configuration object. If nil is passed default keychain configuration will be applied.
+///
+/// \param lockConfiguration The lock configuration object.
+///
++ (BOOL)checkDataExistsForAppGroup:(NSString * _Nullable)appGroup keychainConfig:(FTRKeychainConfig * _Nullable)keychainConfig lockConfiguration:(LockConfiguration * _Nonnull)lockConfiguration SWIFT_WARN_UNUSED_RESULT;
+/// Decrypt extra info that is encrypted and provided from the push notification content
+/// \param encryptedExtraInfo value of <code>extra_info_enc</code> key from the notification user info dictionary.
+///
+/// \param userId The account’s Futurae user id.
+///
+///
+/// returns:
+/// The decrypted extra info as an array of key value pairs.
+- (NSArray<FTRExtraInfo *> * _Nullable)decryptExtraInfo:(NSString * _Nonnull)encryptedExtraInfo userId:(NSString * _Nonnull)userId error:(NSError * _Nullable * _Nullable)error SWIFT_WARN_UNUSED_RESULT;
+/// Submit public key of this SDK to futurae service
+/// This function is not intended for use under normal circumstances.
+/// It can be used to repair very specific SDK to webapp communication errors.
+/// \param success callback for successful PK submission
+///
+/// \param failure callback for failed PK submission
+///
+- (void)submitPublicKeyWithSuccess:(void (^ _Nonnull)(void))success failure:(void (^ _Nonnull)(NSError * _Nonnull))failure;
 @end
 
 @protocol FTRAdaptiveSDKDelegate;
@@ -1766,6 +1766,7 @@ SWIFT_CLASS("_TtC10FuturaeKit15JailbreakStatus")
 @end
 
 enum LockConfigurationType : NSInteger;
+@class SDKPinConfiguration;
 
 /// <code>LockConfiguration</code> class represents the configuration settings for locking mechanisms in the SDK.
 SWIFT_CLASS("_TtC10FuturaeKit17LockConfiguration")
@@ -1776,13 +1777,17 @@ SWIFT_CLASS("_TtC10FuturaeKit17LockConfiguration")
 @property (nonatomic, readonly) NSTimeInterval unlockDuration;
 /// A Boolean indicating whether the lock should be invalidated by biometric changes.
 @property (nonatomic, readonly) BOOL invalidatedByBiometricsChange;
+/// An object for configuring SDK Pin behaviour
+@property (nonatomic, readonly, strong) SDKPinConfiguration * _Nonnull pinConfiguration;
 /// \param type The type of lock configuration.
 ///
 /// \param unlockDuration The duration for which the lock remains open.
 ///
 /// \param invalidatedByBiometricsChange Indicates if lock is invalidated by biometrics change.
 ///
-- (nonnull instancetype)initWithType:(enum LockConfigurationType)type unlockDuration:(NSTimeInterval)unlockDuration invalidatedByBiometricsChange:(BOOL)invalidatedByBiometricsChange OBJC_DESIGNATED_INITIALIZER;
+/// \param pinConfiguration SDK Pin behaviour configuration object.
+///
+- (nonnull instancetype)initWithType:(enum LockConfigurationType)type unlockDuration:(NSTimeInterval)unlockDuration invalidatedByBiometricsChange:(BOOL)invalidatedByBiometricsChange pinConfiguration:(SDKPinConfiguration * _Nonnull)pinConfiguration OBJC_DESIGNATED_INITIALIZER;
 - (nonnull instancetype)init SWIFT_UNAVAILABLE;
 + (nonnull instancetype)new SWIFT_UNAVAILABLE_MSG("-init is unavailable");
 @end
@@ -2322,6 +2327,24 @@ typedef SWIFT_ENUM(NSInteger, SDKMigrationErrorCode, open) {
   SDKMigrationErrorCodeNoDeviceUDID = 6,
   SDKMigrationErrorCodeNoMigrationToken = 7,
 };
+
+
+/// <code>SDKPinConfiguration</code> class represents the configuration settings for SDK Pin behaviour.
+SWIFT_CLASS("_TtC10FuturaeKit19SDKPinConfiguration")
+@interface SDKPinConfiguration : NSObject
+/// A Boolean indicating whether changing SDK Pin is possible when SDK is unlocked with biometrics. False by default.
+@property (nonatomic, readonly) BOOL allowPinChangeWithBiometricUnlock;
+/// A Boolean indicating whether biometrics are deactivated after changing SDK Pin. True by default.
+@property (nonatomic, readonly) BOOL deactivateBiometricsAfterPinChange;
+/// \param allowPinChangeWithBiometricUnlock Indicates whether changing SDK Pin is possible when SDK is unlocked with biometrics. False by default.
+///
+/// \param deactivateBiometricsAfterPinChange Indicates whether biometrics are deactivated after changing SDK Pin. True by default.
+///
+- (nonnull instancetype)initWithAllowPinChangeWithBiometricUnlock:(BOOL)allowPinChangeWithBiometricUnlock deactivateBiometricsAfterPinChange:(BOOL)deactivateBiometricsAfterPinChange OBJC_DESIGNATED_INITIALIZER;
++ (SDKPinConfiguration * _Nonnull)defaultConfig SWIFT_WARN_UNUSED_RESULT;
+- (nonnull instancetype)init SWIFT_UNAVAILABLE;
++ (nonnull instancetype)new SWIFT_UNAVAILABLE_MSG("-init is unavailable");
+@end
 
 enum SDKPinErrorCode : NSInteger;
 
@@ -3596,6 +3619,19 @@ SWIFT_CLASS_PROPERTY(@property (nonatomic, class, readonly) enum SDKStatus sdkSt
 - (SDKReport * _Nullable)sdkStateReportAndReturnError:(NSError * _Nullable * _Nullable)error SWIFT_WARN_UNUSED_RESULT;
 @end
 
+@class FTRConfig;
+
+@interface FTRClient (SWIFT_EXTENSION(FuturaeKit))
+/// Launches the SDK with the provided configuration.
+/// This method initializes the SDK with the given <code>FTRConfig</code> instance, setting up necessary parameters and configurations. It should be called before using any SDK functionality. The method can throw an error if the configuration is invalid or if there’s an issue during the initialization process.
+/// \param config An <code>FTRConfig</code> object containing the configuration settings for the SDK.
+///
+///
+/// throws:
+/// An error if the SDK fails to launch due to invalid configuration or other initialization issues.
++ (BOOL)launchWithConfig:(FTRConfig * _Nonnull)config error:(NSError * _Nullable * _Nullable)error;
+@end
+
 
 
 @interface FTRClient (SWIFT_EXTENSION(FuturaeKit))
@@ -3612,18 +3648,9 @@ SWIFT_CLASS_PROPERTY(@property (nonatomic, class, readonly) enum SDKStatus sdkSt
 @end
 
 
-@class FTRConfig;
 
-@interface FTRClient (SWIFT_EXTENSION(FuturaeKit))
-/// Launches the SDK with the provided configuration.
-/// This method initializes the SDK with the given <code>FTRConfig</code> instance, setting up necessary parameters and configurations. It should be called before using any SDK functionality. The method can throw an error if the configuration is invalid or if there’s an issue during the initialization process.
-/// \param config An <code>FTRConfig</code> object containing the configuration settings for the SDK.
-///
-///
-/// throws:
-/// An error if the SDK fails to launch due to invalid configuration or other initialization issues.
-+ (BOOL)launchWithConfig:(FTRConfig * _Nonnull)config error:(NSError * _Nullable * _Nullable)error;
-@end
+
+
 
 @class NSURL;
 @protocol FTROpenURLDelegate;
@@ -3642,18 +3669,19 @@ SWIFT_CLASS_PROPERTY(@property (nonatomic, class, readonly) enum SDKStatus sdkSt
 
 
 
-
-
+@class TOTPParameters;
+@class FTRTotp;
 
 @interface FTRClient (SWIFT_EXTENSION(FuturaeKit))
-/// Reply with approve or reject to an authentication using the provided parameters with success and failure callbacks.
-/// \param parameters The authentication parameters.
+/// Retrieves a Time-based One-Time Password (TOTP) based on the specified parameters.
+/// This method generates a TOTP using the provided <code>TOTPParameters</code>. Upon successful generation, the <code>success</code> closure is called with an <code>FTRTotp</code> object containing the TOTP and its remaining validity period. In case of failure during the TOTP generation process, the <code>failure</code> closure is executed with an error detailing the reason for failure.
+/// \param parameters An instance of <code>TOTPParameters</code> containing the necessary details for TOTP generation.
 ///
-/// \param success A closure called on successful reply operation.
+/// \param success A closure to be called upon successful TOTP generation. It provides an <code>FTRTotp</code> object containing the TOTP and its remaining validity period.
 ///
-/// \param failure A closure called if an error occurs during reply operation..
+/// \param failure A closure to be called in case of a failure in generating the TOTP, providing an error describing the failure reason.
 ///
-- (void)replyAuth:(AuthReplyParameters * _Nonnull)parameters success:(void (^ _Nonnull)(void))success failure:(void (^ _Nonnull)(NSError * _Nonnull))failure;
+- (void)getTOTP:(TOTPParameters * _Nonnull)parameters success:(void (^ _Nonnull)(FTRTotp * _Nonnull))success failure:(void (^ _Nonnull)(NSError * _Nonnull))failure;
 @end
 
 @class SessionParameters;
@@ -3671,36 +3699,17 @@ SWIFT_CLASS_PROPERTY(@property (nonatomic, class, readonly) enum SDKStatus sdkSt
 @end
 
 
-
-@class TOTPParameters;
-@class FTRTotp;
-
 @interface FTRClient (SWIFT_EXTENSION(FuturaeKit))
-/// Retrieves a Time-based One-Time Password (TOTP) based on the specified parameters.
-/// This method generates a TOTP using the provided <code>TOTPParameters</code>. Upon successful generation, the <code>success</code> closure is called with an <code>FTRTotp</code> object containing the TOTP and its remaining validity period. In case of failure during the TOTP generation process, the <code>failure</code> closure is executed with an error detailing the reason for failure.
-/// \param parameters An instance of <code>TOTPParameters</code> containing the necessary details for TOTP generation.
+/// Reply with approve or reject to an authentication using the provided parameters with success and failure callbacks.
+/// \param parameters The authentication parameters.
 ///
-/// \param success A closure to be called upon successful TOTP generation. It provides an <code>FTRTotp</code> object containing the TOTP and its remaining validity period.
+/// \param success A closure called on successful reply operation.
 ///
-/// \param failure A closure to be called in case of a failure in generating the TOTP, providing an error describing the failure reason.
+/// \param failure A closure called if an error occurs during reply operation..
 ///
-- (void)getTOTP:(TOTPParameters * _Nonnull)parameters success:(void (^ _Nonnull)(FTRTotp * _Nonnull))success failure:(void (^ _Nonnull)(NSError * _Nonnull))failure;
+- (void)replyAuth:(AuthReplyParameters * _Nonnull)parameters success:(void (^ _Nonnull)(void))success failure:(void (^ _Nonnull)(NSError * _Nonnull))failure;
 @end
 
-
-
-
-@interface FTRClient (SWIFT_EXTENSION(FuturaeKit))
-/// Enrolls a user with the provided parameters.
-/// This method initiates the enrollment process using the given <code>EnrollParameters</code>. On completion, either the <code>success</code> or <code>failure</code> callback is executed based on the outcome of the enrollment process.
-/// \param parameters An instance of <code>EnrollParameters</code> containing the necessary details for enrollment.
-///
-/// \param success A closure to be called upon successful enrollment.
-///
-/// \param failure A closure to be called in case of an enrollment failure, providing an error describing the failure reason.
-///
-- (void)enroll:(EnrollParameters * _Nonnull)parameters success:(void (^ _Nonnull)(void))success failure:(void (^ _Nonnull)(NSError * _Nonnull))failure;
-@end
 
 
 
@@ -3719,10 +3728,41 @@ SWIFT_CLASS_PROPERTY(@property (nonatomic, class, readonly) enum SDKStatus sdkSt
 @end
 
 
+@interface FTRClient (SWIFT_EXTENSION(FuturaeKit))
+/// Enrolls a user with the provided parameters.
+/// This method initiates the enrollment process using the given <code>EnrollParameters</code>. On completion, either the <code>success</code> or <code>failure</code> callback is executed based on the outcome of the enrollment process.
+/// \param parameters An instance of <code>EnrollParameters</code> containing the necessary details for enrollment.
+///
+/// \param success A closure to be called upon successful enrollment.
+///
+/// \param failure A closure to be called in case of an enrollment failure, providing an error describing the failure reason.
+///
+- (void)enroll:(EnrollParameters * _Nonnull)parameters success:(void (^ _Nonnull)(void))success failure:(void (^ _Nonnull)(NSError * _Nonnull))failure;
+@end
+
+
+
 @interface FTRClient (SWIFT_EXTENSION(FuturaeKit)) <FTRAdaptiveClientDelegate>
 - (void)logCollectedData:(NSDictionary<NSString *, id> * _Nonnull)collectedData retry:(BOOL)retry;
 @end
 
+
+@class NSData;
+@protocol FTRNotificationDelegate;
+
+@interface FTRClient (SWIFT_EXTENSION(FuturaeKit))
+/// Register push notifications token.
+/// \param deviceToken push notification token obtained from APN.
+///
+- (void)registerPushToken:(NSData * _Nonnull)deviceToken success:(void (^ _Nonnull)(void))success failure:(void (^ _Nonnull)(NSError * _Nonnull))failure;
+/// Handle a received push notification, and perform the required action.
+/// This method is protected if the session contains <code>extra_info</code>. If that’s the case, the SDK needs to be unlocked by verifying the user presence, prior to handling the push notification.
+/// \param payload received push notification payload.
+///
+/// \param delegate delegate to be notified about the operation result.
+///
+- (void)handleNotification:(NSDictionary * _Nonnull)payload delegate:(id <FTRNotificationDelegate> _Nullable)delegate;
+@end
 
 
 @class UnlockParameters;
@@ -3743,24 +3783,6 @@ SWIFT_CLASS_PROPERTY(@property (nonatomic, class, readonly) enum SDKStatus sdkSt
 /// An error if the SDK or the component fails to lock.
 - (BOOL)lockAndReturnError:(NSError * _Nullable * _Nullable)error;
 @end
-
-@class NSData;
-@protocol FTRNotificationDelegate;
-
-@interface FTRClient (SWIFT_EXTENSION(FuturaeKit))
-/// Register push notifications token.
-/// \param deviceToken push notification token obtained from APN.
-///
-- (void)registerPushToken:(NSData * _Nonnull)deviceToken success:(void (^ _Nonnull)(void))success failure:(void (^ _Nonnull)(NSError * _Nonnull))failure;
-/// Handle a received push notification, and perform the required action.
-/// This method is protected if the session contains <code>extra_info</code>. If that’s the case, the SDK needs to be unlocked by verifying the user presence, prior to handling the push notification.
-/// \param payload received push notification payload.
-///
-/// \param delegate delegate to be notified about the operation result.
-///
-- (void)handleNotification:(NSDictionary * _Nonnull)payload delegate:(id <FTRNotificationDelegate> _Nullable)delegate;
-@end
-
 
 @class FTRKeychainConfig;
 @class LockConfiguration;
@@ -3784,6 +3806,55 @@ SWIFT_CLASS_PROPERTY(@property (nonatomic, class, readonly) enum SDKStatus sdkSt
 - (void)clearDataFromDB:(BOOL)fromDB fromKeychain:(BOOL)fromKeychain;
 @end
 
+
+@class FTRMigrationCheckData;
+@class MigrationParameters;
+
+@interface FTRClient (SWIFT_EXTENSION(FuturaeKit))
+/// Retrieves a list of accounts that are eligible for migration.
+/// This method checks for accounts that can be migrated and returns the results through the <code>success</code> closure. If there is an error or issue in fetching the migratable accounts, the <code>failure</code> closure is called with an error detailing the issue.
+/// \param success A closure called with <code>FTRMigrationCheckData</code> upon successful retrieval of migratable accounts. This data includes details about the accounts that can be migrated.
+///
+/// \param failure A closure called in case of a failure in retrieving migratable accounts, providing an error describing the failure reason.
+///
+- (void)getMigratableAccountsWithSuccess:(void (^ _Nonnull)(FTRMigrationCheckData * _Nonnull))success failure:(void (^ _Nonnull)(NSError * _Nonnull))failure;
+/// Function to execute the Automatic Account Migration, and recover accounts enrolled in a previous installation or device.
+/// For this method to succeed, the device must have valid migration data and no accounts were enrolled before calling this method.
+/// This method initiates the migration of accounts using the given <code>MigrationParameters</code>. Upon successful migration, the <code>success</code> closure is executed with relevant data or confirmation. In case of failure during the migration process, the <code>failure</code> closure is called with an error providing details about the failure reason.
+/// \param parameters An instance of <code>MigrationParameters</code> containing the necessary details for the migration process. Defaults to standard parameters if not specified.
+///
+/// \param success A closure to be called upon successful migration of accounts. It may provide additional success-related information or confirmation.
+///
+/// \param failure A closure to be called in case of a migration failure, providing an error describing the failure reason.
+///
+- (void)migrateAccounts:(MigrationParameters * _Nonnull)parameters success:(void (^ _Nonnull)(NSArray<FTRAccount *> * _Nonnull))success failure:(void (^ _Nonnull)(NSError * _Nonnull))failure;
+@end
+
+
+
+@interface FTRClient (SWIFT_EXTENSION(FuturaeKit))
+/// Activate the biometric authentication as a means of convenience to verify the user presence, so that the user doesn’t have to enter the Pin to unlock the SDK.
+/// This method is only availble when the SDK lock configuration type is <code>LockConfigurationTypeSDKPinWithBiometricsOptional</code>.
+///
+/// throws:
+/// An error if the activation of biometrics fails.
+- (BOOL)activateBiometricsAndReturnError:(NSError * _Nullable * _Nullable)error;
+/// Deactivate biometrics as an authentication method.
+/// This function revokes the biometric authentication capability for unlocking the SDK. This method is only availble when the SDK lock configuration type is <code>LockConfigurationTypeSDKPinWithBiometricsOptional</code>.
+///
+/// throws:
+/// An error if the deactivation of biometrics fails.
+- (BOOL)deactivateBiometricsAndReturnError:(NSError * _Nullable * _Nullable)error;
+/// Changes the SDK-specific pin.
+/// This method allows the user to change the SDK-specific pin. On completion, either the <code>success</code> or <code>failure</code> callback is executed based on the outcome of the  process.
+/// \param newSDKPin The new SDK pin to be set.
+///
+/// \param success A closure to be called upon successful change of the SDK pin.
+///
+/// \param failure A closure to be called in case of a failure in changing the SDK pin, providing an error describing the failure reason.
+///
+- (void)changeSDKPinWithNewSDKPin:(NSString * _Nonnull)newSDKPin success:(void (^ _Nonnull)(void))success failure:(void (^ _Nonnull)(NSError * _Nonnull))failure;
+@end
 
 @class SwitchLockParameters;
 
@@ -3842,88 +3913,7 @@ enum FTRQRCodeType : NSInteger;
 @end
 
 
-@interface FTRClient (SWIFT_EXTENSION(FuturaeKit))
-/// Activate the biometric authentication as a means of convenience to verify the user presence, so that the user doesn’t have to enter the Pin to unlock the SDK.
-/// This method is only availble when the SDK lock configuration type is <code>LockConfigurationTypeSDKPinWithBiometricsOptional</code>.
-///
-/// throws:
-/// An error if the activation of biometrics fails.
-- (BOOL)activateBiometricsAndReturnError:(NSError * _Nullable * _Nullable)error;
-/// Deactivate biometrics as an authentication method.
-/// This function revokes the biometric authentication capability for unlocking the SDK. This method is only availble when the SDK lock configuration type is <code>LockConfigurationTypeSDKPinWithBiometricsOptional</code>.
-///
-/// throws:
-/// An error if the deactivation of biometrics fails.
-- (BOOL)deactivateBiometricsAndReturnError:(NSError * _Nullable * _Nullable)error;
-/// Changes the SDK-specific pin.
-/// This method allows the user to change the SDK-specific pin. On completion, either the <code>success</code> or <code>failure</code> callback is executed based on the outcome of the  process.
-/// \param newSDKPin The new SDK pin to be set.
-///
-/// \param success A closure to be called upon successful change of the SDK pin.
-///
-/// \param failure A closure to be called in case of a failure in changing the SDK pin, providing an error describing the failure reason.
-///
-- (void)changeSDKPinWithNewSDKPin:(NSString * _Nonnull)newSDKPin success:(void (^ _Nonnull)(void))success failure:(void (^ _Nonnull)(NSError * _Nonnull))failure;
-@end
 
-@class FTRMigrationCheckData;
-@class MigrationParameters;
-
-@interface FTRClient (SWIFT_EXTENSION(FuturaeKit))
-/// Retrieves a list of accounts that are eligible for migration.
-/// This method checks for accounts that can be migrated and returns the results through the <code>success</code> closure. If there is an error or issue in fetching the migratable accounts, the <code>failure</code> closure is called with an error detailing the issue.
-/// \param success A closure called with <code>FTRMigrationCheckData</code> upon successful retrieval of migratable accounts. This data includes details about the accounts that can be migrated.
-///
-/// \param failure A closure called in case of a failure in retrieving migratable accounts, providing an error describing the failure reason.
-///
-- (void)getMigratableAccountsWithSuccess:(void (^ _Nonnull)(FTRMigrationCheckData * _Nonnull))success failure:(void (^ _Nonnull)(NSError * _Nonnull))failure;
-/// Function to execute the Automatic Account Migration, and recover accounts enrolled in a previous installation or device.
-/// For this method to succeed, the device must have valid migration data and no accounts were enrolled before calling this method.
-/// This method initiates the migration of accounts using the given <code>MigrationParameters</code>. Upon successful migration, the <code>success</code> closure is executed with relevant data or confirmation. In case of failure during the migration process, the <code>failure</code> closure is called with an error providing details about the failure reason.
-/// \param parameters An instance of <code>MigrationParameters</code> containing the necessary details for the migration process. Defaults to standard parameters if not specified.
-///
-/// \param success A closure to be called upon successful migration of accounts. It may provide additional success-related information or confirmation.
-///
-/// \param failure A closure to be called in case of a migration failure, providing an error describing the failure reason.
-///
-- (void)migrateAccounts:(MigrationParameters * _Nonnull)parameters success:(void (^ _Nonnull)(NSArray<FTRAccount *> * _Nonnull))success failure:(void (^ _Nonnull)(NSError * _Nonnull))failure;
-@end
-
-
-
-
-@protocol FTRUserPresenceDelegate;
-
-@interface FTRClient (SWIFT_EXTENSION(FuturaeKit))
-@property (nonatomic, readonly, copy) NSString * _Nonnull baseURL;
-- (void)logAnalyticsData:(NSDictionary<NSString *, id> * _Nonnull)analyticsData success:(void (^ _Nonnull)(void))success failure:(void (^ _Nonnull)(NSError * _Nonnull))failure;
-- (void)setUserPresenceDelegate:(id <FTRUserPresenceDelegate> _Nullable)delegate;
-/// Check if SDK data exists for the specified configuration
-/// \param appGroup The app group parameter.
-///
-/// \param keychainConfig The keychain configuration object. If nil is passed default keychain configuration will be applied.
-///
-/// \param lockConfiguration The lock configuration object.
-///
-+ (BOOL)checkDataExistsForAppGroup:(NSString * _Nullable)appGroup keychainConfig:(FTRKeychainConfig * _Nullable)keychainConfig lockConfiguration:(LockConfiguration * _Nonnull)lockConfiguration SWIFT_WARN_UNUSED_RESULT;
-/// Decrypt extra info that is encrypted and provided from the push notification content
-/// \param encryptedExtraInfo value of <code>extra_info_enc</code> key from the notification user info dictionary.
-///
-/// \param userId The account’s Futurae user id.
-///
-///
-/// returns:
-/// The decrypted extra info as an array of key value pairs.
-- (NSArray<FTRExtraInfo *> * _Nullable)decryptExtraInfo:(NSString * _Nonnull)encryptedExtraInfo userId:(NSString * _Nonnull)userId error:(NSError * _Nullable * _Nullable)error SWIFT_WARN_UNUSED_RESULT;
-/// Submit public key of this SDK to futurae service
-/// This function is not intended for use under normal circumstances.
-/// It can be used to repair very specific SDK to webapp communication errors.
-/// \param success callback for successful PK submission
-///
-/// \param failure callback for failed PK submission
-///
-- (void)submitPublicKeyWithSuccess:(void (^ _Nonnull)(void))success failure:(void (^ _Nonnull)(NSError * _Nonnull))failure;
-@end
 
 
 @interface FTRClient (SWIFT_EXTENSION(FuturaeKit))
@@ -3984,6 +3974,39 @@ enum FTRQRCodeType : NSInteger;
 /// \param failure A closure called in case of a failure in retrieving the account’s history, providing an error describing the failure reason.
 ///
 - (void)getAccountHistory:(FTRAccount * _Nonnull)account success:(void (^ _Nonnull)(FTRAccountHistory * _Nonnull))success failure:(void (^ _Nonnull)(NSError * _Nonnull))failure;
+@end
+
+@protocol FTRUserPresenceDelegate;
+
+@interface FTRClient (SWIFT_EXTENSION(FuturaeKit))
+@property (nonatomic, readonly, copy) NSString * _Nonnull baseURL;
+- (void)logAnalyticsData:(NSDictionary<NSString *, id> * _Nonnull)analyticsData success:(void (^ _Nonnull)(void))success failure:(void (^ _Nonnull)(NSError * _Nonnull))failure;
+- (void)setUserPresenceDelegate:(id <FTRUserPresenceDelegate> _Nullable)delegate;
+/// Check if SDK data exists for the specified configuration
+/// \param appGroup The app group parameter.
+///
+/// \param keychainConfig The keychain configuration object. If nil is passed default keychain configuration will be applied.
+///
+/// \param lockConfiguration The lock configuration object.
+///
++ (BOOL)checkDataExistsForAppGroup:(NSString * _Nullable)appGroup keychainConfig:(FTRKeychainConfig * _Nullable)keychainConfig lockConfiguration:(LockConfiguration * _Nonnull)lockConfiguration SWIFT_WARN_UNUSED_RESULT;
+/// Decrypt extra info that is encrypted and provided from the push notification content
+/// \param encryptedExtraInfo value of <code>extra_info_enc</code> key from the notification user info dictionary.
+///
+/// \param userId The account’s Futurae user id.
+///
+///
+/// returns:
+/// The decrypted extra info as an array of key value pairs.
+- (NSArray<FTRExtraInfo *> * _Nullable)decryptExtraInfo:(NSString * _Nonnull)encryptedExtraInfo userId:(NSString * _Nonnull)userId error:(NSError * _Nullable * _Nullable)error SWIFT_WARN_UNUSED_RESULT;
+/// Submit public key of this SDK to futurae service
+/// This function is not intended for use under normal circumstances.
+/// It can be used to repair very specific SDK to webapp communication errors.
+/// \param success callback for successful PK submission
+///
+/// \param failure callback for failed PK submission
+///
+- (void)submitPublicKeyWithSuccess:(void (^ _Nonnull)(void))success failure:(void (^ _Nonnull)(NSError * _Nonnull))failure;
 @end
 
 @protocol FTRAdaptiveSDKDelegate;
@@ -4524,6 +4547,7 @@ SWIFT_CLASS("_TtC10FuturaeKit15JailbreakStatus")
 @end
 
 enum LockConfigurationType : NSInteger;
+@class SDKPinConfiguration;
 
 /// <code>LockConfiguration</code> class represents the configuration settings for locking mechanisms in the SDK.
 SWIFT_CLASS("_TtC10FuturaeKit17LockConfiguration")
@@ -4534,13 +4558,17 @@ SWIFT_CLASS("_TtC10FuturaeKit17LockConfiguration")
 @property (nonatomic, readonly) NSTimeInterval unlockDuration;
 /// A Boolean indicating whether the lock should be invalidated by biometric changes.
 @property (nonatomic, readonly) BOOL invalidatedByBiometricsChange;
+/// An object for configuring SDK Pin behaviour
+@property (nonatomic, readonly, strong) SDKPinConfiguration * _Nonnull pinConfiguration;
 /// \param type The type of lock configuration.
 ///
 /// \param unlockDuration The duration for which the lock remains open.
 ///
 /// \param invalidatedByBiometricsChange Indicates if lock is invalidated by biometrics change.
 ///
-- (nonnull instancetype)initWithType:(enum LockConfigurationType)type unlockDuration:(NSTimeInterval)unlockDuration invalidatedByBiometricsChange:(BOOL)invalidatedByBiometricsChange OBJC_DESIGNATED_INITIALIZER;
+/// \param pinConfiguration SDK Pin behaviour configuration object.
+///
+- (nonnull instancetype)initWithType:(enum LockConfigurationType)type unlockDuration:(NSTimeInterval)unlockDuration invalidatedByBiometricsChange:(BOOL)invalidatedByBiometricsChange pinConfiguration:(SDKPinConfiguration * _Nonnull)pinConfiguration OBJC_DESIGNATED_INITIALIZER;
 - (nonnull instancetype)init SWIFT_UNAVAILABLE;
 + (nonnull instancetype)new SWIFT_UNAVAILABLE_MSG("-init is unavailable");
 @end
@@ -5080,6 +5108,24 @@ typedef SWIFT_ENUM(NSInteger, SDKMigrationErrorCode, open) {
   SDKMigrationErrorCodeNoDeviceUDID = 6,
   SDKMigrationErrorCodeNoMigrationToken = 7,
 };
+
+
+/// <code>SDKPinConfiguration</code> class represents the configuration settings for SDK Pin behaviour.
+SWIFT_CLASS("_TtC10FuturaeKit19SDKPinConfiguration")
+@interface SDKPinConfiguration : NSObject
+/// A Boolean indicating whether changing SDK Pin is possible when SDK is unlocked with biometrics. False by default.
+@property (nonatomic, readonly) BOOL allowPinChangeWithBiometricUnlock;
+/// A Boolean indicating whether biometrics are deactivated after changing SDK Pin. True by default.
+@property (nonatomic, readonly) BOOL deactivateBiometricsAfterPinChange;
+/// \param allowPinChangeWithBiometricUnlock Indicates whether changing SDK Pin is possible when SDK is unlocked with biometrics. False by default.
+///
+/// \param deactivateBiometricsAfterPinChange Indicates whether biometrics are deactivated after changing SDK Pin. True by default.
+///
+- (nonnull instancetype)initWithAllowPinChangeWithBiometricUnlock:(BOOL)allowPinChangeWithBiometricUnlock deactivateBiometricsAfterPinChange:(BOOL)deactivateBiometricsAfterPinChange OBJC_DESIGNATED_INITIALIZER;
++ (SDKPinConfiguration * _Nonnull)defaultConfig SWIFT_WARN_UNUSED_RESULT;
+- (nonnull instancetype)init SWIFT_UNAVAILABLE;
++ (nonnull instancetype)new SWIFT_UNAVAILABLE_MSG("-init is unavailable");
+@end
 
 enum SDKPinErrorCode : NSInteger;
 
