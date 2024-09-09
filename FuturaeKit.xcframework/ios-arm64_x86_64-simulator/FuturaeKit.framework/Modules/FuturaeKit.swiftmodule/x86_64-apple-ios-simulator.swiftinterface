@@ -759,7 +759,10 @@ extension FuturaeKit.FTRClient {
   @objc public var invalidatedByBiometricsChange: Swift.Bool {
     get
   }
-  @objc required public init(type: FuturaeKit.LockConfigurationType, unlockDuration: Foundation.TimeInterval = 60, invalidatedByBiometricsChange: Swift.Bool = false)
+  @objc public var pinConfiguration: FuturaeKit.SDKPinConfiguration {
+    get
+  }
+  @objc required public init(type: FuturaeKit.LockConfigurationType, unlockDuration: Foundation.TimeInterval = 60, invalidatedByBiometricsChange: Swift.Bool = false, pinConfiguration: FuturaeKit.SDKPinConfiguration = .defaultConfig())
   @objc deinit
 }
 @objc public class ApiError : ObjectiveC.NSObject, Swift.Codable {
@@ -1040,6 +1043,17 @@ public typealias FTRAccountHistoryHandler = (FuturaeKit.FTRAccountHistory) -> Sw
 public typealias FTRMigrationCheckHandler = (FuturaeKit.FTRMigrationCheckData) -> Swift.Void
 public typealias FTRAccountMigrationHandler = ([FuturaeKit.FTRAccount]) -> Swift.Void
 public typealias FTRVerificationCodeHandler = (Swift.String) -> Swift.Void
+@objc public class SDKPinConfiguration : ObjectiveC.NSObject {
+  @objc public var allowPinChangeWithBiometricUnlock: Swift.Bool {
+    get
+  }
+  @objc public var deactivateBiometricsAfterPinChange: Swift.Bool {
+    get
+  }
+  @objc required public init(allowPinChangeWithBiometricUnlock: Swift.Bool = false, deactivateBiometricsAfterPinChange: Swift.Bool = true)
+  @objc public class func defaultConfig() -> FuturaeKit.SDKPinConfiguration
+  @objc deinit
+}
 @_hasMissingDesignatedInitializers public class AsyncTask {
   public func execute(_ callback: @escaping (Swift.Result<(), any Swift.Error>) -> Swift.Void)
   public var rx: RxSwift.Completable {
