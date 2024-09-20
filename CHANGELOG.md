@@ -1,3 +1,8 @@
+# Version 3.4.0
+2024-20-09
++ [Changed] SDK no longer relies externally on dependencies RxSwift and SQLite.swift
++ [Added] The SDK returns a specific error for SSL certificate pinning failure: SDKConnectionErrorCode.certPinningFail
+
 # Version 2.5.0
 2024-20-09
 + [Added] Added error code `FTRClientErrorPinCertificate` which is returned from the SDK if there is an issue with SSL certificate pinning.

@@ -48,5 +48,6 @@
   "3.2.3": "https://github.com/Futurae-Technologies/ios-sdk/releases/download/v3.2.3/FuturaeKit-v3.2.3.xcframework.zip",
   "3.2.4": "https://github.com/Futurae-Technologies/ios-sdk/releases/download/v3.2.4/FuturaeKit-v3.2.4-carthage.xcframework.zip",
   "3.3.0": "https://github.com/Futurae-Technologies/ios-sdk/releases/download/v3.3.0/FuturaeKit-v3.3.0-carthage.xcframework.zip",
-  "2.5.0": "https://github.com/Futurae-Technologies/ios-sdk/releases/download/v2.5.0/FuturaeKit-v2.5.0-framework.zip"
+  "2.5.0": "https://github.com/Futurae-Technologies/ios-sdk/releases/download/v2.5.0/FuturaeKit-v2.5.0-framework.zip",
+  "3.4.0": "https://github.com/Futurae-Technologies/ios-sdk/releases/download/v3.4.0/FuturaeKit-v3.4.0-framework.zip"
 }
