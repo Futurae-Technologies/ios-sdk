@@ -10,14 +10,14 @@ let package = Package(
         .library(name: "FuturaeKit", targets: ["FuturaeKit", "FuturaeKitUmbrella"]),
     ],
     dependencies: [
-        .package(url: "https://github.com/Futurae-Technologies/SQLite.swift.git", .upToNextMajor(from: "0.15.3")),
-        .package(url: "https://github.com/Futurae-Technologies/RxSwift", .upToNextMajor(from: "6.7.1")),
+        .package(url: "https://github.com/Futurae-Technologies/ios-sdk/releases/download/v2.5.0/FuturaeKit-v2.5.0.xcframework.zip", .upToNextMajor(from: "0.15.3")),
+        .package(url: "https://github.com/Futurae-Technologies/ios-sdk/releases/download/v2.5.0/FuturaeKit-v2.5.0.xcframework.zip", .upToNextMajor(from: "6.7.1")),
     ],
     targets: [
         .binaryTarget(
             name: "FuturaeKit",
-            url: "https://github.com/Futurae-Technologies/ios-sdk/releases/download/v3.3.0/FuturaeKit-v3.3.0.xcframework.zip",
-            checksum: "e15ac3273fccd6af59a801519831a79935d1b390ddc633f7558b1c0a9b908835"
+            url: "https://github.com/Futurae-Technologies/ios-sdk/releases/download/v2.5.0/FuturaeKit-v2.5.0.xcframework.zip",
+            checksum: "294fb6642e48cee69a4e5242cbbd3a2c4415681f04006f552f0ef04ef9461156"
         ),
         .target(
             name: "FuturaeKitUmbrella",

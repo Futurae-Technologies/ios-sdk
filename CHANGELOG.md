@@ -1,3 +1,10 @@
+# Version 2.5.0
+2024-20-09
++ [Added] Added error code `FTRClientErrorPinCertificate` which is returned from the SDK if there is an issue with SSL certificate pinning.
++ [Fixed] Issue where multiple reply authenticaton requests were made when there are multiple accounts enrolled and a public key is submitted before the reply.
++ [Fixed] Issue where SDK becomes corrupt when the SDK is launched while device is locked (more so if SDK was configured to be launched with keychain accessibility attribute `whenDeviceUnlocked` rather than `afterFirstUnock`)
++ [Changed] Replaced a certificate used for SSL pinning.
+
 # Version 3.3.0
 2024-09-09
 + [Fixed] Fixed issue where FTRUtils.qrCodeType(from:) would not identify `enrollment` type from scanned enroll QR code
