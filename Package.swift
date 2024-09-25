@@ -10,8 +10,8 @@ let package = Package(
         .library(name: "FuturaeKit", targets: ["FuturaeKit", "FuturaeKitUmbrella"]),
     ],
     dependencies: [
-        .package(url: "https://github.com/Futurae-Technologies/ios-sdk/releases/download/v2.5.0/FuturaeKit-v2.5.0.xcframework.zip", .upToNextMajor(from: "0.15.3")),
-        .package(url: "https://github.com/Futurae-Technologies/ios-sdk/releases/download/v2.5.0/FuturaeKit-v2.5.0.xcframework.zip", .upToNextMajor(from: "6.7.1")),
+        .package(url: "https://github.com/stephencelis/SQLite.swift.git", .upToNextMajor(from: "0.15.3")),
+        .package(url: "https://github.com/ReactiveX/RxSwift.git", .upToNextMajor(from: "6.7.1")),
     ],
     targets: [
         .binaryTarget(
