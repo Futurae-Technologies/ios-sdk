@@ -27,6 +27,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong, readonly) NSArray *capabilities;
 @property (nonatomic, strong, readonly) FTRKeychainConfig *keychain;
 @property (nonatomic, strong, readonly) LockConfiguration *lockConfiguration;
+@property (nonatomic) BOOL pinCerts;
 
 + (instancetype)configWithSdkId:(NSString *)sdkId
                          sdkKey:(NSString *)sdkKey
@@ -51,26 +52,26 @@ NS_ASSUME_NONNULL_BEGIN
 + (instancetype)configWithSdkId:(NSString *)sdkId
                          sdkKey:(NSString *)sdkKey
                        pinCerts:(BOOL)pinCerts
-              lockConfiguration: (LockConfiguration * )lockConfiguration __deprecated_msg("The :pinCerts flag no longer has effect. SSL pinning is always enabled in the SDK.");
+              lockConfiguration: (LockConfiguration * )lockConfiguration ;
 
 + (instancetype)configWithSdkId:(NSString *)sdkId
                          sdkKey:(NSString *)sdkKey
                        pinCerts:(BOOL)pinCerts
                        keychain:(FTRKeychainConfig *)keychain
-              lockConfiguration: (LockConfiguration * )lockConfiguration __deprecated_msg("The :pinCerts flag no longer has effect. SSL pinning is always enabled in the SDK.");
+              lockConfiguration: (LockConfiguration * )lockConfiguration ;
 
 + (instancetype)configWithSdkId:(NSString *)sdkId
                          sdkKey:(NSString *)sdkKey
                         baseUrl:(NSString *)baseUrl
                        pinCerts:(BOOL)pinCerts
-              lockConfiguration: (LockConfiguration * )lockConfiguration __deprecated_msg("The :pinCerts flag no longer has effect. SSL pinning is always enabled in the SDK.");
+              lockConfiguration: (LockConfiguration * )lockConfiguration ;
 
 + (instancetype)configWithSdkId:(NSString *)sdkId
                          sdkKey:(NSString *)sdkKey
                         baseUrl:(NSString *)baseUrl
                        pinCerts:(BOOL)pinCerts
                        keychain:(FTRKeychainConfig *)keychain
-              lockConfiguration: (LockConfiguration * )lockConfiguration __deprecated_msg("The :pinCerts flag no longer has effect. SSL pinning is always enabled in the SDK.");
+              lockConfiguration: (LockConfiguration * )lockConfiguration ;
 
 + (instancetype)configWithSdkId:(NSString *)sdkId
                          sdkKey:(NSString *)sdkKey
@@ -100,21 +101,21 @@ NS_ASSUME_NONNULL_BEGIN
                          sdkKey:(NSString *)sdkKey
                        pinCerts:(BOOL)pinCerts
               lockConfiguration: (LockConfiguration * )lockConfiguration
-                       appGroup:(NSString *)appGroup __deprecated_msg("The :pinCerts flag no longer has effect. SSL pinning is always enabled in the SDK.");
+                       appGroup:(NSString *)appGroup ;
 
 + (instancetype)configWithSdkId:(NSString *)sdkId
                          sdkKey:(NSString *)sdkKey
                        pinCerts:(BOOL)pinCerts
                        keychain:(FTRKeychainConfig *)keychain
               lockConfiguration: (LockConfiguration * )lockConfiguration
-                       appGroup:(NSString *)appGroup __deprecated_msg("The :pinCerts flag no longer has effect. SSL pinning is always enabled in the SDK.");
+                       appGroup:(NSString *)appGroup ;
 
 + (instancetype)configWithSdkId:(NSString *)sdkId
                          sdkKey:(NSString *)sdkKey
                         baseUrl:(NSString *)baseUrl
                        pinCerts:(BOOL)pinCerts
               lockConfiguration: (LockConfiguration * )lockConfiguration
-                       appGroup:(NSString *)appGroup __deprecated_msg("The :pinCerts flag no longer has effect. SSL pinning is always enabled in the SDK.");
+                       appGroup:(NSString *)appGroup ;
 
 + (instancetype)configWithSdkId:(NSString *)sdkId
                          sdkKey:(NSString *)sdkKey
@@ -122,7 +123,7 @@ NS_ASSUME_NONNULL_BEGIN
                        pinCerts:(BOOL)pinCerts
                        keychain:(FTRKeychainConfig *)keychain
               lockConfiguration: (LockConfiguration * )lockConfiguration
-                       appGroup:(NSString *)appGroup __deprecated_msg("The :pinCerts flag no longer has effect. SSL pinning is always enabled in the SDK.");
+                       appGroup:(NSString *)appGroup ;
 
 - (BOOL)isValid;
 

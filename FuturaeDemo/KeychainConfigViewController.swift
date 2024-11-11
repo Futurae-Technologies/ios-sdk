@@ -28,6 +28,8 @@ final class KeychainConfigViewController: UIViewController {
     @IBOutlet weak var deactivatePinBiometricsBtn: UIButton!
     @IBOutlet weak var changePinBtn: UIButton!
     
+    @IBOutlet weak var pinningEnabled: UISwitch!
+    
     var timer: Timer?
     
     private var selectedConfigOption: LockConfigurationType?
@@ -72,6 +74,7 @@ final class KeychainConfigViewController: UIViewController {
             return FTRConfig(sdkId: SDKConstants.SDKID,
                                    sdkKey: SDKConstants.SDKKEY,
                                    baseUrl: SDKConstants.SDKURL,
+                                   pinCerts: pinningEnabled.isOn,
                                    keychain: FTRKeychainConfig(accessGroup: SDKConstants.KEYCHAIN_ACCESS_GROUP),
                                    lockConfiguration: LockConfiguration(type: type,
                                                                         unlockDuration: 60,
@@ -82,6 +85,7 @@ final class KeychainConfigViewController: UIViewController {
             return FTRConfig(sdkId: SDKConstants.SDKID,
                                    sdkKey: SDKConstants.SDKKEY,
                                    baseUrl: SDKConstants.SDKURL,
+                                   pinCerts: pinningEnabled.isOn,
                                    lockConfiguration: LockConfiguration(type: type,
                                                                         unlockDuration: 60,
                                                                         invalidatedByBiometricsChange: true)
@@ -101,6 +105,8 @@ final class KeychainConfigViewController: UIViewController {
         UITabBar.appearance().barTintColor = .black
         UITabBar.appearance().tintColor = .green
         UITabBar.appearance().unselectedItemTintColor = .gray
+        
+        pinningEnabled.isOn = UserDefaults.custom.bool(forKey: "pinning_enabled")
         
         let savedOption = UserDefaults.custom.integer(forKey: SDKConstants.KEY_CONFIG)
         if(savedOption > 0) {
@@ -398,6 +404,10 @@ final class KeychainConfigViewController: UIViewController {
         )
         valueTextView.isHidden = false
         valueTextView.text = dataExists ? "Data exists" : "No data present"
+    }
+    
+    @IBAction func didSwitchPinning(_ sender: UISwitch) {
+        UserDefaults.custom.set(sender.isOn, forKey: "pinning_enabled")
     }
 }
 

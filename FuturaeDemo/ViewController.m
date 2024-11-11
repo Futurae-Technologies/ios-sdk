@@ -113,7 +113,7 @@ BOOL operationWithBiometrics = NO;
     [[FTRClient sharedClient] logoutUser:account.user_id callback:^(NSError * _Nullable error) {
         
         if(error){
-            [self _showAlertWithTitle:@"Error" message: error.userInfo[@"msg"] ? error.userInfo[@"msg"] : error.localizedDescription];
+            [self _showAlertWithTitle:@"Error" message: [error.userInfo.allValues componentsJoinedByString:@", "]];
         } else {
             [self _showAlertWithTitle:@"Success" message:[NSString stringWithFormat:@"Logged out user %@", account.username ? account.username : @"Username N/A"]];
         }
@@ -132,7 +132,7 @@ BOOL operationWithBiometrics = NO;
     
     [[FTRClient sharedClient] deleteAccount:account.user_id callback:^(NSError * _Nullable error) {
         if (error) {
-            [self _showAlertWithTitle:@"Error" message: error.userInfo[@"msg"] ? error.userInfo[@"msg"] : error.localizedDescription];
+            [self _showAlertWithTitle:@"Error" message: [error.userInfo.allValues componentsJoinedByString:@", "]];
         } else {
             [self _showAlertWithTitle:@"Success" message:[NSString stringWithFormat:@"Deleted user_id %@", account.user_id]];
         }
@@ -216,7 +216,7 @@ BOOL operationWithBiometrics = NO;
     } else {
         totp = [[FTRClient sharedClient] nextTotpForUser:account.user_id SDKPin: SDKPin error:&error];
         if (error) {
-            [self _showAlertWithTitle:@"Error" message:error.userInfo[@"msg"]];
+            [self _showAlertWithTitle:@"Error" message: [error.userInfo.allValues componentsJoinedByString:@", "]];
             return;
         }
         
@@ -232,7 +232,7 @@ BOOL operationWithBiometrics = NO;
     FTRAccount *account = [[FTRClient sharedClient] getAccounts].firstObject;
     [[FTRClient sharedClient] synchronousAuthTokenForUser:account.user_id callback:^(NSError * _Nullable error, NSString * _Nullable token) {
         if (error) {
-            [weakSelf _showAlertWithTitle:@"Error" message:error.userInfo[@"msg"]];
+            [weakSelf _showAlertWithTitle:@"Error" message: [error.userInfo.allValues componentsJoinedByString:@", "]];
             return;
         }
         
@@ -326,7 +326,7 @@ BOOL operationWithBiometrics = NO;
         [weakSelf _showAlertWithTitle:title message:message];
     } failure:^(NSError * _Nonnull error) {
         NSString *title = @"Executing account migration failed";
-        NSString *message = error.userInfo[@"msg"];
+        NSString *message = [error.userInfo.allValues componentsJoinedByString:@", "];
         [weakSelf _showAlertWithTitle:title message:message];
     }];
 }
@@ -476,7 +476,7 @@ BOOL operationWithBiometrics = NO;
             [FTRClient.sharedClient enrollAndSetupSDKPin:pin code:QRCodeResult callback:^(NSError * _Nullable error) {
                 [weakSelf dismissViewControllerAnimated:YES completion:^{
                     if (error) {
-                        [self _showAlertWithTitle:@"Error" message:error.userInfo[@"msg"]];
+                        [self _showAlertWithTitle:@"Error" message: [error.userInfo.allValues componentsJoinedByString:@", "]];
                         return;
                     }
                     
@@ -494,7 +494,7 @@ BOOL operationWithBiometrics = NO;
         [FTRClient.sharedClient enroll:QRCodeResult callback:^(NSError *error) {
             [weakSelf dismissViewControllerAnimated:YES completion:^{
                 if (error) {
-                    [weakSelf _showAlertWithTitle:@"Error" message:error.userInfo[@"msg"]];
+                    [weakSelf _showAlertWithTitle:@"Error" message: [error.userInfo.allValues componentsJoinedByString:@", "]];
                     return;
                 }
                 
@@ -531,7 +531,7 @@ BOOL operationWithBiometrics = NO;
             [FTRClient.sharedClient enrollAndSetupSDKPin:pin activationShortCode:code callback:^(NSError * _Nullable error) {
                 [weakSelf dismissViewControllerAnimated:YES completion:^{
                     if (error) {
-                        [weakSelf _showAlertWithTitle:@"Error" message:error.userInfo[@"msg"]];
+                        [weakSelf _showAlertWithTitle:@"Error" message: [error.userInfo.allValues componentsJoinedByString:@", "]];
                         return;
                     }
                     
@@ -547,7 +547,7 @@ BOOL operationWithBiometrics = NO;
         [FTRClient.sharedClient enrollWithActivationShortCode:code callback:^(NSError *error) {
             [weakSelf dismissViewControllerAnimated:YES completion:^{
                 if (error) {
-                    [weakSelf _showAlertWithTitle:@"Error" message:error.userInfo[@"msg"]];
+                    [weakSelf _showAlertWithTitle:@"Error" message: [error.userInfo.allValues componentsJoinedByString:@", "]];
                     return;
                 }
                 
@@ -600,7 +600,7 @@ BOOL operationWithBiometrics = NO;
         }];
     } failure:^(NSError * _Nullable error) {
         [self dismissViewControllerAnimated:YES completion:^{
-            [self _showAlertWithTitle:@"Error" message:error.localizedDescription];
+            [self _showAlertWithTitle:@"Error" message: [error.userInfo.allValues componentsJoinedByString:@", "]];
         }];
     }];
 }
@@ -610,7 +610,7 @@ BOOL operationWithBiometrics = NO;
     [FTRClient.sharedClient approveAuthWithQrCode:QRCodeResult extraInfo: extraInfo callback:^(NSError * _Nullable error) {
         [self dismissViewControllerAnimated:YES completion:^{
             if (error) {
-                [self _showAlertWithTitle:@"Error" message:error.userInfo[@"msg"]];
+                [self _showAlertWithTitle:@"Error" message: [error.userInfo.allValues componentsJoinedByString:@", "]];
                 return;
             }
             [self _showAlertWithTitle:@"Success" message:@"User authenticated successfully!"];
@@ -661,7 +661,7 @@ BOOL operationWithBiometrics = NO;
         
     } failure:^(NSError * _Nullable error) {
         [self dismissViewControllerAnimated:YES completion:^{
-            [self _showAlertWithTitle:@"Error" message:error.localizedDescription];
+            [self _showAlertWithTitle:@"Error" message: [error.userInfo.allValues componentsJoinedByString:@", "]];
         }];
     }];
 }
@@ -694,7 +694,7 @@ BOOL operationWithBiometrics = NO;
     [FTRClient.sharedClient approveAuthWithUsernamelessQrCode:QRCodeResult userId: userId  extraInfo: extraInfo callback:^(NSError * _Nullable error) {
         [weakSelf dismissViewControllerAnimated:YES completion:^{
             if (error) {
-                [self _showAlertWithTitle:@"Error" message:error.userInfo[@"msg"]];
+                [self _showAlertWithTitle:@"Error" message: [error.userInfo.allValues componentsJoinedByString:@", "]];
                 return;
             }
             [weakSelf _showAlertWithTitle:@"Success" message:@"User authenticated successfully!"];

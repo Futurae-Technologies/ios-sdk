@@ -34,6 +34,7 @@ class NotificationService: UNNotificationServiceExtension {
             FTRClient.launch(with: FTRConfig(sdkId: SDKConstants.SDKID,
                                              sdkKey: SDKConstants.SDKKEY,
                                              baseUrl: SDKConstants.SDKURL,
+                                             pinCerts: UserDefaults.custom.bool(forKey: "pinning_enabled"),
                                              keychain: FTRKeychainConfig(accessGroup: SDKConstants.KEYCHAIN_ACCESS_GROUP),
                                              lockConfiguration: LockConfiguration(type: lockType,
                                                                                   unlockDuration: 60,

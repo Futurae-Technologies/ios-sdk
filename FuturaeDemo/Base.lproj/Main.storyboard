@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="32700.99.1234" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Ibc-J1-55c">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="23504" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Ibc-J1-55c">
     <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22684"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="23506"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -974,10 +974,27 @@
                                 <rect key="frame" x="0.0" y="30" width="375" height="344.5"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" alignment="center" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="ex8-cS-kWs">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="225"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="266"/>
                                         <subviews>
+                                            <stackView opaque="NO" contentMode="scaleToFill" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="9sL-05-Z8b">
+                                                <rect key="frame" x="80" y="0.0" width="215.5" height="31"/>
+                                                <subviews>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Enable SSL Pinning" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6YZ-gX-llQ">
+                                                        <rect key="frame" x="0.0" y="0.0" width="146.5" height="31"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                        <nil key="textColor"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="HmA-es-izt">
+                                                        <rect key="frame" x="166.5" y="0.0" width="51" height="31"/>
+                                                        <connections>
+                                                            <action selector="didSwitchPinning:" destination="FqC-QZ-eSk" eventType="valueChanged" id="cJ3-N0-AkB"/>
+                                                        </connections>
+                                                    </switch>
+                                                </subviews>
+                                            </stackView>
                                             <button opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="249" verticalCompressionResistancePriority="751" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pd0-up-q0i" customClass="CustomDemoButton" customModule="FuturaeDemo" customModuleProvider="target">
-                                                <rect key="frame" x="135" y="0.0" width="105" height="37"/>
+                                                <rect key="frame" x="135" y="41" width="105" height="37"/>
                                                 <color key="backgroundColor" red="0.2470588088" green="0.24313727020000001" blue="0.32941177490000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <inset key="contentEdgeInsets" minX="8" minY="8" maxX="8" maxY="8"/>
@@ -1001,7 +1018,7 @@
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="249" verticalCompressionResistancePriority="751" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mB2-IT-g4w" customClass="CustomDemoButton" customModule="FuturaeDemo" customModuleProvider="target">
-                                                <rect key="frame" x="95" y="47" width="185" height="37"/>
+                                                <rect key="frame" x="95" y="88" width="185" height="37"/>
                                                 <color key="backgroundColor" red="0.2470588088" green="0.24313727020000001" blue="0.32941177490000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <inset key="contentEdgeInsets" minX="8" minY="8" maxX="8" maxY="8"/>
@@ -1025,7 +1042,7 @@
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="249" verticalCompressionResistancePriority="751" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4HE-LQ-lW1" customClass="CustomDemoButton" customModule="FuturaeDemo" customModuleProvider="target">
-                                                <rect key="frame" x="68" y="94" width="239" height="37"/>
+                                                <rect key="frame" x="68" y="135" width="239" height="37"/>
                                                 <color key="backgroundColor" red="0.2470588088" green="0.24313727020000001" blue="0.32941177490000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <inset key="contentEdgeInsets" minX="8" minY="8" maxX="8" maxY="8"/>
@@ -1049,7 +1066,7 @@
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="249" verticalCompressionResistancePriority="751" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nNT-gE-imm" customClass="CustomDemoButton" customModule="FuturaeDemo" customModuleProvider="target">
-                                                <rect key="frame" x="67.5" y="141" width="240" height="37"/>
+                                                <rect key="frame" x="67.5" y="182" width="240" height="37"/>
                                                 <color key="backgroundColor" red="0.2470588088" green="0.24313727020000001" blue="0.32941177490000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <inset key="contentEdgeInsets" minX="8" minY="8" maxX="8" maxY="8"/>
@@ -1073,7 +1090,7 @@
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="249" verticalCompressionResistancePriority="751" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XpZ-wi-7nl" customClass="CustomDemoButton" customModule="FuturaeDemo" customModuleProvider="target">
-                                                <rect key="frame" x="90" y="188" width="195" height="37"/>
+                                                <rect key="frame" x="90" y="229" width="195" height="37"/>
                                                 <color key="backgroundColor" red="0.2470588088" green="0.24313727020000001" blue="0.32941177490000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <inset key="contentEdgeInsets" minX="8" minY="8" maxX="8" maxY="8"/>
@@ -1097,7 +1114,7 @@
                                                 </connections>
                                             </button>
                                             <button hidden="YES" opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="249" verticalCompressionResistancePriority="751" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rzg-JL-Xel" customClass="CustomDemoButton" customModule="FuturaeDemo" customModuleProvider="target">
-                                                <rect key="frame" x="92" y="225" width="191" height="0.0"/>
+                                                <rect key="frame" x="92" y="266" width="191" height="0.0"/>
                                                 <color key="backgroundColor" red="0.2470588088" green="0.24313727020000001" blue="0.32941177490000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <inset key="contentEdgeInsets" minX="8" minY="8" maxX="8" maxY="8"/>
@@ -1121,7 +1138,7 @@
                                                 </connections>
                                             </button>
                                             <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="d6e-9S-z0F" customClass="CustomDemoButton" customModule="FuturaeDemo" customModuleProvider="target">
-                                                <rect key="frame" x="39" y="225" width="297" height="0.0"/>
+                                                <rect key="frame" x="39" y="266" width="297" height="0.0"/>
                                                 <color key="backgroundColor" red="0.2470588088" green="0.24313727020000001" blue="0.32941177490000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <inset key="contentEdgeInsets" minX="8" minY="8" maxX="8" maxY="8"/>
@@ -1145,7 +1162,7 @@
                                                 </connections>
                                             </button>
                                             <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="p1K-S3-N5J" customClass="CustomDemoButton" customModule="FuturaeDemo" customModuleProvider="target">
-                                                <rect key="frame" x="142.5" y="225" width="90" height="0.0"/>
+                                                <rect key="frame" x="142.5" y="266" width="90" height="0.0"/>
                                                 <color key="backgroundColor" red="0.2470588088" green="0.24313727020000001" blue="0.32941177490000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <inset key="contentEdgeInsets" minX="8" minY="8" maxX="8" maxY="8"/>
@@ -1169,7 +1186,7 @@
                                                 </connections>
                                             </button>
                                             <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vmp-Fi-12E" customClass="CustomDemoButton" customModule="FuturaeDemo" customModuleProvider="target">
-                                                <rect key="frame" x="76.5" y="225" width="222" height="0.0"/>
+                                                <rect key="frame" x="76.5" y="266" width="222" height="0.0"/>
                                                 <color key="backgroundColor" red="0.2470588088" green="0.24313727020000001" blue="0.32941177490000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <inset key="contentEdgeInsets" minX="8" minY="8" maxX="8" maxY="8"/>
@@ -1193,7 +1210,7 @@
                                                 </connections>
                                             </button>
                                             <stackView hidden="YES" opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="nBD-4Q-ClI">
-                                                <rect key="frame" x="96" y="225" width="183" height="30"/>
+                                                <rect key="frame" x="96" y="266" width="183" height="30"/>
                                                 <subviews>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QvK-Kr-irh" customClass="CustomDemoButton" customModule="FuturaeDemo" customModuleProvider="target">
                                                         <rect key="frame" x="0.0" y="0.0" width="183" height="0.0"/>
@@ -1453,6 +1470,7 @@
                         <outlet property="deactivatePinBiometricsBtn" destination="2GW-rH-IjZ" id="Gdb-7z-ylo"/>
                         <outlet property="lockSDKBtn" destination="p1K-S3-N5J" id="74k-MF-rUZ"/>
                         <outlet property="pinStack" destination="nBD-4Q-ClI" id="j4f-49-Aey"/>
+                        <outlet property="pinningEnabled" destination="HmA-es-izt" id="gVu-W6-mfC"/>
                         <outlet property="settingsPickerView" destination="lUr-hb-Tha" id="ps7-I3-NJh"/>
                         <outlet property="statusLabel" destination="D4p-4s-dTw" id="3rR-Fo-TCB"/>
                         <outlet property="unlockWithBiometricsBtn" destination="rzg-JL-Xel" id="5Ob-bV-VFY"/>
@@ -1466,149 +1484,9 @@
             <point key="canvasLocation" x="1460" y="516"/>
         </scene>
     </scenes>
-    <designables>
-        <designable name="01w-un-XNo">
-            <size key="intrinsicContentSize" width="136" height="37"/>
-        </designable>
-        <designable name="0jo-0t-GFf">
-            <size key="intrinsicContentSize" width="153" height="37"/>
-        </designable>
-        <designable name="1DE-yh-ELl">
-            <size key="intrinsicContentSize" width="99" height="38"/>
-        </designable>
-        <designable name="1SK-9x-4Bj">
-            <size key="intrinsicContentSize" width="129" height="37"/>
-        </designable>
-        <designable name="1pg-tN-20N">
-            <size key="intrinsicContentSize" width="139" height="37"/>
-        </designable>
-        <designable name="2Cr-Ur-Hnk">
-            <size key="intrinsicContentSize" width="144" height="37"/>
-        </designable>
-        <designable name="2GW-rH-IjZ">
-            <size key="intrinsicContentSize" width="183" height="37"/>
-        </designable>
-        <designable name="2pU-VS-K5o">
-            <size key="intrinsicContentSize" width="135" height="37"/>
-        </designable>
-        <designable name="4HE-LQ-lW1">
-            <size key="intrinsicContentSize" width="239" height="37"/>
-        </designable>
-        <designable name="DW9-WM-BQq">
-            <size key="intrinsicContentSize" width="207" height="37"/>
-        </designable>
-        <designable name="Fu1-ck-yQS">
-            <size key="intrinsicContentSize" width="70" height="37"/>
-        </designable>
-        <designable name="GCQ-Tv-3YL">
-            <size key="intrinsicContentSize" width="159" height="37"/>
-        </designable>
-        <designable name="HR1-Au-VaM">
-            <size key="intrinsicContentSize" width="163" height="37"/>
-        </designable>
-        <designable name="IJp-DQ-N3R">
-            <size key="intrinsicContentSize" width="264" height="37"/>
-        </designable>
-        <designable name="Kam-9i-m9A">
-            <size key="intrinsicContentSize" width="172" height="37"/>
-        </designable>
-        <designable name="Kld-g1-e0h">
-            <size key="intrinsicContentSize" width="196" height="37"/>
-        </designable>
-        <designable name="M0a-WQ-c6y">
-            <size key="intrinsicContentSize" width="59" height="37"/>
-        </designable>
-        <designable name="MBP-Zb-yoS">
-            <size key="intrinsicContentSize" width="83" height="38"/>
-        </designable>
-        <designable name="N5M-Eq-mJj">
-            <size key="intrinsicContentSize" width="164" height="37"/>
-        </designable>
-        <designable name="NUG-QO-Bxf">
-            <size key="intrinsicContentSize" width="99" height="37"/>
-        </designable>
-        <designable name="QEB-4V-oPU">
-            <size key="intrinsicContentSize" width="132" height="37"/>
-        </designable>
-        <designable name="QvK-Kr-irh">
-            <size key="intrinsicContentSize" width="174" height="37"/>
-        </designable>
-        <designable name="SVQ-I9-FyT">
-            <size key="intrinsicContentSize" width="144" height="37"/>
-        </designable>
-        <designable name="T5Q-1N-nio">
-            <size key="intrinsicContentSize" width="127" height="37"/>
-        </designable>
-        <designable name="XpZ-wi-7nl">
-            <size key="intrinsicContentSize" width="195" height="37"/>
-        </designable>
-        <designable name="YKd-3A-QvE">
-            <size key="intrinsicContentSize" width="103.5" height="38"/>
-        </designable>
-        <designable name="ZE9-cC-fgo">
-            <size key="intrinsicContentSize" width="344" height="37"/>
-        </designable>
-        <designable name="a2Q-xJ-gRs">
-            <size key="intrinsicContentSize" width="310" height="37"/>
-        </designable>
-        <designable name="bD9-Mr-AGE">
-            <size key="intrinsicContentSize" width="194" height="37"/>
-        </designable>
-        <designable name="d6e-9S-z0F">
-            <size key="intrinsicContentSize" width="297" height="37"/>
-        </designable>
-        <designable name="dQH-JJ-qib">
-            <size key="intrinsicContentSize" width="181" height="37"/>
-        </designable>
-        <designable name="eJL-2h-Bpp">
-            <size key="intrinsicContentSize" width="179" height="37"/>
-        </designable>
-        <designable name="fyS-7w-qUY">
-            <size key="intrinsicContentSize" width="219" height="37"/>
-        </designable>
-        <designable name="gMv-wT-lt6">
-            <size key="intrinsicContentSize" width="166" height="37"/>
-        </designable>
-        <designable name="idy-dX-CuG">
-            <size key="intrinsicContentSize" width="292" height="37"/>
-        </designable>
-        <designable name="kNu-nU-RBE">
-            <size key="intrinsicContentSize" width="173" height="37"/>
-        </designable>
-        <designable name="mB2-IT-g4w">
-            <size key="intrinsicContentSize" width="185" height="37"/>
-        </designable>
-        <designable name="nNT-gE-imm">
-            <size key="intrinsicContentSize" width="240" height="37"/>
-        </designable>
-        <designable name="nbE-Is-rDu">
-            <size key="intrinsicContentSize" width="262" height="37"/>
-        </designable>
-        <designable name="o3k-Hi-SjC">
-            <size key="intrinsicContentSize" width="209" height="37"/>
-        </designable>
-        <designable name="opL-80-ACl">
-            <size key="intrinsicContentSize" width="247" height="37"/>
-        </designable>
-        <designable name="p1K-S3-N5J">
-            <size key="intrinsicContentSize" width="90" height="37"/>
-        </designable>
-        <designable name="pd0-up-q0i">
-            <size key="intrinsicContentSize" width="105" height="37"/>
-        </designable>
-        <designable name="rzg-JL-Xel">
-            <size key="intrinsicContentSize" width="191" height="37"/>
-        </designable>
-        <designable name="v4j-GO-GWb">
-            <size key="intrinsicContentSize" width="178" height="37"/>
-        </designable>
-        <designable name="vmp-Fi-12E">
-            <size key="intrinsicContentSize" width="222" height="37"/>
-        </designable>
-    </designables>
     <resources>
-        <image name="gear" catalog="system" width="32" height="32"/>
-        <image name="terminal" catalog="system" width="32" height="32"/>
+        <image name="gear" catalog="system" width="128" height="122"/>
+        <image name="terminal" catalog="system" width="128" height="93"/>
         <systemColor name="labelColor">
             <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

@@ -50,6 +50,7 @@ FOUNDATION_EXTERN const NSUInteger FTRClientErrorAccountAlreadyActive;
 FOUNDATION_EXTERN const NSUInteger FTRClientErrorOutdatedApp;
 FOUNDATION_EXTERN const NSUInteger FTRClientErrorMissingDeviceToken;
 FOUNDATION_EXTERN const NSUInteger FTRClientErrorMissingDeviceUDID;
+FOUNDATION_EXTERN const NSUInteger FTRClientErrorPinCertificate;
 
 // notifications
 FOUNDATION_EXTERN _Nonnull NSNotificationName const FTRNotificationError;
