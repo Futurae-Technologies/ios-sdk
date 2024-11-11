@@ -1,3 +1,8 @@
+# Version 2.6.0
+2024-11-11
++ [Changed] SSL Pinning is now configurable via the previously deprecated `FTRConfig` parameter `pinCerts`, with pinning enabled by default.
++ [Added] In the event of network request failures due to SSL pinning, the SDK now returns an error object with the code `FTRClientErrorPinCertificate = 511`. For debugging purposes, this error includes the server's public key information in the `publicKeys` key within the `userInfo` object.
+
 # Version 3.4.0
 2024-20-09
 + [Changed] SDK no longer relies externally on dependencies RxSwift and SQLite.swift
