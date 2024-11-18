@@ -1,3 +1,9 @@
+# Version 3.5.0
+2024-18-11
++ [Changed] Updated internal SDK dependencies to the latest versions for improved stability and performance.
++ [Added] Introduced configurable SSL pinning during SDK launch. SSL pinning is enabled by default and includes a new specific error: `certPinningFail` for SSL pinning failures.
++ [Added] SDK returns specific errors for configuration changes between launches when configuration is not updated explicitly via SDK methods.
+
 # Version 2.6.0
 2024-11-11
 + [Changed] SSL Pinning is now configurable via the previously deprecated `FTRConfig` parameter `pinCerts`, with pinning enabled by default.
