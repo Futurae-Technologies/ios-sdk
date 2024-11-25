@@ -1,3 +1,7 @@
+# Version 1.7.0
+2024-25-11
++ Fixed crash during account migration check in the circumstance where migration data is invalid
+
 # Version 3.5.0
 2024-18-11
 + [Changed] Updated internal SDK dependencies to the latest versions for improved stability and performance.
