@@ -12,8 +12,8 @@ let package = Package(
     targets: [
         .binaryTarget(
             name: "FuturaeKit",
-            url: "https://github.com/Futurae-Technologies/ios-sdk/releases/download/v1.7.0/FuturaeKit-v1.7.0.xcframework.zip",
-            checksum: "5dcffc30dec88e49d30aefddd389d237d1e4fce4305cb5d2450cd68de7bb3ae0"
+            url: "https://github.com/Futurae-Technologies/ios-sdk/releases/download/v3.6.0/FuturaeKit-v3.6.0.xcframework.zip",
+            checksum: "a2a2dde5de64947801474b1695a79f7b9b770190d7ddc5f29ab582735a14a690"
         )
     ]
 )
