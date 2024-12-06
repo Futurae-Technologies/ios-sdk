@@ -425,8 +425,9 @@ import _SwiftConcurrencyShims
 }
 @objc public class FTRNotificationData : ObjectiveC.NSObject, Swift.Codable {
   @objc final public let notificationId: Swift.String
+  @objc final public let userId: Swift.String
   @objc final public let payload: [Swift.String : Any]
-  public init(notificationId: Swift.String, payload: [Swift.String : Any])
+  public init(notificationId: Swift.String, payload: [Swift.String : Any], userId: Swift.String)
   public func encode(to encoder: any Swift.Encoder) throws
   required public init(from decoder: any Swift.Decoder) throws
   @objc deinit

@@ -1542,6 +1542,7 @@ SWIFT_CLASS("_TtC10FuturaeKit19FTRNotificationAuth")
 SWIFT_CLASS("_TtC10FuturaeKit19FTRNotificationData")
 @interface FTRNotificationData : NSObject
 @property (nonatomic, readonly, copy) NSString * _Nonnull notificationId;
+@property (nonatomic, readonly, copy) NSString * _Nonnull userId;
 @property (nonatomic, readonly, copy) NSDictionary<NSString *, id> * _Nonnull payload;
 - (nonnull instancetype)init SWIFT_UNAVAILABLE;
 + (nonnull instancetype)new SWIFT_UNAVAILABLE_MSG("-init is unavailable");
@@ -4369,6 +4370,7 @@ SWIFT_CLASS("_TtC10FuturaeKit19FTRNotificationAuth")
 SWIFT_CLASS("_TtC10FuturaeKit19FTRNotificationData")
 @interface FTRNotificationData : NSObject
 @property (nonatomic, readonly, copy) NSString * _Nonnull notificationId;
+@property (nonatomic, readonly, copy) NSString * _Nonnull userId;
 @property (nonatomic, readonly, copy) NSDictionary<NSString *, id> * _Nonnull payload;
 - (nonnull instancetype)init SWIFT_UNAVAILABLE;
 + (nonnull instancetype)new SWIFT_UNAVAILABLE_MSG("-init is unavailable");

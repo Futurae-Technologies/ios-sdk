@@ -81,7 +81,7 @@ extension AppDelegate: FTRNotificationDelegate {
         let body = notificationData.payload.compactMap {
             "\($0.key): \($0.value)"
         }.joined(separator: ", ")
-        self.showAlert(title: "Arbitrary Push Notification \(notificationData.notificationId)", message: body, animated: false)
+        self.showAlert(title: "Arbitrary Push Notification \(notificationData.notificationId), \(notificationData.userId)", message: body, animated: false)
     }
     
     func approveAuthenticationReceived(_ authenticationInfo: FTRNotificationAuth) {

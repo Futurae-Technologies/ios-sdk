@@ -14118,6 +14118,56 @@
           },
           {
             "kind": "Var",
+            "name": "userId",
+            "printedName": "userId",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "String",
+                "printedName": "Swift.String",
+                "usr": "s:SS"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "c:@M@FuturaeKit@objc(cs)FTRNotificationData(py)userId",
+            "mangledName": "$s10FuturaeKit19FTRNotificationDataC6userIdSSvp",
+            "moduleName": "FuturaeKit",
+            "declAttributes": [
+              "Final",
+              "HasStorage",
+              "AccessControl",
+              "ObjC"
+            ],
+            "isLet": true,
+            "hasStorage": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "String",
+                    "printedName": "Swift.String",
+                    "usr": "s:SS"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "c:@M@FuturaeKit@objc(cs)FTRNotificationData(im)userId",
+                "mangledName": "$s10FuturaeKit19FTRNotificationDataC6userIdSSvg",
+                "moduleName": "FuturaeKit",
+                "implicit": true,
+                "declAttributes": [
+                  "Final",
+                  "ObjC"
+                ],
+                "accessorKind": "get"
+              }
+            ]
+          },
+          {
+            "kind": "Var",
             "name": "payload",
             "printedName": "payload",
             "children": [
@@ -14195,7 +14245,7 @@
           {
             "kind": "Constructor",
             "name": "init",
-            "printedName": "init(notificationId:payload:)",
+            "printedName": "init(notificationId:payload:userId:)",
             "children": [
               {
                 "kind": "TypeNominal",
@@ -14227,11 +14277,17 @@
                   }
                 ],
                 "usr": "s:SD"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "String",
+                "printedName": "Swift.String",
+                "usr": "s:SS"
               }
             ],
             "declKind": "Constructor",
-            "usr": "s:10FuturaeKit19FTRNotificationDataC14notificationId7payloadACSS_SDySSypGtcfc",
-            "mangledName": "$s10FuturaeKit19FTRNotificationDataC14notificationId7payloadACSS_SDySSypGtcfc",
+            "usr": "s:10FuturaeKit19FTRNotificationDataC14notificationId7payload04userF0ACSS_SDySSypGSStcfc",
+            "mangledName": "$s10FuturaeKit19FTRNotificationDataC14notificationId7payload04userF0ACSS_SDySSypGSStcfc",
             "moduleName": "FuturaeKit",
             "declAttributes": [
               "AccessControl"
@@ -55488,9 +55544,16 @@
     {
       "filePath": "\/Users\/armendh\/repos\/futurae\/futurae-ios-sdk\/FuturaeKit\/Internal\/Models\/FTRNotificationData.swift",
       "kind": "StringLiteral",
-      "offset": 369,
+      "offset": 405,
       "length": 17,
       "value": "\"notification_id\""
+    },
+    {
+      "filePath": "\/Users\/armendh\/repos\/futurae\/futurae-ios-sdk\/FuturaeKit\/Internal\/Models\/FTRNotificationData.swift",
+      "kind": "StringLiteral",
+      "offset": 445,
+      "length": 9,
+      "value": "\"user_id\""
     },
     {
       "filePath": "\/Users\/armendh\/repos\/futurae\/futurae-ios-sdk\/FuturaeKit\/Internal\/Models\/Enums\/UserPresenceVerificationType.swift",

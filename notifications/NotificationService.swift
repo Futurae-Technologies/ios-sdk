@@ -66,9 +66,10 @@ class NotificationService: UNNotificationServiceExtension {
             }
             
             FTRClient.shared.getNotificationData(notificationId) { data in
-                bestAttemptContent.body =  data.payload.compactMap {
+                let payload =  data.payload.compactMap {
                     "\($0.key): \($0.value)"
                 }.joined(separator: ", ")
+                bestAttemptContent.body = "Arbitrary Push Notification \(data.notificationId), \(data.userId) \(payload)"
                 contentHandler(bestAttemptContent)
             } failure: { error in
                 bestAttemptContent.body = error.localizedDescription

@@ -1,3 +1,8 @@
+# Version 3.6.1
+2024-06-12
+- Add `userId` field in `FTRNotificationData` class
+- Reduce load time when retrieving custom notification data
+
 # Version 3.6.0
 2024-02-12
 + Resolved an issue that caused failed database operations to result in crashes; they now return errors instead.
