@@ -13183,88 +13183,6 @@
                 "accessorKind": "get"
               }
             ]
-          },
-          {
-            "kind": "Var",
-            "name": "serverPublicKeys",
-            "printedName": "serverPublicKeys",
-            "children": [
-              {
-                "kind": "TypeNominal",
-                "name": "Optional",
-                "printedName": "[Swift.String]?",
-                "children": [
-                  {
-                    "kind": "TypeNominal",
-                    "name": "Array",
-                    "printedName": "[Swift.String]",
-                    "children": [
-                      {
-                        "kind": "TypeNominal",
-                        "name": "String",
-                        "printedName": "Swift.String",
-                        "usr": "s:SS"
-                      }
-                    ],
-                    "usr": "s:Sa"
-                  }
-                ],
-                "usr": "s:Sq"
-              }
-            ],
-            "declKind": "Var",
-            "usr": "c:@M@FuturaeKit@objc(cs)SDKConnectionError(py)serverPublicKeys",
-            "mangledName": "$s10FuturaeKit18SDKConnectionErrorC16serverPublicKeysSaySSGSgvp",
-            "moduleName": "FuturaeKit",
-            "declAttributes": [
-              "Final",
-              "HasStorage",
-              "AccessControl",
-              "ObjC"
-            ],
-            "isLet": true,
-            "hasStorage": true,
-            "accessors": [
-              {
-                "kind": "Accessor",
-                "name": "Get",
-                "printedName": "Get()",
-                "children": [
-                  {
-                    "kind": "TypeNominal",
-                    "name": "Optional",
-                    "printedName": "[Swift.String]?",
-                    "children": [
-                      {
-                        "kind": "TypeNominal",
-                        "name": "Array",
-                        "printedName": "[Swift.String]",
-                        "children": [
-                          {
-                            "kind": "TypeNominal",
-                            "name": "String",
-                            "printedName": "Swift.String",
-                            "usr": "s:SS"
-                          }
-                        ],
-                        "usr": "s:Sa"
-                      }
-                    ],
-                    "usr": "s:Sq"
-                  }
-                ],
-                "declKind": "Accessor",
-                "usr": "c:@M@FuturaeKit@objc(cs)SDKConnectionError(im)serverPublicKeys",
-                "mangledName": "$s10FuturaeKit18SDKConnectionErrorC16serverPublicKeysSaySSGSgvg",
-                "moduleName": "FuturaeKit",
-                "implicit": true,
-                "declAttributes": [
-                  "Final",
-                  "ObjC"
-                ],
-                "accessorKind": "get"
-              }
-            ]
           }
         ],
         "declKind": "Class",
@@ -55425,84 +55343,84 @@
     {
       "filePath": "\/Users\/armendh\/repos\/futurae\/futurae-ios-sdk\/FuturaeKit\/Internal\/Models\/Errors\/Domains\/SDKConnectionError.swift",
       "kind": "IntegerLiteral",
-      "offset": 1855,
+      "offset": 1674,
       "length": 1,
       "value": "0"
     },
     {
       "filePath": "\/Users\/armendh\/repos\/futurae\/futurae-ios-sdk\/FuturaeKit\/Internal\/Models\/Errors\/Domains\/SDKConnectionError.swift",
       "kind": "IntegerLiteral",
-      "offset": 1875,
+      "offset": 1694,
       "length": 1,
       "value": "1"
     },
     {
       "filePath": "\/Users\/armendh\/repos\/futurae\/futurae-ios-sdk\/FuturaeKit\/Internal\/Models\/Errors\/Domains\/SDKConnectionError.swift",
       "kind": "IntegerLiteral",
-      "offset": 1897,
+      "offset": 1716,
       "length": 1,
       "value": "2"
     },
     {
       "filePath": "\/Users\/armendh\/repos\/futurae\/futurae-ios-sdk\/FuturaeKit\/Internal\/Models\/Errors\/Domains\/SDKConnectionError.swift",
       "kind": "IntegerLiteral",
-      "offset": 1925,
+      "offset": 1744,
       "length": 1,
       "value": "3"
     },
     {
       "filePath": "\/Users\/armendh\/repos\/futurae\/futurae-ios-sdk\/FuturaeKit\/Internal\/Models\/Errors\/Domains\/SDKConnectionError.swift",
       "kind": "IntegerLiteral",
-      "offset": 1953,
+      "offset": 1772,
       "length": 1,
       "value": "4"
     },
     {
       "filePath": "\/Users\/armendh\/repos\/futurae\/futurae-ios-sdk\/FuturaeKit\/Internal\/Models\/Errors\/Domains\/SDKConnectionError.swift",
       "kind": "IntegerLiteral",
-      "offset": 1986,
+      "offset": 1805,
       "length": 1,
       "value": "5"
     },
     {
       "filePath": "\/Users\/armendh\/repos\/futurae\/futurae-ios-sdk\/FuturaeKit\/Internal\/Models\/Errors\/Domains\/SDKConnectionError.swift",
       "kind": "IntegerLiteral",
-      "offset": 2021,
+      "offset": 1840,
       "length": 1,
       "value": "6"
     },
     {
       "filePath": "\/Users\/armendh\/repos\/futurae\/futurae-ios-sdk\/FuturaeKit\/Internal\/Models\/Errors\/Domains\/SDKConnectionError.swift",
       "kind": "IntegerLiteral",
-      "offset": 2057,
+      "offset": 1876,
       "length": 1,
       "value": "7"
     },
     {
       "filePath": "\/Users\/armendh\/repos\/futurae\/futurae-ios-sdk\/FuturaeKit\/Internal\/Models\/Errors\/Domains\/SDKConnectionError.swift",
       "kind": "IntegerLiteral",
-      "offset": 2085,
+      "offset": 1904,
       "length": 1,
       "value": "8"
     },
     {
       "filePath": "\/Users\/armendh\/repos\/futurae\/futurae-ios-sdk\/FuturaeKit\/Internal\/Models\/Errors\/Domains\/SDKConnectionError.swift",
       "kind": "IntegerLiteral",
-      "offset": 2121,
+      "offset": 1940,
       "length": 1,
       "value": "9"
     },
     {
       "filePath": "\/Users\/armendh\/repos\/futurae\/futurae-ios-sdk\/FuturaeKit\/Internal\/Models\/Errors\/Domains\/SDKConnectionError.swift",
       "kind": "IntegerLiteral",
-      "offset": 2140,
+      "offset": 1959,
       "length": 2,
       "value": "10"
     },
     {
       "filePath": "\/Users\/armendh\/repos\/futurae\/futurae-ios-sdk\/FuturaeKit\/Internal\/Models\/Errors\/Domains\/SDKConnectionError.swift",
       "kind": "IntegerLiteral",
-      "offset": 2170,
+      "offset": 1989,
       "length": 2,
       "value": "11"
     },

@@ -1,3 +1,7 @@
+# Version 3.6.2
+2025-07-01
+- Updated SSL pinning mechanism to use SecTrustEvaluateWithError, replacing the deprecated SecTrustEvaluate. Added improved error handling with detailed feedback for certificate validation failures and public key mismatches.
+
 # Version 3.6.1
 2024-06-12
 - Add `userId` field in `FTRNotificationData` class
