@@ -57308,6 +57308,13 @@
       "value": "5"
     },
     {
+      "filePath": "\/Users\/armendh\/repos\/futurae\/futurae-ios-sdk\/FuturaeKit\/Internal\/Networking\/NetworkSession.swift",
+      "kind": "IntegerLiteral",
+      "offset": 8320,
+      "length": 2,
+      "value": "20"
+    },
+    {
       "filePath": "\/Users\/armendh\/repos\/futurae\/futurae-ios-sdk\/FuturaeKit\/Internal\/Networking\/Params\/SwitchLockParams.swift",
       "kind": "StringLiteral",
       "offset": 519,

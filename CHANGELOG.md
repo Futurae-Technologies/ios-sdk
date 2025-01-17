@@ -1,3 +1,7 @@
+# Version 3.6.3
+2025-17-01
+- Improved public key pinning logic to address reported inconsistencies and make the pinning check more robust.
+
 # Version 3.6.2
 2025-07-01
 - Updated SSL pinning mechanism to use SecTrustEvaluateWithError, replacing the deprecated SecTrustEvaluate. Added improved error handling with detailed feedback for certificate validation failures and public key mismatches.
