@@ -10,10 +10,33 @@ import UserNotifications
 import FuturaeKit
 
 class NotificationService: UNNotificationServiceExtension {
-
+    var config: FTRConfig {
+        let type: LockConfigurationType = .init(rawValue: UserDefaults.custom.integer(forKey: SDKConstants.KEY_CONFIG)) ?? .none
+        let allowChangePin = UserDefaults.custom.bool(forKey: SDKConstants.ALLOW_CHANGE_PIN)
+        let invalidatedByBiometricsChange = UserDefaults.custom.bool(forKey: SDKConstants.INVALIDATED_BY_BIOMETRICS_CHANGE)
+        let setKeychainAccessGroup = UserDefaults.custom.bool(forKey: SDKConstants.SET_KEYCHAIN_ACCESS_GROUP)
+        let setAppGroup = UserDefaults.custom.bool(forKey: SDKConstants.SET_APP_GROUP)
+        let whenUnlockedThisDeviceOnly = UserDefaults.custom.bool(forKey: SDKConstants.WHEN_UNLOCKED_THIS_DEVICE_ONLY)
+        let deactivateBiometricsAfterChangePin = UserDefaults.custom.bool(forKey: SDKConstants.DEACTIVATE_BIOMETRICS_AFTER_CHANGE_PIN)
+        let sslPinning = UserDefaults.custom.bool(forKey: SDKConstants.SSL_PINNING)
+        
+        return FTRConfig(sdkId: SDKConstants.SDKID,
+                         sdkKey: SDKConstants.SDKKEY,
+                         baseUrl: SDKConstants.SDKURL,
+                         keychain: FTRKeychainConfig(accessGroup: setKeychainAccessGroup ? SDKConstants.KEYCHAIN_ACCESS_GROUP : nil,
+                                                     itemsAccessibility: whenUnlockedThisDeviceOnly ? .whenUnlockedThisDeviceOnly : .afterFirstUnlockThisDeviceOnly),
+                         lockConfiguration: LockConfiguration(type: type,
+                                                              unlockDuration: 60,
+                                                              invalidatedByBiometricsChange: invalidatedByBiometricsChange,
+                                                              pinConfiguration: .init(allowPinChangeWithBiometricUnlock: allowChangePin, deactivateBiometricsAfterPinChange: deactivateBiometricsAfterChangePin)),
+                         appGroup: setAppGroup ? SDKConstants.APP_GROUP : nil,
+                         sslPinning: sslPinning
+        )
+    }
+    
     var contentHandler: ((UNNotificationContent) -> Void)?
     var bestAttemptContent: UNMutableNotificationContent?
-
+    
     override func didReceive(_ request: UNNotificationRequest, withContentHandler contentHandler: @escaping (UNNotificationContent) -> Void) {
         self.contentHandler = contentHandler
         guard let bestAttemptContent = (request.content.mutableCopy() as? UNMutableNotificationContent) else {
@@ -21,44 +44,55 @@ class NotificationService: UNNotificationServiceExtension {
             return
         }
         
-        guard UserDefaults(suiteName: SDKConstants.APP_GROUP)?.bool(forKey: "app_group_enabled") == true else {
+        if let encrypted = bestAttemptContent.userInfo[SDKConstants.EXTRA_INFO_ENC_KEY] as? String,
+           let userId = bestAttemptContent.userInfo[SDKConstants.USER_ID_KEY] as? String {
+            if !launchSDK(bestAttemptContent: bestAttemptContent, contentHandler: contentHandler){
+                return
+            }
+            
+            if let decrypted = try? FTRClient.shared.decryptExtraInfo(encrypted, userId: userId) {
+                bestAttemptContent.body =  decrypted.compactMap {
+                    "\($0.key): \($0.value)"
+                }.joined(separator: ", ")
+            }
+            
             contentHandler(bestAttemptContent)
             return
         }
-
-        if let encrypted = bestAttemptContent.userInfo[SDKConstants.EXTRA_INFO_ENC_KEY] as? String,
-           let userId = bestAttemptContent.userInfo[SDKConstants.USER_ID_KEY] as? String {
-
-            let lockType: LockConfigurationType = .init(rawValue: UserDefaults.custom.integer(forKey: SDKConstants.KEY_CONFIG)) ?? .none
-
-            FTRClient.launch(with: FTRConfig(sdkId: SDKConstants.SDKID,
-                                             sdkKey: SDKConstants.SDKKEY,
-                                             baseUrl: SDKConstants.SDKURL,
-                                             pinCerts: UserDefaults.custom.bool(forKey: "pinning_enabled"),
-                                             keychain: FTRKeychainConfig(accessGroup: SDKConstants.KEYCHAIN_ACCESS_GROUP),
-                                             lockConfiguration: LockConfiguration(type: lockType,
-                                                                                  unlockDuration: 60,
-                                                                                  invalidatedByBiometricsChange: true)
-                                             ,appGroup: SDKConstants.APP_GROUP
-                                            ), success: {
-
-                if let decrypted = try? FTRClient.shared()?.decryptExtraInfo(encrypted, userId: userId) {
-                    bestAttemptContent.categoryIdentifier = "auth"
-                    bestAttemptContent.body =  decrypted.compactMap {
-                        if let key = $0["key"] as? String, let value = $0["value"] {
-                          return "\(key): \(value)"
-                        }
-
-                        return nil
-                    }.joined(separator: ", ")
-                }
-
+        
+        if let notificationId = request.content.userInfo[SDKConstants.NOTIFICATION_ID_KEY] as? String {
+            if !launchSDK(bestAttemptContent: bestAttemptContent, contentHandler: contentHandler){
+                return
+            }
+            
+            FTRClient.shared.getNotificationData(notificationId) { data in
+                let payload =  data.payload.compactMap {
+                    "\($0.key): \($0.value)"
+                }.joined(separator: ", ")
+                bestAttemptContent.body = "Arbitrary Push Notification \(data.notificationId), \(data.userId) \(payload)"
                 contentHandler(bestAttemptContent)
-            }) { error in
+            } failure: { error in
+                bestAttemptContent.body = error.localizedDescription
                 contentHandler(bestAttemptContent)
             }
         } else {
+            bestAttemptContent.categoryIdentifier = SDKConstants.NOTIFICATION_AUTH_CATEGORY
             contentHandler(bestAttemptContent)
+        }
+    }
+    
+    func launchSDK(bestAttemptContent: UNMutableNotificationContent, contentHandler: @escaping (UNNotificationContent) -> Void) -> Bool {
+        if FTRClient.sdkIsLaunched {
+            return true
+        }
+        
+        do {
+            try FTRClient.launch(config: config)
+            return true
+        } catch let error {
+            bestAttemptContent.body = error.localizedDescription
+            contentHandler(bestAttemptContent)
+            return false
         }
     }
     
