@@ -1,3 +1,7 @@
+# Version 2.6.1
+2025-12-02
++ [Fix] Issue where full device display name (iPhone instead of iPhone 11 Pro for example) is not shown in admin dashboard after account migration 
+
 # Version 3.6.3
 2025-17-01
 - Improved public key pinning logic to address reported inconsistencies and make the pinning check more robust.
