@@ -1,4 +1,11 @@
 # Version 3.6.4
+2025-14-02
+- [Fix] Issue where full device display name (iPhone instead of iPhone 11 Pro for example) is not shown in admin dashboard after account migration
+- [Changed] Encrypt and exclude from backup local stored files related to SDK logs and adaptive collections
+- [Added] Add comments for SDK error codes 
+- [Changed] SDK logging is not enabled by default anymore. To enable call `FTRClient.enableLogging()` before launching the SDK and the SDK will log information about its operations.
+
+# Version 3.6.4
 2025-12-02
 - [Fix] Issue where full device display name (iPhone instead of iPhone 11 Pro for example) is not shown in admin dashboard after account migration
 - [Changed] Encrypt and exclude from backup local stored files related to SDK logs and adaptive collections
