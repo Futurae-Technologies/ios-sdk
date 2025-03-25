@@ -11,8 +11,8 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <FuturaeKit/LockConfiguration.h>
 
-@class FTRAdaptiveConfig;
 @class FTRKeychainConfig;
 
 NS_ASSUME_NONNULL_BEGIN
@@ -23,90 +23,107 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, copy, readonly) NSString *sdkId;
 @property (nonatomic, copy, readonly) NSString *baseUrl;
 @property (nonatomic, copy, readonly) NSString *locale;
-@property (nonatomic, readonly) BOOL pinCerts;
+@property (nonatomic, copy, readonly) NSString *appGroup;
 @property (nonatomic, strong, readonly) NSArray *capabilities;
 @property (nonatomic, strong, readonly) FTRKeychainConfig *keychain;
-@property (nonatomic, strong, readonly) FTRAdaptiveConfig *adaptive;
-
-+ (instancetype)configWithSdkId:(NSString *)sdkId
-                         sdkKey:(NSString *)sdkKey;
-
-+ (instancetype)configWithSdkId:(NSString *)sdkId
-                         sdkKey:(NSString *)sdkKey
-                       adaptive:(FTRAdaptiveConfig *)adaptive;
+@property (nonatomic, strong, readonly) LockConfiguration *lockConfiguration;
+@property (nonatomic) BOOL pinCerts;
 
 + (instancetype)configWithSdkId:(NSString *)sdkId
                          sdkKey:(NSString *)sdkKey
-                       keychain:(FTRKeychainConfig *)keychain;
+              lockConfiguration: (LockConfiguration * )lockConfiguration;
 
 + (instancetype)configWithSdkId:(NSString *)sdkId
                          sdkKey:(NSString *)sdkKey
                        keychain:(FTRKeychainConfig *)keychain
-                       adaptive:(FTRAdaptiveConfig *)adaptive;
-
-+ (instancetype)configWithSdkId:(NSString *)sdkId
-                         sdkKey:(NSString *)sdkKey
-                        baseUrl:(NSString *)baseUrl;
+              lockConfiguration: (LockConfiguration * )lockConfiguration;
 
 + (instancetype)configWithSdkId:(NSString *)sdkId
                          sdkKey:(NSString *)sdkKey
                         baseUrl:(NSString *)baseUrl
-                       adaptive:(FTRAdaptiveConfig *)adaptive;
-
-+ (instancetype)configWithSdkId:(NSString *)sdkId
-                         sdkKey:(NSString *)sdkKey
-                        baseUrl:(NSString *)baseUrl
-                       keychain:(FTRKeychainConfig *)keychain;
+              lockConfiguration: (LockConfiguration * )lockConfiguration;
 
 + (instancetype)configWithSdkId:(NSString *)sdkId
                          sdkKey:(NSString *)sdkKey
                         baseUrl:(NSString *)baseUrl
                        keychain:(FTRKeychainConfig *)keychain
-                       adaptive:(FTRAdaptiveConfig *)adaptive;
-
-+ (instancetype)configWithSdkId:(NSString *)sdkId
-                         sdkKey:(NSString *)sdkKey
-                       pinCerts:(BOOL)pinCerts;
+              lockConfiguration: (LockConfiguration * )lockConfiguration;
 
 + (instancetype)configWithSdkId:(NSString *)sdkId
                          sdkKey:(NSString *)sdkKey
                        pinCerts:(BOOL)pinCerts
-                       adaptive:(FTRAdaptiveConfig *)adaptive;
-
-+ (instancetype)configWithSdkId:(NSString *)sdkId
-                         sdkKey:(NSString *)sdkKey
-                       pinCerts:(BOOL)pinCerts
-                       keychain:(FTRKeychainConfig *)keychain;
+              lockConfiguration: (LockConfiguration * )lockConfiguration ;
 
 + (instancetype)configWithSdkId:(NSString *)sdkId
                          sdkKey:(NSString *)sdkKey
                        pinCerts:(BOOL)pinCerts
                        keychain:(FTRKeychainConfig *)keychain
-                       adaptive:(FTRAdaptiveConfig *)adaptive;
-
-+ (instancetype)configWithSdkId:(NSString *)sdkId
-                         sdkKey:(NSString *)sdkKey
-                        baseUrl:(NSString *)baseUrl
-                       pinCerts:(BOOL)pinCerts;
+              lockConfiguration: (LockConfiguration * )lockConfiguration ;
 
 + (instancetype)configWithSdkId:(NSString *)sdkId
                          sdkKey:(NSString *)sdkKey
                         baseUrl:(NSString *)baseUrl
                        pinCerts:(BOOL)pinCerts
-                       adaptive:(FTRAdaptiveConfig *)adaptive;
-
-+ (instancetype)configWithSdkId:(NSString *)sdkId
-                         sdkKey:(NSString *)sdkKey
-                        baseUrl:(NSString *)baseUrl
-                       pinCerts:(BOOL)pinCerts
-                       keychain:(FTRKeychainConfig *)keychain;
+              lockConfiguration: (LockConfiguration * )lockConfiguration ;
 
 + (instancetype)configWithSdkId:(NSString *)sdkId
                          sdkKey:(NSString *)sdkKey
                         baseUrl:(NSString *)baseUrl
                        pinCerts:(BOOL)pinCerts
                        keychain:(FTRKeychainConfig *)keychain
-                       adaptive:(FTRAdaptiveConfig *)adaptive;
+              lockConfiguration: (LockConfiguration * )lockConfiguration ;
+
++ (instancetype)configWithSdkId:(NSString *)sdkId
+                         sdkKey:(NSString *)sdkKey
+              lockConfiguration: (LockConfiguration * )lockConfiguration
+                       appGroup:(NSString *)appGroup;
+
++ (instancetype)configWithSdkId:(NSString *)sdkId
+                         sdkKey:(NSString *)sdkKey
+                       keychain:(FTRKeychainConfig *)keychain
+              lockConfiguration: (LockConfiguration * )lockConfiguration
+                       appGroup:(NSString *)appGroup;
+
++ (instancetype)configWithSdkId:(NSString *)sdkId
+                         sdkKey:(NSString *)sdkKey
+                        baseUrl:(NSString *)baseUrl
+              lockConfiguration: (LockConfiguration * )lockConfiguration
+                       appGroup:(NSString *)appGroup;
+
++ (instancetype)configWithSdkId:(NSString *)sdkId
+                         sdkKey:(NSString *)sdkKey
+                        baseUrl:(NSString *)baseUrl
+                       keychain:(FTRKeychainConfig *)keychain
+              lockConfiguration: (LockConfiguration * )lockConfiguration
+                       appGroup:(NSString *)appGroup;
+
++ (instancetype)configWithSdkId:(NSString *)sdkId
+                         sdkKey:(NSString *)sdkKey
+                       pinCerts:(BOOL)pinCerts
+              lockConfiguration: (LockConfiguration * )lockConfiguration
+                       appGroup:(NSString *)appGroup ;
+
++ (instancetype)configWithSdkId:(NSString *)sdkId
+                         sdkKey:(NSString *)sdkKey
+                       pinCerts:(BOOL)pinCerts
+                       keychain:(FTRKeychainConfig *)keychain
+              lockConfiguration: (LockConfiguration * )lockConfiguration
+                       appGroup:(NSString *)appGroup ;
+
++ (instancetype)configWithSdkId:(NSString *)sdkId
+                         sdkKey:(NSString *)sdkKey
+                        baseUrl:(NSString *)baseUrl
+                       pinCerts:(BOOL)pinCerts
+              lockConfiguration: (LockConfiguration * )lockConfiguration
+                       appGroup:(NSString *)appGroup ;
+
++ (instancetype)configWithSdkId:(NSString *)sdkId
+                         sdkKey:(NSString *)sdkKey
+                        baseUrl:(NSString *)baseUrl
+                       pinCerts:(BOOL)pinCerts
+                       keychain:(FTRKeychainConfig *)keychain
+              lockConfiguration: (LockConfiguration * )lockConfiguration
+                       appGroup:(NSString *)appGroup ;
 
 - (BOOL)isValid;
 

@@ -31,12 +31,20 @@
 	</array>
 	<key>CFBundleVersion</key>
 	<string>$(CURRENT_PROJECT_VERSION)</string>
+	<key>LSApplicationQueriesSchemes</key>
+	<array>
+		<string>undecimus</string>
+		<string>sileo</string>
+		<string>zbra</string>
+		<string>filza</string>
+		<string>activator</string>
+	</array>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>NSBluetoothAlwaysUsageDescription</key>
-	<string>Provide bluetooth access for adaptive functionality</string>
+	<string>App requires bluetooth access for adaptive mechanism.</string>
 	<key>NSBluetoothPeripheralUsageDescription</key>
-	<string>Provide bluetooth peripheral access for adaptive functionality</string>
+	<string>App requires bluetooth access for adaptive mechanism.</string>
 	<key>NSBonjourServices</key>
 	<array>
 		<string>_smb._tcp.</string>
@@ -80,10 +88,12 @@
 	</array>
 	<key>NSCameraUsageDescription</key>
 	<string>This app uses the camera to scan your enrollment and authentication QR Codes.</string>
+	<key>NSFaceIDUsageDescription</key>
+	<string>Unlock sensititive data</string>
 	<key>NSLocalNetworkUsageDescription</key>
-	<string>Provide network access for adaptive functionality</string>
+	<string>App requires access to your local network for adaptive mechanism.</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>Provide location access for adaptive functionality</string>
+	<string>App requires access to your location for adaptive mechanism.</string>
 	<key>UIBackgroundModes</key>
 	<array>
 		<string>remote-notification</string>

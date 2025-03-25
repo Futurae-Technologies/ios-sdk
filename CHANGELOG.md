@@ -1,3 +1,8 @@
+# Version 2.6.2
+2025-25-03
++ Fixed crash when accessing `enrolled_at` property of account model after account recovery
++ Fixed issue where enrollment process retry was not possible in some cases after the first try enrollment failed
+
 # Version 1.7.1
 2025-25-03
 + Fixed crash when accessing `enrolled_at` property of account model after account recovery

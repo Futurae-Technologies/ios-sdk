@@ -51,6 +51,7 @@
     self.navigationController.navigationBar.tintColor = [UIColor whiteColor];
     self.navigationController.navigationBar.barStyle = UIBarStyleBlack;
     self.navigationController.navigationBar.translucent = NO;
+    self.navigationController.navigationBar.backgroundColor = [UIColor grayColor];
     self.navigationController.navigationBar.shadowImage = [[UIImage alloc] init];
 }
 

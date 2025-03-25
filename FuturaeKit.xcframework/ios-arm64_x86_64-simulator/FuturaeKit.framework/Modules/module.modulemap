@@ -4,3 +4,8 @@ framework module FuturaeKit {
 
   module * { export * }
 }
+
+module FuturaeKit.Swift {
+  header "FuturaeKit-Swift.h"
+  requires objc
+}

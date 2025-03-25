@@ -14,6 +14,7 @@ import FuturaeKit
         var info = ""
         let enrolledAt = account.enrolled_at
         info += "username: \(account.user_id ?? "")\n"
+        info += "  locked_out: \(account.locked_out ? "YES" : "NO")\n"
         info += "  enrolled: \(account.enrolled ? "YES" : "NO")\n"
         info += "  enrolledAt: \(enrolledAt ?? "")\n"
         return info
