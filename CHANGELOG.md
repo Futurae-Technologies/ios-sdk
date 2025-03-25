@@ -1,3 +1,7 @@
+# Version 1.7.1
+2025-25-03
++ Fixed crash when accessing `enrolled_at` property of account model after account recovery
+
 # Version 3.6.4
 2025-14-02
 - [Fix] Issue where full device display name (iPhone instead of iPhone 11 Pro for example) is not shown in admin dashboard after account migration
