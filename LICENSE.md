@@ -62,13 +62,3 @@ Apache License 2.0
 
 Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with the License. You may obtain a copy of the License at http://www.apache.org/licenses/LICENSE-2.0
  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-
-
-
-
-### CryptoSwift
-
-[View the full license here](https://github.com/krzyzanowskim/CryptoSwift/blob/main/LICENSE)
-
-This software is provided 'as-is', without any express or implied warranty. In no event will the authors be held liable for any damages arising from the use of this software.
- Redistributions of any form whatsoever must retain the following acknowledgment: 'This product includes software developed by Marcin Krzyżanowski (http://krzyzanowskim.com/).'
