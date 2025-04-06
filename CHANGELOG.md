@@ -1,3 +1,7 @@
+# Version 3.6.5
+2025-06-04
+- [Changed] Internal improvements
+
 # Version 2.6.2
 2025-25-03
 + Fixed crash when accessing `enrolled_at` property of account model after account recovery
