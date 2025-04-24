@@ -1,3 +1,7 @@
+# Version 2.6.3
+2025-24-04
+- [Changed] Improvements around SDK lock configuration switch
+
 # Version 3.6.5
 2025-06-04
 - [Changed] Internal improvements
