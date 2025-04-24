@@ -1,3 +1,10 @@
+# Version 3.6.6
+2025-25-04
+- [Changed] Add new method to retrieve SDK logs which doesn't require SDK launch
+
+- [Changed] Improved threading behavior during public key submission to ensure more efficient execution.
+
+
 # Version 2.6.3
 2025-24-04
 - [Changed] Improvements around SDK lock configuration switch
