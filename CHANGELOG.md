@@ -1,3 +1,7 @@
+# Version 2.6.4
+2025-02-06
+- [Changed] Fix issues on SDK PIN lock configuration after backup restore
+
 # Version 3.6.6
 2025-25-04
 - [Changed] Add new method to retrieve SDK logs which doesn't require SDK launch
