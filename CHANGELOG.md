@@ -1,3 +1,7 @@
+# Version 2.6.5
+2025-22-07
+- [Changed] Fix issue with SDK account recovery on backup restore via iCloud
+
 # Version 2.6.4
 2025-02-06
 - [Changed] Fix issues on SDK PIN lock configuration after backup restore
