@@ -6,6 +6,6 @@ framework module FuturaeKit {
 }
 
 module FuturaeKit.Swift {
-  header "FuturaeKit-Swift.h"
+  header "Futurae-Swift.h"
   requires objc
 }

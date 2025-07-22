@@ -1,3 +1,8 @@
+# Version 3.7.0
+2025-22-07
+- [Changed]  Improvements around database access
+- [Fixed] Resolved issue where `errorType` property of `SDKBaseError` class was not accessible in Objective-C context
+
 # Version 2.6.5
 2025-22-07
 - [Changed] Fix issue with SDK account recovery on backup restore via iCloud

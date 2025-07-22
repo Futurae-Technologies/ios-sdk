@@ -7,40 +7,48 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		071E641D2D92BDEC002C9C4D /* AccountUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 071E641C2D92BDE6002C9C4D /* AccountUtility.swift */; };
+		07001D102B29B12C00048C1E /* Encodable+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07001D0F2B29B12C00048C1E /* Encodable+.swift */; };
+		0722F46D2E2FE7FA001CD669 /* AdaptiveKit.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0722F46B2E2FE7FA001CD669 /* AdaptiveKit.xcframework */; };
+		0722F46E2E2FE7FA001CD669 /* AdaptiveKit.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 0722F46B2E2FE7FA001CD669 /* AdaptiveKit.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		0722F46F2E2FE7FA001CD669 /* FuturaeKit.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0722F46C2E2FE7FA001CD669 /* FuturaeKit.xcframework */; };
+		0722F4702E2FE7FA001CD669 /* FuturaeKit.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 0722F46C2E2FE7FA001CD669 /* FuturaeKit.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		075C1C622A56969F000FDA86 /* NotificationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 075C1C612A56969F000FDA86 /* NotificationService.swift */; };
 		075C1C662A56969F000FDA86 /* notifications.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 075C1C5F2A56969F000FDA86 /* notifications.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		075C1C702A569789000FDA86 /* SDKConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = C683ADC2286F0EB50023523E /* SDKConstants.swift */; };
-		075C1C722A569BC2000FDA86 /* FuturaeKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 075C1C712A569BC2000FDA86 /* FuturaeKit.framework */; };
 		076B64462A5D643100DF3C59 /* UserDefaults+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 076B64452A5D643100DF3C59 /* UserDefaults+.swift */; };
 		076B64472A5D650500DF3C59 /* UserDefaults+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 076B64452A5D643100DF3C59 /* UserDefaults+.swift */; };
-		077229AB2E2FB77B005B91EB /* FuturaeKit.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 077229AA2E2FB77B005B91EB /* FuturaeKit.xcframework */; };
-		077229AC2E2FB77B005B91EB /* FuturaeKit.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 077229AA2E2FB77B005B91EB /* FuturaeKit.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		077229AE2E2FB77D005B91EB /* AdaptiveKit.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 077229A82E2FB774005B91EB /* AdaptiveKit.xcframework */; };
-		077229AF2E2FB77D005B91EB /* AdaptiveKit.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 077229A82E2FB774005B91EB /* AdaptiveKit.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		07F697772CE1E3C80043E34A /* AdaptiveKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C63F725728F7E30700BA1634 /* AdaptiveKit.framework */; };
+		076F25CD2B233A6800B5DD8A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 076F25CC2B233A6800B5DD8A /* AppDelegate.swift */; };
+		076F25EF2B2343AC00B5DD8A /* FunctionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 076F25EE2B2343AC00B5DD8A /* FunctionsViewController.swift */; };
+		076F25F22B234CC500B5DD8A /* FVC+Auth.swift in Sources */ = {isa = PBXBuildFile; fileRef = 076F25F12B234CC500B5DD8A /* FVC+Auth.swift */; };
+		076F25F42B234D2200B5DD8A /* FVC+Enroll.swift in Sources */ = {isa = PBXBuildFile; fileRef = 076F25F32B234D2200B5DD8A /* FVC+Enroll.swift */; };
+		076F25F62B2351F200B5DD8A /* FVC+AccountMigration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 076F25F52B2351F200B5DD8A /* FVC+AccountMigration.swift */; };
+		076F25F82B23528B00B5DD8A /* FVC+Adaptive.swift in Sources */ = {isa = PBXBuildFile; fileRef = 076F25F72B23528B00B5DD8A /* FVC+Adaptive.swift */; };
+		076F25FA2B2352D200B5DD8A /* FVC+Accounts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 076F25F92B2352D200B5DD8A /* FVC+Accounts.swift */; };
+		076F25FC2B23565B00B5DD8A /* FVC+Other.swift in Sources */ = {isa = PBXBuildFile; fileRef = 076F25FB2B23565B00B5DD8A /* FVC+Other.swift */; };
+		07A6384E2D43C9BE008BC588 /* FileEncryptUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07A6384C2D43C9BE008BC588 /* FileEncryptUtility.swift */; };
+		07A6384F2D43C9BE008BC588 /* FileStorageUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07A6384D2D43C9BE008BC588 /* FileStorageUtility.swift */; };
+		07B777032B2361A2006CD515 /* ExampleQRCodeReaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07B777002B2361A2006CD515 /* ExampleQRCodeReaderView.swift */; };
+		07B777042B2361A2006CD515 /* ExampleQRCodeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07B777012B2361A2006CD515 /* ExampleQRCodeViewController.swift */; };
+		07B777062B236447006CD515 /* HistoryItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07B777052B236447006CD515 /* HistoryItem.swift */; };
+		07B777082B2369C2006CD515 /* UIViewController+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07B777072B2369C2006CD515 /* UIViewController+.swift */; };
+		07D408D72CD0F10B006F4EA1 /* FuturaeKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 07D408D62CD0F10B006F4EA1 /* FuturaeKit.framework */; };
+		07DA54C22D24498B00ED9F07 /* AdaptiveKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C63F725728F7E30700BA1634 /* AdaptiveKit.framework */; };
 		07F8AFE029828AF900C0B7EA /* AdaptiveDebugStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07F8AFDF29828AF900C0B7EA /* AdaptiveDebugStorage.swift */; };
 		07F8AFE22982999F00C0B7EA /* AdaptiveViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07F8AFE12982999F00C0B7EA /* AdaptiveViewController.swift */; };
 		07F8AFE429829C3800C0B7EA /* AdaptiveTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07F8AFE329829C3800C0B7EA /* AdaptiveTableViewCell.swift */; };
 		1B55F0392975BB01002B2179 /* HistoryTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B55F0382975BB01002B2179 /* HistoryTableViewController.swift */; };
-		1B55F03C2975C824002B2179 /* HistoryItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B55F03B2975C824002B2179 /* HistoryItem.m */; };
 		1BD23D32286CE8A3007D163D /* CustomDemoButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BD23D31286CE8A3007D163D /* CustomDemoButton.swift */; };
 		1BFD56DC2977F20200D063BA /* HistoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BFD56DB2977F20200D063BA /* HistoryCell.swift */; };
-		4E1C5C8926315EA80044EA15 /* NSArray+Map.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E1C5C8826315EA80044EA15 /* NSArray+Map.m */; };
-		5E587B1D1FF41B0C0024ACFA /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E587B1C1FF41B0C0024ACFA /* AppDelegate.m */; };
-		5E587B201FF41B0C0024ACFA /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E587B1F1FF41B0C0024ACFA /* ViewController.m */; };
 		5E587B231FF41B0C0024ACFA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5E587B211FF41B0C0024ACFA /* Main.storyboard */; };
 		5E587B251FF41B0C0024ACFA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5E587B241FF41B0C0024ACFA /* Assets.xcassets */; };
 		5E587B281FF41B0C0024ACFA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5E587B261FF41B0C0024ACFA /* LaunchScreen.storyboard */; };
-		5E587B2B1FF41B0C0024ACFA /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E587B2A1FF41B0C0024ACFA /* main.m */; };
-		5E7040D42016774500E8B2BF /* FTRQRCodeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E7040D32016774500E8B2BF /* FTRQRCodeViewController.m */; };
-		5E7040E02016821D00E8B2BF /* FTRQRCodeReaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E7040DF2016821D00E8B2BF /* FTRQRCodeReaderView.m */; };
+		988BCAC72B554CD80080B589 /* QRCodeScanRequestCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 988BCAC62B554CD80080B589 /* QRCodeScanRequestCoordinator.swift */; };
 		C672FB1F2850CC77006C23E5 /* SVPinView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C672FB1A2850CC77006C23E5 /* SVPinView.swift */; };
 		C672FB202850CC77006C23E5 /* SVPinField.swift in Sources */ = {isa = PBXBuildFile; fileRef = C672FB1B2850CC77006C23E5 /* SVPinField.swift */; };
 		C672FB212850CC77006C23E5 /* SVPinView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C672FB1D2850CC77006C23E5 /* SVPinView.xib */; };
 		C672FB222850CC77006C23E5 /* SVPinCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C672FB1E2850CC77006C23E5 /* SVPinCell.xib */; };
 		C672FB252850CCCC006C23E5 /* PinViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C672FB232850CCCB006C23E5 /* PinViewController.swift */; };
-		C672FB262850CCCC006C23E5 /* KeychainConfigViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C672FB242850CCCB006C23E5 /* KeychainConfigViewController.swift */; };
+		C672FB262850CCCC006C23E5 /* ConfigViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C672FB242850CCCB006C23E5 /* ConfigViewController.swift */; };
 		C683ADC3286F0EB50023523E /* SDKConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = C683ADC2286F0EB50023523E /* SDKConstants.swift */; };
 /* End PBXBuildFile section */
 
@@ -55,6 +63,18 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
+		0722F4712E2FE7FA001CD669 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				0722F46E2E2FE7FA001CD669 /* AdaptiveKit.xcframework in Embed Frameworks */,
+				0722F4702E2FE7FA001CD669 /* FuturaeKit.xcframework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		075C1C6E2A56969F000FDA86 /* Embed Foundation Extensions */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
@@ -66,22 +86,12 @@
 			name = "Embed Foundation Extensions";
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		077229AD2E2FB77B005B91EB /* Embed Frameworks */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 10;
-			files = (
-				077229AF2E2FB77D005B91EB /* AdaptiveKit.xcframework in Embed Frameworks */,
-				077229AC2E2FB77B005B91EB /* FuturaeKit.xcframework in Embed Frameworks */,
-			);
-			name = "Embed Frameworks";
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		071E641C2D92BDE6002C9C4D /* AccountUtility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountUtility.swift; sourceTree = "<group>"; };
+		07001D0F2B29B12C00048C1E /* Encodable+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Encodable+.swift"; sourceTree = "<group>"; };
+		0722F46B2E2FE7FA001CD669 /* AdaptiveKit.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; path = AdaptiveKit.xcframework; sourceTree = "<group>"; };
+		0722F46C2E2FE7FA001CD669 /* FuturaeKit.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; path = FuturaeKit.xcframework; sourceTree = "<group>"; };
 		074C05862A16178F002E47F9 /* FuturaeKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = FuturaeKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		074C058A2A16181D002E47F9 /* FuturaeKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = FuturaeKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		074C058D2A161821002E47F9 /* AdaptiveKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = AdaptiveKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -91,46 +101,51 @@
 		075C1C6F2A569743000FDA86 /* notifications.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = notifications.entitlements; sourceTree = "<group>"; };
 		075C1C712A569BC2000FDA86 /* FuturaeKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = FuturaeKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		076B64452A5D643100DF3C59 /* UserDefaults+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserDefaults+.swift"; sourceTree = "<group>"; };
-		077229A82E2FB774005B91EB /* AdaptiveKit.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; path = AdaptiveKit.xcframework; sourceTree = "<group>"; };
-		077229A92E2FB774005B91EB /* FuturaeDemo.xcworkspace */ = {isa = PBXFileReference; lastKnownFileType = wrapper.workspace; path = FuturaeDemo.xcworkspace; sourceTree = "<group>"; };
-		077229AA2E2FB77B005B91EB /* FuturaeKit.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; path = FuturaeKit.xcframework; sourceTree = "<group>"; };
+		076F25CC2B233A6800B5DD8A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		076F25EE2B2343AC00B5DD8A /* FunctionsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FunctionsViewController.swift; sourceTree = "<group>"; };
+		076F25F12B234CC500B5DD8A /* FVC+Auth.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FVC+Auth.swift"; sourceTree = "<group>"; };
+		076F25F32B234D2200B5DD8A /* FVC+Enroll.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FVC+Enroll.swift"; sourceTree = "<group>"; };
+		076F25F52B2351F200B5DD8A /* FVC+AccountMigration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FVC+AccountMigration.swift"; sourceTree = "<group>"; };
+		076F25F72B23528B00B5DD8A /* FVC+Adaptive.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FVC+Adaptive.swift"; sourceTree = "<group>"; };
+		076F25F92B2352D200B5DD8A /* FVC+Accounts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FVC+Accounts.swift"; sourceTree = "<group>"; };
+		076F25FB2B23565B00B5DD8A /* FVC+Other.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FVC+Other.swift"; sourceTree = "<group>"; };
 		0795C64729D3B13D0050F342 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		0795C64929D3B1420050F342 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		07A6384C2D43C9BE008BC588 /* FileEncryptUtility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileEncryptUtility.swift; sourceTree = "<group>"; };
+		07A6384D2D43C9BE008BC588 /* FileStorageUtility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileStorageUtility.swift; sourceTree = "<group>"; };
+		07B777002B2361A2006CD515 /* ExampleQRCodeReaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExampleQRCodeReaderView.swift; sourceTree = "<group>"; };
+		07B777012B2361A2006CD515 /* ExampleQRCodeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExampleQRCodeViewController.swift; sourceTree = "<group>"; };
+		07B777052B236447006CD515 /* HistoryItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryItem.swift; sourceTree = "<group>"; };
+		07B777072B2369C2006CD515 /* UIViewController+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+.swift"; sourceTree = "<group>"; };
+		07D408D62CD0F10B006F4EA1 /* FuturaeKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = FuturaeKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		07D408DA2CD0F10F006F4EA1 /* AdaptiveKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = AdaptiveKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		07DA54B42D24474B00ED9F07 /* AdaptiveKit.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = AdaptiveKit.xcframework; path = FuturaeKit/AdaptiveKit.xcframework; sourceTree = "<group>"; };
 		07F8AFDF29828AF900C0B7EA /* AdaptiveDebugStorage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdaptiveDebugStorage.swift; sourceTree = "<group>"; };
 		07F8AFE12982999F00C0B7EA /* AdaptiveViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdaptiveViewController.swift; sourceTree = "<group>"; };
 		07F8AFE329829C3800C0B7EA /* AdaptiveTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdaptiveTableViewCell.swift; sourceTree = "<group>"; };
 		1B55F0382975BB01002B2179 /* HistoryTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryTableViewController.swift; sourceTree = "<group>"; };
-		1B55F03A2975C824002B2179 /* HistoryItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HistoryItem.h; sourceTree = "<group>"; };
-		1B55F03B2975C824002B2179 /* HistoryItem.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HistoryItem.m; sourceTree = "<group>"; };
-		1BD0690B2976EBA5000ED021 /* FuturaeDemo-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "FuturaeDemo-Bridging-Header.h"; sourceTree = "<group>"; };
 		1BD23D31286CE8A3007D163D /* CustomDemoButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomDemoButton.swift; sourceTree = "<group>"; };
 		1BFD56DB2977F20200D063BA /* HistoryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryCell.swift; sourceTree = "<group>"; };
 		27EC427C20343EB20078E457 /* FuturaeDemo.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = FuturaeDemo.entitlements; sourceTree = "<group>"; };
-		4E1C5C8726315EA80044EA15 /* NSArray+Map.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSArray+Map.h"; sourceTree = "<group>"; };
-		4E1C5C8826315EA80044EA15 /* NSArray+Map.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSArray+Map.m"; sourceTree = "<group>"; };
 		5E587B181FF41B0C0024ACFA /* FuturaeDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FuturaeDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		5E587B1B1FF41B0C0024ACFA /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
-		5E587B1C1FF41B0C0024ACFA /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		5E587B1E1FF41B0C0024ACFA /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		5E587B1F1FF41B0C0024ACFA /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		5E587B221FF41B0C0024ACFA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		5E587B241FF41B0C0024ACFA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		5E587B271FF41B0C0024ACFA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		5E587B291FF41B0C0024ACFA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		5E587B2A1FF41B0C0024ACFA /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		5E587B381FF41C730024ACFA /* FuturaeKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = FuturaeKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		5E7040D22016774500E8B2BF /* FTRQRCodeViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FTRQRCodeViewController.h; sourceTree = "<group>"; };
-		5E7040D32016774500E8B2BF /* FTRQRCodeViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FTRQRCodeViewController.m; sourceTree = "<group>"; };
-		5E7040DE2016821D00E8B2BF /* FTRQRCodeReaderView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FTRQRCodeReaderView.h; sourceTree = "<group>"; };
-		5E7040DF2016821D00E8B2BF /* FTRQRCodeReaderView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FTRQRCodeReaderView.m; sourceTree = "<group>"; };
 		5E837AF82021D0DF00DA4FCC /* UserNotifications.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UserNotifications.framework; path = System/Library/Frameworks/UserNotifications.framework; sourceTree = SDKROOT; };
+		5E84AC4220224A8B007A0191 /* futurae.com_4096.cer */ = {isa = PBXFileReference; lastKnownFileType = file; name = futurae.com_4096.cer; path = FuturaeDemo/Resources/futurae.com_4096.cer; sourceTree = "<group>"; };
+		5E84AC4320224A8B007A0191 /* futurae.com_tertiary.cer */ = {isa = PBXFileReference; lastKnownFileType = file; name = futurae.com_tertiary.cer; path = FuturaeDemo/Resources/futurae.com_tertiary.cer; sourceTree = "<group>"; };
+		5E84AC4420224A8B007A0191 /* futurae.com_primary.cer */ = {isa = PBXFileReference; lastKnownFileType = file; name = futurae.com_primary.cer; path = FuturaeDemo/Resources/futurae.com_primary.cer; sourceTree = "<group>"; };
+		5E84AC4520224A8B007A0191 /* futurae.com_secondary.cer */ = {isa = PBXFileReference; lastKnownFileType = file; name = futurae.com_secondary.cer; path = FuturaeDemo/Resources/futurae.com_secondary.cer; sourceTree = "<group>"; };
+		988BCAC62B554CD80080B589 /* QRCodeScanRequestCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRCodeScanRequestCoordinator.swift; sourceTree = "<group>"; };
 		C63F725728F7E30700BA1634 /* AdaptiveKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = AdaptiveKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C672FB1A2850CC77006C23E5 /* SVPinView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SVPinView.swift; sourceTree = "<group>"; };
 		C672FB1B2850CC77006C23E5 /* SVPinField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SVPinField.swift; sourceTree = "<group>"; };
 		C672FB1D2850CC77006C23E5 /* SVPinView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SVPinView.xib; sourceTree = "<group>"; };
 		C672FB1E2850CC77006C23E5 /* SVPinCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SVPinCell.xib; sourceTree = "<group>"; };
 		C672FB232850CCCB006C23E5 /* PinViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PinViewController.swift; sourceTree = "<group>"; };
-		C672FB242850CCCB006C23E5 /* KeychainConfigViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeychainConfigViewController.swift; sourceTree = "<group>"; };
+		C672FB242850CCCB006C23E5 /* ConfigViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConfigViewController.swift; sourceTree = "<group>"; };
 		C683ADC2286F0EB50023523E /* SDKConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SDKConstants.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -139,8 +154,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				075C1C722A569BC2000FDA86 /* FuturaeKit.framework in Frameworks */,
-				07F697772CE1E3C80043E34A /* AdaptiveKit.framework in Frameworks */,
+				07D408D72CD0F10B006F4EA1 /* FuturaeKit.framework in Frameworks */,
+				07DA54C22D24498B00ED9F07 /* AdaptiveKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -148,8 +163,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				077229AE2E2FB77D005B91EB /* AdaptiveKit.xcframework in Frameworks */,
-				077229AB2E2FB77B005B91EB /* FuturaeKit.xcframework in Frameworks */,
+				0722F46D2E2FE7FA001CD669 /* AdaptiveKit.xcframework in Frameworks */,
+				0722F46F2E2FE7FA001CD669 /* FuturaeKit.xcframework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -166,19 +181,111 @@
 			path = notifications;
 			sourceTree = "<group>";
 		};
-		4E1C5C8A26315EAC0044EA15 /* Helpers */ = {
+		076F25C12B23395800B5DD8A /* Adaptive */ = {
 			isa = PBXGroup;
 			children = (
-				071E641C2D92BDE6002C9C4D /* AccountUtility.swift */,
-				07F8AFDF29828AF900C0B7EA /* AdaptiveDebugStorage.swift */,
-				4E1C5C8726315EA80044EA15 /* NSArray+Map.h */,
-				4E1C5C8826315EA80044EA15 /* NSArray+Map.m */,
-				1B55F03A2975C824002B2179 /* HistoryItem.h */,
-				1B55F03B2975C824002B2179 /* HistoryItem.m */,
-				1BD0690B2976EBA5000ED021 /* FuturaeDemo-Bridging-Header.h */,
-				076B64452A5D643100DF3C59 /* UserDefaults+.swift */,
+				07F8AFE12982999F00C0B7EA /* AdaptiveViewController.swift */,
+				07F8AFE329829C3800C0B7EA /* AdaptiveTableViewCell.swift */,
 			);
-			path = Helpers;
+			path = Adaptive;
+			sourceTree = "<group>";
+		};
+		076F25C22B23395800B5DD8A /* Account History */ = {
+			isa = PBXGroup;
+			children = (
+				1B55F0382975BB01002B2179 /* HistoryTableViewController.swift */,
+				1BFD56DB2977F20200D063BA /* HistoryCell.swift */,
+				07B777052B236447006CD515 /* HistoryItem.swift */,
+			);
+			path = "Account History";
+			sourceTree = "<group>";
+		};
+		076F25C32B23395900B5DD8A /* PIN */ = {
+			isa = PBXGroup;
+			children = (
+				C672FB182850CC77006C23E5 /* SVPinView */,
+				C672FB232850CCCB006C23E5 /* PinViewController.swift */,
+			);
+			path = PIN;
+			sourceTree = "<group>";
+		};
+		076F25C72B23395900B5DD8A /* SDK Config Tab */ = {
+			isa = PBXGroup;
+			children = (
+				C672FB242850CCCB006C23E5 /* ConfigViewController.swift */,
+			);
+			path = "SDK Config Tab";
+			sourceTree = "<group>";
+		};
+		076F25C82B23395900B5DD8A /* QR Scanner */ = {
+			isa = PBXGroup;
+			children = (
+				07B777002B2361A2006CD515 /* ExampleQRCodeReaderView.swift */,
+				07B777012B2361A2006CD515 /* ExampleQRCodeViewController.swift */,
+			);
+			path = "QR Scanner";
+			sourceTree = "<group>";
+		};
+		076F25CA2B2339EF00B5DD8A /* Other */ = {
+			isa = PBXGroup;
+			children = (
+				07A6384C2D43C9BE008BC588 /* FileEncryptUtility.swift */,
+				07A6384D2D43C9BE008BC588 /* FileStorageUtility.swift */,
+				07F8AFDF29828AF900C0B7EA /* AdaptiveDebugStorage.swift */,
+				076B64452A5D643100DF3C59 /* UserDefaults+.swift */,
+				07B777072B2369C2006CD515 /* UIViewController+.swift */,
+				07001D0F2B29B12C00048C1E /* Encodable+.swift */,
+				988BCAC62B554CD80080B589 /* QRCodeScanRequestCoordinator.swift */,
+			);
+			path = Other;
+			sourceTree = "<group>";
+		};
+		076F25F02B234CB600B5DD8A /* Functions Tab */ = {
+			isa = PBXGroup;
+			children = (
+				076F25EE2B2343AC00B5DD8A /* FunctionsViewController.swift */,
+				076F25FB2B23565B00B5DD8A /* FVC+Other.swift */,
+				076F25F12B234CC500B5DD8A /* FVC+Auth.swift */,
+				076F25F32B234D2200B5DD8A /* FVC+Enroll.swift */,
+				076F25F52B2351F200B5DD8A /* FVC+AccountMigration.swift */,
+				076F25F72B23528B00B5DD8A /* FVC+Adaptive.swift */,
+				076F25F92B2352D200B5DD8A /* FVC+Accounts.swift */,
+			);
+			path = "Functions Tab";
+			sourceTree = "<group>";
+		};
+		07B7770B2B236A77006CD515 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				5E587B291FF41B0C0024ACFA /* Info.plist */,
+				27EC427C20343EB20078E457 /* FuturaeDemo.entitlements */,
+				5E587B241FF41B0C0024ACFA /* Assets.xcassets */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		07B777152B236B12006CD515 /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				5E587B261FF41B0C0024ACFA /* LaunchScreen.storyboard */,
+				5E587B211FF41B0C0024ACFA /* Main.storyboard */,
+				076F25C72B23395900B5DD8A /* SDK Config Tab */,
+				076F25F02B234CB600B5DD8A /* Functions Tab */,
+				076F25C82B23395900B5DD8A /* QR Scanner */,
+				076F25C32B23395900B5DD8A /* PIN */,
+				076F25C22B23395800B5DD8A /* Account History */,
+				076F25C12B23395800B5DD8A /* Adaptive */,
+				07B777162B236B68006CD515 /* Views */,
+			);
+			path = UI;
+			sourceTree = "<group>";
+		};
+		07B777162B236B68006CD515 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				1BD23D31286CE8A3007D163D /* CustomDemoButton.swift */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 		5E587B0F1FF41B0C0024ACFA = {
@@ -204,30 +311,11 @@
 		5E587B1A1FF41B0C0024ACFA /* FuturaeDemo */ = {
 			isa = PBXGroup;
 			children = (
-				C672FB172850CC77006C23E5 /* Libraries */,
-				4E1C5C8A26315EAC0044EA15 /* Helpers */,
-				5E587B1B1FF41B0C0024ACFA /* AppDelegate.h */,
-				5E587B1C1FF41B0C0024ACFA /* AppDelegate.m */,
-				5E587B241FF41B0C0024ACFA /* Assets.xcassets */,
-				5E7040DE2016821D00E8B2BF /* FTRQRCodeReaderView.h */,
-				5E7040DF2016821D00E8B2BF /* FTRQRCodeReaderView.m */,
-				5E7040D22016774500E8B2BF /* FTRQRCodeViewController.h */,
-				5E7040D32016774500E8B2BF /* FTRQRCodeViewController.m */,
-				27EC427C20343EB20078E457 /* FuturaeDemo.entitlements */,
-				5E587B291FF41B0C0024ACFA /* Info.plist */,
-				5E587B261FF41B0C0024ACFA /* LaunchScreen.storyboard */,
-				5E587B211FF41B0C0024ACFA /* Main.storyboard */,
-				5E587B1E1FF41B0C0024ACFA /* ViewController.h */,
-				5E587B1F1FF41B0C0024ACFA /* ViewController.m */,
-				5E587B2A1FF41B0C0024ACFA /* main.m */,
-				C672FB242850CCCB006C23E5 /* KeychainConfigViewController.swift */,
-				1B55F0382975BB01002B2179 /* HistoryTableViewController.swift */,
-				1BFD56DB2977F20200D063BA /* HistoryCell.swift */,
-				C672FB232850CCCB006C23E5 /* PinViewController.swift */,
-				1BD23D31286CE8A3007D163D /* CustomDemoButton.swift */,
+				07B777152B236B12006CD515 /* UI */,
+				07B7770B2B236A77006CD515 /* Resources */,
+				076F25CA2B2339EF00B5DD8A /* Other */,
 				C683ADC2286F0EB50023523E /* SDKConstants.swift */,
-				07F8AFE12982999F00C0B7EA /* AdaptiveViewController.swift */,
-				07F8AFE329829C3800C0B7EA /* AdaptiveTableViewCell.swift */,
+				076F25CC2B233A6800B5DD8A /* AppDelegate.swift */,
 			);
 			path = FuturaeDemo;
 			sourceTree = "<group>";
@@ -235,9 +323,11 @@
 		5E587B311FF41BBD0024ACFA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				077229AA2E2FB77B005B91EB /* FuturaeKit.xcframework */,
-				077229A82E2FB774005B91EB /* AdaptiveKit.xcframework */,
-				077229A92E2FB774005B91EB /* FuturaeDemo.xcworkspace */,
+				07DA54B42D24474B00ED9F07 /* AdaptiveKit.xcframework */,
+				0722F46B2E2FE7FA001CD669 /* AdaptiveKit.xcframework */,
+				0722F46C2E2FE7FA001CD669 /* FuturaeKit.xcframework */,
+				07D408DA2CD0F10F006F4EA1 /* AdaptiveKit.framework */,
+				07D408D62CD0F10B006F4EA1 /* FuturaeKit.framework */,
 				075C1C712A569BC2000FDA86 /* FuturaeKit.framework */,
 				074C058D2A161821002E47F9 /* AdaptiveKit.framework */,
 				074C058A2A16181D002E47F9 /* FuturaeKit.framework */,
@@ -254,16 +344,12 @@
 		5E84AC4120224A7B007A0191 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				5E84AC4220224A8B007A0191 /* futurae.com_4096.cer */,
+				5E84AC4420224A8B007A0191 /* futurae.com_primary.cer */,
+				5E84AC4520224A8B007A0191 /* futurae.com_secondary.cer */,
+				5E84AC4320224A8B007A0191 /* futurae.com_tertiary.cer */,
 			);
 			name = Resources;
-			sourceTree = "<group>";
-		};
-		C672FB172850CC77006C23E5 /* Libraries */ = {
-			isa = PBXGroup;
-			children = (
-				C672FB182850CC77006C23E5 /* SVPinView */,
-			);
-			path = Libraries;
 			sourceTree = "<group>";
 		};
 		C672FB182850CC77006C23E5 /* SVPinView */ = {
@@ -309,6 +395,8 @@
 			dependencies = (
 			);
 			name = notifications;
+			packageProductDependencies = (
+			);
 			productName = notifications;
 			productReference = 075C1C5F2A56969F000FDA86 /* notifications.appex */;
 			productType = "com.apple.product-type.app-extension";
@@ -321,7 +409,7 @@
 				5E587B151FF41B0C0024ACFA /* Frameworks */,
 				5E587B161FF41B0C0024ACFA /* Resources */,
 				075C1C6E2A56969F000FDA86 /* Embed Foundation Extensions */,
-				077229AD2E2FB77B005B91EB /* Embed Frameworks */,
+				0722F4712E2FE7FA001CD669 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -329,6 +417,8 @@
 				075C1C652A56969F000FDA86 /* PBXTargetDependency */,
 			);
 			name = FuturaeDemo;
+			packageProductDependencies = (
+			);
 			productName = FuturaeDemo;
 			productReference = 5E587B181FF41B0C0024ACFA /* FuturaeDemo.app */;
 			productType = "com.apple.product-type.application";
@@ -370,6 +460,8 @@
 				Base,
 			);
 			mainGroup = 5E587B0F1FF41B0C0024ACFA;
+			packageReferences = (
+			);
 			productRefGroup = 5E587B191FF41B0C0024ACFA /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -417,25 +509,33 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5E7040E02016821D00E8B2BF /* FTRQRCodeReaderView.m in Sources */,
 				07F8AFE22982999F00C0B7EA /* AdaptiveViewController.swift in Sources */,
-				5E587B201FF41B0C0024ACFA /* ViewController.m in Sources */,
+				076F25EF2B2343AC00B5DD8A /* FunctionsViewController.swift in Sources */,
 				1BD23D32286CE8A3007D163D /* CustomDemoButton.swift in Sources */,
 				07F8AFE029828AF900C0B7EA /* AdaptiveDebugStorage.swift in Sources */,
 				C672FB252850CCCC006C23E5 /* PinViewController.swift in Sources */,
-				5E7040D42016774500E8B2BF /* FTRQRCodeViewController.m in Sources */,
-				C672FB262850CCCC006C23E5 /* KeychainConfigViewController.swift in Sources */,
-				4E1C5C8926315EA80044EA15 /* NSArray+Map.m in Sources */,
+				C672FB262850CCCC006C23E5 /* ConfigViewController.swift in Sources */,
+				076F25F62B2351F200B5DD8A /* FVC+AccountMigration.swift in Sources */,
+				076F25CD2B233A6800B5DD8A /* AppDelegate.swift in Sources */,
 				07F8AFE429829C3800C0B7EA /* AdaptiveTableViewCell.swift in Sources */,
-				1B55F03C2975C824002B2179 /* HistoryItem.m in Sources */,
+				988BCAC72B554CD80080B589 /* QRCodeScanRequestCoordinator.swift in Sources */,
+				076F25F82B23528B00B5DD8A /* FVC+Adaptive.swift in Sources */,
+				07B777062B236447006CD515 /* HistoryItem.swift in Sources */,
+				076F25FA2B2352D200B5DD8A /* FVC+Accounts.swift in Sources */,
+				07A6384E2D43C9BE008BC588 /* FileEncryptUtility.swift in Sources */,
+				07A6384F2D43C9BE008BC588 /* FileStorageUtility.swift in Sources */,
 				C672FB1F2850CC77006C23E5 /* SVPinView.swift in Sources */,
-				071E641D2D92BDEC002C9C4D /* AccountUtility.swift in Sources */,
+				076F25FC2B23565B00B5DD8A /* FVC+Other.swift in Sources */,
+				07B777042B2361A2006CD515 /* ExampleQRCodeViewController.swift in Sources */,
 				076B64462A5D643100DF3C59 /* UserDefaults+.swift in Sources */,
+				07B777082B2369C2006CD515 /* UIViewController+.swift in Sources */,
+				076F25F42B234D2200B5DD8A /* FVC+Enroll.swift in Sources */,
 				1BFD56DC2977F20200D063BA /* HistoryCell.swift in Sources */,
+				07B777032B2361A2006CD515 /* ExampleQRCodeReaderView.swift in Sources */,
+				076F25F22B234CC500B5DD8A /* FVC+Auth.swift in Sources */,
 				C683ADC3286F0EB50023523E /* SDKConstants.swift in Sources */,
-				5E587B2B1FF41B0C0024ACFA /* main.m in Sources */,
-				5E587B1D1FF41B0C0024ACFA /* AppDelegate.m in Sources */,
 				C672FB202850CC77006C23E5 /* SVPinField.swift in Sources */,
+				07001D102B29B12C00048C1E /* Encodable+.swift in Sources */,
 				1B55F0392975BB01002B2179 /* HistoryTableViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -533,28 +633,25 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_ENTITLEMENTS = FuturaeDemo/FuturaeDemo.entitlements;
+				CODE_SIGN_ENTITLEMENTS = FuturaeDemo/Resources/FuturaeDemo.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = "";
 				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = T82Z6CGNMT;
-				INFOPLIST_FILE = FuturaeDemo/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				INFOPLIST_FILE = FuturaeDemo/Resources/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2.6.5;
+				MARKETING_VERSION = 3.7.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.futurae.FuturaeDemo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = "FuturaeDemo adhoc";
-				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
-				SUPPORTS_MACCATALYST = NO;
-				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
-				SWIFT_OBJC_BRIDGING_HEADER = "FuturaeDemo/Helpers/FuturaeDemo-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -624,28 +721,25 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_ENTITLEMENTS = FuturaeDemo/FuturaeDemo.entitlements;
+				CODE_SIGN_ENTITLEMENTS = FuturaeDemo/Resources/FuturaeDemo.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = "";
 				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = T82Z6CGNMT;
-				INFOPLIST_FILE = FuturaeDemo/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				INFOPLIST_FILE = FuturaeDemo/Resources/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2.6.5;
+				MARKETING_VERSION = 3.7.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.futurae.FuturaeDemo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = "FuturaeDemo appstore";
-				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
-				SUPPORTS_MACCATALYST = NO;
-				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
-				SWIFT_OBJC_BRIDGING_HEADER = "FuturaeDemo/Helpers/FuturaeDemo-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -709,28 +803,25 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_ENTITLEMENTS = FuturaeDemo/FuturaeDemo.entitlements;
+				CODE_SIGN_ENTITLEMENTS = FuturaeDemo/Resources/FuturaeDemo.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = "";
 				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = T82Z6CGNMT;
-				INFOPLIST_FILE = FuturaeDemo/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				INFOPLIST_FILE = FuturaeDemo/Resources/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2.6.5;
+				MARKETING_VERSION = 3.7.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.futurae.FuturaeDemo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = "FuturaeDemo adhoc";
-				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
-				SUPPORTS_MACCATALYST = NO;
-				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
-				SWIFT_OBJC_BRIDGING_HEADER = "FuturaeDemo/Helpers/FuturaeDemo-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -793,28 +884,25 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_ENTITLEMENTS = FuturaeDemo/FuturaeDemo.entitlements;
+				CODE_SIGN_ENTITLEMENTS = FuturaeDemo/Resources/FuturaeDemo.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = "";
 				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = T82Z6CGNMT;
-				INFOPLIST_FILE = FuturaeDemo/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				INFOPLIST_FILE = FuturaeDemo/Resources/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2.6.5;
+				MARKETING_VERSION = 3.7.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.futurae.FuturaeDemo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = "FuturaeDemo appstore";
-				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
-				SUPPORTS_MACCATALYST = NO;
-				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
-				SWIFT_OBJC_BRIDGING_HEADER = "FuturaeDemo/Helpers/FuturaeDemo-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -879,13 +967,13 @@
 				INFOPLIST_FILE = notifications/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = notifications;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "Copyright © 2023 Futurae. All rights reserved.";
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 3.7.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -957,13 +1045,13 @@
 				INFOPLIST_FILE = notifications/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = notifications;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "Copyright © 2023 Futurae. All rights reserved.";
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 3.7.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.futurae.FuturaeDemo.extension;
@@ -1036,13 +1124,13 @@
 				INFOPLIST_FILE = notifications/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = notifications;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "Copyright © 2023 Futurae. All rights reserved.";
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 3.7.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.futurae.FuturaeDemo.extension;
@@ -1121,13 +1209,13 @@
 				INFOPLIST_FILE = notifications/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = notifications;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "Copyright © 2023 Futurae. All rights reserved.";
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 3.7.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -1200,13 +1288,13 @@
 				INFOPLIST_FILE = notifications/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = notifications;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "Copyright © 2023 Futurae. All rights reserved.";
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 3.7.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.futurae.FuturaeDemo.extension;
@@ -1279,13 +1367,13 @@
 				INFOPLIST_FILE = notifications/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = notifications;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "Copyright © 2023 Futurae. All rights reserved.";
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 3.7.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.futurae.FuturaeDemo.extension;
@@ -1418,25 +1506,22 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_ENTITLEMENTS = FuturaeDemo/FuturaeDemo.entitlements;
+				CODE_SIGN_ENTITLEMENTS = FuturaeDemo/Resources/FuturaeDemo.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = T82Z6CGNMT;
-				INFOPLIST_FILE = FuturaeDemo/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				INFOPLIST_FILE = FuturaeDemo/Resources/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2.6.5;
+				MARKETING_VERSION = 3.7.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.futurae.FuturaeDemo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
-				SUPPORTS_MACCATALYST = NO;
-				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
-				SWIFT_OBJC_BRIDGING_HEADER = "FuturaeDemo/Helpers/FuturaeDemo-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -1448,28 +1533,25 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_ENTITLEMENTS = FuturaeDemo/FuturaeDemo.entitlements;
+				CODE_SIGN_ENTITLEMENTS = FuturaeDemo/Resources/FuturaeDemo.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = "";
 				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = T82Z6CGNMT;
-				INFOPLIST_FILE = FuturaeDemo/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				INFOPLIST_FILE = FuturaeDemo/Resources/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2.6.5;
+				MARKETING_VERSION = 3.7.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.futurae.FuturaeDemo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = "FuturaeDemo development";
-				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
-				SUPPORTS_MACCATALYST = NO;
-				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
-				SWIFT_OBJC_BRIDGING_HEADER = "FuturaeDemo/Helpers/FuturaeDemo-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};

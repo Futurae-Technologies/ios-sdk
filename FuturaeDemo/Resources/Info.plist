@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CFBundleDevelopmentRegion</key>
+	<string>$(DEVELOPMENT_LANGUAGE)</string>
+	<key>CFBundleExecutable</key>
+	<string>$(EXECUTABLE_NAME)</string>
+	<key>CFBundleIdentifier</key>
+	<string>$(PRODUCT_BUNDLE_IDENTIFIER)</string>
+	<key>CFBundleInfoDictionaryVersion</key>
+	<string>6.0</string>
+	<key>CFBundleName</key>
+	<string>$(PRODUCT_NAME)</string>
+	<key>CFBundlePackageType</key>
+	<string>APPL</string>
+	<key>CFBundleShortVersionString</key>
+	<string>$(MARKETING_VERSION)</string>
+	<key>CFBundleURLTypes</key>
+	<array>
+		<dict>
+			<key>CFBundleTypeRole</key>
+			<string>Viewer</string>
+			<key>CFBundleURLName</key>
+			<string>futurae.beta</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>futurae.beta</string>
+			</array>
+		</dict>
+	</array>
+	<key>CFBundleVersion</key>
+	<string>$(CURRENT_PROJECT_VERSION)</string>
+	<key>LSApplicationQueriesSchemes</key>
+	<array>
+		<string>undecimus</string>
+		<string>sileo</string>
+		<string>zbra</string>
+		<string>filza</string>
+		<string>activator</string>
+	</array>
+	<key>LSRequiresIPhoneOS</key>
+	<true/>
+	<key>NSBluetoothAlwaysUsageDescription</key>
+	<string>App requires bluetooth access for adaptive mechanism.</string>
+	<key>NSBluetoothPeripheralUsageDescription</key>
+	<string>App requires bluetooth access for adaptive mechanism.</string>
+	<key>NSBonjourServices</key>
+	<array>
+		<string>_smb._tcp.</string>
+		<string>_privet._tcp.</string>
+		<string>_device-info._tcp.</string>
+		<string>_sftp-ssh._tcp.</string>
+		<string>_airplay._tcp.</string>
+		<string>_scanner._tcp.</string>
+		<string>_mediaremotetv._tcp.</string>
+		<string>_rdlink._tcp.</string>
+		<string>_rfb._tcp.</string>
+		<string>_uscan._tcp.</string>
+		<string>_companion-link._tcp.</string>
+		<string>_apple-mobdev2._tcp.</string>
+		<string>_b._dns-sd._udp.</string>
+		<string>_afpovertcp._tcp.</string>
+		<string>_nfs._tcp.</string>
+		<string>_webdav._tcp.</string>
+		<string>_ftp._tcp.</string>
+		<string>_ssh._tcp.</string>
+		<string>_eppc._tcp.</string>
+		<string>_http._tcp.</string>
+		<string>_telnet._tcp.</string>
+		<string>_printer._tcp.</string>
+		<string>_ipp._tcp.</string>
+		<string>_pdl-datastream._tcp.</string>
+		<string>_riousbprint._tcp.</string>
+		<string>_daap._tcp.</string>
+		<string>_dpap._tcp.</string>
+		<string>_ichat._tcp.</string>
+		<string>_presence._tcp.</string>
+		<string>_ica-networking._tcp.</string>
+		<string>_airport._tcp.</string>
+		<string>_xserveraid._tcp.</string>
+		<string>_distcc._tcp.</string>
+		<string>_apple-sasl._tcp.</string>
+		<string>_workstation._tcp.</string>
+		<string>_servermgr._tcp.</string>
+		<string>_raop._tcp.</string>
+		<string>_xcs2p._tcp.</string>
+	</array>
+	<key>NSCameraUsageDescription</key>
+	<string>This app uses the camera to scan your enrollment and authentication QR Codes.</string>
+	<key>NSFaceIDUsageDescription</key>
+	<string>Unlock sensititive data</string>
+	<key>NSLocalNetworkUsageDescription</key>
+	<string>App requires access to your local network for adaptive mechanism.</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>App requires access to your location for adaptive mechanism.</string>
+	<key>UIBackgroundModes</key>
+	<array>
+		<string>remote-notification</string>
+	</array>
+	<key>UILaunchStoryboardName</key>
+	<string>LaunchScreen</string>
+	<key>UIMainStoryboardFile</key>
+	<string>Main</string>
+	<key>UIRequiredDeviceCapabilities</key>
+	<array>
+		<string>armv7</string>
+	</array>
+	<key>UISupportedInterfaceOrientations</key>
+	<array>
+		<string>UIInterfaceOrientationPortrait</string>
+	</array>
+	<key>UISupportedInterfaceOrientations~ipad</key>
+	<array>
+		<string>UIInterfaceOrientationPortrait</string>
+		<string>UIInterfaceOrientationPortraitUpsideDown</string>
+		<string>UIInterfaceOrientationLandscapeLeft</string>
+		<string>UIInterfaceOrientationLandscapeRight</string>
+	</array>
+</dict>
+</plist>
