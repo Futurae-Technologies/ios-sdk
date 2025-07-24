@@ -57811,181 +57811,188 @@
       "filePath": "\/Users\/armendh\/futurae-ios-sdk-demo\/futurae-ios-sdk-swift\/FuturaeKit\/Internal\/Models\/Constants\/FTRConstants.swift",
       "kind": "StringLiteral",
       "offset": 2389,
+      "length": 12,
+      "value": "\"error_type\""
+    },
+    {
+      "filePath": "\/Users\/armendh\/futurae-ios-sdk-demo\/futurae-ios-sdk-swift\/FuturaeKit\/Internal\/Models\/Constants\/FTRConstants.swift",
+      "kind": "StringLiteral",
+      "offset": 2428,
       "length": 16,
       "value": "\"sdk_error_code\""
     },
     {
       "filePath": "\/Users\/armendh\/futurae-ios-sdk-demo\/futurae-ios-sdk-swift\/FuturaeKit\/Internal\/Models\/Constants\/FTRConstants.swift",
       "kind": "StringLiteral",
-      "offset": 2428,
+      "offset": 2467,
       "length": 13,
       "value": "\"FTR_PN_ENCR\""
     },
     {
       "filePath": "\/Users\/armendh\/futurae-ios-sdk-demo\/futurae-ios-sdk-swift\/FuturaeKit\/Internal\/Models\/Constants\/FTRConstants.swift",
       "kind": "StringLiteral",
-      "offset": 2465,
+      "offset": 2504,
       "length": 13,
       "value": "\"FTR_EI_ENCR\""
     },
     {
       "filePath": "\/Users\/armendh\/futurae-ios-sdk-demo\/futurae-ios-sdk-swift\/FuturaeKit\/Internal\/Models\/Constants\/FTRConstants.swift",
       "kind": "StringLiteral",
-      "offset": 2501,
+      "offset": 2540,
       "length": 11,
       "value": "\"http_code\""
     },
     {
       "filePath": "\/Users\/armendh\/futurae-ios-sdk-demo\/futurae-ios-sdk-swift\/FuturaeKit\/Internal\/Models\/Constants\/FTRConstants.swift",
       "kind": "StringLiteral",
-      "offset": 2542,
+      "offset": 2581,
       "length": 11,
       "value": "\"raw_error\""
     },
     {
       "filePath": "\/Users\/armendh\/futurae-ios-sdk-demo\/futurae-ios-sdk-swift\/FuturaeKit\/Internal\/Models\/Constants\/FTRConstants.swift",
       "kind": "StringLiteral",
-      "offset": 2582,
+      "offset": 2621,
       "length": 17,
       "value": "\"notification_id\""
     },
     {
       "filePath": "\/Users\/armendh\/futurae-ios-sdk-demo\/futurae-ios-sdk-swift\/FuturaeKit\/Internal\/Models\/Constants\/FTRConstants.swift",
       "kind": "StringLiteral",
-      "offset": 2638,
+      "offset": 2677,
       "length": 19,
       "value": "\"FTRApiErrorDomain\""
     },
     {
       "filePath": "\/Users\/armendh\/futurae-ios-sdk-demo\/futurae-ios-sdk-swift\/FuturaeKit\/Internal\/Models\/Constants\/FTRConstants.swift",
       "kind": "StringLiteral",
-      "offset": 2683,
+      "offset": 2722,
       "length": 20,
       "value": "\"FTRLockErrorDomain\""
     },
     {
       "filePath": "\/Users\/armendh\/futurae-ios-sdk-demo\/futurae-ios-sdk-swift\/FuturaeKit\/Internal\/Models\/Constants\/FTRConstants.swift",
       "kind": "StringLiteral",
-      "offset": 2734,
+      "offset": 2773,
       "length": 21,
       "value": "\"FTRLockErrorInfoKey\""
     },
     {
       "filePath": "\/Users\/armendh\/futurae-ios-sdk-demo\/futurae-ios-sdk-swift\/FuturaeKit\/Internal\/Models\/Constants\/FTRConstants.swift",
       "kind": "StringLiteral",
-      "offset": 2786,
+      "offset": 2825,
       "length": 25,
       "value": "\"FTRAppAttestErrorDomain\""
     },
     {
       "filePath": "\/Users\/armendh\/futurae-ios-sdk-demo\/futurae-ios-sdk-swift\/FuturaeKit\/Internal\/Models\/Constants\/FTRConstants.swift",
       "kind": "StringLiteral",
-      "offset": 2839,
+      "offset": 2878,
       "length": 22,
       "value": "\"FTRClientErrorDomain\""
     },
     {
       "filePath": "\/Users\/armendh\/futurae-ios-sdk-demo\/futurae-ios-sdk-swift\/FuturaeKit\/Internal\/Models\/Constants\/FTRConstants.swift",
       "kind": "IntegerLiteral",
-      "offset": 2896,
+      "offset": 2935,
       "length": 3,
       "value": "500"
     },
     {
       "filePath": "\/Users\/armendh\/futurae-ios-sdk-demo\/futurae-ios-sdk-swift\/FuturaeKit\/Internal\/Models\/Constants\/FTRConstants.swift",
       "kind": "IntegerLiteral",
-      "offset": 2948,
+      "offset": 2987,
       "length": 3,
       "value": "501"
     },
     {
       "filePath": "\/Users\/armendh\/futurae-ios-sdk-demo\/futurae-ios-sdk-swift\/FuturaeKit\/Internal\/Models\/Constants\/FTRConstants.swift",
       "kind": "IntegerLiteral",
-      "offset": 3003,
+      "offset": 3042,
       "length": 3,
       "value": "502"
     },
     {
       "filePath": "\/Users\/armendh\/futurae-ios-sdk-demo\/futurae-ios-sdk-swift\/FuturaeKit\/Internal\/Models\/Constants\/FTRConstants.swift",
       "kind": "IntegerLiteral",
-      "offset": 3054,
+      "offset": 3093,
       "length": 3,
       "value": "503"
     },
     {
       "filePath": "\/Users\/armendh\/futurae-ios-sdk-demo\/futurae-ios-sdk-swift\/FuturaeKit\/Internal\/Models\/Constants\/FTRConstants.swift",
       "kind": "IntegerLiteral",
-      "offset": 3096,
+      "offset": 3135,
       "length": 3,
       "value": "504"
     },
     {
       "filePath": "\/Users\/armendh\/futurae-ios-sdk-demo\/futurae-ios-sdk-swift\/FuturaeKit\/Internal\/Models\/Constants\/FTRConstants.swift",
       "kind": "IntegerLiteral",
-      "offset": 3153,
+      "offset": 3192,
       "length": 3,
       "value": "505"
     },
     {
       "filePath": "\/Users\/armendh\/futurae-ios-sdk-demo\/futurae-ios-sdk-swift\/FuturaeKit\/Internal\/Models\/Constants\/FTRConstants.swift",
       "kind": "IntegerLiteral",
-      "offset": 3194,
+      "offset": 3233,
       "length": 3,
       "value": "506"
     },
     {
       "filePath": "\/Users\/armendh\/futurae-ios-sdk-demo\/futurae-ios-sdk-swift\/FuturaeKit\/Internal\/Models\/Constants\/FTRConstants.swift",
       "kind": "IntegerLiteral",
-      "offset": 3245,
+      "offset": 3284,
       "length": 3,
       "value": "507"
     },
     {
       "filePath": "\/Users\/armendh\/futurae-ios-sdk-demo\/futurae-ios-sdk-swift\/FuturaeKit\/Internal\/Models\/Constants\/FTRConstants.swift",
       "kind": "IntegerLiteral",
-      "offset": 3299,
+      "offset": 3338,
       "length": 3,
       "value": "508"
     },
     {
       "filePath": "\/Users\/armendh\/futurae-ios-sdk-demo\/futurae-ios-sdk-swift\/FuturaeKit\/Internal\/Models\/Constants\/FTRConstants.swift",
       "kind": "IntegerLiteral",
-      "offset": 3348,
+      "offset": 3387,
       "length": 3,
       "value": "509"
     },
     {
       "filePath": "\/Users\/armendh\/futurae-ios-sdk-demo\/futurae-ios-sdk-swift\/FuturaeKit\/Internal\/Models\/Constants\/FTRConstants.swift",
       "kind": "IntegerLiteral",
-      "offset": 3396,
+      "offset": 3435,
       "length": 3,
       "value": "510"
     },
     {
       "filePath": "\/Users\/armendh\/futurae-ios-sdk-demo\/futurae-ios-sdk-swift\/FuturaeKit\/Internal\/Models\/Constants\/FTRConstants.swift",
       "kind": "StringLiteral",
-      "offset": 3446,
+      "offset": 3485,
       "length": 22,
       "value": "\"FTRNotificationError\""
     },
     {
       "filePath": "\/Users\/armendh\/futurae-ios-sdk-demo\/futurae-ios-sdk-swift\/FuturaeKit\/Internal\/Models\/Constants\/FTRConstants.swift",
       "kind": "StringLiteral",
-      "offset": 3518,
+      "offset": 3557,
       "length": 25,
       "value": "\"FTRNotificationUnEnroll\""
     },
     {
       "filePath": "\/Users\/armendh\/futurae-ios-sdk-demo\/futurae-ios-sdk-swift\/FuturaeKit\/Internal\/Models\/Constants\/FTRConstants.swift",
       "kind": "StringLiteral",
-      "offset": 3592,
+      "offset": 3631,
       "length": 24,
       "value": "\"FTRNotificationApprove\""
     },
     {
       "filePath": "\/Users\/armendh\/futurae-ios-sdk-demo\/futurae-ios-sdk-swift\/FuturaeKit\/Internal\/Models\/Constants\/FTRConstants.swift",
       "kind": "FloatLiteral",
-      "offset": 3659,
+      "offset": 3698,
       "length": 4,
       "value": "20.0"
     },
@@ -63956,28 +63963,28 @@
     {
       "filePath": "\/Users\/armendh\/futurae-ios-sdk-demo\/futurae-ios-sdk-swift\/FuturaeKit\/Internal\/Models\/Errors\/Base\/SDKBaseError.swift",
       "kind": "StringLiteral",
-      "offset": 5913,
+      "offset": 5954,
       "length": 55,
       "value": "\"Domain: \""
     },
     {
       "filePath": "\/Users\/armendh\/futurae-ios-sdk-demo\/futurae-ios-sdk-swift\/FuturaeKit\/Internal\/Models\/Errors\/Base\/SDKBaseError.swift",
       "kind": "StringLiteral",
-      "offset": 5931,
+      "offset": 5972,
       "length": 1,
       "value": "\", Code: \""
     },
     {
       "filePath": "\/Users\/armendh\/futurae-ios-sdk-demo\/futurae-ios-sdk-swift\/FuturaeKit\/Internal\/Models\/Errors\/Base\/SDKBaseError.swift",
       "kind": "StringLiteral",
-      "offset": 5946,
+      "offset": 5987,
       "length": 1,
       "value": "\", Message: \""
     },
     {
       "filePath": "\/Users\/armendh\/futurae-ios-sdk-demo\/futurae-ios-sdk-swift\/FuturaeKit\/Internal\/Models\/Errors\/Base\/SDKBaseError.swift",
       "kind": "StringLiteral",
-      "offset": 5967,
+      "offset": 6008,
       "length": 1,
       "value": "\"\""
     },

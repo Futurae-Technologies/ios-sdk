@@ -1,3 +1,8 @@
+# Version 3.7.1
+2025-24-07
+- Added `error_type` (raw value of `SDKErrorType`) to `NSError.userInfo` to support Objective-C error classification.
+
+
 # Version 3.7.0
 2025-22-07
 - [Changed]  Improvements around database access
