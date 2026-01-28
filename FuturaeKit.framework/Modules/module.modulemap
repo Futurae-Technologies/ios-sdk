@@ -1,0 +1,11 @@
+framework module FuturaeKit {
+  umbrella header "FuturaeKit.h"
+  export *
+
+  module * { export * }
+}
+
+module FuturaeKit.Swift {
+  header "Futurae-Swift.h"
+  requires objc
+}

@@ -1,3 +1,8 @@
+# Version 3.9.4
+2026-28-01
+- Remove `FTRQRCodeReader.videoOrientationFromInterfaceOrientation` referencing the deprecated `AVCaptureVideoOrientation` to eliminate compiler warnings
+- Internal security improvements
+
 # Version 3.7.1
 2025-24-07
 - Added `error_type` (raw value of `SDKErrorType`) to `NSError.userInfo` to support Objective-C error classification.
