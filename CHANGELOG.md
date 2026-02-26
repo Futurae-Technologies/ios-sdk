@@ -1,3 +1,7 @@
+# Version 3.9.6
+2026-26-02
+- Fix issue with database crash when account table was missing optional columns
+
 # Version 3.9.5
 2026-16-02
 - Fix issue with unlock prompt being triggered during launch when biometrics/passcode is enabled in configuration
