@@ -1,3 +1,21 @@
+# Version 3.9.7-rc1
+2026-02-07
+### Added
+- App-to-App enrollment: `spawnEnrollment(_:success:failure:)` spawns an enrollment for an already-enrolled user, returning an activation short code and enrollment id. Use the short code with `getEnrollmentExchangeTokens(_:success:failure:)` to fetch a batch of short-lived Exchange Tokens that the host app renders as QR codes for a receiving device.
+- `SpawnEnrollmentParameters` now supports a configurable `validDurationSeconds` (allowed range 60–180, default 60); out-of-range values fail with `SDKError.invalidParameter`.
+
+### Changed
+- App Attest: added a 30-second timeout so the call surfaces an error instead of hanging indefinitely when Apple's attestation service stalls.
+- `replyAuth(_:success:failure:)`: rejecting a mobile-auth request is no longer permitted — a non-approve reply for a `.mobileAuth` request now fails with `SDKError.invalidParameter`.
+
+### Fixed
+- Restored handling of unenroll push notifications that a previous change had removed.
+
+### Deprecated
+- `appAttestation(...)` is deprecated. Integrity checks should be implemented directly in the host app using Apple's App Attest (see [Establishing your app's integrity](https://developer.apple.com/documentation/devicecheck/establishing-your-app-s-integrity)).
+- `rejectMobileAuth(...)` is deprecated. Rejecting a mobile-auth request is not supported; passing its parameters to `replyAuth` throws `SDKError.invalidParameter`.
+
+
 # Version 3.9.6
 2026-26-02
 - Fix issue with database crash when account table was missing optional columns
