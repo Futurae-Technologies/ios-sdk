@@ -1,7 +1,7 @@
 // swift-interface-format-version: 1.0
-// swift-compiler-version: Apple Swift version 6.3 effective-5.10 (swiftlang-6.3.0.123.5 clang-2100.0.123.102)
+// swift-compiler-version: Apple Swift version 6.3.1 effective-5.10 (swiftlang-6.3.1.1.2 clang-2100.0.123.102)
 // swift-module-flags: -target x86_64-apple-ios13-simulator -enable-objc-interop -enable-library-evolution -swift-version 5 -O -enable-experimental-feature DebugDescriptionMacro -enable-bare-slash-regex -module-name FuturaeKit
-// swift-module-flags-ignorable: -no-verify-emitted-module-interface -formal-cxx-interoperability-mode=off -interface-compiler-version 6.3
+// swift-module-flags-ignorable: -no-verify-emitted-module-interface -formal-cxx-interoperability-mode=off -interface-compiler-version 6.3.1
 import AVFoundation
 import SystemConfiguration.CaptiveNetwork
 import Combine
@@ -28,6 +28,7 @@ import _SwiftConcurrencyShims
 @objc extension FuturaeKit.FTRClient {
   @objc dynamic public class func launch(config: FuturaeKit.FTRConfig) throws
 }
+@available(*, deprecated, message: "Overriding the user presence verification type is no longer supported and will be removed in a future release. The SDK determines it automatically.")
 @objc public protocol FTRUserPresenceDelegate {
   @objc func userPresenceVerificationType() -> FuturaeKit.UserPresenceVerificationType
 }
@@ -280,6 +281,8 @@ import _SwiftConcurrencyShims
   case retrieveChallengeFailure = 7
   case appIntegrityNotVerified = 8
   case timeout = 9
+  case attestationKeyInvalid = 10
+  case attestationThrottled = 11
   public init?(rawValue: Swift.Int)
   public typealias RawValue = Swift.Int
   public var rawValue: Swift.Int {
@@ -757,6 +760,7 @@ extension FuturaeKit.FTRClient {
   @objc dynamic public class func disableLogging()
   @objc dynamic public func logAnalyticsData(_ analyticsData: [Swift.String : Any], success: @escaping FuturaeKit.FTRSuccessHandler, failure: @escaping FuturaeKit.FTRFailureHandler)
   @nonobjc public func logAnalyticsData(_ analyticsData: [Swift.String : Any]) -> FuturaeKit.AsyncTask
+  @available(*, deprecated, message: "Overriding the user presence verification type is no longer supported and will be removed in a future release. The SDK determines it automatically.")
   @objc dynamic public func setUserPresenceDelegate(_ delegate: (any FuturaeKit.FTRUserPresenceDelegate)?)
   @objc dynamic public class func checkDataExists(forAppGroup appGroup: Swift.String?, keychainConfig: FuturaeKit.FTRKeychainConfig?, lockConfiguration: FuturaeKit.LockConfiguration) -> Swift.Bool
   @objc dynamic public func decryptExtraInfo(_ encryptedExtraInfo: Swift.String, userId: Swift.String) throws -> [FuturaeKit.FTRExtraInfo]
@@ -1057,10 +1061,8 @@ extension FuturaeKit.FTRClient {
   @objc dynamic public class var clientVersion: Swift.String {
     @objc get
   }
+  @available(*, deprecated, message: "There is no beta channel any more; always false.")
   @objc dynamic public var isBeta: Swift.Bool {
-    @objc get
-  }
-  @objc dynamic public var releaseCandidate: Foundation.NSNumber? {
     @objc get
   }
 }
