@@ -1,3 +1,18 @@
+# Version 3.9.9-rc2
+2026-11-20
+### Changed
+- No code changes since 3.9.9-rc1: rebuilt and republished with rotated release credentials.
+- FuturaeKit is now distributed through Swift Package Manager only; CocoaPods and Carthage releases are no longer published.
+
+### Fixed
+- Fixed crashes on devices with hardware memory tagging, such as iPhone 17.
+- App Attest: fixed the SDK repeatedly sending assertions the backend could not verify; it now re-attests once when an assertion is rejected.
+
+### Deprecated
+- `setUserPresenceDelegate(_:)` and `FTRUserPresenceDelegate` are deprecated. Overriding the SDK's user presence verification type is no longer supported.
+- `FTRClient.isBeta` is deprecated and always returns `false`.
+
+
 # Version 3.9.9-rc1
 2026-10-16
 ### Changed
